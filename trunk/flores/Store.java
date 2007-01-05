@@ -7,14 +7,15 @@ import flores.receipt.Buy;
 import flores.receipt.Sell;
 import flores.stock.Stock;
 
-public class Depot {
+public class Store {
 
 	private Stock stock = new Stock();
 	private Collection buys = new HashSet();
 	private Collection sells = new HashSet();
 	private Collection articles = new HashSet();
 	private Clients clients = new Clients(); 
-	private Suppliers suppliers = new Suppliers(); 
+	private Suppliers suppliers = new Suppliers();
+	private Debts debts = new Debts();
 
 	public Stock stock() {
 		return stock;

@@ -13,7 +13,7 @@ import money.Check;
 import money.Pay;
 import money.Pesos;
 import flores.Article;
-import flores.Depot;
+import flores.Store;
 import flores.JuridicPerson;
 import flores.receipt.ArticleSpecification;
 import flores.receipt.Buy;
@@ -21,7 +21,7 @@ import flores.receipt.Sell;
 
 public class SellTest extends TestCase {
 
-	private Depot depot;
+	private Store depot;
 	private Article paqueteRosa;
 	private Article paqueteClavel;
 	private JuridicPerson elvira;
@@ -63,7 +63,7 @@ public class SellTest extends TestCase {
 	public void testSell() {
 		ArticleSpecification spec = new ArticleSpecification();
 		spec.add(paqueteClavel, 100.0, Pesos.newFor(9.0));
-		spec.add(paqueteRosa, 5.0, Pesos.newFor(40.5));
+		spec.add(paqueteRosa, 5.0, Pesos.newFor(50.0));
 		
 		Set<Pay> payment = new HashSet<Pay>();
 		payment.add(new Cash(Pesos.newFor(900.0)));

@@ -12,14 +12,14 @@ import money.Cash;
 import money.Pay;
 import money.Pesos;
 import flores.Article;
-import flores.Depot;
+import flores.Store;
 import flores.JuridicPerson;
 import flores.receipt.ArticleSpecification;
 import flores.receipt.Sell;
 
 public class ClientTest extends TestCase {
 
-	private Depot depot;
+	private Store depot;
 	private Article paqueteClavel;
 
 	/* (non-Javadoc)

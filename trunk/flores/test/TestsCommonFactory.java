@@ -1,11 +1,11 @@
 package flores.test;
 
-import flores.Depot;
+import flores.Store;
 
 public class TestsCommonFactory {
 
-	public static Depot makeEmptyDepot() {
-		return new Depot();
+	public static Store makeEmptyDepot() {
+		return new Store();
 	}
 
 }

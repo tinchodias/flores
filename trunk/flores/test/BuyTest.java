@@ -14,14 +14,14 @@ import money.Pesos;
 
 import junit.framework.TestCase;
 import flores.Article;
-import flores.Depot;
+import flores.Store;
 import flores.JuridicPerson;
 import flores.receipt.ArticleSpecification;
 import flores.receipt.Buy;
 
 public class BuyTest extends TestCase {
 
-	private Depot depot;
+	private Store depot;
 	private Article paqueteRosa;
 	private Article paqueteClavel;
 	private JuridicPerson marquez;
