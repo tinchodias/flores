@@ -1,10 +1,10 @@
-package flores.receipt;
+package model.receipt;
 
 import java.util.Collection;
 import java.util.Date;
 
-import money.Pay;
-import flores.JuridicPerson;
+import model.JuridicPerson;
+import model.money.Pay;
 
 public class Buy {
 

@@ -1,12 +1,12 @@
-package flores.stock;
+package model.stock;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import money.Pesos;
-import flores.Article;
-import flores.receipt.Buy;
-import flores.receipt.Sell;
+import model.Article;
+import model.money.Pesos;
+import model.receipt.Buy;
+import model.receipt.Sell;
 
 
 public class Stock {

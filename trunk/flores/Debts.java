@@ -1,9 +1,9 @@
-package flores;
+package model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import money.Pesos;
+import model.money.Pesos;
 
 public class Debts {
 

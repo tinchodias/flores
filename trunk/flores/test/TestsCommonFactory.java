@@ -1,6 +1,6 @@
-package flores.test;
+package model.test;
 
-import flores.Store;
+import model.Store;
 
 public class TestsCommonFactory {
 

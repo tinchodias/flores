@@ -1,11 +1,11 @@
-package flores.receipt;
+package model.receipt;
 
 import java.util.Collection;
 import java.util.Date;
 
-import money.Pay;
+import model.JuridicPerson;
+import model.money.Pay;
 
-import flores.JuridicPerson;
 
 public class Sell {
 	private final ArticleSpecification specification;

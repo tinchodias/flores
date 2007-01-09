@@ -1,9 +1,9 @@
-package flores.stock;
+package model.stock;
 
-import flores.Article;
-import flores.receipt.Buy;
-import flores.receipt.Sell;
-import money.Pesos;
+import model.Article;
+import model.money.Pesos;
+import model.receipt.Buy;
+import model.receipt.Sell;
 
 public interface CostValuation {
 

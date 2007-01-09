@@ -1,12 +1,12 @@
-package flores.receipt;
+package model.receipt;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import money.Pesos;
+import model.Article;
+import model.money.Pesos;
 
-import flores.Article;
 
 
 public class ArticleSpecification {

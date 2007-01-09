@@ -1,6 +1,6 @@
-package flores.receipt;
+package model.receipt;
 
-import money.Pesos;
+import model.money.Pesos;
 
 public class ArticleSpecificationItem {
 	private final double count;

@@ -1,4 +1,4 @@
-package flores;
+package model;
 
 public class Article {
 

@@ -1,21 +1,21 @@
 /**
  * 
  */
-package flores.test;
+package model.test;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
-import money.Cash;
-import money.Pay;
-import money.Pesos;
-import flores.Article;
-import flores.Store;
-import flores.JuridicPerson;
-import flores.receipt.ArticleSpecification;
-import flores.receipt.Sell;
+import model.Article;
+import model.JuridicPerson;
+import model.Store;
+import model.money.Cash;
+import model.money.Pay;
+import model.money.Pesos;
+import model.receipt.ArticleSpecification;
+import model.receipt.Sell;
 
 public class ClientTest extends TestCase {
 

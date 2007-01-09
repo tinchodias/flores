@@ -1,23 +1,23 @@
 /**
  * 
  */
-package flores.test;
+package model.test;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import money.Cash;
-import money.Check;
-import money.Pay;
-import money.Pesos;
+import model.Article;
+import model.JuridicPerson;
+import model.Store;
+import model.money.Cash;
+import model.money.Check;
+import model.money.Pay;
+import model.money.Pesos;
+import model.receipt.ArticleSpecification;
+import model.receipt.Buy;
 
 import junit.framework.TestCase;
-import flores.Article;
-import flores.Store;
-import flores.JuridicPerson;
-import flores.receipt.ArticleSpecification;
-import flores.receipt.Buy;
 
 public class BuyTest extends TestCase {
 

@@ -1,11 +1,12 @@
-package flores;
+package model;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-import flores.receipt.Buy;
-import flores.receipt.Sell;
-import flores.stock.Stock;
+import model.receipt.Buy;
+import model.receipt.Sell;
+import model.stock.Stock;
+
 
 public class Store {
 
