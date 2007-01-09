@@ -1,4 +1,4 @@
-package money;
+package model.money;
 
 public interface Pay {
 
