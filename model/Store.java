@@ -3,6 +3,7 @@ package model;
 import java.util.Collection;
 import java.util.HashSet;
 
+import model.debts.Debts;
 import model.receipt.Buy;
 import model.receipt.Sell;
 import model.stock.Stock;
@@ -39,8 +40,13 @@ public class Store {
 		return suppliers;
 	}
 
+	public Debts debts() {
+		return debts;
+	}
+	
 	public void add(Sell sell) {
 		sells.add(sell);
 		stock.apply(sell);
+		debts.apply(sell);
 	}
 }

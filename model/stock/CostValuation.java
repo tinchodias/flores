@@ -13,4 +13,6 @@ public interface CostValuation {
 
 	void notify(Sell sell);
 
+	void setStock(Stock stock);
+
 }

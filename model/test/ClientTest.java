@@ -13,6 +13,7 @@ import model.JuridicPerson;
 import model.Store;
 import model.money.Cash;
 import model.money.Pay;
+import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
@@ -79,7 +80,7 @@ public class ClientTest extends TestCase {
 		ArticleSpecification spec = new ArticleSpecification();
 		spec.add(paqueteClavel, 100.0, Pesos.newFor(5.0));
 
-		Set<Pay> payment = new HashSet<Pay>();
+		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(450.0)));
 		
 		Sell sell = new Sell(spec, new Date(), client, payment);
