@@ -28,5 +28,13 @@ public class ArticleSpecification {
 	public Pesos getPesos(Article article) {
 		return specifications.get(article).getPesos();
 	}
+	
+	public Pesos total() {
+		Pesos total = Pesos.newFor(0.0);
+		for (ArticleSpecificationItem item : specifications.values()) {
+			total = total.getSum(item.getPesos().by(item.getCount()));
+		}
+		return total;
+	}
 }
 

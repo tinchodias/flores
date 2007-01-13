@@ -4,15 +4,16 @@
 package model.test;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import junit.framework.TestCase;
 import model.Article;
 import model.JuridicPerson;
 import model.Store;
+import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
+import model.stock.AverageCostValuation;
 
 public class AverageCostValuationTest extends TestCase {
 
@@ -28,10 +29,10 @@ public class AverageCostValuationTest extends TestCase {
 		super.setUp();
 		
 		depot = TestsCommonFactory.makeEmptyDepot();
-
+		depot.stock().setCostValuation(new AverageCostValuation(depot.stock()));
+		
 		marquez = new JuridicPerson("Marquez");
 		depot.suppliers().add(marquez);
-		
 		
 		paqueteRosa = new Article("RO40", "Paquete de Rosa x 40");
 		paqueteClavel = new Article("CL", "Paquete de Clavel");
@@ -72,7 +73,7 @@ public class AverageCostValuationTest extends TestCase {
 	}
 
 	private Buy makeBuy(ArticleSpecification spec) {
-		return new Buy(spec, new Date(), marquez, new HashSet());
+		return new Buy(spec, new Date(), marquez, new Payment());
 	}
 	
 }

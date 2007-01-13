@@ -4,24 +4,27 @@
 package model.test;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import junit.framework.TestCase;
 import model.Article;
 import model.JuridicPerson;
 import model.Store;
+import model.debts.ClientDebtCancellation;
+import model.debts.LostDebtDeclaration;
 import model.money.Cash;
-import model.money.Check;
+import model.money.Pay;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
 import model.receipt.Sell;
 
-public class SellTest extends TestCase {
+public class DebtsTest extends TestCase {
 
 	private Store depot;
 	private Article paqueteRosa;
-	private Article paqueteClavel;
 	private JuridicPerson elvira;
 	private JuridicPerson marquez;
 	
@@ -40,13 +43,10 @@ public class SellTest extends TestCase {
 		depot.suppliers().add(marquez);
 		
 		paqueteRosa = new Article("RO40", "Paquete de Rosa x 40");
-		paqueteClavel = new Article("CL", "Paquete de Clavel");
-		depot.articles().add(paqueteClavel);
 		depot.articles().add(paqueteRosa);
 
 		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
-		spec.add(paqueteRosa, 10.0, Pesos.newFor(15.0));
+		spec.add(paqueteRosa, 100.0, Pesos.newFor(15.0));
 		Buy buy = new Buy(spec, new Date(), marquez, new Payment());
 		depot.add(buy);
 	}
@@ -58,16 +58,27 @@ public class SellTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testSell() {
+	public void testSimpleDebt() {
+		doSell();
+		
+		assertEquals(Pesos.newFor(100.0), depot.debts().debtOf(elvira));
+
+		depot.debts().add(new ClientDebtCancellation(elvira, Pesos.newFor(40.0), new Date()));
+		assertEquals(Pesos.newFor(60.0), depot.debts().debtOf(elvira));
+		
+		depot.debts().add(new LostDebtDeclaration(elvira, Pesos.newFor(40.0), new Date()));
+		assertEquals(Pesos.newFor(20.0), depot.debts().debtOf(elvira));
+	}
+
+	private void doSell() {
 		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(paqueteClavel, 100.0, Pesos.newFor(9.0));
-		spec.add(paqueteRosa, 5.0, Pesos.newFor(50.0));
+		spec.add(paqueteRosa, 10.0, Pesos.newFor(50.0));
 		
 		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(900.0)));
-		payment.add(new Check(Pesos.newFor(200.0), "12345678E"));
+		payment.add(new Cash(Pesos.newFor(400.0)));
 		
 		Sell sell = new Sell(spec, new Date(), elvira, payment);
 		depot.add(sell);
 	}
+	
 }

@@ -12,7 +12,7 @@ import model.receipt.Sell;
 public class AverageCostValuation implements CostValuation {
 
 	private Map<Article, Pesos> costs = new HashMap();
-	private final Stock stock;
+	private Stock stock;
 	
 	public AverageCostValuation(Stock stock) {
 		this.stock = stock;
@@ -44,6 +44,14 @@ public class AverageCostValuation implements CostValuation {
 			/ (actualCount + inputCount);
 		
 		costs.put(article, Pesos.newFor(newCostValue));
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
 	}
 
 }

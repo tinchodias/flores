@@ -1,5 +1,12 @@
 package model.money;
 
+/* TODO La existencia de esta clase complica el código porque
+ * no es polimórfico con Double, lo cual complica las operaciones.
+ * Al menos debería encapsular en métodos a las operaciones comunes.
+ */
+/* TODO El modelo es bastante genérico salvo por esta clase.
+ * Replantear el modelo de dinero. 
+ */
 public class Pesos {
 
 	private final Double value;
@@ -27,4 +34,17 @@ public class Pesos {
 		}
 		return equals;
 	}
+
+	public Pesos getSum(Pesos pesos) {
+		return Pesos.newFor(this.value() + pesos.value());
+	}
+
+	public Pesos minus(Pesos pesos) {
+		return Pesos.newFor(this.value() - pesos.value());	
+	}
+
+	public Pesos by(double multiplier) {
+		return Pesos.newFor(this.value() * multiplier);
+	}
+	
 }

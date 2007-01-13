@@ -4,20 +4,15 @@
 package model.test;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
+import junit.framework.TestCase;
 import model.Article;
 import model.JuridicPerson;
 import model.Store;
-import model.money.Cash;
-import model.money.Check;
-import model.money.Pay;
+import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
-
-import junit.framework.TestCase;
 
 public class BuyTest extends TestCase {
 
@@ -52,15 +47,12 @@ public class BuyTest extends TestCase {
 
 	public void testDoubleBuy() {
 
-		
 		{
 			ArticleSpecification spec = new ArticleSpecification();
 			spec.add(paqueteClavel, 20.0, Pesos.newFor(20.0));
 			spec.add(paqueteRosa, 10.0, Pesos.newFor(15.0));
 	
-			Set<Pay> payment = new HashSet<Pay>();
-			
-			Buy buy = new Buy(spec, new Date(), marquez, payment);
+			Buy buy = new Buy(spec, new Date(), marquez, new Payment());
 			depot.add(buy);
 		}
 		
@@ -72,9 +64,7 @@ public class BuyTest extends TestCase {
 			spec.add(paqueteClavel, 100.0, Pesos.newFor(20.0));
 			spec.add(paqueteRosa, 200.0, Pesos.newFor(15.0));
 
-			Set<Pay> payment = new HashSet<Pay>();
-			
-			Buy buy = new Buy(spec, new Date(), marquez, payment);
+			Buy buy = new Buy(spec, new Date(), marquez, new Payment());
 			depot.add(buy);
 		}
 		
