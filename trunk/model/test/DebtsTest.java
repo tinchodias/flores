@@ -34,7 +34,7 @@ public class DebtsTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		depot = TestsCommonFactory.makeEmptyDepot();
+		depot = TestsCommonFactory.makeEmptyStore();
 
 		elvira = new JuridicPerson("Elvira");
 		depot.clients().add(elvira);
