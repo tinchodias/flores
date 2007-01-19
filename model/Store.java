@@ -28,7 +28,7 @@ public class Store {
 		stock.apply(buy);
 	}
 
-	public Collection articles() {
+	public Collection<Article> articles() {
 		return articles;
 	}
 

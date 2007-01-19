@@ -28,7 +28,7 @@ public class AverageCostValuationTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		depot = TestsCommonFactory.makeEmptyDepot();
+		depot = TestsCommonFactory.makeEmptyStore();
 		depot.stock().setCostValuation(new AverageCostValuation(depot.stock()));
 		
 		marquez = new JuridicPerson("Marquez");

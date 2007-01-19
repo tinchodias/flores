@@ -29,7 +29,7 @@ public class ClientTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		depot = TestsCommonFactory.makeEmptyDepot();
+		depot = TestsCommonFactory.makeEmptyStore();
 
 		paqueteClavel = new Article("CL", "Paquete de Clavel");
 		depot.articles().add(paqueteClavel);
