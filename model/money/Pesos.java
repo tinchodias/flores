@@ -35,7 +35,7 @@ public class Pesos {
 		return equals;
 	}
 
-	public Pesos getSum(Pesos pesos) {
+	public Pesos plus(Pesos pesos) {
 		return Pesos.newFor(this.value() + pesos.value());
 	}
 

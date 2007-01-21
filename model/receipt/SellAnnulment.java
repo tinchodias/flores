@@ -2,12 +2,12 @@ package model.receipt;
 
 import java.util.Date;
 
-public class SellCancellation {
+public class SellAnnulment {
 
 	private final Date date;
 	private final Sell sell;
 
-	public SellCancellation(Sell sell, Date date) {
+	public SellAnnulment(Sell sell, Date date) {
 		this.sell = sell;
 		this.date = date;
 	}

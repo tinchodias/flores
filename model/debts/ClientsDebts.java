@@ -7,9 +7,11 @@ import java.util.Map;
 
 import model.JuridicPerson;
 import model.money.Pesos;
+import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
+import model.receipt.SellAnnulment;
 
-public class Debts {
+public class ClientsDebts {
 
 	private Map<JuridicPerson, Pesos> debts = new HashMap();
 	private Collection declarations = new ArrayList();
@@ -42,5 +44,9 @@ public class Debts {
 
 	public void apply(Sell sell) {
 		incrementDebt(sell.client(), sell.clientDebt());
+	}
+
+	public void apply(SellAnnulment annulment) {
+		reduceDebt(annulment.getSell().client(), annulment.getSell().clientDebt());
 	}
 }
