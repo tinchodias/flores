@@ -17,13 +17,14 @@ import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
 import model.receipt.Sell;
+import model.receipt.SellAnnulment;
 
 public class SellTest extends TestCase {
 
 	private Store store;
-	private Article article1;
-	private Article article2;
+	private Article clavel;
 	private JuridicPerson elvira;
+	private Sell sell;
 	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -33,11 +34,9 @@ public class SellTest extends TestCase {
 		
 		store = TestsCommonFactory.makeSimpleStore();
 		
-		Iterator<Article> iterator = store.articles().iterator();
-		article1 = iterator.next();
-		article2 = iterator.next();
+		clavel = store.articles().iterator().next();
 		
-		elvira = store.clients().iterator().next(); 
+		elvira = store.clients().iterator().next();
 	}
 
 	/* (non-Javadoc)
@@ -46,17 +45,43 @@ public class SellTest extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
+	
+	public void testSimpleSellAndAnnulment() {
+		
+		Pesos initialDebt = store.debts().debtOf(elvira);
+		double initialStock = store.stock().count(clavel);
+		
+		doSell();
 
-	public void testSell() {
+		assertEquals(initialDebt.plus(Pesos.newFor(400.0)), store.debts().debtOf(elvira));
+		assertEquals(initialStock - 100.0, store.stock().count(clavel));
+		
+		doAnnulment();
+		
+		assertEquals(initialDebt, store.debts().debtOf(elvira));
+		assertEquals(initialStock, store.stock().count(clavel));
+	}
+
+	/**
+	 * Elvira buys 100 claveles at $9 each, paying $500. 
+	 */
+	private void doSell() {
 		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(article1, 100.0, Pesos.newFor(9.0));
-		spec.add(article2, 5.0, Pesos.newFor(50.0));
+		spec.add(clavel, 100.0, Pesos.newFor(9.0));
 		
 		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(900.0)));
-		payment.add(new Check(Pesos.newFor(200.0), "12345678E"));
+		payment.add(new Cash(Pesos.newFor(500.0)));
 		
-		Sell sell = new Sell(spec, new Date(), elvira, payment);
+		sell = new Sell(spec, new Date(), elvira, payment);
 		store.add(sell);
+	}
+	
+	/**
+	 * Makes the annulment of the sell.
+	 */
+	private void doAnnulment() {
+		SellAnnulment annulment = new SellAnnulment(sell, new Date());
+		
+		store.add(annulment);
 	}
 }

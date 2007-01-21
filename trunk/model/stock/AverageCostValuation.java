@@ -7,7 +7,9 @@ import java.util.Map;
 import model.Article;
 import model.money.Pesos;
 import model.receipt.Buy;
+import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
+import model.receipt.SellAnnulment;
 
 public class AverageCostValuation implements CostValuation {
 
@@ -23,11 +25,28 @@ public class AverageCostValuation implements CostValuation {
 		return pesos != null ? pesos : Pesos.newFor(0.0);
 	}
 
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
 	public void notify(Buy buy) {
 		for (Article article : buy.specification().getArticles()) {
 			Double inputCount = buy.specification().getCount(article);
 			Pesos inputCost = buy.specification().getPesos(article);
-			notifyArticleInput(article, inputCount, inputCost);
+			applyArticleMovement(article, inputCount, inputCost);
+		}
+	}
+
+	public void notify(BuyAnnulment annulment) {
+		Buy buy = annulment.getBuy();
+		for (Article article : buy.specification().getArticles()) {
+			Double inputCount = buy.specification().getCount(article);
+			Pesos inputCost = buy.specification().getPesos(article);
+			applyArticleMovement(article, -inputCount, inputCost);
 		}
 	}
 
@@ -35,7 +54,11 @@ public class AverageCostValuation implements CostValuation {
 		//Do nothing on Sell
 	}
 
-	private void notifyArticleInput(Article article, Double inputCount, Pesos inputCost) {
+	public void notify(SellAnnulment annulment) {
+		//Do nothing on SellAnnulment
+	}
+
+	private void applyArticleMovement(Article article, Double inputCount, Pesos inputCost) {
 		Pesos actualCost = stock.cost(article);
 		Double actualCount = stock.count(article);
 		
@@ -44,14 +67,6 @@ public class AverageCostValuation implements CostValuation {
 			/ (actualCount + inputCount);
 		
 		costs.put(article, Pesos.newFor(newCostValue));
-	}
-
-	public Stock getStock() {
-		return stock;
-	}
-
-	public void setStock(Stock stock) {
-		this.stock = stock;
 	}
 
 }

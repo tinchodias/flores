@@ -15,6 +15,8 @@ import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
 import model.stock.AverageCostValuation;
 
+// TODO: add tests for BuyAnnulment 
+
 public class AverageCostValuationTest extends TestCase {
 
 	private Store depot;
@@ -54,6 +56,7 @@ public class AverageCostValuationTest extends TestCase {
 		ArticleSpecification spec = new ArticleSpecification();
 		spec.add(paqueteRosa, 21.0, Pesos.newFor(15.0));
 		Buy buy = makeBuy(spec);
+		
 		depot.add(buy);
 		
 		assertEquals(Pesos.newFor(15.0), depot.stock().cost(paqueteRosa));

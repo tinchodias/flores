@@ -11,7 +11,7 @@ public class Payment implements Collection<Pay> {
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);
 		for (Pay pay : pays) {
-			total = total.getSum(pay.getValue());
+			total = total.plus(pay.getValue());
 		}
 		return total;
 	}

@@ -2,30 +2,31 @@ package model;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 
-import model.debts.Debts;
+import model.debts.ClientsDebts;
 import model.receipt.Buy;
+import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
+import model.receipt.SellAnnulment;
 import model.stock.Stock;
 
-
+// TODO: Rethink this class.
 public class Store {
 
-	private Stock stock = new Stock();
-	private Collection buys = new HashSet();
-	private Collection sells = new HashSet();
-	private Collection articles = new HashSet();
+	private Collection<Buy> buys = new HashSet();
+	private Collection<Sell> sells = new HashSet();
+	private Collection<BuyAnnulment> buyAnnulments = new HashSet();
+	private Collection<SellAnnulment> sellAnnulments = new HashSet();
+	private Collection<Article> articles = new HashSet();
+
 	private Clients clients = new Clients(); 
 	private Suppliers suppliers = new Suppliers();
-	private Debts debts = new Debts();
+	private Stock stock = new Stock();
+	private ClientsDebts clientsDebts = new ClientsDebts();
 
 	public Stock stock() {
 		return stock;
-	}
-
-	public void add(Buy buy) {
-		buys.add(buy);
-		stock.apply(buy);
 	}
 
 	public Collection<Article> articles() {
@@ -40,13 +41,29 @@ public class Store {
 		return suppliers;
 	}
 
-	public Debts debts() {
-		return debts;
+	public ClientsDebts debts() {
+		return clientsDebts;
 	}
 	
+	public void add(Buy buy) {
+		buys.add(buy);
+		stock.apply(buy);
+	}
+
 	public void add(Sell sell) {
 		sells.add(sell);
 		stock.apply(sell);
-		debts.apply(sell);
+		clientsDebts.apply(sell);
+	}
+
+	public void add(BuyAnnulment annulment) {
+		buyAnnulments.add(annulment);
+		stock.apply(annulment);
+	}
+
+	public void add(SellAnnulment annulment) {
+		sellAnnulments.add(annulment);
+		stock.apply(annulment);
+		clientsDebts.apply(annulment);
 	}
 }
