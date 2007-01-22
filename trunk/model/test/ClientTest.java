@@ -8,15 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
-import model.Article;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Cash;
-import model.money.Pay;
+import model.money.PayMode;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
+import model.stock.Article;
 
 public class ClientTest extends TestCase {
 
@@ -86,6 +86,4 @@ public class ClientTest extends TestCase {
 		Sell sell = new Sell(spec, new Date(), client, payment);
 		depot.add(sell);
 	}
-
-	
 }

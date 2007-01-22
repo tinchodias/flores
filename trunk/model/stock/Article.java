@@ -1,4 +1,4 @@
-package model;
+package model.stock;
 
 public class Article {
 

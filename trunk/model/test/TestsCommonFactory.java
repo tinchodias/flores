@@ -2,13 +2,13 @@ package model.test;
 
 import java.util.Date;
 
-import model.Article;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
+import model.stock.Article;
 
 public class TestsCommonFactory {
 

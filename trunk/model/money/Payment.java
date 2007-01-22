@@ -4,23 +4,23 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class Payment implements Collection<Pay> {
+public class Payment implements Collection<PayMode> {
 
-	Collection<Pay> pays = new HashSet<Pay>();
+	Collection<PayMode> pays = new HashSet<PayMode>();
 	
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);
-		for (Pay pay : pays) {
+		for (PayMode pay : pays) {
 			total = total.plus(pay.getValue());
 		}
 		return total;
 	}
 
-	public boolean add(Pay arg0) {
+	public boolean add(PayMode arg0) {
 		return pays.add(arg0);
 	}
 
-	public boolean addAll(Collection<? extends Pay> arg0) {
+	public boolean addAll(Collection<? extends PayMode> arg0) {
 		return pays.addAll(arg0);
 	}
 
@@ -48,7 +48,7 @@ public class Payment implements Collection<Pay> {
 		return pays.isEmpty();
 	}
 
-	public Iterator<Pay> iterator() {
+	public Iterator<PayMode> iterator() {
 		return pays.iterator();
 	}
 

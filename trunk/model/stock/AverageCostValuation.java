@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import model.Article;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
@@ -58,6 +57,10 @@ public class AverageCostValuation implements CostValuation {
 		//Do nothing on SellAnnulment
 	}
 
+	public void notify(StockDropOut dropOut) {
+		//Do nothing on StockDropOut
+	}
+
 	private void applyArticleMovement(Article article, Double inputCount, Pesos inputCost) {
 		Pesos actualCost = stock.cost(article);
 		Double actualCount = stock.count(article);
@@ -68,5 +71,4 @@ public class AverageCostValuation implements CostValuation {
 		
 		costs.put(article, Pesos.newFor(newCostValue));
 	}
-
 }

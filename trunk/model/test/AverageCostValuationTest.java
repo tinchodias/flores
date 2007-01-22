@@ -6,16 +6,16 @@ package model.test;
 import java.util.Date;
 
 import junit.framework.TestCase;
-import model.Article;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
+import model.stock.Article;
 import model.stock.AverageCostValuation;
 
-// TODO: add tests for BuyAnnulment 
+//TODO Add tests for BuyAnnulment 
 
 public class AverageCostValuationTest extends TestCase {
 
