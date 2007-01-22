@@ -8,20 +8,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
-import model.Article;
 import model.JuridicPerson;
 import model.Store;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.money.Cash;
-import model.money.Pay;
+import model.money.PayMode;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
 import model.receipt.Sell;
+import model.stock.Article;
 
-public class DebtsTest extends TestCase {
+public class ClientsDebtsTest extends TestCase {
 
 	private Store depot;
 	private Article paqueteRosa;

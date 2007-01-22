@@ -1,6 +1,5 @@
 package model.stock;
 
-import model.Article;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
@@ -11,14 +10,16 @@ public interface CostValuation {
 
 	Pesos cost(Article article);
 
+	void setStock(Stock stock);
+
 	void notify(Buy buy);
 
 	void notify(Sell sell);
 
-	void setStock(Stock stock);
+	void notify(BuyAnnulment annulment);
 
 	void notify(SellAnnulment annulment);
 
-	void notify(BuyAnnulment annulment);
+	void notify(StockDropOut dropOut);
 
 }

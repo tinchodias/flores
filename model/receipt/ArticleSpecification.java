@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.Article;
 import model.money.Pesos;
+import model.stock.Article;
 
 
 

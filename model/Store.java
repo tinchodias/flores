@@ -4,14 +4,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import model.commission.Commissions;
 import model.debts.ClientsDebts;
+import model.money.Payment;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
+import model.stock.Article;
 import model.stock.Stock;
 
-// TODO: Rethink this class.
+//TODO Rethink this class.
+
+//TODO Add validation checks to maintain consistency? 
+
 public class Store {
 
 	private Collection<Buy> buys = new HashSet();
@@ -24,6 +30,8 @@ public class Store {
 	private Suppliers suppliers = new Suppliers();
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
+	private Commissions commissions = new Commissions();
+	private Vendors vendors = new Vendors();
 
 	public Stock stock() {
 		return stock;
@@ -39,6 +47,10 @@ public class Store {
 
 	public Suppliers suppliers() {
 		return suppliers;
+	}
+
+	public Vendors vendors() {
+		return vendors ;
 	}
 
 	public ClientsDebts debts() {
@@ -65,5 +77,9 @@ public class Store {
 		sellAnnulments.add(annulment);
 		stock.apply(annulment);
 		clientsDebts.apply(annulment);
+	}
+
+	public Commissions commissions() {
+		return commissions;
 	}
 }

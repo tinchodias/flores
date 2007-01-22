@@ -1,6 +1,6 @@
 package model.money;
 
-public class Cash implements Pay {
+public class Cash implements PayMode {
 
 	private final Pesos value;
 
