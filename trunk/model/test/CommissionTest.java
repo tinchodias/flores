@@ -15,7 +15,9 @@ import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
 import model.stock.Article;
-import model.util.time.LapseFactory;
+import model.util.TimeUtils;
+
+import org.joda.time.Interval;
 
 public class CommissionTest extends TestCase {
 
@@ -48,12 +50,12 @@ public class CommissionTest extends TestCase {
 	}
 	
 	public void testSimpleCommissions() {
-		CommissionSummary summary0 = store.commissions().commissionAt(eduardo, LapseFactory.toNow());
+		CommissionSummary summary0 = store.commissions().commissionAt(eduardo, TimeUtils.todayInterval());
 		assertEquals(Pesos.newFor(0.0), summary0.getTotal());
 		
 		doSell();
 
-		CommissionSummary summary1 = store.commissions().commissionAt(eduardo, LapseFactory.toNow());
+		CommissionSummary summary1 = store.commissions().commissionAt(eduardo, TimeUtils.todayInterval());
 		assertTrue(summary1.getTotal().value() > 0.0);
 	}
 

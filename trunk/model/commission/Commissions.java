@@ -1,11 +1,12 @@
 package model.commission;
 
 import model.JuridicPerson;
-import model.util.time.Lapse;
+
+import org.joda.time.Interval;
 
 public class Commissions {
 	
-	public CommissionSummary commissionAt(JuridicPerson vendor, Lapse lapse) {
+	public CommissionSummary commissionAt(JuridicPerson vendor, Interval lapse) {
 //		Map detail;
 //		Pesos total;
 //		
