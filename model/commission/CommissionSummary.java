@@ -4,16 +4,17 @@ import java.util.Map;
 
 import model.JuridicPerson;
 import model.money.Pesos;
-import model.util.time.ClosedLapse;
+
+import org.joda.time.Interval;
 
 public class CommissionSummary {
 
 	private final JuridicPerson vendor;
-	private final ClosedLapse lapse;
+	private final Interval lapse;
 	private final Map detail;
 	private final Pesos total;
 	
-	public CommissionSummary(JuridicPerson vendor, ClosedLapse lapse, Map detail, Pesos total) {
+	public CommissionSummary(JuridicPerson vendor, Interval lapse, Map detail, Pesos total) {
 		this.vendor = vendor;
 		this.lapse = lapse;
 		this.detail = detail;
@@ -24,7 +25,7 @@ public class CommissionSummary {
 		return detail;
 	}
 
-	public ClosedLapse getLapse() {
+	public Interval getLapse() {
 		return lapse;
 	}
 
