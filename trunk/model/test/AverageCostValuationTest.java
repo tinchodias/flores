@@ -13,7 +13,7 @@ import model.money.Pesos;
 import model.receipt.ArticleSpecification;
 import model.receipt.Buy;
 import model.stock.Article;
-import model.stock.AverageCostValuation;
+import model.stock.AverageCostStrategy;
 
 //TODO Add tests for BuyAnnulment 
 
@@ -31,7 +31,7 @@ public class AverageCostValuationTest extends TestCase {
 		super.setUp();
 		
 		depot = TestsCommonFactory.makeEmptyStore();
-		depot.stock().setCostValuation(new AverageCostValuation(depot.stock()));
+		depot.stock().setCostValuation(new AverageCostStrategy(depot.stock()));
 		
 		marquez = new JuridicPerson("Marquez");
 		depot.suppliers().add(marquez);

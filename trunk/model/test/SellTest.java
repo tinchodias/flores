@@ -4,17 +4,14 @@
 package model.test;
 
 import java.util.Date;
-import java.util.Iterator;
 
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Cash;
-import model.money.Check;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
-import model.receipt.Buy;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.Article;

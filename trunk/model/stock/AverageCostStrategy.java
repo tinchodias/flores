@@ -10,12 +10,12 @@ import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 
-public class AverageCostValuation implements CostValuation {
+public class AverageCostStrategy implements CostStrategy {
 
 	private Map<Article, Pesos> costs = new HashMap();
 	private Stock stock;
 	
-	public AverageCostValuation(Stock stock) {
+	public AverageCostStrategy(Stock stock) {
 		this.stock = stock;
 	}
 

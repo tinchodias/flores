@@ -15,11 +15,11 @@ import model.receipt.SellAnnulment;
 public class Stock {
 
 	private Map<Article, Double> stockArticles = new HashMap();
-	private CostValuation costValuation;
+	private CostStrategy costValuation;
 	private Collection<StockDropOut> dropOuts = new LinkedList();
 	
 	public Stock() {
-		costValuation = new AverageCostValuation(this);
+		costValuation = new AverageCostStrategy(this);
 	}
 	
 	public Double count(Article article) {
@@ -31,11 +31,11 @@ public class Stock {
 		return costValuation.cost(article);
 	}
 
-	public CostValuation getCostValuation() {
+	public CostStrategy getCostValuation() {
 		return costValuation;
 	}
 
-	public void setCostValuation(CostValuation costValuation) {
+	public void setCostValuation(CostStrategy costValuation) {
 		this.costValuation = costValuation;
 	}
 

@@ -6,7 +6,7 @@ import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 
-public interface CostValuation {
+public interface CostStrategy {
 
 	Pesos cost(Article article);
 
