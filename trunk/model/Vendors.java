@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class Vendors implements Collection<JuridicPerson> {
 
-	private Collection<JuridicPerson> vendors = new HashSet();
+	private Collection<JuridicPerson> vendors = new HashSet<JuridicPerson>();
 	
 	public int size() {
 		return vendors.size();

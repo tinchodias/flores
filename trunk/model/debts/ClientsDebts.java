@@ -7,15 +7,14 @@ import java.util.Map;
 
 import model.JuridicPerson;
 import model.money.Pesos;
-import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 
 public class ClientsDebts {
 
-	private Map<JuridicPerson, Pesos> debts = new HashMap();
-	private Collection declarations = new ArrayList();
-	private Collection cancellations = new ArrayList();
+	private Map<JuridicPerson, Pesos> debts = new HashMap<JuridicPerson, Pesos>();
+	private Collection<LostDebtDeclaration> declarations = new ArrayList<LostDebtDeclaration>();
+	private Collection<ClientDebtCancellation> cancellations = new ArrayList<ClientDebtCancellation>();
 
 	public Pesos debtOf(JuridicPerson client) {
 		Pesos debt = debts.get(client);

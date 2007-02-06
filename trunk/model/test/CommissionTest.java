@@ -17,8 +17,6 @@ import model.receipt.Sell;
 import model.stock.Article;
 import model.util.TimeUtils;
 
-import org.joda.time.Interval;
-
 public class CommissionTest extends TestCase {
 
 	private Store store;

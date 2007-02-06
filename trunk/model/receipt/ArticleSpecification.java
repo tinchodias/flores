@@ -11,7 +11,7 @@ import model.stock.Article;
 
 public class ArticleSpecification {
 
-	Map<Article, ArticleSpecificationItem> specifications = new HashMap();
+	Map<Article, ArticleSpecificationItem> specifications = new HashMap<Article, ArticleSpecificationItem>();
 	
 	public void add(Article article, Double count, Pesos pesos) {
 		specifications.put(article, new ArticleSpecificationItem(count, pesos));
