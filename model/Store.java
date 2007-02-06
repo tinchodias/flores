@@ -2,11 +2,9 @@ package model;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 import model.commission.Commissions;
 import model.debts.ClientsDebts;
-import model.money.Payment;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
@@ -56,6 +54,10 @@ public class Store {
 	public ClientsDebts debts() {
 		return clientsDebts;
 	}
+
+	public Commissions commissions() {
+		return commissions;
+	}
 	
 	public void add(Buy buy) {
 		buys.add(buy);
@@ -77,9 +79,5 @@ public class Store {
 		sellAnnulments.add(annulment);
 		stock.apply(annulment);
 		clientsDebts.apply(annulment);
-	}
-
-	public Commissions commissions() {
-		return commissions;
 	}
 }
