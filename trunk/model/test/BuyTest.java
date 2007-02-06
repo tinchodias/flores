@@ -17,7 +17,7 @@ import model.stock.Article;
 
 public class BuyTest extends TestCase {
 
-	private Store depot;
+	private Store store;
 	private Article rosas;
 	private Article claveles;
 	private JuridicPerson marquez;
@@ -28,15 +28,15 @@ public class BuyTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		depot = TestsCommonFactory.makeEmptyStore();
+		store = TestsCommonFactory.makeEmptyStore();
 
 		marquez = new JuridicPerson("Marquez");
-		depot.clients().add(marquez);
+		store.clients().add(marquez);
 		
 		rosas = new Article("RO40", "Paquete de Rosa x 40");
 		claveles = new Article("CL", "Paquete de Clavel");
-		depot.articles().add(claveles);
-		depot.articles().add(rosas);
+		store.articles().add(claveles);
+		store.articles().add(rosas);
 	}
 
 	/* (non-Javadoc)
@@ -48,28 +48,28 @@ public class BuyTest extends TestCase {
 
 	public void testBuyAndAnnulment() {
 		Buy buy1 = createBuy1();
-		depot.add(buy1);
+		store.add(buy1);
 		
-		assertEquals(20.0, depot.stock().count(claveles));
-		assertEquals(10.0, depot.stock().count(rosas));
+		assertEquals(20.0, store.stock().count(claveles));
+		assertEquals(10.0, store.stock().count(rosas));
 
 		Buy buy2 = createBuy2();
-		depot.add(buy2);
+		store.add(buy2);
 		
-		assertEquals(120.0, depot.stock().count(claveles));
-		assertEquals(210.0, depot.stock().count(rosas));
+		assertEquals(120.0, store.stock().count(claveles));
+		assertEquals(210.0, store.stock().count(rosas));
 		
 		BuyAnnulment buy1Annulment = createBuyAnnulment(buy1);
-		depot.add(buy1Annulment);
+		store.add(buy1Annulment);
 
-		assertEquals(100.0, depot.stock().count(claveles));
-		assertEquals(200.0, depot.stock().count(rosas));
+		assertEquals(100.0, store.stock().count(claveles));
+		assertEquals(200.0, store.stock().count(rosas));
 		
 		BuyAnnulment buy2Annulment = createBuyAnnulment(buy2);
-		depot.add(buy2Annulment);
+		store.add(buy2Annulment);
 
-		assertEquals(0.0, depot.stock().count(claveles));
-		assertEquals(0.0, depot.stock().count(rosas));
+		assertEquals(0.0, store.stock().count(claveles));
+		assertEquals(0.0, store.stock().count(rosas));
 	}
 
 	private BuyAnnulment createBuyAnnulment(Buy buy) {

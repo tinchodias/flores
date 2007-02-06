@@ -28,6 +28,9 @@ public class TestsCommonFactory {
 		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel");
 		store.articles().add(paqueteClavel);
 
+		Article alquiler = new Article("ALQ", "Alquiler del depósito");
+		store.expensesArticles().add(alquiler);
+		
 		ArticleSpecification spec = new ArticleSpecification();
 		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
 		Buy buy = new Buy(spec, new Date(), marquez, new Payment());
