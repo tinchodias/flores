@@ -7,6 +7,7 @@ import model.commission.Commissions;
 import model.debts.ClientsDebts;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
+import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.Article;
@@ -23,6 +24,8 @@ public class Store {
 	private Collection<BuyAnnulment> buyAnnulments = new HashSet<BuyAnnulment>();
 	private Collection<SellAnnulment> sellAnnulments = new HashSet<SellAnnulment>();
 	private Collection<Article> articles = new HashSet<Article>();
+	private Collection<Article> expensesArticles = new HashSet<Article>();
+	private Collection<Expense> expenses = new HashSet<Expense>();
 
 	private Clients clients = new Clients(); 
 	private Suppliers suppliers = new Suppliers();
@@ -39,6 +42,10 @@ public class Store {
 		return articles;
 	}
 
+	public Collection<Article> expensesArticles() {
+		return expensesArticles;
+	}
+	
 	public Clients clients() {
 		return clients;
 	}
@@ -59,6 +66,10 @@ public class Store {
 		return commissions;
 	}
 	
+	public Collection<Expense> expenses() {
+		return expenses;
+	}
+
 	public void add(Buy buy) {
 		buys.add(buy);
 		stock.apply(buy);
