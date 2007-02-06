@@ -18,11 +18,11 @@ import model.stock.Stock;
 
 public class Store {
 
-	private Collection<Buy> buys = new HashSet();
-	private Collection<Sell> sells = new HashSet();
-	private Collection<BuyAnnulment> buyAnnulments = new HashSet();
-	private Collection<SellAnnulment> sellAnnulments = new HashSet();
-	private Collection<Article> articles = new HashSet();
+	private Collection<Buy> buys = new HashSet<Buy>();
+	private Collection<Sell> sells = new HashSet<Sell>();
+	private Collection<BuyAnnulment> buyAnnulments = new HashSet<BuyAnnulment>();
+	private Collection<SellAnnulment> sellAnnulments = new HashSet<SellAnnulment>();
+	private Collection<Article> articles = new HashSet<Article>();
 
 	private Clients clients = new Clients(); 
 	private Suppliers suppliers = new Suppliers();

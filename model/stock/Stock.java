@@ -14,9 +14,9 @@ import model.receipt.SellAnnulment;
 
 public class Stock {
 
-	private Map<Article, Double> stockArticles = new HashMap();
+	private Map<Article, Double> stockArticles = new HashMap<Article, Double>();
 	private CostStrategy costValuation;
-	private Collection<StockDropOut> dropOuts = new LinkedList();
+	private Collection<StockDropOut> dropOuts = new LinkedList<StockDropOut>();
 	
 	public Stock() {
 		costValuation = new AverageCostStrategy(this);

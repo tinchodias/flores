@@ -1,10 +1,8 @@
 package model.receipt;
 
-import java.util.Collection;
 import java.util.Date;
 
 import model.JuridicPerson;
-import model.money.PayMode;
 import model.money.Payment;
 import model.money.Pesos;
 

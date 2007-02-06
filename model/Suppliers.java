@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Suppliers {
 
-	private Collection<JuridicPerson> suppliers = new HashSet();
+	private Collection<JuridicPerson> suppliers = new HashSet<JuridicPerson>();
 	
 	public void add(JuridicPerson client) {
 		suppliers.add(client);

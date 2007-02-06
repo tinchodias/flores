@@ -3,7 +3,6 @@ package model.stock;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
@@ -12,7 +11,7 @@ import model.receipt.SellAnnulment;
 
 public class AverageCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = new HashMap();
+	private Map<Article, Pesos> costs = new HashMap<Article, Pesos>();
 	private Stock stock;
 	
 	public AverageCostStrategy(Stock stock) {

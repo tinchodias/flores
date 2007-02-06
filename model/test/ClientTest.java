@@ -4,14 +4,11 @@
 package model.test;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Cash;
-import model.money.PayMode;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.ArticleSpecification;
