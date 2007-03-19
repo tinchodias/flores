@@ -12,8 +12,8 @@ import model.commission.CommissionSummary;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
+import model.receipt.SellArticleSpecification;
 import model.stock.Article;
 import model.util.TimeUtils;
 
@@ -61,8 +61,8 @@ public class CommissionTest extends TestCase {
 	 * Elvira buys 100 claveles at $9 each, paying $500. 
 	 */
 	private void doSell() {
-		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(clavel, 100.0, Pesos.newFor(9.0));
+		SellArticleSpecification spec = new SellArticleSpecification();
+		spec.add(clavel, 100.0, Pesos.newFor(9.0), store.stock().cost(clavel));
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(500.0)));

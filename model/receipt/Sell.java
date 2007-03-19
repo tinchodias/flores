@@ -8,19 +8,19 @@ import model.money.Pesos;
 
 
 public class Sell {
-	private final ArticleSpecification specification;
+	private final SellArticleSpecification specification;
 	private final Date date;
 	private final JuridicPerson client;
 	private final Payment payment;
 
-	public Sell(ArticleSpecification spec, Date date, JuridicPerson client, Payment payment) {
+	public Sell(SellArticleSpecification spec, Date date, JuridicPerson client, Payment payment) {
 		this.specification = spec;
 		this.date = date;
 		this.client = client;
 		this.payment = payment;
 	}
 
-	public ArticleSpecification specification() {
+	public SellArticleSpecification specification() {
 		return specification;
 	}
 
@@ -37,6 +37,6 @@ public class Sell {
 	}
 
 	public Pesos clientDebt() {
-		return specification.total().minus(this.payment().total());
+		return specification.sellTotal().minus(this.payment().total());
 	}
 }

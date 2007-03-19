@@ -10,7 +10,7 @@ import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
+import model.receipt.BuyArticleSpecification;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.stock.Article;
@@ -77,7 +77,7 @@ public class BuyTest extends TestCase {
 	}
 
 	private Buy createBuy1() {
-		ArticleSpecification spec = new ArticleSpecification();
+		BuyArticleSpecification spec = new BuyArticleSpecification();
 		spec.add(claveles, 20.0, Pesos.newFor(20.0));
 		spec.add(rosas, 10.0, Pesos.newFor(15.0));
 
@@ -85,7 +85,7 @@ public class BuyTest extends TestCase {
 	}
 	
 	private Buy createBuy2() {
-		ArticleSpecification spec = new ArticleSpecification();
+		BuyArticleSpecification spec = new BuyArticleSpecification();
 		spec.add(claveles, 100.0, Pesos.newFor(20.0));
 		spec.add(rosas, 200.0, Pesos.newFor(15.0));
 

@@ -11,14 +11,14 @@ import model.Store;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
+import model.receipt.SellArticleSpecification;
 import model.stock.Article;
 
 public class ClientTest extends TestCase {
 
-	private Store depot;
-	private Article paqueteClavel;
+	private Store store;
+	private Article clavel;
 
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -26,10 +26,10 @@ public class ClientTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		depot = TestsCommonFactory.makeEmptyStore();
+		store = TestsCommonFactory.makeEmptyStore();
 
-		paqueteClavel = new Article("CL", "Paquete de Clavel");
-		depot.articles().add(paqueteClavel);
+		clavel = new Article("CL", "Paquete de Clavel");
+		store.articles().add(clavel);
 	}
 
 	/* (non-Javadoc)
@@ -40,47 +40,47 @@ public class ClientTest extends TestCase {
 	}
 
 	public void testAddClients() {
-		assertEquals(0, depot.clients().size());
+		assertEquals(0, store.clients().size());
 		
 		JuridicPerson elvira = new JuridicPerson("Elvira");
 		JuridicPerson cuca = new JuridicPerson("Cuca");
-		depot.clients().add(elvira);
-		depot.clients().add(cuca);
+		store.clients().add(elvira);
+		store.clients().add(cuca);
 		
-		assertEquals(2, depot.clients().size());
+		assertEquals(2, store.clients().size());
 	}
 	
 	public void testInvalidRemove() {
 		JuridicPerson elvira = new JuridicPerson("Elvira");
 		JuridicPerson cuca = new JuridicPerson("Cuca");
-		depot.clients().add(elvira);
-		depot.clients().add(cuca);
+		store.clients().add(elvira);
+		store.clients().add(cuca);
 		
-		assertEquals(2, depot.clients().size());
+		assertEquals(2, store.clients().size());
 		
 		doSellTo(elvira);
 
 		try {
-			depot.clients().remove(cuca);
+			store.clients().remove(cuca);
 		} finally {
-			assertEquals(1, depot.clients().size());
+			assertEquals(1, store.clients().size());
 		}
 
 		try {
-			depot.clients().remove(elvira);
+			store.clients().remove(elvira);
 		} finally {
-			assertEquals(1, depot.clients().size());
+			assertEquals(1, store.clients().size());
 		}
 	}
 	
 	private void doSellTo(JuridicPerson client) {
-		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(paqueteClavel, 100.0, Pesos.newFor(5.0));
+		SellArticleSpecification spec = new SellArticleSpecification();
+		spec.add(clavel, 100.0, Pesos.newFor(5.0), store.stock().cost(clavel));
 
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(450.0)));
 		
 		Sell sell = new Sell(spec, new Date(), client, payment);
-		depot.add(sell);
+		store.add(sell);
 	}
 }
