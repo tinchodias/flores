@@ -13,8 +13,9 @@ import model.debts.LostDebtDeclaration;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
+import model.receipt.BuyArticleSpecification;
 import model.receipt.Sell;
+import model.receipt.SellArticleSpecification;
 import model.stock.Article;
 
 public class ClientsDebtsTest extends TestCase {
@@ -56,8 +57,8 @@ public class ClientsDebtsTest extends TestCase {
 	}
 
 	private void doSell() {
-		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(clavel, 10.0, Pesos.newFor(50.0));
+		SellArticleSpecification spec = new SellArticleSpecification();
+		spec.add(clavel, 10.0, Pesos.newFor(50.0), store.stock().cost(clavel));
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(400.0)));

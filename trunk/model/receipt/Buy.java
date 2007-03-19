@@ -7,12 +7,12 @@ import model.money.Payment;
 
 public class Buy {
 
-	private final ArticleSpecification specification;
+	private final BuyArticleSpecification specification;
 	private final Date date;
 	private final JuridicPerson supplier;
 	private final Payment payment;
 
-	public Buy(ArticleSpecification spec, Date date, JuridicPerson supplier, Payment payment) {
+	public Buy(BuyArticleSpecification spec, Date date, JuridicPerson supplier, Payment payment) {
 		this.specification = spec;
 		this.date = date;
 		this.supplier = supplier;
@@ -23,7 +23,7 @@ public class Buy {
 		return date;
 	}
 
-	public ArticleSpecification specification() {
+	public BuyArticleSpecification specification() {
 		return specification;
 	}
 

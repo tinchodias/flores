@@ -9,12 +9,12 @@ import model.stock.Article;
 
 
 
-public class ArticleSpecification {
+public class BuyArticleSpecification {
 
-	Map<Article, ArticleSpecificationItem> specifications = new HashMap<Article, ArticleSpecificationItem>();
+	Map<Article, BuyArticleSpecificationItem> specifications = new HashMap<Article, BuyArticleSpecificationItem>();
 	
 	public void add(Article article, Double count, Pesos pesos) {
-		specifications.put(article, new ArticleSpecificationItem(count, pesos));
+		specifications.put(article, new BuyArticleSpecificationItem(count, pesos));
 	}
 	
 	public Collection<Article> getArticles() {
@@ -31,7 +31,7 @@ public class ArticleSpecification {
 	
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);
-		for (ArticleSpecificationItem item : specifications.values()) {
+		for (BuyArticleSpecificationItem item : specifications.values()) {
 			total = total.plus(item.getPesos().by(item.getCount()));
 		}
 		return total;

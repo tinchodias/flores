@@ -6,7 +6,7 @@ import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
+import model.receipt.BuyArticleSpecification;
 import model.receipt.Buy;
 import model.stock.Article;
 
@@ -31,7 +31,7 @@ public class TestsCommonFactory {
 		Article alquiler = new Article("ALQ", "Alquiler del depósito");
 		store.expensesArticles().add(alquiler);
 		
-		ArticleSpecification spec = new ArticleSpecification();
+		BuyArticleSpecification spec = new BuyArticleSpecification();
 		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
 		Buy buy = new Buy(spec, new Date(), marquez, new Payment());
 		store.add(buy);

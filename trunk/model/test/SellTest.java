@@ -11,9 +11,9 @@ import model.Store;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.ArticleSpecification;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
+import model.receipt.SellArticleSpecification;
 import model.stock.Article;
 
 public class SellTest extends TestCase {
@@ -63,8 +63,8 @@ public class SellTest extends TestCase {
 	 * Elvira buys 100 claveles at $9 each, paying $500. 
 	 */
 	private void doSell() {
-		ArticleSpecification spec = new ArticleSpecification();
-		spec.add(clavel, 100.0, Pesos.newFor(9.0));
+		SellArticleSpecification spec = new SellArticleSpecification();
+		spec.add(clavel, 100.0, Pesos.newFor(9.0), store.stock().cost(clavel));
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(500.0)));
