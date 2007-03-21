@@ -29,16 +29,17 @@ public class Store {
 
 	private Clients clients = new Clients(); 
 	private Suppliers suppliers = new Suppliers();
+	private Vendors vendors = new Vendors();
+
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
-	private Commissions commissions = new Commissions();
-	private Vendors vendors = new Vendors();
+	private Commissions commissions = new Commissions(this);
 
 	public Stock stock() {
 		return stock;
 	}
 
-	public Collection<Article> articles() {
+	public Collection<Article> productArticles() {
 		return articles;
 	}
 

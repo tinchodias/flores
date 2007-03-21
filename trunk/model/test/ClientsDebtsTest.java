@@ -32,7 +32,7 @@ public class ClientsDebtsTest extends TestCase {
 		
 		store = TestsCommonFactory.makeSimpleStore();
 		
-		clavel = store.articles().iterator().next();
+		clavel = store.productArticles().iterator().next();
 		
 		elvira = store.clients().iterator().next();
 	}
