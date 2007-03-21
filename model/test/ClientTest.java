@@ -29,7 +29,7 @@ public class ClientTest extends TestCase {
 		store = TestsCommonFactory.makeEmptyStore();
 
 		clavel = new Article("CL", "Paquete de Clavel");
-		store.articles().add(clavel);
+		store.productArticles().add(clavel);
 	}
 
 	/* (non-Javadoc)

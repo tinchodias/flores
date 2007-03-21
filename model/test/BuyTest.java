@@ -35,8 +35,8 @@ public class BuyTest extends TestCase {
 		
 		rosas = new Article("RO40", "Paquete de Rosa x 40");
 		claveles = new Article("CL", "Paquete de Clavel");
-		store.articles().add(claveles);
-		store.articles().add(rosas);
+		store.productArticles().add(claveles);
+		store.productArticles().add(rosas);
 	}
 
 	/* (non-Javadoc)
