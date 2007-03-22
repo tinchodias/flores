@@ -3,8 +3,6 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
@@ -14,6 +12,8 @@ import model.money.Pesos;
 import model.receipt.Sell;
 import model.receipt.SellArticleSpecification;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class ClientTest extends TestCase {
 
@@ -80,7 +80,7 @@ public class ClientTest extends TestCase {
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(450.0)));
 		
-		Sell sell = new Sell(spec, new Date(), client, payment);
+		Sell sell = new Sell(spec, new DateTime(), client, payment);
 		store.add(sell);
 	}
 }

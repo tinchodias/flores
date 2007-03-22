@@ -3,14 +3,14 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.receipt.Sell;
 import model.stock.Article;
 import model.stock.StockDropOut;
+
+import org.joda.time.DateTime;
 
 public class StockDropOutTest extends TestCase {
 
@@ -63,7 +63,7 @@ public class StockDropOutTest extends TestCase {
 //	}
 	
 	private void doDropOut(Article article, double count) {
-		StockDropOut dropOut = new StockDropOut(article, count, new Date());
+		StockDropOut dropOut = new StockDropOut(article, count, new DateTime());
 		store.stock().add(dropOut);
 	}
 }

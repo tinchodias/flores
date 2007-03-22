@@ -1,19 +1,19 @@
 package model.receipt;
 
-import java.util.Date;
-
 import model.JuridicPerson;
 import model.money.Payment;
 import model.money.Pesos;
 
+import org.joda.time.ReadableDateTime;
+
 
 public class Sell {
 	private final SellArticleSpecification specification;
-	private final Date date;
+	private final ReadableDateTime date;
 	private final JuridicPerson client;
 	private final Payment payment;
 
-	public Sell(SellArticleSpecification spec, Date date, JuridicPerson client, Payment payment) {
+	public Sell(SellArticleSpecification spec, ReadableDateTime date, JuridicPerson client, Payment payment) {
 		this.specification = spec;
 		this.date = date;
 		this.client = client;
@@ -24,7 +24,7 @@ public class Sell {
 		return specification;
 	}
 
-	public Date date() {
+	public ReadableDateTime date() {
 		return date;
 	}
 

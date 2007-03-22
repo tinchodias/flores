@@ -3,8 +3,6 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
@@ -13,10 +11,11 @@ import model.debts.LostDebtDeclaration;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.BuyArticleSpecification;
 import model.receipt.Sell;
 import model.receipt.SellArticleSpecification;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class ClientsDebtsTest extends TestCase {
 
@@ -49,10 +48,10 @@ public class ClientsDebtsTest extends TestCase {
 		
 		assertEquals(Pesos.newFor(100.0), store.debts().debtOf(elvira));
 
-		store.debts().add(new ClientDebtCancellation(elvira, Pesos.newFor(40.0), new Date()));
+		store.debts().add(new ClientDebtCancellation(elvira, Pesos.newFor(40.0), new DateTime()));
 		assertEquals(Pesos.newFor(60.0), store.debts().debtOf(elvira));
 		
-		store.debts().add(new LostDebtDeclaration(elvira, Pesos.newFor(40.0), new Date()));
+		store.debts().add(new LostDebtDeclaration(elvira, Pesos.newFor(40.0), new DateTime()));
 		assertEquals(Pesos.newFor(20.0), store.debts().debtOf(elvira));
 	}
 
@@ -63,7 +62,7 @@ public class ClientsDebtsTest extends TestCase {
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(400.0)));
 		
-		Sell sell = new Sell(spec, new Date(), elvira, payment);
+		Sell sell = new Sell(spec, new DateTime(), elvira, payment);
 		store.add(sell);
 	}
 	

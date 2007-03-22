@@ -3,8 +3,6 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
@@ -15,6 +13,8 @@ import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.receipt.SellArticleSpecification;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class SellTest extends TestCase {
 
@@ -69,7 +69,7 @@ public class SellTest extends TestCase {
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(500.0)));
 		
-		sell = new Sell(spec, new Date(), elvira, payment);
+		sell = new Sell(spec, new DateTime(), elvira, payment);
 		store.add(sell);
 	}
 	
@@ -77,7 +77,7 @@ public class SellTest extends TestCase {
 	 * Makes the annulment of the sell.
 	 */
 	private void doAnnulment() {
-		SellAnnulment annulment = new SellAnnulment(sell, new Date());
+		SellAnnulment annulment = new SellAnnulment(sell, new DateTime());
 		
 		store.add(annulment);
 	}

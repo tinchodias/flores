@@ -3,13 +3,13 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.Store;
 import model.money.Pesos;
 import model.receipt.Expense;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class ExpenseTest extends TestCase {
 
@@ -43,6 +43,6 @@ public class ExpenseTest extends TestCase {
 	}
 
 	private Expense createExpense() {
-		return new Expense(alquiler, Pesos.newFor(300.0), new Date());
+		return new Expense(alquiler, Pesos.newFor(300.0), new DateTime());
 	}
 }
