@@ -1,12 +1,7 @@
 package model.money;
 
-/* TODO La existencia de esta clase complica el código porque
- * no es polimórfico con Double, lo cual complica las operaciones.
- * Al menos debería encapsular en métodos a las operaciones comunes.
- */
-/* TODO El modelo es bastante genérico salvo por esta clase.
- * Replantear el modelo de dinero. 
- */
+//TODO Think on a more abstract model for money?
+
 public class Pesos {
 
 	private final Double value;
