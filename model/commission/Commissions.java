@@ -1,7 +1,10 @@
 package model.commission;
 
+import java.util.Collection;
+
 import model.JuridicPerson;
 import model.Store;
+import model.receipt.Sell;
 
 import org.joda.time.Interval;
 
@@ -12,14 +15,10 @@ public class Commissions {
 	public Commissions(Store store) {
 		this.store = store;
 	}
-	
+
 	public CommissionSummary commissionAt(JuridicPerson vendor, Interval lapse) {
-//		Map detail;
-//		Pesos total;
-//		
-//		return new CommissionSummary(vendor, lapse, detail, total);
-		
-		
+
+//		Collection<Sell> sells = store.sellsAt(vendor, lapse);
 		
 		return null;
 	}

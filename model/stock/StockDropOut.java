@@ -1,14 +1,15 @@
 package model.stock;
 
-import java.util.Date;
+import org.joda.time.ReadableDateTime;
+
 
 public class StockDropOut {
 
 	private final Article article;
 	private final double count;
-	private final Date date;
+	private final ReadableDateTime date;
 
-	public StockDropOut(Article article, double count, Date date) {
+	public StockDropOut(Article article, double count, ReadableDateTime date) {
 		this.article = article;
 		this.count = count;
 		this.date = date;
@@ -22,7 +23,7 @@ public class StockDropOut {
 		return count;
 	}
 
-	public Date getDate() {
+	public ReadableDateTime getDate() {
 		return date;
 	}
 

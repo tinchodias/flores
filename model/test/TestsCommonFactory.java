@@ -1,14 +1,14 @@
 package model.test;
 
-import java.util.Date;
-
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.BuyArticleSpecification;
 import model.receipt.Buy;
+import model.receipt.BuyArticleSpecification;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class TestsCommonFactory {
 
@@ -25,6 +25,9 @@ public class TestsCommonFactory {
 		JuridicPerson marquez = new JuridicPerson("Marquez");
 		store.suppliers().add(marquez);
 		
+		JuridicPerson eduardo = new JuridicPerson("Eduardo");
+		store.vendors().add(eduardo);
+
 		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel");
 		store.productArticles().add(paqueteClavel);
 
@@ -33,7 +36,7 @@ public class TestsCommonFactory {
 		
 		BuyArticleSpecification spec = new BuyArticleSpecification();
 		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
-		Buy buy = new Buy(spec, new Date(), marquez, new Payment());
+		Buy buy = new Buy(spec, new DateTime(), marquez, new Payment());
 		store.add(buy);
 		
 		return store;

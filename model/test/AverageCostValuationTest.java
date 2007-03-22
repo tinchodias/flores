@@ -3,17 +3,17 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.BuyArticleSpecification;
 import model.receipt.Buy;
+import model.receipt.BuyArticleSpecification;
 import model.stock.Article;
 import model.stock.AverageCostStrategy;
+
+import org.joda.time.DateTime;
 
 //TODO Add tests for BuyAnnulment 
 
@@ -76,7 +76,7 @@ public class AverageCostValuationTest extends TestCase {
 	}
 
 	private Buy makeBuy(BuyArticleSpecification spec) {
-		return new Buy(spec, new Date(), marquez, new Payment());
+		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 	
 }

@@ -1,18 +1,19 @@
 package model.receipt;
 
-import java.util.Date;
+import org.joda.time.ReadableDateTime;
+
 
 public class SellAnnulment {
 
-	private final Date date;
+	private final ReadableDateTime date;
 	private final Sell sell;
 
-	public SellAnnulment(Sell sell, Date date) {
+	public SellAnnulment(Sell sell, ReadableDateTime date) {
 		this.sell = sell;
 		this.date = date;
 	}
 
-	public Date getDate() {
+	public ReadableDateTime getDate() {
 		return date;
 	}
 

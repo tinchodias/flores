@@ -3,17 +3,17 @@
  */
 package model.test;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.BuyArticleSpecification;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
+import model.receipt.BuyArticleSpecification;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class BuyTest extends TestCase {
 
@@ -73,7 +73,7 @@ public class BuyTest extends TestCase {
 	}
 
 	private BuyAnnulment createBuyAnnulment(Buy buy) {
-		return new BuyAnnulment(buy, new Date());
+		return new BuyAnnulment(buy, new DateTime());
 	}
 
 	private Buy createBuy1() {
@@ -81,7 +81,7 @@ public class BuyTest extends TestCase {
 		spec.add(claveles, 20.0, Pesos.newFor(20.0));
 		spec.add(rosas, 10.0, Pesos.newFor(15.0));
 
-		return new Buy(spec, new Date(), marquez, new Payment());
+		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 	
 	private Buy createBuy2() {
@@ -89,6 +89,6 @@ public class BuyTest extends TestCase {
 		spec.add(claveles, 100.0, Pesos.newFor(20.0));
 		spec.add(rosas, 200.0, Pesos.newFor(15.0));
 
-		return new Buy(spec, new Date(), marquez, new Payment());
+		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 }
