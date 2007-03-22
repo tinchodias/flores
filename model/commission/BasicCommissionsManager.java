@@ -20,9 +20,6 @@ public class BasicCommissionsManager implements CommisionsManager {
 		this.commisionAlpha = 0.5;
 	}
 
-	/* (non-Javadoc)
-	 * @see model.commission.ICommision#commissionAt(model.JuridicPerson, org.joda.time.Interval)
-	 */
 	public CommissionSummary commissionAt(JuridicPerson vendor, Interval lapse) {
 		Collection<Sell> sells = store.sellsAt(vendor, lapse);
 		
