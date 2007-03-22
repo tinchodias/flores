@@ -58,16 +58,17 @@ public class CommissionTest extends TestCase {
 	}
 
 	/**
-	 * Elvira buys 100 claveles at $9 each, paying $500. 
+	 * Elvira buys to Eduardo 100 claveles at $30 each, paying $500. 
 	 */
 	private void doSell() {
+		Pesos clavelCost = store.stock().cost(clavel);
 		SellArticleSpecification spec = new SellArticleSpecification();
-		spec.add(clavel, 100.0, Pesos.newFor(9.0), store.stock().cost(clavel));
+		spec.add(clavel, 100.0, clavelCost.plus(Pesos.newFor(10.0)), clavelCost);
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(500.0)));
 		
-		sell = new Sell(spec, new DateTime(), elvira, payment);
+		sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
 		store.add(sell);
 	}
 }
