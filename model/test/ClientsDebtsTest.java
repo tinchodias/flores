@@ -22,6 +22,7 @@ public class ClientsDebtsTest extends TestCase {
 	private Store store;
 	private Article clavel;
 	private JuridicPerson elvira;
+	private JuridicPerson eduardo;
 	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -34,6 +35,8 @@ public class ClientsDebtsTest extends TestCase {
 		clavel = store.productArticles().iterator().next();
 		
 		elvira = store.clients().iterator().next();
+		
+		eduardo = store.vendors().iterator().next();
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +65,7 @@ public class ClientsDebtsTest extends TestCase {
 		Payment payment = new Payment();
 		payment.add(new Cash(Pesos.newFor(400.0)));
 		
-		Sell sell = new Sell(spec, new DateTime(), elvira, payment);
+		Sell sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
 		store.add(sell);
 	}
 	

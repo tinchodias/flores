@@ -3,7 +3,8 @@ package model;
 import java.util.Collection;
 import java.util.HashSet;
 
-import model.commission.Commissions;
+import model.commission.BasicCommissionsManager;
+import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
@@ -12,6 +13,8 @@ import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.Article;
 import model.stock.Stock;
+
+import org.joda.time.Interval;
 
 //TODO Rethink this class.
 
@@ -33,7 +36,7 @@ public class Store {
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
-	private Commissions commissions = new Commissions(this);
+	private CommisionsManager commissions = new BasicCommissionsManager(this);
 
 	public Stock stock() {
 		return stock;
@@ -63,7 +66,7 @@ public class Store {
 		return clientsDebts;
 	}
 
-	public Commissions commissions() {
+	public CommisionsManager commissions() {
 		return commissions;
 	}
 	
@@ -91,5 +94,15 @@ public class Store {
 		sellAnnulments.add(annulment);
 		stock.apply(annulment);
 		clientsDebts.apply(annulment);
+	}
+
+	public Collection<Sell> sellsAt(JuridicPerson vendor, Interval lapse) {
+		Collection<Sell> selection = new HashSet<Sell>();
+		for (Sell sell : sells) {
+			if (lapse.contains(sell.date()) && sell.vendor().equals(vendor)) {
+				selection.add(sell);
+			}
+		}
+		return selection;
 	}
 }
