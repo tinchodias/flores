@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.test;
+package model;
 
 import junit.framework.TestCase;
 import model.Store;
