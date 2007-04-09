@@ -13,6 +13,7 @@ import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.Article;
 import model.stock.Stock;
+import model.util.CollectionFactory;
 
 import org.joda.time.Interval;
 
@@ -22,17 +23,16 @@ import org.joda.time.Interval;
 
 public class Store {
 
-	private Collection<Buy> buys = new HashSet<Buy>();
-	private Collection<Sell> sells = new HashSet<Sell>();
-	private Collection<BuyAnnulment> buyAnnulments = new HashSet<BuyAnnulment>();
-	private Collection<SellAnnulment> sellAnnulments = new HashSet<SellAnnulment>();
-	private Collection<Article> articles = new HashSet<Article>();
-	private Collection<Article> expensesArticles = new HashSet<Article>();
-	private Collection<Expense> expenses = new HashSet<Expense>();
-
-	private Clients clients = new Clients(); 
-	private Suppliers suppliers = new Suppliers();
-	private Vendors vendors = new Vendors();
+	private Collection<Buy> buys = CollectionFactory.newSet();
+	private Collection<Sell> sells = CollectionFactory.newSet();
+	private Collection<BuyAnnulment> buyAnnulments = CollectionFactory.newSet();
+	private Collection<SellAnnulment> sellAnnulments = CollectionFactory.newSet();
+	private Collection<Article> articles = CollectionFactory.newSet();
+	private Collection<Article> expensesArticles = CollectionFactory.newSet();
+	private Collection<Expense> expenses = CollectionFactory.newSet();
+	private Collection<JuridicPerson> clients = CollectionFactory.newSet(); 
+	private Collection<JuridicPerson> suppliers = CollectionFactory.newSet();
+	private Collection<JuridicPerson> vendors = CollectionFactory.newSet();
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
@@ -50,15 +50,15 @@ public class Store {
 		return expensesArticles;
 	}
 	
-	public Clients clients() {
+	public Collection<JuridicPerson> clients() {
 		return clients;
 	}
 
-	public Suppliers suppliers() {
+	public Collection<JuridicPerson> suppliers() {
 		return suppliers;
 	}
 
-	public Vendors vendors() {
+	public Collection<JuridicPerson> vendors() {
 		return vendors ;
 	}
 
