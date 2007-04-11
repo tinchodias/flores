@@ -38,8 +38,8 @@ public class AverageCostValuationTest extends TestCase {
 		
 		paqueteRosa = new Article("RO40", "Paquete de Rosa x 40");
 		paqueteClavel = new Article("CL", "Paquete de Clavel");
-		depot.productArticles().add(paqueteClavel);
-		depot.productArticles().add(paqueteRosa);
+		depot.stockArticles().add(paqueteClavel);
+		depot.stockArticles().add(paqueteRosa);
 	}
 
 	/* (non-Javadoc)

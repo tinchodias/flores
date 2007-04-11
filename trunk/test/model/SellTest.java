@@ -32,7 +32,7 @@ public class SellTest extends TestCase {
 		
 		store = TestsCommonFactory.makeSimpleStore();
 		
-		clavel = store.productArticles().iterator().next();
+		clavel = store.stockArticles().iterator().next();
 		
 		elvira = store.clients().iterator().next();
 		
