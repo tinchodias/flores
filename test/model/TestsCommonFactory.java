@@ -29,7 +29,7 @@ public class TestsCommonFactory {
 		store.vendors().add(eduardo);
 
 		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel");
-		store.productArticles().add(paqueteClavel);
+		store.stockArticles().add(paqueteClavel);
 
 		Article alquiler = new Article("ALQ", "Alquiler del depósito");
 		store.expensesArticles().add(alquiler);

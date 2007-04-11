@@ -27,7 +27,7 @@ public class Store {
 	private Collection<Sell> sells = CollectionFactory.newSet();
 	private Collection<BuyAnnulment> buyAnnulments = CollectionFactory.newSet();
 	private Collection<SellAnnulment> sellAnnulments = CollectionFactory.newSet();
-	private Collection<Article> articles = CollectionFactory.newSet();
+	private Collection<Article> stockArticles = CollectionFactory.newSet();
 	private Collection<Article> expensesArticles = CollectionFactory.newSet();
 	private Collection<Expense> expenses = CollectionFactory.newSet();
 	private Collection<JuridicPerson> clients = CollectionFactory.newSet(); 
@@ -42,8 +42,8 @@ public class Store {
 		return stock;
 	}
 
-	public Collection<Article> productArticles() {
-		return articles;
+	public Collection<Article> stockArticles() {
+		return stockArticles;
 	}
 
 	public Collection<Article> expensesArticles() {
