@@ -1,38 +1,36 @@
 package persistence;
 
 
+import junit.framework.TestCase;
 import model.Store;
-import model.TestsCommonFactory;
+import model.StoreFactory;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-public class PersistenceTest {
+public class PersistenceTest extends TestCase {
 
 	private ModelPersistence modelPersistence;
+	private Model savedModel;
 
-	@Before
 	public void setUp() throws Exception {
 		modelPersistence = ModelPersistence.instance();
 		
 		saveModel();
 	}
 
-	private void saveModel() {
-		Store store = TestsCommonFactory.makeSimpleStore();
-		Model model = new Model(store);
-		
-		modelPersistence.save(model);
-		
-		//TODO Finish this
-	}
-
-	@After
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testSave() {
+	private void saveModel() {
+		savedModel = ModelFactory.makeSimpleModel();
+		
+		modelPersistence.save(savedModel);
+	}
+
+	public void testSave() throws Exception {
+		Model loadedModel = modelPersistence.load();
+		
+		assertEqualModels(savedModel, loadedModel);
+	}
+
+	private void assertEqualModels(Model model1, Model model2) {
 	}
 }

@@ -34,7 +34,7 @@ public class BasicCommissionsTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = TestsCommonFactory.makeSimpleStore();
+		store = StoreFactory.makeSimpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
 		

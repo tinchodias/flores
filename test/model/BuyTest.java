@@ -28,7 +28,7 @@ public class BuyTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = TestsCommonFactory.makeEmptyStore();
+		store = StoreFactory.makeEmptyStore();
 
 		marquez = new JuridicPerson("Marquez");
 		store.clients().add(marquez);
