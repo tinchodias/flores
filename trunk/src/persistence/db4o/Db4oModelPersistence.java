@@ -26,7 +26,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	@Override
 	public Model load() throws MessageIdentifiedException {
-		ObjectSet<Model> modelSet = container.get(new Model());
+		ObjectSet<Model> modelSet = container.get(new Model(null, null));
 		
 		if (modelSet.size() != 1) {
 			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_MODEL);

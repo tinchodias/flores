@@ -10,7 +10,7 @@ import model.stock.Article;
 
 import org.joda.time.DateTime;
 
-public class TestsCommonFactory {
+public class StoreFactory {
 
 	public static Store makeEmptyStore() {
 		return new Store();

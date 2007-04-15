@@ -22,7 +22,7 @@ public class ExpenseTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = TestsCommonFactory.makeSimpleStore();
+		store = StoreFactory.makeSimpleStore();
 		
 		alquiler = store.expensesArticles().iterator().next();
 	}
