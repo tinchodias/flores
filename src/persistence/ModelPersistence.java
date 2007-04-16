@@ -15,6 +15,10 @@ public abstract class ModelPersistence {
 		return instance;
 	}
 
+	public abstract void open();
+
+	public abstract void close();
+	
 	public abstract void save(Model model);
 
 	public abstract Model load() throws MessageIdentifiedException;
