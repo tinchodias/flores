@@ -3,6 +3,8 @@ package ui.initializer;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import ui.component.LoginDialog;
+
 public class LoginDialogInitializer {
 
 	private final JFrame frame;
@@ -12,10 +14,7 @@ public class LoginDialogInitializer {
 	}
 
 	public JDialog dialog() {
-		JDialog dialog = new JDialog(frame, "Login");
-		dialog.setSize(300, 200);
-		dialog.setModal(true);
-		return dialog;
+		return new LoginDialog(frame);
 	}
 	
 }
