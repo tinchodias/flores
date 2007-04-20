@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 public class LabeledPanel extends JPanel {
 
 	private JLabel label;
+	private final JComponent component;
 
 	public LabeledPanel(JComponent component) {
+		this.component = component;
 		initPanel();
 		add(component, BorderLayout.CENTER);
 	}
@@ -28,6 +30,10 @@ public class LabeledPanel extends JPanel {
 
 	public void setTitle(String string) {
 		label.setText(string);
+	}
+
+	public JComponent getComponent() {
+		return component;
 	}
 
 }

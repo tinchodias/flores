@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 
 public class LoginDialog extends JDialog {
 
-	private LabeledPanel name;
-	private LabeledPanel password;
+	private LabeledPanel nameField;
+	private LabeledPanel passwordField;
 	private JButton loginButton;
 	private JPanel centerPanel;
 
@@ -30,20 +30,36 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void initComponents() {
-		name = new LabeledPanel(new JTextField("martin"));
-		password = new LabeledPanel(new JPasswordField("123456"));
-		loginButton = new JButton();
+		nameField = new LabeledPanel(new JTextField("martin"));
+		passwordField = new LabeledPanel(new JPasswordField("123456"));
+		loginButton = new JButton("Aceptar");
 		
 		centerPanel = new JPanel();
-		centerPanel.add(name);
-		centerPanel.add(password);
+		centerPanel.add(nameField);
+		centerPanel.add(passwordField);
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(loginButton, BorderLayout.SOUTH);
 
 		setTitle("Login");
-		name.setTitle("Nombre:");
-		password.setTitle("Clave:");
+		nameField.setTitle("Nombre:");
+		passwordField.setTitle("Clave:");
 		loginButton.setText("Aceptar");
+	}
+
+	public JButton getLoginButton() {
+		return loginButton;
+	}
+
+	public JPanel getCenterPanel() {
+		return centerPanel;
+	}
+
+	public LabeledPanel getNameField() {
+		return nameField;
+	}
+
+	public LabeledPanel getPasswordField() {
+		return passwordField;
 	}
 
 }

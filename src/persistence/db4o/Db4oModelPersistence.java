@@ -16,6 +16,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	private String fileName = "testModel.db4o";
 	private ObjectContainer container;
+	private Model loadedModel;
 	
 	public Db4oModelPersistence() {
 		super();
@@ -44,7 +45,8 @@ public class Db4oModelPersistence extends ModelPersistence {
 			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_MODEL);
 		}
 		
-		return modelSet.next();
+		loadedModel = modelSet.next();
+		return loadedModel;
 	}
 
 	public void open() {
@@ -58,8 +60,13 @@ public class Db4oModelPersistence extends ModelPersistence {
 	public void close() {
 		//TODO verificar que close devuelva true
 		this.container.close();
+		this.loadedModel = null;
 	}
 	
+	public Model loadedModel() {
+		return loadedModel;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -67,4 +74,5 @@ public class Db4oModelPersistence extends ModelPersistence {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
 }
