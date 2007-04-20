@@ -22,4 +22,6 @@ public abstract class ModelPersistence {
 	public abstract void save(Model model);
 
 	public abstract Model load() throws MessageIdentifiedException;
+
+	public abstract Model loadedModel();
 }

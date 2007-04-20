@@ -1,17 +1,25 @@
 package ui.action;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import ui.initializer.LoginDialogInitializer;
 
-public class ShowLoginDialogAction implements Action {
+public class ShowLoginDialogAction extends AbstractAction {
 
 	private JFrame frame;
 
-	public void execute() {
+	public ShowLoginDialogAction(JFrame frame) {
+		super("Login");
+		this.frame = frame;
+	}
+
+	public void actionPerformed(ActionEvent e) {
 		JDialog dialog = new LoginDialogInitializer(frame).dialog();
 		dialog.setVisible(true);
 	}
-
+	
 }
