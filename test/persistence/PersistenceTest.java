@@ -2,8 +2,6 @@ package persistence;
 
 
 import junit.framework.TestCase;
-import model.Store;
-import model.StoreFactory;
 
 public class PersistenceTest extends TestCase {
 
