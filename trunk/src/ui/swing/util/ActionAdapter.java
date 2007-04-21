@@ -11,7 +11,7 @@ public class ActionAdapter extends AbstractAction {
 	private final Action action;
 
 	public ActionAdapter(Action action) {
-		super(action.getName());
+		super(action.getTitle());
 		this.action = action;
 	}
 

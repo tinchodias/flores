@@ -15,7 +15,7 @@ public class UserFactory {
 	}
 
 	public static String adminPassword() {
-		return "123456";
+		return "123";
 	}
 
 	public static String vendorUserName() {
@@ -23,7 +23,7 @@ public class UserFactory {
 	}
 
 	public static String vendorPassword() {
-		return "147147";
+		return "147";
 	}
 	
 }

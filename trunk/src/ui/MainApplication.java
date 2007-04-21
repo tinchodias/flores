@@ -1,14 +1,9 @@
 package ui;
 
-import javax.swing.JFrame;
-
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
-import ui.swing.initializer.AppFrameInitializer;
 
-public class FloresApplication {
-
-	private static JFrame frame;
+public class MainApplication {
 
 	/**
 	 * @param args
@@ -16,15 +11,11 @@ public class FloresApplication {
 	public static void main(String[] args) {
 		
 		try {
-			AppFrameInitializer frameInitializer = new AppFrameInitializer();
-			frame = frameInitializer.frame();
-
 			initPersistence();
-
-			frame.setVisible(true);
+			UI.instance().mainUI().show();
 			
 		} catch (Exception e) {
-			UI.instance().showError(null, e.getMessage());
+			UI.instance().showError(e.getMessage());
 			System.exit(0);
 		}
 	}

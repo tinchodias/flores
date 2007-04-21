@@ -1,9 +1,14 @@
 package ui;
 
-import java.awt.Container;
+import java.awt.Component;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import ui.component.DialogUI;
+import ui.component.MainUI;
+import ui.swing.component.MainFrame;
+import ui.swing.initializer.AppFrameInitializer;
+import ui.swing.util.StandardDialog;
 
 public class UI {
 
@@ -16,12 +21,27 @@ public class UI {
 		return instance;
 	}
 
+	private MainFrame mainUI;
+
 	public void showInfo(String message) {
-		JOptionPane.showMessageDialog(null, message);
+		JOptionPane.showMessageDialog(null, message, "", JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public void showError(Container container, String message) {
-		JOptionPane.showMessageDialog(container, message, "", JOptionPane.ERROR_MESSAGE);		
+	public void showError(String message) {
+		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
 	}
 
+	public MainUI mainUI() {
+		if (mainUI == null) {
+			mainUI = new AppFrameInitializer().frame();
+		}
+		return mainUI;
+	}
+
+//	public DialogUI dialogFor(Component loginPanel) {
+//		StandardDialog loginDialog = new StandardDialog(mainUI);
+//		loginDialog.add(loginPanel);
+//		loginDialog.pack();
+//		return loginDialog;
+//	}
 }

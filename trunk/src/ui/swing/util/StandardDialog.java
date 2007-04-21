@@ -1,23 +1,28 @@
 package ui.swing.util;
 
 import java.awt.BorderLayout;
+import java.awt.Window;
 
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-public class StandardPanel extends JPanel {
+import ui.UI;
+
+public class StandardDialog extends JDialog {
 
 	private JPanel buttonPanel;
 	private JPanel centerPanel;
 
-	public StandardPanel() {
-		super();
-		this.setLayout(new BorderLayout());
+	public StandardDialog() {
+		//TODO ver este cast..
+		super((Window) UI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
+		this.getContentPane().setLayout(new BorderLayout());
 
 		initCenterPanel();
 		initButtonPanel();
 		
-		this.add(centerPanel, BorderLayout.CENTER);
-		this.add(buttonPanel, BorderLayout.SOUTH);
+		this.getContentPane().add(centerPanel, BorderLayout.CENTER);
+		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 	}
 
 	private void initButtonPanel() {
@@ -35,5 +40,5 @@ public class StandardPanel extends JPanel {
 	protected JPanel centerPanel() {
 		return centerPanel;
 	}
-
+	
 }
