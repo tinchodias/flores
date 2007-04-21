@@ -1,11 +1,10 @@
-package ui.component;
+package ui.swing.util;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class LabeledPanel extends JPanel {
 
@@ -19,9 +18,7 @@ public class LabeledPanel extends JPanel {
 	}
 
 	private void initPanel() {
-		EmptyBorder emptyBorder = new EmptyBorder(0, 0, 0, 0);
-		setBorder(emptyBorder);
-
+		setBorder(null);
 		setLayout(new BorderLayout());
 		
 		label = new JLabel();

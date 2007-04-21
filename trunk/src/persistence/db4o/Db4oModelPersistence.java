@@ -9,7 +9,6 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.Configuration;
-import com.db4o.diagnostic.DiagnosticToConsole;
 import com.db4o.ext.DatabaseFileLockedException;
 
 public class Db4oModelPersistence extends ModelPersistence {
@@ -31,7 +30,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 		
 		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
-		configuration.diagnostic().addListener(new DiagnosticToConsole());		
+//		configuration.diagnostic().addListener(new DiagnosticToConsole());		
 	}
 
 	public void save(Model model) {
