@@ -14,19 +14,20 @@ public class LoginAction implements Action {
 	}
 
 	public void execute() {
-		Security security = Security.instance();
 		String name = login.getUserName();
 		String password = login.getUserPassword();
 		
 		try {
-			security.login(name, password);
+			Security.instance().login(name, password);
+			UI.instance().mainUI().setLoggedUserState();
+			login.setVisible(false);
 		} catch (MessageIdentifiedException e1) {
 			UI.instance().showInfo(e1.getMessage());
 		}
 	}
 
-	public String getName() {
-		return "Login";
+	public String getTitle() {
+		return "Aceptar";
 	}
 	
 }

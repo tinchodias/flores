@@ -1,11 +1,8 @@
 package ui.swing.component;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -13,15 +10,18 @@ import ui.action.Action;
 import ui.component.LoginUI;
 import ui.swing.util.ActionAdapter;
 import ui.swing.util.LabeledPanel;
-import ui.swing.util.StandardPanel;
+import ui.swing.util.StandardDialog;
 
-public class LoginPanel extends StandardPanel implements LoginUI {
+public class LoginDialog extends StandardDialog implements LoginUI {
 
 	private LabeledPanel nameField;
 	private LabeledPanel passwordField;
 	private JButton loginButton;
-	public LoginPanel() {
+	
+	public LoginDialog() {
+		super();
 		initComponents();
+		pack();
 	}
 
 	private void initComponents() {
