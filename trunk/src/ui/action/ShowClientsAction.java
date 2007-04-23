@@ -1,10 +1,11 @@
 package ui.action;
 
+import ui.swing.initializer.ClientsDialogInitializer;
+
 public class ShowClientsAction implements Action {
 
 	public void execute() {
-		//TODO terminar!
-		//new ClientsPanelInitializer().
+		new ClientsDialogInitializer().dialog().setVisible(true);
 	}
 
 	public String getTitle() {

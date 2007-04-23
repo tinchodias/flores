@@ -13,7 +13,7 @@ import com.db4o.ext.DatabaseFileLockedException;
 
 public class Db4oModelPersistence extends ModelPersistence {
 
-	private String fileName = "testModel.db4o";
+	private String fileName = "model.db4o";
 	private ObjectContainer container;
 	private Model loadedModel;
 	

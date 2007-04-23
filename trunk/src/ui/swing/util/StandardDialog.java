@@ -1,6 +1,7 @@
 package ui.swing.util;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Window;
 
 import javax.swing.JDialog;
@@ -27,6 +28,7 @@ public class StandardDialog extends JDialog {
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 	}
 
 	private void initCenterPanel() {
