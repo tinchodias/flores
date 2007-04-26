@@ -2,6 +2,7 @@ package persistence;
 
 
 import junit.framework.TestCase;
+import persistence.exception.MessageIdentifiedException;
 
 public abstract class PersistenceTest extends TestCase {
 
@@ -12,6 +13,8 @@ public abstract class PersistenceTest extends TestCase {
 		modelPersistence = modelPersistenceInstance();
 		modelPersistence.open();
 		saveModel();
+		modelPersistence.close();
+		modelPersistence.open();
 	}
 
 	public void tearDown() throws Exception {
@@ -22,17 +25,32 @@ public abstract class PersistenceTest extends TestCase {
 
 	private void saveModel() {
 		savedModel = ModelFactory.makeSimpleModel();
-		
 		modelPersistence.save(savedModel);
 	}
 
-	public void testSave() throws Exception {
+	public void testInvalidLoad() {
+		modelPersistence.close();
+		try {
+			modelPersistence.load();
+			fail("Load on a closed ModelPersistence must throw an exception");
+		} catch (MessageIdentifiedException e) {
+		}
+	}
+	
+	public void testNotSameModelAfterReload() throws Exception {
 		Model loadedModel = modelPersistence.load();
-		
-		assertEqualModels(savedModel, loadedModel);
+		assertNotSame(savedModel, loadedModel);
 	}
 
-	private void assertEqualModels(Model model1, Model model2) {
-		//TODO comparar modelos!
+	public void testModelEqualsAfterReload() throws Exception {
+		Model loadedModel = modelPersistence.load();
+		assertEqualsModels(savedModel, loadedModel);
+	}
+
+	private static void assertEqualsModels(Model model1, Model model2) {
+		//TODO Para poder hacer una "deep comparison", podría implementar
+		//EqualsBuilder.reflectionEquals( ) en cada objeto que cuelgue de Model. 
+		//Por consiguiente, habría que usar además en cada
+		//HashCodeBuilder.reflectionHashCode(this).
 	}
 }

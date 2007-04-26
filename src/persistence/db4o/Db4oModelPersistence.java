@@ -38,7 +38,13 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 
 	public Model load() throws MessageIdentifiedException {
-		ObjectSet<Model> modelSet = container.get(new Model(null, null));
+		ObjectSet<Model> modelSet;
+		
+		try {
+			modelSet = container.get(new Model(null, null));
+		} catch (Exception e) {
+			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_STATE);
+		}
 		
 		if (modelSet.size() != 1) {
 			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_MODEL);
