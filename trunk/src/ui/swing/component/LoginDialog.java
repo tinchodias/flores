@@ -30,8 +30,8 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		loginButton = new JButton();
 		loginButton.setDefaultCapable(true);
 		
-		nameField.setTitle("Nombre:");
-		passwordField.setTitle("Clave:");
+		nameField.setLabel("Nombre:");
+		passwordField.setLabel("Clave:");
 		loginButton.setPreferredSize(new Dimension(100, 30));
 
 		centerPanel().add(nameField);

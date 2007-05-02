@@ -1,24 +1,30 @@
 package ui.swing.component;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 
-public class ClientSearchPanel extends JPanel {
+import query.criteria.Criteria;
+import query.results.Results;
+
+import ui.component.SearchUI;
+import ui.swing.util.TableModelAdapter;
+
+public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 
 	private JPanel buttonPanel;
 	private JPanel centerPanel;
-//	private JPanel filtersPanel;
 	private JPanel resultsPanel;
 	private JTable resultsTable;
+	private JPanel filtersPanel;
+	private TableModelAdapter tableModelAdapter;
 
-	public ClientSearchPanel() {
+	public StandardSearchPanel() {
 		initCenterPanel();
 		initButtonPanel();
 		
@@ -34,22 +40,24 @@ public class ClientSearchPanel extends JPanel {
 	}
 
 	private void initCenterPanel() {
-//		initFiltersPanel();
+		initFiltersPanel();
 		initResultsPanel();
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new BorderLayout());
-//		centerPanel.add(filtersPanel, BorderLayout.NORTH);
+		centerPanel.add(filtersPanel, BorderLayout.NORTH);
 		centerPanel.add(resultsPanel, BorderLayout.CENTER);
 	}
 
-//	private void initFiltersPanel() {
-//		filtersPanel = new JPanel();
-//	}
+	private void initFiltersPanel() {
+		filtersPanel = new JPanel();
+		filtersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+	}
 
 	private void initResultsPanel() {
 		resultsPanel = new JPanel();
 		resultsPanel.setLayout(new BorderLayout());
-		resultsTable = new JTable(new DefaultTableModel(15, 5));
+		tableModelAdapter = new TableModelAdapter();
+		resultsTable = new JTable(tableModelAdapter);
 		resultsPanel.add(new JScrollPane(resultsTable));
 	}
 
@@ -57,12 +65,18 @@ public class ClientSearchPanel extends JPanel {
 		return buttonPanel;
 	}
 
-//	protected JPanel filtersPanel() {
-//		return filtersPanel;
-//	}
+	protected JPanel filtersPanel() {
+		return filtersPanel;
+	}
 	
 	protected JTable resultsTable() {
 		return resultsTable;
 	}
 	
+	public void setResults(Results results) {
+		tableModelAdapter.setResults(results);
+	}
+
+	public abstract Criteria criteria();
+
 }

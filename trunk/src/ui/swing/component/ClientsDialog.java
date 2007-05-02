@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 
 import ui.action.Action;
-import ui.component.TableModelUI;
-import ui.swing.initializer.ClientsUI;
+import ui.action.ClientSearchAction;
+import ui.component.ClientsUI;
 import ui.swing.util.ActionAdapter;
 import ui.swing.util.StandardDialog;
 
@@ -54,7 +54,8 @@ public class ClientsDialog extends StandardDialog implements ClientsUI {
 		modifyClientButton.setAction(new ActionAdapter(action));
 	}
 
-	public void setClients(TableModelUI model) {
-		// TODO Auto-generated method stub
+	public ClientSearchPanel getSearchPanel() {
+		return clientSearchPanel;
 	}
+	
 }

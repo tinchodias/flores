@@ -1,20 +1,30 @@
 package ui.swing.util;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-import ui.component.TableModelUI;
+import query.results.NullResults;
+import query.results.Results;
 
 public class TableModelAdapter implements TableModel {
 
-	private final TableModelUI model;
+	private Results model;
+	private Collection<TableModelListener> listeners = new HashSet<TableModelListener>();
 
-	public TableModelAdapter(TableModelUI model) {
+	public TableModelAdapter(Results model) {
 		this.model = model;
 	}
 
+	public TableModelAdapter() {
+		this(NullResults.instance());
+	}
+
 	public Class<?> getColumnClass(int columnIndex) {
-		return getValueAt(0, columnIndex).getClass();
+		return model.getColumnClass(columnIndex);
 	}
 
 	public int getColumnCount() {
@@ -41,13 +51,23 @@ public class TableModelAdapter implements TableModel {
 	}
 
 	public void addTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
-		
+		listeners.add(l);
 	}
 
 	public void removeTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
-		
+		listeners.remove(l);
+	}
+
+	public void setResults(Results results) {
+		model = results;
+		notifyTableChanged();
+	}
+
+	private void notifyTableChanged() {
+		TableModelEvent tableModelEvent = new TableModelEvent(this);
+		for (TableModelListener listener : listeners) {
+			listener.tableChanged(tableModelEvent);
+		}
 	}
 
 }
