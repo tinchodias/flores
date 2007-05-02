@@ -2,6 +2,7 @@ package ui;
 
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
+import ui.action.ShowLoginDialogAction;
 
 public class MainApplication {
 
@@ -13,6 +14,8 @@ public class MainApplication {
 		try {
 			initPersistence();
 			UI.instance().mainUI().show();
+
+			new ShowLoginDialogAction().execute();
 			
 		} catch (Exception e) {
 			UI.instance().showError(e.getMessage());

@@ -25,7 +25,7 @@ public class LabeledPanel extends JPanel {
 		this.add(label, BorderLayout.NORTH);
 	}
 
-	public void setTitle(String string) {
+	public void setLabel(String string) {
 		label.setText(string);
 	}
 
