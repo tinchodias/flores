@@ -1,7 +1,7 @@
 package ui.component;
 
-import query.criteria.Criteria;
-import query.results.Results;
+import query.framework.criteria.Criteria;
+import query.framework.results.Results;
 
 public interface SearchUI {
 

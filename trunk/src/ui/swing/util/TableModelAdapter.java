@@ -7,8 +7,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-import query.results.NullResults;
-import query.results.Results;
+import query.framework.results.NullResults;
+import query.framework.results.Results;
 
 public class TableModelAdapter implements TableModel {
 
@@ -64,7 +64,7 @@ public class TableModelAdapter implements TableModel {
 	}
 
 	private void notifyTableChanged() {
-		TableModelEvent tableModelEvent = new TableModelEvent(this);
+		TableModelEvent tableModelEvent = new TableModelEvent(this, TableModelEvent.HEADER_ROW);
 		for (TableModelListener listener : listeners) {
 			listener.tableChanged(tableModelEvent);
 		}

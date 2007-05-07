@@ -1,6 +1,6 @@
-package query;
+package query.framework.query;
 
-import query.results.Results;
+import query.framework.results.Results;
 
 
 public interface Query {

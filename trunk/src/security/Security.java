@@ -21,7 +21,7 @@ public class Security {
 	}
 
 	public void login(String name, String password) throws MessageIdentifiedException {
-		Users users = ModelPersistence.instance().loadedModel().getUsers();
+		Users users = ModelPersistence.instance().loadedModel().users();
 		if (users.isValid(name, password)) {
 			loggedUser(users.get(name));
 		} else {

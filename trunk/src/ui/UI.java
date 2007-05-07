@@ -4,11 +4,12 @@ import java.awt.Component;
 
 import javax.swing.JOptionPane;
 
-import ui.component.DialogUI;
+import message.MessageIdentifier;
+import message.MessageRepository;
 import ui.component.MainUI;
 import ui.swing.component.MainFrame;
 import ui.swing.initializer.AppFrameInitializer;
-import ui.swing.util.StandardDialog;
+import ui.swing.util.LabeledPanel;
 
 public class UI {
 
@@ -36,6 +37,10 @@ public class UI {
 			mainUI = new AppFrameInitializer().frame();
 		}
 		return mainUI;
+	}
+
+	public Component label(Component component, MessageIdentifier messageIdentifier) {
+		return new LabeledPanel(component, MessageRepository.instance().messageFor(messageIdentifier) + ":");
 	}
 
 //	public DialogUI dialogFor(Component loginPanel) {

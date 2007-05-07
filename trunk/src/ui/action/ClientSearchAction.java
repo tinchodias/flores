@@ -2,7 +2,7 @@ package ui.action;
 
 import query.QueryFactory;
 import query.criteria.ClientSearchCriteria;
-import query.results.Results;
+import query.framework.results.Results;
 import ui.component.SearchUI;
 
 public class ClientSearchAction implements Action {

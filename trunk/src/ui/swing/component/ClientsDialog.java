@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 
 import ui.action.Action;
-import ui.action.ClientSearchAction;
 import ui.component.ClientsUI;
 import ui.swing.util.ActionAdapter;
 import ui.swing.util.StandardDialog;

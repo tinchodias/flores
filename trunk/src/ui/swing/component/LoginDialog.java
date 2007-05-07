@@ -6,45 +6,47 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import message.MessageIdentifier;
+
+import ui.UI;
 import ui.action.Action;
 import ui.component.LoginUI;
 import ui.swing.util.ActionAdapter;
-import ui.swing.util.LabeledPanel;
 import ui.swing.util.StandardDialog;
 
 public class LoginDialog extends StandardDialog implements LoginUI {
 
-	private LabeledPanel nameField;
-	private LabeledPanel passwordField;
+	private JTextField nameField;
+	private JPasswordField passwordField;
 	private JButton loginButton;
 	
 	public LoginDialog() {
-		super();
 		initComponents();
-		pack();
+//		pack();
+		//TODO Quitar este tamaño hardcoded!
+		setSize(new Dimension(150, 120));
+		setLocationRelativeTo(null);
 	}
 
 	private void initComponents() {
-		nameField = new LabeledPanel(new JTextField("admin"));
-		passwordField = new LabeledPanel(new JPasswordField());
+		nameField = new JTextField("admin");
+		passwordField = new JPasswordField();
 		loginButton = new JButton();
-		loginButton.setDefaultCapable(true);
 		
-		nameField.setLabel("Nombre:");
-		passwordField.setLabel("Clave:");
-		loginButton.setPreferredSize(new Dimension(100, 30));
+		getRootPane().setDefaultButton(loginButton);
 
-		centerPanel().add(nameField);
-		centerPanel().add(passwordField);
+		centerPanel().add(UI.instance().label(nameField, MessageIdentifier.USER_NAME));
+		centerPanel().add(UI.instance().label(passwordField, MessageIdentifier.USER_PASSWORD));
 		buttonPanel().add(loginButton);
+		
 	}
 
 	public String getUserName() {
-		return ((JTextField) nameField.getComponent()).getText();
+		return nameField.getText();
 	}
 
 	public String getUserPassword() {
-		return String.valueOf(((JPasswordField) passwordField.getComponent()).getPassword());
+		return String.valueOf(passwordField.getPassword());
 	}
 
 	public void setLoginButtonAction(Action action) {

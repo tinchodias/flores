@@ -1,4 +1,4 @@
-package query.criteria;
+package query.framework.criteria;
 
 public interface Criteria {
 

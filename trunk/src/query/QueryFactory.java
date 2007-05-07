@@ -1,7 +1,9 @@
 package query;
 
+import model.JuridicPerson;
 import query.criteria.ClientSearchCriteria;
-import query.natives.NativeQueryFactory;
+import query.framework.query.SearchQuery;
+import query.implementation.natives.NativeQueryFactory;
 
 public abstract class QueryFactory {
 
@@ -14,6 +16,6 @@ public abstract class QueryFactory {
 		return instance;
 	}
 
-	public abstract Query clientSearchQuery(ClientSearchCriteria criteria);
+	public abstract SearchQuery<JuridicPerson> clientSearchQuery(ClientSearchCriteria criteria);
 	
 }
