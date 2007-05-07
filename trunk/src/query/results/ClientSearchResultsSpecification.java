@@ -1,17 +1,18 @@
 package query.results;
 
 
+import message.MessageId;
+import model.JuridicPerson;
+import model.money.Pesos;
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResultsSpecification;
-import message.MessageIdentifier;
-import model.JuridicPerson;
 
 public class ClientSearchResultsSpecification extends
 		LazySearchResultsSpecification<JuridicPerson> {
 
 	public ClientSearchResultsSpecification() {
-		add(MessageIdentifier.CLIENT_NAME);
-		add(MessageIdentifier.CLIENT_DEBT);
+		add(MessageId.clientName);
+		add(MessageId.clientDebt, Pesos.class);
 	}
 	
 	public Object value(JuridicPerson client, int columnIndex) {

@@ -18,7 +18,7 @@ public class SimplePropertiesMessageRepository extends MessageRepository {
 	}
 
 	@Override
-	public String messageFor(MessageIdentifier messageIdentifier) {
+	public String messageFor(MessageId messageIdentifier) {
 		String property = properties.getProperty(messageIdentifier.toString());
 		
 		if (property == null) {

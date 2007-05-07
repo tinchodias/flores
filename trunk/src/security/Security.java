@@ -1,6 +1,6 @@
 package security;
 
-import message.MessageIdentifier;
+import message.MessageId;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
 
@@ -25,7 +25,7 @@ public class Security {
 		if (users.isValid(name, password)) {
 			loggedUser(users.get(name));
 		} else {
-			throw new MessageIdentifiedException(MessageIdentifier.SECURITY_INVALID_LOGIN);
+			throw new MessageIdentifiedException(MessageId.securityInvalidLogin);
 		}
 	}
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import message.MessageIdentifier;
+import message.MessageId;
 import message.MessageRepository;
 
 
@@ -30,7 +30,7 @@ public class LazySearchResults<T> implements SearchResults<T> {
 	}
 
 	public String getColumnName(int columnIndex) {
-		MessageIdentifier messageIdentifier = 
+		MessageId messageIdentifier = 
 			spec.columnMessageIdentifiers().get(columnIndex);
 		return MessageRepository.instance().messageFor(messageIdentifier);
 	}

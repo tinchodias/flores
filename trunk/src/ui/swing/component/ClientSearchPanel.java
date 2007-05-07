@@ -2,7 +2,7 @@ package ui.swing.component;
 
 import javax.swing.JTextField;
 
-import message.MessageIdentifier;
+import message.MessageId;
 import query.criteria.ClientSearchCriteria;
 import ui.UI;
 import ui.action.ClientSearchAction;
@@ -19,7 +19,7 @@ public class ClientSearchPanel extends StandardSearchPanel implements ClientSear
 	private void initComponents() {
 		clientNameField = new JTextField();
 		
-		this.filtersPanel().add(UI.instance().label(clientNameField, MessageIdentifier.CLIENT_NAME));
+		this.filtersPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
 	}
 
 	public void setSearchAction(ClientSearchAction action) {

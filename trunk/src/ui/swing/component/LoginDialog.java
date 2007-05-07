@@ -6,8 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import message.MessageIdentifier;
-
+import message.MessageId;
 import ui.UI;
 import ui.action.Action;
 import ui.component.LoginUI;
@@ -21,6 +20,8 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 	private JButton loginButton;
 	
 	public LoginDialog() {
+		super(MessageId.loginDialogTitle);
+		
 		initComponents();
 //		pack();
 		//TODO Quitar este tamaño hardcoded!
@@ -35,8 +36,8 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		
 		getRootPane().setDefaultButton(loginButton);
 
-		centerPanel().add(UI.instance().label(nameField, MessageIdentifier.USER_NAME));
-		centerPanel().add(UI.instance().label(passwordField, MessageIdentifier.USER_PASSWORD));
+		centerPanel().add(UI.instance().label(nameField, MessageId.userName));
+		centerPanel().add(UI.instance().label(passwordField, MessageId.userPassword));
 		buttonPanel().add(loginButton);
 		
 	}

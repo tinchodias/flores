@@ -1,6 +1,6 @@
 package persistence.db4o;
 
-import message.MessageIdentifier;
+import message.MessageId;
 import persistence.Model;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
@@ -43,11 +43,11 @@ public class Db4oModelPersistence extends ModelPersistence {
 		try {
 			modelSet = container.get(new Model(null, null));
 		} catch (Exception e) {
-			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_STATE);
+			throw new MessageIdentifiedException(MessageId.persistenceInvalidState);
 		}
 		
 		if (modelSet.size() != 1) {
-			throw new MessageIdentifiedException(MessageIdentifier.PERSISTENCE_INVALID_MODEL);
+			throw new MessageIdentifiedException(MessageId.persistenceInvalidModel);
 		}
 		
 		loadedModel = modelSet.next();
