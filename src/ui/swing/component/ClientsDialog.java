@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 
+import message.MessageId;
 import ui.action.Action;
 import ui.component.ClientsUI;
 import ui.swing.util.ActionAdapter;
@@ -17,9 +18,10 @@ public class ClientsDialog extends StandardDialog implements ClientsUI {
 	private JButton modifyClientButton;
 
 	public ClientsDialog() {
-		super();
+		super(MessageId.clientsDialogTitle);
 		initComponents();
 		pack();
+		setLocationRelativeTo(null);
 	}
 
 	private void initComponents() {

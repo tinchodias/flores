@@ -3,11 +3,15 @@ package ui;
 import java.awt.Component;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
-import message.MessageIdentifier;
+import message.MessageId;
 import message.MessageRepository;
+import model.money.Pesos;
 import ui.component.MainUI;
 import ui.swing.component.MainFrame;
+import ui.swing.component.PesosTableCellRenderer;
 import ui.swing.initializer.AppFrameInitializer;
 import ui.swing.util.LabeledPanel;
 
@@ -39,14 +43,14 @@ public class UI {
 		return mainUI;
 	}
 
-	public Component label(Component component, MessageIdentifier messageIdentifier) {
+	public Component label(Component component, MessageId messageIdentifier) {
 		return new LabeledPanel(component, MessageRepository.instance().messageFor(messageIdentifier) + ":");
 	}
 
-//	public DialogUI dialogFor(Component loginPanel) {
-//		StandardDialog loginDialog = new StandardDialog(mainUI);
-//		loginDialog.add(loginPanel);
-//		loginDialog.pack();
-//		return loginDialog;
-//	}
+	public JTable table(TableModel tableModel) {
+		JTable table = new JTable(tableModel);
+		table.setAutoCreateRowSorter(true);
+		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());		
+		return table;
+	}
 }

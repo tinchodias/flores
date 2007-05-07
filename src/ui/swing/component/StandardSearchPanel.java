@@ -11,7 +11,7 @@ import javax.swing.JTable;
 
 import query.framework.criteria.Criteria;
 import query.framework.results.Results;
-
+import ui.UI;
 import ui.component.SearchUI;
 import ui.swing.util.TableModelAdapter;
 
@@ -57,7 +57,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 		resultsPanel = new JPanel();
 		resultsPanel.setLayout(new BorderLayout());
 		tableModelAdapter = new TableModelAdapter();
-		resultsTable = new JTable(tableModelAdapter);
+		resultsTable = UI.instance().table(tableModelAdapter);
 		resultsPanel.add(new JScrollPane(resultsTable));
 	}
 
