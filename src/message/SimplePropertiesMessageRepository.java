@@ -13,14 +13,19 @@ public class SimplePropertiesMessageRepository extends MessageRepository {
 		try {
 			properties.load(new FileInputStream(PROPERTIES_FILE_NAME));
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
+			throw new Error("Messages file not found: " + PROPERTIES_FILE_NAME);
 		}
 	}
 
 	@Override
 	public String messageFor(MessageIdentifier messageIdentifier) {
-		return properties.getProperty(messageIdentifier.toString());
+		String property = properties.getProperty(messageIdentifier.toString());
+		
+		if (property == null) {
+			throw new Error("Message not found: " + messageIdentifier);
+		}
+		
+		return property;
 	}
 
 	

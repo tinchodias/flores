@@ -20,6 +20,7 @@ public class MainFrame extends JFrame implements MainUI {
 	public MainFrame() {
 		setJMenuBar(newMenuBar());
 		setSize(800, 600);
+		setLocationRelativeTo(null);
 		setInitialState();
 	}
 	

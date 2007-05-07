@@ -1,35 +1,32 @@
 package ui.swing.util;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class LabeledPanel extends JPanel {
 
 	private JLabel label;
-	private final JComponent component;
+	private final Component component;
 
-	public LabeledPanel(JComponent component) {
+	public LabeledPanel(Component component, String label) {
 		this.component = component;
-		initPanel();
-		add(component, BorderLayout.CENTER);
-	}
 
-	private void initPanel() {
 		setBorder(null);
 		setLayout(new BorderLayout());
 		
-		label = new JLabel();
-		this.add(label, BorderLayout.NORTH);
+		this.label = new JLabel(label);
+		this.add(this.label, BorderLayout.NORTH);
+		add(component, BorderLayout.CENTER);
 	}
 
 	public void setLabel(String string) {
 		label.setText(string);
 	}
 
-	public JComponent getComponent() {
+	public Component getComponent() {
 		return component;
 	}
 

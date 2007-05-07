@@ -17,18 +17,17 @@ public class StandardDialog extends JDialog {
 	public StandardDialog() {
 		//TODO ver este cast..
 		super((Window) UI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
-		this.getContentPane().setLayout(new BorderLayout());
 
 		initCenterPanel();
 		initButtonPanel();
 		
-		this.getContentPane().add(centerPanel, BorderLayout.CENTER);
-		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		getContentPane().setLayout(new BorderLayout());
+		getContentPane().add(centerPanel, BorderLayout.CENTER);
+		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 	}
 
 	private void initButtonPanel() {
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	}
 
 	private void initCenterPanel() {

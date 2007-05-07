@@ -1,6 +1,6 @@
-package query.results;
+package query.framework.results;
 
-public abstract class Results {
+public interface Results {
 
 	public abstract int getColumnCount();
 

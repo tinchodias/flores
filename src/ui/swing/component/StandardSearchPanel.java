@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import query.criteria.Criteria;
-import query.results.Results;
+import query.framework.criteria.Criteria;
+import query.framework.results.Results;
 
 import ui.component.SearchUI;
 import ui.swing.util.TableModelAdapter;

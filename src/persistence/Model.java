@@ -13,19 +13,19 @@ public class Model {
 		this.users = users;
 	}
 
-	public Store getStore() {
+	public Store store() {
 		return store;
 	}
 
-	public void setStore(Store store) {
+	public void store(Store store) {
 		this.store = store;
 	}
 	
-	public Users getUsers() {
+	public Users users() {
 		return users;
 	}
 
-	public void setUsers(Users users) {
+	public void users(Users users) {
 		this.users = users;
 	}
 	

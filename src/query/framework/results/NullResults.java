@@ -1,7 +1,8 @@
-package query.results;
+package query.framework.results;
 
 
-public class NullResults extends Results {
+
+public class NullResults implements Results {
 
 	private static Results instance;
 
