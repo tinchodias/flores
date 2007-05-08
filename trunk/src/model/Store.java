@@ -12,6 +12,7 @@ import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.Article;
+import model.stock.ArticleGroup;
 import model.stock.Stock;
 import model.util.CollectionFactory;
 
@@ -33,6 +34,7 @@ public class Store {
 	private Collection<JuridicPerson> clients = CollectionFactory.newSet(); 
 	private Collection<JuridicPerson> suppliers = CollectionFactory.newSet();
 	private Collection<JuridicPerson> vendors = CollectionFactory.newSet();
+	private Collection<ArticleGroup> stockArticleGroups = CollectionFactory.newSet();
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
@@ -74,6 +76,10 @@ public class Store {
 		return expenses;
 	}
 
+	public Collection<ArticleGroup> stockArticleGroups() {
+		return stockArticleGroups;
+	}
+	
 	public void add(Buy buy) {
 		buys.add(buy);
 		stock.apply(buy);
@@ -105,4 +111,5 @@ public class Store {
 		}
 		return selection;
 	}
+
 }
