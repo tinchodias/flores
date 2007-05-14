@@ -2,6 +2,8 @@ package query.implementation.natives;
 
 import java.util.Collection;
 
+import org.apache.commons.lang.StringUtils;
+
 import model.JuridicPerson;
 import persistence.Model;
 import persistence.ModelPersistence;
@@ -27,7 +29,7 @@ public class NativeQueryFactory extends QueryFactory {
 				results = new LazySearchResults<JuridicPerson>(new ClientSearchResultsSpecification());
 				
 				for (JuridicPerson client : clients) {
-					if (client.getNombre().indexOf(criteria.getClientName()) >= 0) {
+					if (StringUtils.containsIgnoreCase(client.getName(), criteria.getClientName())) {
 						results.add(client);
 					}
 				}

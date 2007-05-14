@@ -3,8 +3,6 @@
  */
 package model;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import junit.framework.TestCase;
 import model.stock.Article;
 import model.stock.ArticleGroup;

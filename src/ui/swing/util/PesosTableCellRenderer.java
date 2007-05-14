@@ -1,4 +1,4 @@
-package ui.swing.component;
+package ui.swing.util;
 
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;

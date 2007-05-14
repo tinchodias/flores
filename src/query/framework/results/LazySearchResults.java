@@ -32,7 +32,7 @@ public class LazySearchResults<T> implements SearchResults<T> {
 	public String getColumnName(int columnIndex) {
 		MessageId messageIdentifier = 
 			spec.columnMessageIdentifiers().get(columnIndex);
-		return MessageRepository.instance().messageFor(messageIdentifier);
+		return MessageRepository.instance().get(messageIdentifier);
 	}
 
 	public int getRowCount() {

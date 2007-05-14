@@ -12,6 +12,6 @@ public abstract class MessageRepository {
 		return instance;
 	}
 
-	public abstract String messageFor(MessageId messageIdentifier);
+	public abstract String get(MessageId messageIdentifier);
 
 }

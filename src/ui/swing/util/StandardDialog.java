@@ -10,17 +10,18 @@ import javax.swing.JPanel;
 import message.MessageId;
 import message.MessageRepository;
 import ui.UI;
+import ui.component.DialogUI;
 
-public class StandardDialog extends JDialog {
+public class StandardDialog extends JDialog implements DialogUI {
 
 	private JPanel buttonPanel;
 	private JPanel centerPanel;
 
-	public StandardDialog(MessageId messageIdentifier) {
+	public StandardDialog(MessageId titleMessageId) {
 		//TODO ver este cast..
 		super((Window) UI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
 
-		String title = MessageRepository.instance().messageFor(messageIdentifier);
+		String title = MessageRepository.instance().get(titleMessageId);
 		setTitle(title);
 		
 		initCenterPanel();
