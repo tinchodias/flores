@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import query.framework.criteria.Criteria;
-import query.framework.results.Results;
+import query.framework.results.SearchResults;
 import ui.UI;
 import ui.component.SearchUI;
 import ui.swing.util.TableModelAdapter;
@@ -73,10 +73,21 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 		return resultsTable;
 	}
 	
-	public void setResults(Results results) {
+	public void setResults(SearchResults results) {
 		tableModelAdapter.setResults(results);
 	}
 
 	public abstract Criteria criteria();
 
+	public Object selection() {
+		int rowIndex = resultsTable.getSelectedRow();
+		
+		if (rowIndex == -1) {
+			return null;
+		} else {
+			SearchResults searchResults = (SearchResults) tableModelAdapter.getResults();
+			return searchResults.getFoundObject(rowIndex);
+		}
+	}
+	
 }

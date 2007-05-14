@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import message.MessageId;
+import message.MessageRepository;
 import ui.action.ShowClientsAction;
 import ui.action.ShowLoginDialogAction;
 import ui.component.MainUI;
@@ -18,6 +20,8 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu storeMenu;
 
 	public MainFrame() {
+		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
+		
 		setJMenuBar(newMenuBar());
 		setSize(800, 600);
 		setLocationRelativeTo(null);

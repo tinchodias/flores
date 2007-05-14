@@ -2,18 +2,18 @@ package model;
 
 public class JuridicPerson {
 
-	private String nombre;
+	private String name;
 
-	public JuridicPerson(String nombre) {
-		this.nombre = nombre;
+	public JuridicPerson(String name) {
+		this.name = name;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String nombre) {
+		this.name = nombre;
 	}
 
 }

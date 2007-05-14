@@ -18,7 +18,7 @@ public class ClientSearchResultsSpecification extends
 	public Object value(JuridicPerson client, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return client.getNombre();
+			return client.getName();
 		case 1:
 			return ModelPersistence.instance().loadedModel().store().debts().debtOf(client);
 		}

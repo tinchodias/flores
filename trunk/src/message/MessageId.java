@@ -8,6 +8,9 @@ public enum MessageId {
 	clientDebt, 
 	userName, 
 	userPassword, 
+	invalidSelection, 
 	clientsDialogTitle, 
-	loginDialogTitle;
+	loginDialogTitle, 
+	clientDialogTitle, 
+	mainTitle;
 }

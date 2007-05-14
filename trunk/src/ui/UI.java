@@ -11,9 +11,9 @@ import message.MessageRepository;
 import model.money.Pesos;
 import ui.component.MainUI;
 import ui.swing.component.MainFrame;
-import ui.swing.component.PesosTableCellRenderer;
 import ui.swing.initializer.AppFrameInitializer;
 import ui.swing.util.LabeledPanel;
+import ui.swing.util.PesosTableCellRenderer;
 
 public class UI {
 
@@ -36,6 +36,14 @@ public class UI {
 		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
 	}
 
+	public void showInfo(MessageId messageId) {
+		showInfo(MessageRepository.instance().get(messageId));
+	}
+
+	public void showError(MessageId messageId) {
+		showError(MessageRepository.instance().get(messageId));
+	}
+
 	public MainUI mainUI() {
 		if (mainUI == null) {
 			mainUI = new AppFrameInitializer().frame();
@@ -43,8 +51,8 @@ public class UI {
 		return mainUI;
 	}
 
-	public Component label(Component component, MessageId messageIdentifier) {
-		return new LabeledPanel(component, MessageRepository.instance().messageFor(messageIdentifier) + ":");
+	public Component label(Component component, MessageId messageId) {
+		return new LabeledPanel(component, MessageRepository.instance().get(messageId) + ":");
 	}
 
 	public JTable table(TableModel tableModel) {

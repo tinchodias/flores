@@ -58,6 +58,10 @@ public class TableModelAdapter implements TableModel {
 		listeners.remove(l);
 	}
 
+	public Results getResults() {
+		return model;
+	}
+	
 	public void setResults(Results results) {
 		model = results;
 		notifyTableChanged();
