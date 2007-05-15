@@ -2,7 +2,7 @@ package ui;
 
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
-import ui.action.ShowLoginDialogAction;
+import ui.controller.action.ShowLoginDialogAction;
 
 public class MainApplication {
 
