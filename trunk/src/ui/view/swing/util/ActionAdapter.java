@@ -11,10 +11,8 @@ public class ActionAdapter extends AbstractAction {
 	private final Action action;
 
 	public ActionAdapter(Action action) {
-//		super(action.getTitle());
-		super(null);
+		super(action.getTitle());
 		this.action = action;
-		this.putValue("hideActionText", true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
