@@ -3,14 +3,14 @@ package ui.controller.action;
 import message.MessageId;
 import model.JuridicPerson;
 import ui.UI;
-import ui.controller.initializer.ClientDialogInitializer;
+import ui.controller.initializer.ModifyClientDialogInitializer;
 import ui.view.component.SearchUI;
 
-public class ShowClientAction implements Action {
+public class ShowModifyClientAction implements Action {
 
 	private final SearchUI searchUI;
 
-	public ShowClientAction(SearchUI searchUI) {
+	public ShowModifyClientAction(SearchUI searchUI) {
 		this.searchUI = searchUI;
 	}
 
@@ -19,7 +19,7 @@ public class ShowClientAction implements Action {
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {
-			new ClientDialogInitializer().dialog(selection).setVisible(true);
+			new ModifyClientDialogInitializer(selection).dialog().setVisible(true);
 		}
 	}
 

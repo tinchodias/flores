@@ -9,9 +9,8 @@ import javax.swing.table.TableModel;
 import message.MessageId;
 import message.MessageRepository;
 import model.money.Pesos;
-import ui.controller.initializer.AppFrameInitializer;
+import ui.controller.initializer.MainFrameInitializer;
 import ui.view.component.MainUI;
-import ui.view.swing.component.MainFrame;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.PesosTableCellRenderer;
 
@@ -26,7 +25,7 @@ public class UI {
 		return instance;
 	}
 
-	private MainFrame mainUI;
+	private MainUI mainUI;
 
 	public void showInfo(String message) {
 		JOptionPane.showMessageDialog(null, message, "", JOptionPane.INFORMATION_MESSAGE);
@@ -46,7 +45,7 @@ public class UI {
 
 	public MainUI mainUI() {
 		if (mainUI == null) {
-			mainUI = new AppFrameInitializer().frame();
+			mainUI = new MainFrameInitializer().frame();
 		}
 		return mainUI;
 	}

@@ -22,6 +22,7 @@ public class MainFrame extends JFrame implements MainUI {
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setJMenuBar(newMenuBar());
 		setSize(800, 600);
 		setLocationRelativeTo(null);
