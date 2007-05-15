@@ -9,11 +9,11 @@ import javax.swing.table.TableModel;
 import message.MessageId;
 import message.MessageRepository;
 import model.money.Pesos;
-import ui.component.MainUI;
-import ui.swing.component.MainFrame;
-import ui.swing.initializer.AppFrameInitializer;
-import ui.swing.util.LabeledPanel;
-import ui.swing.util.PesosTableCellRenderer;
+import ui.controller.initializer.AppFrameInitializer;
+import ui.view.component.MainUI;
+import ui.view.swing.component.MainFrame;
+import ui.view.swing.util.LabeledPanel;
+import ui.view.swing.util.PesosTableCellRenderer;
 
 public class UI {
 
