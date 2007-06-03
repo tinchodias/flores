@@ -1,6 +1,7 @@
 package ui.controller.action;
 
 import message.MessageId;
+import message.MessageRepository;
 import model.JuridicPerson;
 import ui.UI;
 import ui.controller.initializer.ModifyClientDialogInitializer;
@@ -24,7 +25,7 @@ public class ShowModifyClientAction implements Action {
 	}
 
 	public String getTitle() {
-		return "Ver Cliente";
+		return MessageRepository.instance().get(MessageId.modify);
 	}
 
 }

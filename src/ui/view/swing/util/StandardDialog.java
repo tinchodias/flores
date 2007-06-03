@@ -6,6 +6,7 @@ import java.awt.Window;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import message.MessageId;
 import message.MessageRepository;
@@ -33,11 +34,12 @@ public class StandardDialog extends JDialog implements DialogUI {
 	}
 
 	private void initButtonPanel() {
-		buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
 	}
 
 	private void initCenterPanel() {
 		centerPanel = new JPanel();
+		centerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 	}
 
 	protected JPanel buttonPanel() {

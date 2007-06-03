@@ -1,18 +1,20 @@
 package ui.view.swing.component;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 
 import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
 import ui.UI;
 import ui.view.component.SearchUI;
+import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
 
 public abstract class StandardSearchPanel extends JPanel implements SearchUI {
@@ -35,8 +37,10 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
-		LayoutManager layout = new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS);
-		buttonPanel.setLayout(layout);
+		FixedBoxLayout fixedBoxLayout = new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(100, 25));
+		buttonPanel.setLayout(fixedBoxLayout);
+		
+		buttonPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
 	}
 
 	private void initCenterPanel() {

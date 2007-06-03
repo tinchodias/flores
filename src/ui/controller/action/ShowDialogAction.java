@@ -1,5 +1,7 @@
 package ui.controller.action;
 
+import message.MessageId;
+import message.MessageRepository;
 import ui.controller.initializer.DialogInitializer;
 
 //TODO Ver si es posible (y preferible) implementar todas las acciones ShowX con ésta genérica.
@@ -18,7 +20,7 @@ public class ShowDialogAction implements Action {
 	}
 
 	public String getTitle() {
-		return "Mostrar";
+		return MessageRepository.instance().get(MessageId.create);
 	}
 
 }

@@ -12,8 +12,9 @@ public class ClientsDialogInitializer {
 	public ClientsUI dialog() {
 		ClientsDialog clientsDialog = new ClientsDialog();
 		
-		clientsDialog.getSearchPanel().setSearchAction(
-				new ClientSearchAction(clientsDialog.getSearchPanel()));
+		ClientSearchAction clientSearchAction = new ClientSearchAction(clientsDialog.getSearchPanel());
+		clientsDialog.getSearchPanel().setSearchAction(clientSearchAction);
+		clientSearchAction.execute();
 		
 		clientsDialog.setOkButtonAction(new CloseDialogAction(clientsDialog));
 		clientsDialog.setAddClientButtonAction(new ShowDialogAction(new CreateClientDialogInitializer()));

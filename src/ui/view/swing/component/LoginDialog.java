@@ -1,7 +1,5 @@
 package ui.view.swing.component;
 
-import java.awt.Dimension;
-
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -23,9 +21,7 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		super(MessageId.loginDialogTitle);
 		
 		initComponents();
-//		pack();
-		//TODO Quitar este tamaño hardcoded!
-		setSize(new Dimension(150, 120));
+		pack();
 		setLocationRelativeTo(null);
 	}
 
