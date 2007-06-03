@@ -12,5 +12,7 @@ public enum MessageId {
 	clientsDialogTitle, 
 	loginDialogTitle, 
 	clientDialogTitle, 
-	mainTitle;
+	mainTitle, 
+	modify, 
+	create;
 }

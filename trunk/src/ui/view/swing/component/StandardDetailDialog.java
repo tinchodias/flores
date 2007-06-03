@@ -1,6 +1,5 @@
 package ui.view.swing.component;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import ui.view.swing.util.StandardDialog;
 
 public abstract class StandardDetailDialog extends StandardDialog implements DetailUI {
 
-//	private ViewMode viewMode;
 	private JPanel detailPanel;
 	private JButton okButton;
 	private JButton cancelButton;
@@ -22,14 +20,14 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	public StandardDetailDialog(MessageId titleMessageId) {
 		super(titleMessageId);
 		initComponents();
+		pack();
 	}
 
 	private void initComponents() {
 		initDetailPanel();
 		initButtons();
 		
-		this.centerPanel().setLayout(new BorderLayout());
-		this.centerPanel().add(detailPanel, BorderLayout.CENTER);
+		this.centerPanel().add(detailPanel);
 	}
 
 	private void initButtons() {
@@ -41,8 +39,7 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	}
 
 	private void initDetailPanel() {
-		detailPanel = new JPanel();
-		detailPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		detailPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	}
 
 	public JPanel detailPanel() {
@@ -60,25 +57,5 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	public void setCancelAction(Action action) {
 		cancelButton.setAction(new ActionAdapter(action));
 	}
-
-//	public ViewMode viewMode() {
-//		return viewMode;
-//	}
-//
-//	public void viewMode(ViewMode viewMode) {
-//		this.viewMode = viewMode;
-//		//TODO agregarse como listener al modo?
-//		viewModeChanged();
-//	}
-//	
-//	private void viewModeChanged() {
-//		Component[] components = this.detailPanel().getComponents();
-//		for (int i = 0; i < components.length; i++) {
-//			Component component = components[i];
-//
-//			component.setVisible(viewMode.isVisible(component));
-//			component.setEnabled(viewMode.isEnabled(component));
-//		} 
-//	}
 
 }
