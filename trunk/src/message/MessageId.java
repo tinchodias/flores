@@ -1,18 +1,34 @@
 package message;
 
 public enum MessageId {
+	mainTitle, 
+
 	persistenceInvalidModel, 
 	persistenceInvalidState,
+
 	securityInvalidLogin, 
-	clientName, 
-	clientDebt, 
+
+	loginDialogTitle, 
 	userName, 
 	userPassword, 
-	invalidSelection, 
+	
 	clientsDialogTitle, 
-	loginDialogTitle, 
 	clientDialogTitle, 
-	mainTitle, 
+	clientName, 
+	clientDebt, 
+
+	invalidSelection, 
 	modify, 
-	create;
+	create, 
+	
+	stockDialogTitle, 
+	articleCode, 
+	articleDescription, 
+	articleCount, 
+	articleCost,
+
+	buysDialogTitle, 
+	
+	stockDropDownsDialogTitle; 
+	
 }

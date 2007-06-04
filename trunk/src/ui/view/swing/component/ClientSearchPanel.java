@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 import message.MessageId;
 import query.criteria.ClientSearchCriteria;
 import ui.UI;
-import ui.controller.action.ClientSearchAction;
+import ui.controller.action.Action;
 import ui.view.swing.util.ActionAdapter;
 
 public class ClientSearchPanel extends StandardSearchPanel implements ClientSearchCriteria {
@@ -22,7 +22,7 @@ public class ClientSearchPanel extends StandardSearchPanel implements ClientSear
 		this.filtersPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
 	}
 
-	public void setSearchAction(ClientSearchAction action) {
+	public void setSearchAction(Action action) {
 		clientNameField.addActionListener(new ActionAdapter(action));
 	}
 

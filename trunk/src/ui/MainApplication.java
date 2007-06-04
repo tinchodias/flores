@@ -2,9 +2,11 @@ package ui;
 
 import javax.swing.UIManager;
 
+import message.MessageId;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
-import ui.controller.action.ShowLoginDialogAction;
+import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.LoginDialogInitializer;
 
 public class MainApplication {
 
@@ -23,7 +25,7 @@ public class MainApplication {
 			initPersistence();
 			UI.instance().mainUI().show();
 
-			new ShowLoginDialogAction().execute();
+			new ShowDialogAction(new LoginDialogInitializer(), MessageId.loginDialogTitle).execute();
 
 		} catch (Exception e) {
 			UI.instance().showError(e.getMessage());

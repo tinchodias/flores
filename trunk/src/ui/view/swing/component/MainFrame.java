@@ -9,10 +9,14 @@ import javax.swing.JMenuItem;
 
 import message.MessageId;
 import message.MessageRepository;
-import ui.controller.action.ShowClientsAction;
-import ui.controller.action.ShowLoginDialogAction;
+import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.ClientsDialogInitializer;
+import ui.controller.initializer.LoginDialogInitializer;
+import ui.controller.initializer.StockDialogInitializer;
 import ui.view.component.MainUI;
 import ui.view.swing.util.ActionAdapter;
+
+//TODO Remove Action instanciations from here.
 
 public class MainFrame extends JFrame implements MainUI {
 
@@ -39,8 +43,11 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newStoreMenu() {
 		storeMenu = new JMenu("Depósito");
 
-		ActionAdapter showClientsAction = new ActionAdapter(new ShowClientsAction());
+		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clientsDialogTitle));
+		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
+
 		storeMenu.add(new JMenuItem(showClientsAction));
+		storeMenu.add(new JMenuItem(showStockAction));
 		
 		return storeMenu;
 	}
@@ -48,7 +55,7 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu newSystemMenu() {
 		systemMenu = new JMenu("Sesión");
 
-		ActionAdapter loginAction = new ActionAdapter(new ShowLoginDialogAction());
+		ActionAdapter loginAction = new ActionAdapter(new ShowDialogAction(new LoginDialogInitializer(), MessageId.loginDialogTitle));
 		systemMenu.add(new JMenuItem(loginAction));
 		
 		return systemMenu;
