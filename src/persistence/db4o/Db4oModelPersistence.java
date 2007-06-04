@@ -30,7 +30,8 @@ public class Db4oModelPersistence extends ModelPersistence {
 		
 		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
-//		configuration.diagnostic().addListener(new DiagnosticToConsole());		
+//		configuration.diagnostic().addListener(new DiagnosticToConsole());
+		
 	}
 
 	public void save(Model model) {
@@ -57,6 +58,10 @@ public class Db4oModelPersistence extends ModelPersistence {
 	public void open() {
 		try {
 			this.container = Db4o.openFile(getFileName());
+
+			//TODO
+			container.ext().configure().activationDepth(Integer.MAX_VALUE);
+
 		} catch (DatabaseFileLockedException e) {
 			throw e;
 		}

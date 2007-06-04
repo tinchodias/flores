@@ -27,7 +27,7 @@ public class ClientsDialog extends StandardDialog implements ClientsUI {
 	private void initComponents() {
 		initSearchPanel();
 
-		okButton = new JButton("Aceptar");
+		okButton = new JButton();
 		
 		this.centerPanel().setLayout(new BorderLayout());
 		this.centerPanel().add(clientSearchPanel, BorderLayout.CENTER);

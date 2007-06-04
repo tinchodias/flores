@@ -5,14 +5,15 @@ import message.MessageRepository;
 import ui.controller.initializer.DialogInitializer;
 
 //TODO Ver si es posible (y preferible) implementar todas las acciones ShowX con ésta genérica.
-//TODO El string hardcoded de cada Action en getTitle() debe ser solucionado de otra manera.
 
 public class ShowDialogAction implements Action {
 
 	private final DialogInitializer initializer;
+	private MessageId titleMessageId;
 
-	public ShowDialogAction(DialogInitializer initializer) {
+	public ShowDialogAction(DialogInitializer initializer, MessageId titleMessageId) {
 		this.initializer = initializer;
+		this.titleMessageId = titleMessageId;
 	}
 
 	public void execute() {
@@ -20,7 +21,7 @@ public class ShowDialogAction implements Action {
 	}
 
 	public String getTitle() {
-		return MessageRepository.instance().get(MessageId.create);
+		return MessageRepository.instance().get(titleMessageId);
 	}
 
 }
