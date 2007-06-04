@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import message.MessageId;
+import message.MessageRepository;
 import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
 import ui.UI;
@@ -53,8 +56,10 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 	}
 
 	private void initFiltersPanel() {
-		filtersPanel = new JPanel();
-		filtersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		filtersPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+		String filtersTitle = MessageRepository.instance().get(MessageId.searchFiltersTitle);
+		filtersPanel.setBorder(BorderFactory.createTitledBorder(filtersTitle));
 	}
 
 	private void initResultsPanel() {

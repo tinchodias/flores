@@ -20,6 +20,8 @@ public enum MessageId {
 	invalidSelection, 
 	modify, 
 	create, 
+
+	searchFiltersTitle,
 	
 	stockDialogTitle, 
 	articleCode, 
