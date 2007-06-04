@@ -62,7 +62,7 @@ public class NativeQueryFactory extends QueryFactory {
 				results = new LazySearchResults<Article>(new StockArticleSearchResultsSpecification());
 				
 				for (Article article : articles) {
-					if (StringUtils.containsIgnoreCase(article.getCode(), stockArticleSearchCriteria.getCode()) ||
+					if (StringUtils.containsIgnoreCase(article.getCode(), stockArticleSearchCriteria.getCode()) &&
 						StringUtils.containsIgnoreCase(article.getDescription(), stockArticleSearchCriteria.getDescription())) {
 						results.add(article);
 					}
