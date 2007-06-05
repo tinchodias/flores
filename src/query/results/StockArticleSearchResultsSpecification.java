@@ -13,7 +13,8 @@ public class StockArticleSearchResultsSpecification extends
 	public StockArticleSearchResultsSpecification() {
 		add(MessageId.articleCode);
 		add(MessageId.articleDescription);
-		add(MessageId.articleCount, Double.class);
+		add(MessageId.articleGroup);
+		add(MessageId.count, Double.class);
 		add(MessageId.articleCost, Pesos.class);
 	}
 	
@@ -24,8 +25,10 @@ public class StockArticleSearchResultsSpecification extends
 		case 1:
 			return article.getDescription();
 		case 2:
-			return ModelPersistence.instance().loadedModel().store().stock().count(article);
+			return article.getGroup();
 		case 3:
+			return ModelPersistence.instance().loadedModel().store().stock().count(article);
+		case 4:
 			return ModelPersistence.instance().loadedModel().store().stock().cost(article);
 		}
 		return null;

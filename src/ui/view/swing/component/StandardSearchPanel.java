@@ -16,6 +16,7 @@ import message.MessageRepository;
 import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
 import ui.UI;
+import ui.controller.action.Action;
 import ui.view.component.SearchUI;
 import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
@@ -88,6 +89,8 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 
 	public abstract Criteria criteria();
 
+	public abstract void setSearchAction(Action action);
+	
 	public Object selection() {
 		int rowIndex = resultsTable.getSelectedRow();
 		
