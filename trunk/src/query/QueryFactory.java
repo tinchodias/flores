@@ -2,8 +2,7 @@ package query;
 
 import model.JuridicPerson;
 import model.stock.Article;
-import query.criteria.ClientSearchCriteria;
-import query.framework.criteria.Criteria;
+import model.stock.StockDropOut;
 import query.framework.query.SearchQuery;
 import query.implementation.natives.NativeQueryFactory;
 
@@ -18,8 +17,9 @@ public abstract class QueryFactory {
 		return instance;
 	}
 
-	public abstract SearchQuery<JuridicPerson> clientSearchQuery(ClientSearchCriteria criteria);
+	public abstract SearchQuery<JuridicPerson> clientSearchQuery();
 
-	public abstract SearchQuery<Article> stockArticleSearchQuery(Criteria criteria);
+	public abstract SearchQuery<Article> stockArticleSearchQuery();
 	
+	public abstract SearchQuery<StockDropOut> stockDropOutSearchQuery();
 }

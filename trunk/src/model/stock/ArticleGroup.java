@@ -12,4 +12,9 @@ public class ArticleGroup {
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return getName();
+	}
+	
 }

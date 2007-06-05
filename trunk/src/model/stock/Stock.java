@@ -1,6 +1,7 @@
 package model.stock;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -87,6 +88,10 @@ public class Stock {
 
 		costValuation.notify(dropOut);
 		removeFromStock(dropOut.getArticle(), dropOut.getCount());
+	}
+
+	public Collection<StockDropOut> dropOuts() {
+		return Collections.unmodifiableCollection(dropOuts);
 	}
 
 }

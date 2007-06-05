@@ -19,15 +19,20 @@ public enum MessageId {
 
 	invalidSelection, 
 	modify, 
-	create, 
+	create,
+	
+	search,
+	date,
+	count, 
 
 	searchFiltersTitle,
 	
 	stockDialogTitle, 
+	article, 
 	articleCode, 
 	articleDescription, 
-	articleCount, 
 	articleCost,
+	articleGroup, 
 
 	buysDialogTitle, 
 	

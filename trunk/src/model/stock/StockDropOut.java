@@ -8,11 +8,17 @@ public class StockDropOut {
 	private final Article article;
 	private final double count;
 	private final ReadableDateTime date;
+	private final String note;
 
-	public StockDropOut(Article article, double count, ReadableDateTime date) {
+	public StockDropOut(Article article, double count, ReadableDateTime date, String note) {
 		this.article = article;
 		this.count = count;
 		this.date = date;
+		this.note = note;
+	}
+
+	public StockDropOut(Article article, double count, ReadableDateTime date) {
+		this(article, count, date, "");
 	}
 
 	public Article getArticle() {
@@ -25,6 +31,10 @@ public class StockDropOut {
 
 	public ReadableDateTime getDate() {
 		return date;
+	}
+
+	public String getNote() {
+		return note;
 	}
 
 }
