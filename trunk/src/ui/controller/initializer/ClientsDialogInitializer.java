@@ -2,28 +2,30 @@ package ui.controller.initializer;
 
 import message.MessageId;
 import query.QueryFactory;
-import ui.controller.action.Action;
-import ui.controller.action.CloseDialogAction;
-import ui.controller.action.SearchAction;
+import query.framework.query.SearchQuery;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.action.ShowModifyClientAction;
-import ui.view.component.ClientsUI;
-import ui.view.swing.component.ClientsDialog;
+import ui.view.swing.component.ClientSearchPanel;
+import ui.view.swing.component.StandardSearchDialog;
+import ui.view.swing.component.StandardSearchPanel;
 
-public class ClientsDialogInitializer implements DialogInitializer {
+public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 
-	public ClientsUI dialog() {
-		ClientsDialog clientsDialog = new ClientsDialog();
-		
-		Action clientSearchAction = new SearchAction(clientsDialog.getSearchPanel(), QueryFactory.instance().clientSearchQuery());
-		clientsDialog.getSearchPanel().setSearchAction(clientSearchAction);
-		clientSearchAction.execute();
-		
-		clientsDialog.setOkButtonAction(new CloseDialogAction(clientsDialog));
-		clientsDialog.setAddClientButtonAction(new ShowDialogAction(new CreateClientDialogInitializer(), MessageId.create));
-		clientsDialog.setModifyClientButtonAction(new ShowModifyClientAction(clientsDialog.getSearchPanel()));
-		
-		return clientsDialog;
+	protected void addActions(StandardSearchDialog searchDialog) {
+		searchDialog.add(new ShowDialogAction(new CreateClientDialogInitializer(), MessageId.create));
+		searchDialog.add(new ShowModifyClientAction(searchDialog.getSearchPanel()));
+	}
+
+	protected StandardSearchPanel searchPanel() {
+		return new ClientSearchPanel();
+	}
+
+	protected SearchQuery searchQuery() {
+		return QueryFactory.instance().clientSearchQuery();
+	}
+
+	protected MessageId titleMessageId() {
+		return MessageId.clientsDialogTitle;
 	}
 
 }

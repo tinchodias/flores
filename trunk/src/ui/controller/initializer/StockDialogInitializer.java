@@ -1,31 +1,34 @@
 package ui.controller.initializer;
 
-import query.QueryFactory;
 import message.MessageId;
+import query.QueryFactory;
+import query.framework.query.SearchQuery;
 import ui.controller.action.Action;
-import ui.controller.action.CloseDialogAction;
 import ui.controller.action.ShowDialogAction;
-import ui.controller.action.SearchAction;
-import ui.view.component.StockArticlesUI;
-import ui.view.swing.component.StockArticlesDialog;
+import ui.view.swing.component.StandardSearchDialog;
+import ui.view.swing.component.StandardSearchPanel;
+import ui.view.swing.component.StockArticleSearchPanel;
 
-public class StockDialogInitializer implements DialogInitializer {
+public class StockDialogInitializer extends StandardSearchDialogInitializer {
 
-	public StockArticlesUI dialog() {
-		StockArticlesDialog dialog = new StockArticlesDialog();
-		
-		Action searchAction = new SearchAction(dialog.getSearchPanel(), QueryFactory.instance().stockArticleSearchQuery());
-		dialog.getSearchPanel().setSearchAction(searchAction);
-		searchAction.execute();
-		
+	protected void addActions(StandardSearchDialog searchDialog) {
 		Action showBuysDialogAction = new ShowDialogAction(new BuysDialogInitializer(), MessageId.buysDialogTitle);
-		Action showStockDropDownsAction = new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropDownsDialogTitle);
+		Action showStockDropDownsAction = new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle);
 
-		dialog.setOkAction(new CloseDialogAction(dialog));
-		dialog.setShowBuysAction(showBuysDialogAction);
-		dialog.setShowStockDropDownsAction(showStockDropDownsAction);
-		
-		return dialog;
+		searchDialog.add(showBuysDialogAction);
+		searchDialog.add(showStockDropDownsAction);
+	}
+
+	protected StandardSearchPanel searchPanel() {
+		return new StockArticleSearchPanel();
+	}
+
+	protected SearchQuery searchQuery() {
+		return QueryFactory.instance().stockArticleSearchQuery();
+	}
+
+	protected MessageId titleMessageId() {
+		return MessageId.stockDialogTitle;
 	}
 
 }

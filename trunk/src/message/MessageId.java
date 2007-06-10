@@ -36,6 +36,7 @@ public enum MessageId {
 
 	buysDialogTitle, 
 	
-	stockDropDownsDialogTitle; 
+	stockDropOutsDialogTitle, 
+	stockDropOutDialogTitle; 
 	
 }

@@ -1,12 +1,14 @@
 package ui.controller.initializer;
 
 import ui.view.component.DialogUI;
+import ui.view.swing.component.StockDropOutDialog;
 
 public class CreateStockDropOutDialogInitializer implements DialogInitializer {
 
 	public DialogUI dialog() {
-		// TODO Auto-generated method stub
-		return null;
+		StockDropOutDialog dialog = new StockDropOutDialog();
+		
+		return dialog;
 	}
 
 }
