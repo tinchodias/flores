@@ -16,4 +16,9 @@ public class JuridicPerson {
 		this.name = nombre;
 	}
 
+	public String toString() {
+		return getName();
+	}
+
+	
 }

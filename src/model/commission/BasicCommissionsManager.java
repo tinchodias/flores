@@ -8,7 +8,7 @@ import model.money.Pesos;
 import model.receipt.Expense;
 import model.receipt.Sell;
 
-import org.joda.time.Interval;
+import org.joda.time.ReadableInterval;
 
 public class BasicCommissionsManager implements CommisionsManager {
 	
@@ -20,7 +20,7 @@ public class BasicCommissionsManager implements CommisionsManager {
 		this.commisionAlpha = 0.5;
 	}
 
-	public CommissionSummary commissionAt(JuridicPerson vendor, Interval lapse) {
+	public CommissionSummary commissionAt(JuridicPerson vendor, ReadableInterval lapse) {
 		Collection<Sell> sells = store.sellsAt(vendor, lapse);
 		
 		Pesos sellTotal = sellTotal(sells);
