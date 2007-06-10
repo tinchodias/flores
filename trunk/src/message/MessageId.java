@@ -24,6 +24,9 @@ public enum MessageId {
 	search,
 	date,
 	count, 
+	select,
+	fromDate,
+	toDate,
 
 	searchFiltersTitle,
 	

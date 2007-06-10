@@ -16,7 +16,7 @@ import model.stock.ArticleGroup;
 import model.stock.Stock;
 import model.util.CollectionFactory;
 
-import org.joda.time.Interval;
+import org.joda.time.ReadableInterval;
 
 //TODO Rethink this class.
 
@@ -102,7 +102,7 @@ public class Store {
 		clientsDebts.apply(annulment);
 	}
 
-	public Collection<Sell> sellsAt(JuridicPerson vendor, Interval lapse) {
+	public Collection<Sell> sellsAt(JuridicPerson vendor, ReadableInterval lapse) {
 		Collection<Sell> selection = new HashSet<Sell>();
 		for (Sell sell : sells) {
 			if (lapse.contains(sell.date()) && sell.vendor().equals(vendor)) {

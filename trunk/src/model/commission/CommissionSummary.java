@@ -3,18 +3,18 @@ package model.commission;
 import model.JuridicPerson;
 import model.money.Pesos;
 
-import org.joda.time.Interval;
+import org.joda.time.ReadableInterval;
 
 public class CommissionSummary {
 
 	private final JuridicPerson vendor;
-	private final Interval lapse;
+	private final ReadableInterval lapse;
 	private final Pesos sellTotal;
 	private final Pesos costTotal;
 	private final Pesos expensesTotal;
 	private final Pesos total;
 	
-	public CommissionSummary(JuridicPerson vendor, Interval lapse, Pesos sellTotal, Pesos costTotal, Pesos expensesTotal, Pesos total) {
+	public CommissionSummary(JuridicPerson vendor, ReadableInterval lapse, Pesos sellTotal, Pesos costTotal, Pesos expensesTotal, Pesos total) {
 		this.vendor = vendor;
 		this.lapse = lapse;
 		this.sellTotal = sellTotal;
@@ -31,7 +31,7 @@ public class CommissionSummary {
 		return expensesTotal;
 	}
 
-	public Interval getLapse() {
+	public ReadableInterval getLapse() {
 		return lapse;
 	}
 

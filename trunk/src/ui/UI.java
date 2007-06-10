@@ -9,10 +9,14 @@ import javax.swing.table.TableModel;
 import message.MessageId;
 import message.MessageRepository;
 import model.money.Pesos;
+
+import org.joda.time.ReadableInstant;
+
 import ui.controller.initializer.MainFrameInitializer;
 import ui.view.component.MainUI;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.PesosTableCellRenderer;
+import ui.view.swing.util.ReadableInstantTableCellRenderer;
 
 public class UI {
 
@@ -57,7 +61,8 @@ public class UI {
 	public JTable table(TableModel tableModel) {
 		JTable table = new JTable(tableModel);
 		table.setAutoCreateRowSorter(true);
-		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());		
+		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());
+		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
 		return table;
 	}
 }
