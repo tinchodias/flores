@@ -2,28 +2,28 @@ package ui.controller.initializer;
 
 import message.MessageId;
 import query.QueryFactory;
-import ui.controller.action.Action;
-import ui.controller.action.CloseDialogAction;
-import ui.controller.action.SearchAction;
+import query.framework.query.SearchQuery;
 import ui.controller.action.ShowDialogAction;
-import ui.view.component.DialogUI;
-import ui.view.swing.component.StockDropOutsDialog;
+import ui.view.swing.component.StandardSearchDialog;
+import ui.view.swing.component.StandardSearchPanel;
+import ui.view.swing.component.StockDropOutSearchPanel;
 
-public class StockDropOutsDialogInitializer implements DialogInitializer {
+public class StockDropOutsDialogInitializer extends StandardSearchDialogInitializer {
 
-	public DialogUI dialog() {
-		StockDropOutsDialog dialog = new StockDropOutsDialog();
-		
-		Action searchAction = new SearchAction(dialog.getSearchPanel(), QueryFactory.instance().stockDropOutSearchQuery());
-		dialog.getSearchPanel().setSearchAction(searchAction);
-		searchAction.execute();
-		
-		Action showCreateStockDropOutDialogAction = new ShowDialogAction(new CreateStockDropOutDialogInitializer(), MessageId.create);
+	protected void addActions(StandardSearchDialog searchDialog) {
+		searchDialog.add(new ShowDialogAction(new CreateStockDropOutDialogInitializer(), MessageId.create));
+	}
 
-		dialog.setOkAction(new CloseDialogAction(dialog));
-		dialog.setCreateAction(showCreateStockDropOutDialogAction);
-		
-		return dialog;
+	protected StandardSearchPanel searchPanel() {
+		return new StockDropOutSearchPanel();
+	}
+
+	protected SearchQuery searchQuery() {
+		return QueryFactory.instance().stockDropOutSearchQuery();
+	}
+
+	protected MessageId titleMessageId() {
+		return MessageId.stockDropOutsDialogTitle;
 	}
 
 }

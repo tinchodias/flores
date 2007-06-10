@@ -46,7 +46,7 @@ public class MainFrame extends JFrame implements MainUI {
 
 		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clientsDialogTitle));
 		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
-		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropDownsDialogTitle));
+		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle));
 
 		storeMenu.add(new JMenuItem(showClientsAction));
 		storeMenu.add(new JMenuItem(showStockAction));
