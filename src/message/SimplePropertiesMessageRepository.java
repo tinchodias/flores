@@ -17,17 +17,14 @@ public class SimplePropertiesMessageRepository extends MessageRepository {
 		}
 	}
 
-	@Override
-	public String get(MessageId messageIdentifier) {
-		String property = properties.getProperty(messageIdentifier.toString());
+	public String get(MessageId messageId) {
+		String property = properties.getProperty(messageId.toString());
 		
 		if (property == null) {
-			throw new Error("Message not found: " + messageIdentifier);
+			throw new Error("Message not found: " + messageId);
 		}
 		
 		return property;
 	}
 
-	
-	
 }

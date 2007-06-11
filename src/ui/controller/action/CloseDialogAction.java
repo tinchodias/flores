@@ -1,5 +1,6 @@
 package ui.controller.action;
 
+import message.MessageId;
 import ui.view.component.DialogUI;
 
 public class CloseDialogAction implements Action {
@@ -14,8 +15,8 @@ public class CloseDialogAction implements Action {
 		dialogUI.setVisible(false);
 	}
 
-	public String getTitle() {
-		return "Cerrar";
+	public MessageId messageId() {
+		return MessageId.close;
 	}
 
 }

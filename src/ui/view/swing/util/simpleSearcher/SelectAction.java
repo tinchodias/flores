@@ -1,7 +1,6 @@
 package ui.view.swing.util.simpleSearcher;
 
 import message.MessageId;
-import message.MessageRepository;
 import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
@@ -27,8 +26,8 @@ public class SelectAction implements Action {
 
 	}
 
-	public String getTitle() {
-		return MessageRepository.instance().get(MessageId.select);
+	public MessageId messageId() {
+		return MessageId.select;
 	}
 
 }

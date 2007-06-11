@@ -1,8 +1,9 @@
 package ui.controller.action;
 
-import persistence.ModelPersistence;
+import message.MessageId;
 import model.JuridicPerson;
 import model.Store;
+import persistence.ModelPersistence;
 import ui.view.component.ClientUI;
 
 public class CreateClientAction implements Action {
@@ -26,8 +27,8 @@ public class CreateClientAction implements Action {
 		return new JuridicPerson(name);
 	}
 
-	public String getTitle() {
-		return "Guardar";
+	public MessageId messageId() {
+		return MessageId.accept;
 	}
 
 }

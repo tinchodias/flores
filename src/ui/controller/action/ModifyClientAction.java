@@ -1,5 +1,6 @@
 package ui.controller.action;
 
+import message.MessageId;
 import model.JuridicPerson;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.view.component.ClientUI;
@@ -21,8 +22,8 @@ public class ModifyClientAction implements Action {
 //		clientUI.setVisible(false);
 	}
 
-	public String getTitle() {
-		return "Modificar";
+	public MessageId messageId() {
+		return MessageId.accept;
 	}
 
 }

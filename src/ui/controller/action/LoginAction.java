@@ -1,5 +1,6 @@
 package ui.controller.action;
 
+import message.MessageId;
 import persistence.exception.MessageIdentifiedException;
 import security.Security;
 import ui.UI;
@@ -26,8 +27,8 @@ public class LoginAction implements Action {
 		}
 	}
 
-	public String getTitle() {
-		return "Aceptar";
+	public MessageId messageId() {
+		return MessageId.accept;
 	}
 	
 }

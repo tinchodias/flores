@@ -17,19 +17,6 @@ public enum MessageId {
 	clientName, 
 	clientDebt, 
 
-	invalidSelection, 
-	modify, 
-	create,
-	
-	search,
-	date,
-	count, 
-	select,
-	fromDate,
-	toDate,
-
-	searchFiltersTitle,
-	
 	stockDialogTitle, 
 	article, 
 	articleCode, 
@@ -40,6 +27,22 @@ public enum MessageId {
 	buysDialogTitle, 
 	
 	stockDropOutsDialogTitle, 
-	stockDropOutDialogTitle; 
+	stockDropOutDialogTitle,
+	
+	searchFiltersTitle,
+
+	simpleSearch, 
+	
+	invalidSelection, 
+	modify, 
+	create,
+	close,
+	accept,
+	search,
+	date,
+	count, 
+	select,
+	fromDate,
+	toDate;
 	
 }
