@@ -1,5 +1,6 @@
 package ui.view.swing.util.simpleSearcher;
 
+import message.MessageId;
 import ui.controller.action.Action;
 import ui.controller.initializer.StandardSearchDialogInitializer;
 import ui.view.component.SearchDialogUI;
@@ -20,8 +21,8 @@ public class ShowSimpleSearcherDialog implements Action {
 		dialogUI.setVisible(true);
 	}
 
-	public String getTitle() {
-		return "...";
+	public MessageId messageId() {
+		return MessageId.simpleSearch;
 	}
 
 }

@@ -1,6 +1,7 @@
 package message;
 
 
+
 public abstract class MessageRepository {
 
 	private static MessageRepository instance;
@@ -12,6 +13,6 @@ public abstract class MessageRepository {
 		return instance;
 	}
 
-	public abstract String get(MessageId messageIdentifier);
-
+	public abstract String get(MessageId messageId);
+	
 }

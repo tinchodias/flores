@@ -1,7 +1,6 @@
 package ui.controller.action;
 
 import message.MessageId;
-import message.MessageRepository;
 import query.framework.query.SearchQuery;
 import ui.view.component.SearchUI;
 
@@ -30,8 +29,8 @@ public class SearchAction implements Action {
 //						
 	}
 
-	public String getTitle() {
-		return MessageRepository.instance().get(MessageId.search);
+	public MessageId messageId() {
+		return MessageId.search;
 	}
 
 }

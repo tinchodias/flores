@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import message.IconRepository;
 import message.MessageId;
 import message.MessageRepository;
 import ui.UI;
@@ -24,7 +26,16 @@ public class StandardDialog extends JDialog implements DialogUI {
 
 		String title = MessageRepository.instance().get(titleMessageId);
 		setTitle(title);
+
+		ImageIcon icon = IconRepository.instance().get(titleMessageId);
+		if (icon != null) {
+			setIconImage(icon.getImage());
+		}
 		
+		initComponents();
+	}
+
+	private void initComponents() {
 		initCenterPanel();
 		initButtonPanel();
 		

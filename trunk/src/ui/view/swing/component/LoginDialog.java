@@ -35,7 +35,6 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		centerPanel().add(UI.instance().label(nameField, MessageId.userName));
 		centerPanel().add(UI.instance().label(passwordField, MessageId.userPassword));
 		buttonPanel().add(loginButton);
-		
 	}
 
 	public String getUserName() {

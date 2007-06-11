@@ -1,13 +1,11 @@
 package ui.controller.action;
 
 import message.MessageId;
-import message.MessageRepository;
 import model.stock.StockDropOut;
 
 import org.joda.time.DateTime;
 
 import persistence.ModelPersistence;
-
 import ui.view.component.StockDropOutUI;
 
 public class CreateStockDropOutAction implements Action {
@@ -29,8 +27,8 @@ public class CreateStockDropOutAction implements Action {
 		return new StockDropOut(detail.getArticle(), detail.getCount(), new DateTime());
 	}
 
-	public String getTitle() {
-		return MessageRepository.instance().get(MessageId.create);
+	public MessageId messageId() {
+		return MessageId.accept;
 	}
 
 }
