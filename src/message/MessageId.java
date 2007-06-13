@@ -25,13 +25,16 @@ public enum MessageId {
 	articleGroup, 
 
 	buysDialogTitle, 
+	supplier, 
+	paymentTotal, 
+	buyTotal,
 	
 	stockDropOutsDialogTitle, 
 	stockDropOutDialogTitle,
 	
 	searchFiltersTitle,
 
-	simpleSearch, 
+	objectPickerButton, 
 	
 	invalidSelection, 
 	modify, 

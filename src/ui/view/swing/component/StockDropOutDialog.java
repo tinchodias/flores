@@ -7,12 +7,12 @@ import model.stock.Article;
 import ui.UI;
 import ui.controller.initializer.StockDialogInitializer;
 import ui.view.component.StockDropOutUI;
-import ui.view.swing.util.simpleSearcher.SimpleSearcher;
+import ui.view.swing.util.ObjectPicker;
 
 public class StockDropOutDialog extends StandardDetailDialog implements StockDropOutUI {
 
 	private JTextField countField;
-	private SimpleSearcher articlePicker;
+	private ObjectPicker articlePicker;
 
 	public StockDropOutDialog() {
 		super(MessageId.stockDropOutDialogTitle);
@@ -22,7 +22,7 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 	}
 
 	private void initComponents() {
-		articlePicker = new SimpleSearcher();
+		articlePicker = new ObjectPicker();
 		//TODO put this in the initiailzer! 
 		articlePicker.setSearchInitializer(new StockDialogInitializer());
 		

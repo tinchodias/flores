@@ -79,6 +79,10 @@ public class Store {
 	public Collection<ArticleGroup> stockArticleGroups() {
 		return stockArticleGroups;
 	}
+
+	public Collection<Buy> buys() {
+		return buys;
+	}
 	
 	public void add(Buy buy) {
 		buys.add(buy);

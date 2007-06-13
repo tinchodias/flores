@@ -9,6 +9,9 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.Configuration;
+import com.db4o.config.ObjectClass;
+import com.db4o.config.ObjectField;
+import com.db4o.config.TSerializable;
 import com.db4o.ext.DatabaseFileLockedException;
 
 public class Db4oModelPersistence extends ModelPersistence {
@@ -62,6 +65,8 @@ public class Db4oModelPersistence extends ModelPersistence {
 			//TODO
 			container.ext().configure().activationDepth(Integer.MAX_VALUE);
 
+			configureJodaTime();
+			
 		} catch (DatabaseFileLockedException e) {
 			throw e;
 		}
@@ -85,4 +90,67 @@ public class Db4oModelPersistence extends ModelPersistence {
 		this.fileName = fileName;
 	}
 
+	private void configureJodaTime() {
+		Configuration config = Db4o.configure();
+		
+	    Class clazz = org.joda.time.base.BaseDateTime.class;
+	    ObjectClass oc = config.objectClass(clazz);
+	    oc.updateDepth(0);
+	    oc.maximumActivationDepth(Integer.MAX_VALUE);
+	    oc.minimumActivationDepth(Integer.MAX_VALUE);
+	    oc.cascadeOnActivate(true);
+	    oc.cascadeOnDelete(false);
+	    oc.cascadeOnUpdate(false);
+	    
+	    ObjectField of = oc.objectField("iMillis");
+	    of.indexed(true); 
+	    
+	    of = oc.objectField("iChronology");
+	    of.indexed(false);
+	    of.queryEvaluation(false);
+	    of.cascadeOnDelete(false);
+	        
+	    clazz = org.joda.time.DateTime.class; 
+	    oc = config.objectClass(clazz);
+	    oc.updateDepth(0);
+	    oc.maximumActivationDepth(Integer.MAX_VALUE);
+	    oc.minimumActivationDepth(Integer.MAX_VALUE);
+	    oc.cascadeOnActivate(true);
+	    oc.cascadeOnDelete(false);
+	    oc.cascadeOnUpdate(false);        
+	        
+	    clazz = org.joda.time.chrono.ISOChronology.class;
+	    oc = config.objectClass(clazz);
+	    oc.updateDepth(0);
+	    oc.translate(new TSerializable());
+	    oc.maximumActivationDepth(Integer.MAX_VALUE);
+	    oc.minimumActivationDepth(Integer.MAX_VALUE);
+	    oc.cascadeOnActivate(true);
+	    oc.cascadeOnDelete(false);
+	    oc.cascadeOnUpdate(false);
+	    
+	    clazz = org.joda.time.chrono.ZonedChronology.class;
+	    oc = config.objectClass(clazz);
+	    oc.updateDepth(0);
+	    oc.translate(new TSerializable());
+	    oc.maximumActivationDepth(Integer.MAX_VALUE);
+	    oc.minimumActivationDepth(Integer.MAX_VALUE);
+	    oc.cascadeOnActivate(true);
+	    oc.cascadeOnDelete(false);
+	    oc.cascadeOnUpdate(false);
+	    
+	    clazz = org.joda.time.chrono.GregorianChronology.class;
+	    oc = config.objectClass(clazz);
+	    oc.updateDepth(0);
+	    oc.translate(new TSerializable());
+	    oc.maximumActivationDepth(Integer.MAX_VALUE);
+	    oc.minimumActivationDepth(Integer.MAX_VALUE);
+	    oc.cascadeOnActivate(true);
+	    oc.cascadeOnDelete(false);
+	    oc.cascadeOnUpdate(false);
+	    
+	    clazz = org.joda.time.tz.CachedDateTimeZone.class;
+	    oc = config.objectClass(clazz);   
+	    oc.translate(new TSerializable());		
+	}
 }

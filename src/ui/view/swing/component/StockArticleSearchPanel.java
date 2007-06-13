@@ -32,10 +32,6 @@ public class StockArticleSearchPanel extends StandardSearchPanel implements Stoc
 		descriptionField.addActionListener(actionAdapter);
 	}
 
-	public StockArticleSearchCriteria criteria() {
-		return this;
-	}
-
 	public String getCode() {
 		return this.codeField.getText();
 	}
