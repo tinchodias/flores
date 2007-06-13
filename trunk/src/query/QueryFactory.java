@@ -1,6 +1,7 @@
 package query;
 
 import model.JuridicPerson;
+import model.receipt.Buy;
 import model.stock.Article;
 import model.stock.StockDropOut;
 import query.framework.query.SearchQuery;
@@ -22,4 +23,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery<Article> stockArticleSearchQuery();
 	
 	public abstract SearchQuery<StockDropOut> stockDropOutSearchQuery();
+
+	public abstract SearchQuery<Buy> buySearchQuery();
+	
 }

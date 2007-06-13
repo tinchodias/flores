@@ -3,6 +3,7 @@ package ui.view.swing.util;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -30,6 +31,14 @@ public class ReadableInstantTableCellRenderer extends DefaultTableCellRenderer {
 		
 		if (value != null) {
 			text = formatter.print((ReadableInstant) value);
+			
+			//TODO joda-time has persitence problems!! this is only a temporal fix!
+//			ReadableInstant readableInstant = (ReadableInstant) value;
+//			DateTime dateTime = new DateTime(readableInstant.getMillis());
+//			text = formatter.print(dateTime);
+
+//			DateFormat formatter2 = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+//			text = formatter2.format(((ReadableDateTime) value).toDateTime().toDate());
 		}
 		setText(text);
 	}

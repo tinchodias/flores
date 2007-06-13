@@ -1,4 +1,4 @@
-package ui.view.swing.util.simpleSearcher;
+package ui.view.swing.util;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,17 +8,17 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import ui.controller.action.objectpicker.ShowObjectPickerDialog;
 import ui.controller.initializer.StandardSearchDialogInitializer;
-import ui.view.swing.util.ActionAdapter;
 
 
-public class SimpleSearcher extends Container {
+public class ObjectPicker extends Container {
 
 	private JTextField textField;
 	private JButton button;
 	private Object selection;
 
-	public SimpleSearcher() {
+	public ObjectPicker() {
 		setLayout(new BorderLayout());
 		
 		textField = new JTextField();
@@ -35,7 +35,7 @@ public class SimpleSearcher extends Container {
 	}
 
 	public void setSearchInitializer(StandardSearchDialogInitializer initializer) {
-		button.setAction(new ActionAdapter(new ShowSimpleSearcherDialog(initializer, this)));
+		button.setAction(new ActionAdapter(new ShowObjectPickerDialog(initializer, this)));
 	}
 
 	public void setSelection(Object selection) {

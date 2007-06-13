@@ -1,8 +1,9 @@
 package ui.view.swing.component;
 
+import org.joda.time.ReadableInterval;
+
 import model.util.TimeUtils;
 import query.criteria.StockDropOutSearchCriteria;
-import query.framework.criteria.Criteria;
 import ui.controller.action.Action;
 import ui.view.swing.util.IntervalPicker;
 
@@ -25,8 +26,8 @@ public class StockDropOutSearchPanel extends StandardSearchPanel implements Stoc
 		//TODO add a "change listener" to the picker.. or think a more generic solution (i.e. in StandardSearchPanel).
 	}
 
-	public Criteria criteria() {
-		return this;
+	public ReadableInterval getInterval() {
+		return picker.getInterval();
 	}
 
 }

@@ -22,16 +22,12 @@ public class ClientSearchPanel extends StandardSearchPanel implements ClientSear
 		this.filtersPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
 	}
 
-	public void setSearchAction(final Action action) {
+	public void setSearchAction(Action action) {
 		clientNameField.addActionListener(new ActionAdapter(action));
 	}
 
 	public String getClientName() {
 		return clientNameField.getText();
-	}
-
-	public ClientSearchCriteria criteria() {
-		return this;
 	}
 
 }

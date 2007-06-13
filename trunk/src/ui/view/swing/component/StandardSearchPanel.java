@@ -21,7 +21,7 @@ import ui.view.component.SearchUI;
 import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
 
-public abstract class StandardSearchPanel extends JPanel implements SearchUI {
+public abstract class StandardSearchPanel extends JPanel implements SearchUI, Criteria {
 
 	private JPanel buttonPanel;
 	private JPanel centerPanel;
@@ -87,7 +87,9 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI {
 		tableModelAdapter.setResults(results);
 	}
 
-	public abstract Criteria criteria();
+	public Criteria criteria() {
+		return this;
+	}
 
 	public abstract void setSearchAction(Action action);
 	

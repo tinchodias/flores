@@ -1,18 +1,19 @@
-package ui.view.swing.util.simpleSearcher;
+package ui.controller.action.objectpicker;
 
 import message.MessageId;
 import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
+import ui.view.swing.util.ObjectPicker;
 
-public class SelectAction implements Action {
+public class ObjectPickerSelectAction implements Action {
 
 	private final SearchDialogUI dialogUI;
-	private final SimpleSearcher simpleSearcher;
+	private final ObjectPicker picker;
 
-	public SelectAction(SearchDialogUI dialogUI, SimpleSearcher simpleSearcher) {
+	public ObjectPickerSelectAction(SearchDialogUI dialogUI, ObjectPicker picker) {
 		this.dialogUI = dialogUI;
-		this.simpleSearcher = simpleSearcher;
+		this.picker = picker;
 	}
 
 	public void execute() {
@@ -20,7 +21,7 @@ public class SelectAction implements Action {
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {
-			simpleSearcher.setSelection(selection);
+			picker.setSelection(selection);
 			dialogUI.setVisible(false);
 		}
 

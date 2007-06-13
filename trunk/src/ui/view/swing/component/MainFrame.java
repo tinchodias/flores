@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import message.MessageId;
 import message.MessageRepository;
 import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.BuysDialogInitializer;
 import ui.controller.initializer.ClientsDialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
 import ui.controller.initializer.StockDialogInitializer;
@@ -47,10 +48,12 @@ public class MainFrame extends JFrame implements MainUI {
 		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clientsDialogTitle));
 		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
 		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle));
+		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buysDialogTitle));
 
 		storeMenu.add(new JMenuItem(showClientsAction));
 		storeMenu.add(new JMenuItem(showStockAction));
 		storeMenu.add(new JMenuItem(showStockDropDownsAction));
+		storeMenu.add(new JMenuItem(showBuysAction));
 		
 		return storeMenu;
 	}

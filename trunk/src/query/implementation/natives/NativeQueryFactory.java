@@ -3,6 +3,7 @@ package query.implementation.natives;
 import java.util.Collection;
 
 import model.JuridicPerson;
+import model.receipt.Buy;
 import model.stock.Article;
 import model.stock.StockDropOut;
 
@@ -11,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import persistence.Model;
 import persistence.ModelPersistence;
 import query.QueryFactory;
+import query.criteria.BuySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
@@ -18,13 +20,13 @@ import query.framework.criteria.Criteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.SearchResults;
+import query.results.BuySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
 
 public class NativeQueryFactory extends QueryFactory {
 
-	@Override
 	public SearchQuery<JuridicPerson> clientSearchQuery() {
 		
 		SearchQuery<JuridicPerson> query = new SearchQuery<JuridicPerson>() {
@@ -55,7 +57,6 @@ public class NativeQueryFactory extends QueryFactory {
 		return query;
 	}
 
-	@Override
 	public SearchQuery<Article> stockArticleSearchQuery() {
 		
 		SearchQuery<Article> query = new SearchQuery<Article>() {
@@ -87,7 +88,6 @@ public class NativeQueryFactory extends QueryFactory {
 		return query;
 	}
 
-	@Override
 	public SearchQuery<StockDropOut> stockDropOutSearchQuery() {
 		SearchQuery<StockDropOut> query = new SearchQuery<StockDropOut>() {
 			
@@ -106,15 +106,44 @@ public class NativeQueryFactory extends QueryFactory {
 					new LazySearchResults<StockDropOut>(new StockDropOutSearchResultsSpecification());
 				
 				for (StockDropOut dropOut : dropOuts) {
-//					if (StringUtils.containsIgnoreCase(dropOut.getArticle(), criteria.getArticle()) {
+					if (criteria.getInterval().contains(dropOut.getDate())) {
 						results.add(dropOut);
-//					}
+					}
 				}
 				return results;
 			}
 		};
 		
 		return query;
+	}
+
+	public SearchQuery<Buy> buySearchQuery() {
+
+		SearchQuery<Buy> query = new SearchQuery<Buy>() {
+			
+			private BuySearchCriteria criteria;
+			
+			public void setCriteria(Criteria criteria) {
+				this.criteria = (BuySearchCriteria) criteria; 
+			}
+			
+			public SearchResults<Buy> results() {
+				Model model = ModelPersistence.instance().loadedModel();
+				Collection<Buy> buys = model.store().buys();
+
+				LazySearchResults<Buy> results = 
+					new LazySearchResults<Buy>(new BuySearchResultsSpecification());
+				
+				for (Buy buy : buys) {
+					if (criteria.getInterval().contains(buy.date())) {
+						results.add(buy);
+					}
+				}
+				return results;
+			}
+		};
+		
+		return query;	
 	}
 
 }
