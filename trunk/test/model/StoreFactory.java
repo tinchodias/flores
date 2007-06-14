@@ -7,6 +7,7 @@ import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyArticleSpecification;
 import model.stock.Article;
+import model.stock.ArticleGroup;
 
 import org.joda.time.DateTime;
 
@@ -28,7 +29,10 @@ public class StoreFactory {
 		JuridicPerson eduardo = new JuridicPerson("Eduardo");
 		store.vendors().add(eduardo);
 
-		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel");
+		ArticleGroup floresGroup = new ArticleGroup("Flores");
+		store.stockArticleGroups().add(floresGroup);
+		
+		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel", floresGroup);
 		store.stockArticles().add(paqueteClavel);
 
 		Article alquiler = new Article("ALQ", "Alquiler del depósito");
