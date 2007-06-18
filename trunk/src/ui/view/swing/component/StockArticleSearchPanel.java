@@ -5,8 +5,8 @@ import javax.swing.JTextField;
 import message.MessageId;
 import model.stock.ArticleGroup;
 import query.criteria.StockArticleSearchCriteria;
-import ui.UI;
 import ui.controller.action.Action;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ActionAdapter;
 
 public class StockArticleSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
@@ -20,7 +20,7 @@ public class StockArticleSearchPanel extends StandardSearchPanel implements Stoc
 	private void initComponents() {
 		descriptionField = new JTextField();
 		
-		this.filtersPanel().add(UI.instance().label(descriptionField, MessageId.articleDescription));
+		this.filtersPanel().add(SwingUI.instance().label(descriptionField, MessageId.articleDescription));
 	}
 
 	public void setSearchAction(Action action) {

@@ -11,6 +11,7 @@ public class ClientSearchResultsSpecification extends LazySearchResultsSpecifica
 
 	public ClientSearchResultsSpecification() {
 		add(MessageId.clientName);
+		add(MessageId.address);
 		add(MessageId.clientDebt, Pesos.class);
 	}
 	
@@ -20,6 +21,8 @@ public class ClientSearchResultsSpecification extends LazySearchResultsSpecifica
 		case 0:
 			return client.getName();
 		case 1:
+			return client.getAddress();
+		case 2:
 			return ModelPersistence.instance().loadedModel().store().debts().debtOf(client);
 		}
 		return null;

@@ -4,9 +4,9 @@ import javax.swing.JTextField;
 
 import message.MessageId;
 import model.stock.Article;
-import ui.UI;
 import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.StockDropOutUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ObjectPicker;
 
 public class StockDropOutDialog extends StandardDetailDialog implements StockDropOutUI {
@@ -23,10 +23,10 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 
 	private void initComponents() {
 		articlePicker = new ObjectPicker();
-		countField = UI.instance().decimalTextField();
+		countField = SwingUI.instance().decimalField();
 		
-		centerPanel().add(UI.instance().label(articlePicker, MessageId.article));
-		centerPanel().add(UI.instance().label(countField, MessageId.count));
+		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
+		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 	}
 
 	public double getCount() {

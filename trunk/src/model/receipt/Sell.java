@@ -22,7 +22,7 @@ public class Sell {
 		this.vendor = vendor;
 	}
 
-	public SellItems specification() {
+	public SellItems items() {
 		return items;
 	}
 

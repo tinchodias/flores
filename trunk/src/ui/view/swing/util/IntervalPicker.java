@@ -8,7 +8,7 @@ import message.MessageId;
 import org.joda.time.Interval;
 import org.joda.time.ReadableInterval;
 
-import ui.UI;
+import ui.view.swing.SwingUI;
 
 public class IntervalPicker extends Container {
 
@@ -22,8 +22,8 @@ public class IntervalPicker extends Container {
 		fromDate = new DateTimePicker();
 		toDate = new DateTimePicker();
 		
-		add(UI.instance().label(fromDate, MessageId.fromDate));
-		add(UI.instance().label(toDate, MessageId.toDate));
+		add(SwingUI.instance().label(fromDate, MessageId.fromDate));
+		add(SwingUI.instance().label(toDate, MessageId.toDate));
 		
 		setFormat(DEFAULT_FORMAT);
 	}

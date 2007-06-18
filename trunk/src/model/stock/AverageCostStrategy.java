@@ -32,18 +32,18 @@ public class AverageCostStrategy implements CostStrategy {
 	}
 
 	public void notify(Buy buy) {
-		for (Article article : buy.specification().getArticles()) {
-			Double inputCount = buy.specification().getCount(article);
-			Pesos inputCost = buy.specification().getValue(article);
+		for (Article article : buy.items().getArticles()) {
+			Double inputCount = buy.items().getCount(article);
+			Pesos inputCost = buy.items().getValue(article);
 			applyArticleMovement(article, inputCount, inputCost);
 		}
 	}
 
 	public void notify(BuyAnnulment annulment) {
 		Buy buy = annulment.getBuy();
-		for (Article article : buy.specification().getArticles()) {
-			Double inputCount = buy.specification().getCount(article);
-			Pesos inputCost = buy.specification().getValue(article);
+		for (Article article : buy.items().getArticles()) {
+			Double inputCount = buy.items().getCount(article);
+			Pesos inputCost = buy.items().getValue(article);
 			applyArticleMovement(article, -inputCount, inputCost);
 		}
 	}
