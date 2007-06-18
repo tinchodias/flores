@@ -6,9 +6,9 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 
 import message.MessageId;
-import ui.UI;
 import ui.view.component.BuyUI;
 import ui.view.component.SearchUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ObjectPicker;
 
 public class BuyDialog extends StandardDetailDialog implements BuyUI {
@@ -39,7 +39,7 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 		
 		northPanel = new JPanel();
 		northPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		northPanel.add(UI.instance().label(supplierPicker, MessageId.supplier));
+		northPanel.add(SwingUI.instance().label(supplierPicker, MessageId.supplier));
 		return northPanel;
 	}
 

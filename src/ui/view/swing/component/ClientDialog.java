@@ -3,12 +3,13 @@ package ui.view.swing.component;
 import javax.swing.JTextField;
 
 import message.MessageId;
-import ui.UI;
 import ui.view.component.ClientUI;
+import ui.view.swing.SwingUI;
 
 public class ClientDialog extends StandardDetailDialog implements ClientUI {
 
-	private JTextField clientNameField;
+	private JTextField nameField;
+	private AddressPanel addressPanel;
 
 	public ClientDialog() {
 		super(MessageId.clientDialogTitle);
@@ -18,17 +19,19 @@ public class ClientDialog extends StandardDetailDialog implements ClientUI {
 	}
 
 	private void initComponents() {
-		clientNameField = new JTextField();
+		nameField = new JTextField();
+		addressPanel = new AddressPanel();
 		
-		centerPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
+		centerPanel().add(SwingUI.instance().label(nameField, MessageId.clientName));
+		centerPanel().add(addressPanel);
 	}
 
 	public String getClientName() {
-		return clientNameField.getText();
+		return nameField.getText();
 	}
 	
 	public void setClientName(String name) {
-		clientNameField.setText(name);
+		nameField.setText(name);
 	}
 
 }

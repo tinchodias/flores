@@ -5,9 +5,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import message.MessageId;
-import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.LoginUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ActionAdapter;
 import ui.view.swing.util.StandardDialog;
 
@@ -32,8 +32,8 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		
 		getRootPane().setDefaultButton(loginButton);
 
-		centerPanel().add(UI.instance().label(nameField, MessageId.userName));
-		centerPanel().add(UI.instance().label(passwordField, MessageId.userPassword));
+		centerPanel().add(SwingUI.instance().label(nameField, MessageId.userName));
+		centerPanel().add(SwingUI.instance().label(passwordField, MessageId.userPassword));
 		buttonPanel().add(loginButton);
 	}
 

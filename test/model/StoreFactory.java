@@ -1,7 +1,8 @@
 package model;
 
-import model.JuridicPerson;
-import model.Store;
+import model.address.Address;
+import model.address.City;
+import model.address.Province;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
@@ -19,14 +20,20 @@ public class StoreFactory {
 
 	public static Store makeSimpleStore() {
 		Store store = new Store();
-		
-		JuridicPerson elvira = new JuridicPerson("Elvira");
+
+		Province salta = new Province("Salta");
+		store.provinces().add(salta);
+
+		City metán = new City("Metán", salta);
+		store.cities().add(metán);
+
+		JuridicPerson elvira = new JuridicPerson("Elvira", new Address("San Martín 1456", metán));
 		store.clients().add(elvira);
 
-		JuridicPerson marquez = new JuridicPerson("Marquez");
+		JuridicPerson marquez = new JuridicPerson("Marquez", new Address("Rosales 356 PB", metán));
 		store.suppliers().add(marquez);
 		
-		JuridicPerson eduardo = new JuridicPerson("Eduardo");
+		JuridicPerson eduardo = new JuridicPerson("Eduardo", new Address("Moreno 4519", metán));
 		store.vendors().add(eduardo);
 
 		ArticleGroup floresGroup = new ArticleGroup("Flores");

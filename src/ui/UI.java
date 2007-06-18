@@ -1,48 +1,22 @@
 package ui;
 
-import java.awt.Component;
-import java.text.DecimalFormat;
-
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.text.NumberFormatter;
-
 import message.MessageId;
 import message.MessageRepository;
-import model.money.Pesos;
-
-import org.joda.time.ReadableInstant;
-
 import ui.controller.initializer.MainFrameInitializer;
 import ui.view.component.MainUI;
-import ui.view.swing.util.LabeledPanel;
-import ui.view.swing.util.PesosTableCellRenderer;
-import ui.view.swing.util.ReadableInstantTableCellRenderer;
+import ui.view.swing.SwingUI;
 
-public class UI {
-
-	private static UI instance;
+public abstract class UI {
 
 	public static UI instance() {
-		if (instance == null) {
-			instance = new UI();
-		}
-		return instance;
+		return SwingUI.instance();
 	}
 
 	private MainUI mainUI;
 
-	public void showInfo(String message) {
-		JOptionPane.showMessageDialog(null, message, "", JOptionPane.INFORMATION_MESSAGE);
-	}
+	public abstract void showInfo(String message);
 
-	public void showError(String message) {
-		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
-	}
+	public abstract void showError(String message);
 
 	public void showInfo(MessageId messageId) {
 		showInfo(MessageRepository.instance().get(messageId));
@@ -57,30 +31,6 @@ public class UI {
 			mainUI = new MainFrameInitializer().frame();
 		}
 		return mainUI;
-	}
-
-	public Component label(Component component, MessageId messageId) {
-		return new LabeledPanel(component, MessageRepository.instance().get(messageId) + ":");
-	}
-
-	public JTable table(TableModel tableModel) {
-		JTable table = new JTable(tableModel);
-		table.setAutoCreateRowSorter(true);
-		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());
-		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
-		return table;
-	}
-
-	public JTextField decimalTextField() {
-		JFormattedTextField formattedTextField = new JFormattedTextField(new NumberFormatter(DecimalFormat.getInstance()));
-		
-//		AbstractFormatter displayFormatter = new NumberFormatter(NumberFormat.getCurrencyInstance());
-//		AbstractFormatter editFormatter = new NumberFormatter(DecimalFormat.getInstance());
-//		Object formatterFactory = new DefaultFormatterFactory(editFormatter, editFormatter, editFormatter);
-//		JFormattedTextField formattedTextField = new JFormattedTextField(formatterFactory);
-//		
-		formattedTextField.setHorizontalAlignment(SwingConstants.TRAILING);
-		return formattedTextField;
 	}
 	
 }

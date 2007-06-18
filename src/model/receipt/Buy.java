@@ -23,7 +23,7 @@ public class Buy {
 		return date;
 	}
 
-	public BuyItems specification() {
+	public BuyItems items() {
 		return items;
 	}
 

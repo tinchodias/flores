@@ -3,6 +3,8 @@ package model;
 import java.util.Collection;
 import java.util.HashSet;
 
+import model.address.City;
+import model.address.Province;
 import model.commission.BasicCommissionsManager;
 import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
@@ -35,6 +37,8 @@ public class Store {
 	private Collection<JuridicPerson> suppliers = CollectionFactory.newSet();
 	private Collection<JuridicPerson> vendors = CollectionFactory.newSet();
 	private Collection<ArticleGroup> stockArticleGroups = CollectionFactory.newSet();
+	private Collection<Province> provinces = CollectionFactory.newSet();
+	private Collection<City> cities = CollectionFactory.newSet();
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
@@ -78,6 +82,14 @@ public class Store {
 
 	public Collection<ArticleGroup> stockArticleGroups() {
 		return stockArticleGroups;
+	}
+
+	public Collection<Province> provinces() {
+		return provinces;
+	}
+
+	public Collection<City> cities() {
+		return cities;
 	}
 
 	public Collection<Buy> buys() {

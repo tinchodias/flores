@@ -16,9 +16,9 @@ import message.MessageId;
 import message.MessageRepository;
 import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
-import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.SearchUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ActionAdapter;
 import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
@@ -69,7 +69,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		resultsPanel = new JPanel();
 		resultsPanel.setLayout(new BorderLayout());
 		tableModelAdapter = new TableModelAdapter();
-		resultsTable = UI.instance().table(tableModelAdapter);
+		resultsTable = SwingUI.instance().table(tableModelAdapter);
 		resultsPanel.add(new JScrollPane(resultsTable));
 	}
 

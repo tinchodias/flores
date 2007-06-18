@@ -1,20 +1,20 @@
 package ui.view.swing.component;
 
-import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
 
 import message.MessageId;
 import model.money.Pesos;
 import model.stock.Article;
-import ui.UI;
 import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.BuyItemUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.ObjectPicker;
 
 public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 
 	private ObjectPicker articlePicker;
-	private JTextField countField;
-	private JTextField valueField;
+	private JFormattedTextField countField;
+	private JFormattedTextField valueField;
 
 	public BuyItemDialog() {
 		super(MessageId.buyItem);
@@ -25,12 +25,12 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 
 	private void initComponents() {
 		articlePicker = new ObjectPicker();
-		countField = UI.instance().decimalTextField();
-		valueField = UI.instance().decimalTextField();
+		countField = SwingUI.instance().decimalField();
+		valueField = SwingUI.instance().currencyField();
 		
-		centerPanel().add(UI.instance().label(articlePicker, MessageId.article));
-		centerPanel().add(UI.instance().label(countField, MessageId.count));
-		centerPanel().add(UI.instance().label(valueField, MessageId.value));
+		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
+		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
+		centerPanel().add(SwingUI.instance().label(valueField, MessageId.value));
 	}
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {
@@ -42,12 +42,11 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 	}
 
 	public double getCount() {
-		return Double.parseDouble(countField.getText());
+		return (Double) countField.getValue();
 	}
 
 	public Pesos getValue() {
-		double value = Double.parseDouble(valueField.getText());
-		return Pesos.newFor(value);
+		return Pesos.newFor((Double) valueField.getValue());
 	}
 	
 }

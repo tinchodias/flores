@@ -1,13 +1,12 @@
 package model.money;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 //TODO Think on a more abstract model for money?
 
 public class Pesos {
 
-	private static DecimalFormat format;
+	private static NumberFormat format;
 	private final Double value;
 
 	public static Pesos newFor(Double d) {
@@ -19,15 +18,16 @@ public class Pesos {
 	}
 
 	public String toString() {
-		return "$ " + formatter().format(value());
+		return /*"$ " +*/ format().format(value());
 	}
 
-	private static NumberFormat formatter() {
+	public static NumberFormat format() {
 		if (format == null) {
-			format = new DecimalFormat();
-			format.setMinimumFractionDigits(2);
-			format.setMaximumFractionDigits(2);
+			format = NumberFormat.getCurrencyInstance();
+//			format.setMinimumFractionDigits(2);
+//			format.setMaximumFractionDigits(2);
 		}
+		
 		return format;
 	}
 

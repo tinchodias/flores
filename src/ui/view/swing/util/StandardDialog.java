@@ -2,7 +2,6 @@ package ui.view.swing.util;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Window;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -12,8 +11,8 @@ import javax.swing.border.EmptyBorder;
 import message.IconRepository;
 import message.MessageId;
 import message.MessageRepository;
-import ui.UI;
 import ui.view.component.DialogUI;
+import ui.view.swing.SwingUI;
 
 public class StandardDialog extends JDialog implements DialogUI {
 
@@ -21,8 +20,7 @@ public class StandardDialog extends JDialog implements DialogUI {
 	private JPanel centerPanel;
 
 	public StandardDialog(MessageId titleMessageId) {
-		//TODO ver este cast..
-		super((Window) UI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
+		super(SwingUI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
 
 		String title = MessageRepository.instance().get(titleMessageId);
 		setTitle(title);
