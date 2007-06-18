@@ -38,8 +38,7 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 	}
 
 	public void add(Action action) {
-		JButton button = new JButton(new ActionAdapter(action));
-		searchPanel.buttonPanel().add(button);
+		searchPanel.add(action);
 	}
 
 	public StandardSearchPanel getSearchPanel() {

@@ -1,10 +1,15 @@
 package ui;
 
 import java.awt.Component;
+import java.text.DecimalFormat;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
+import javax.swing.text.NumberFormatter;
 
 import message.MessageId;
 import message.MessageRepository;
@@ -65,4 +70,17 @@ public class UI {
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
 		return table;
 	}
+
+	public JTextField decimalTextField() {
+		JFormattedTextField formattedTextField = new JFormattedTextField(new NumberFormatter(DecimalFormat.getInstance()));
+		
+//		AbstractFormatter displayFormatter = new NumberFormatter(NumberFormat.getCurrencyInstance());
+//		AbstractFormatter editFormatter = new NumberFormatter(DecimalFormat.getInstance());
+//		Object formatterFactory = new DefaultFormatterFactory(editFormatter, editFormatter, editFormatter);
+//		JFormattedTextField formattedTextField = new JFormattedTextField(formatterFactory);
+//		
+		formattedTextField.setHorizontalAlignment(SwingConstants.TRAILING);
+		return formattedTextField;
+	}
+	
 }

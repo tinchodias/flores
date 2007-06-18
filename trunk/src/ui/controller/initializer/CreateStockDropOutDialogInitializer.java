@@ -10,7 +10,9 @@ public class CreateStockDropOutDialogInitializer implements DialogInitializer {
 	public DialogUI dialog() {
 		StockDropOutDialog dialog = new StockDropOutDialog();
 		
-		dialog.setCreateAction(new CreateStockDropOutAction(dialog));
+		dialog.setArticleSearchInitializer(new StockDialogInitializer());
+		
+		dialog.setAcceptAction(new CreateStockDropOutAction(dialog));
 		dialog.setCancelAction(new CloseDialogAction(dialog));
 		
 		return dialog;

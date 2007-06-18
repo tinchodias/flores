@@ -12,7 +12,7 @@ import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Sell;
-import model.receipt.SellArticleSpecification;
+import model.receipt.SellItems;
 import model.stock.Article;
 
 import org.joda.time.DateTime;
@@ -59,7 +59,7 @@ public class ClientsDebtsTest extends TestCase {
 	}
 
 	private void doSell() {
-		SellArticleSpecification spec = new SellArticleSpecification();
+		SellItems spec = new SellItems();
 		spec.add(clavel, 10.0, Pesos.newFor(50.0), store.stock().cost(clavel));
 		
 		Payment payment = new Payment();

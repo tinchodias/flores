@@ -19,7 +19,6 @@ public enum MessageId {
 
 	stockDialogTitle, 
 	article, 
-	articleCode, 
 	articleDescription, 
 	articleCost,
 	articleGroup, 
@@ -28,6 +27,8 @@ public enum MessageId {
 	supplier, 
 	paymentTotal, 
 	buyTotal,
+	buy,
+	buyItem, 
 	
 	stockDropOutsDialogTitle, 
 	stockDropOutDialogTitle,
@@ -39,6 +40,7 @@ public enum MessageId {
 	invalidSelection, 
 	modify, 
 	create,
+	remove, 
 	close,
 	accept,
 	search,
@@ -46,6 +48,9 @@ public enum MessageId {
 	count, 
 	select,
 	fromDate,
-	toDate;
+	toDate, 
+	value, 
+	
+	;
 	
 }

@@ -12,7 +12,7 @@ import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Expense;
 import model.receipt.Sell;
-import model.receipt.SellArticleSpecification;
+import model.receipt.SellItems;
 import model.stock.Article;
 import model.util.TimeUtils;
 
@@ -94,7 +94,7 @@ public class BasicCommissionsTest extends TestCase {
 	 * Elvira buys to Eduardo 100 claveles, paying $500 ($9 of gain each one). 
 	 */
 	private void doSell() {
-		SellArticleSpecification spec = new SellArticleSpecification();
+		SellItems spec = new SellItems();
 		spec.add(clavel, 100.0, clavelInitialCost.plus(Pesos.newFor(9.0)), clavelInitialCost);
 		
 		Payment payment = new Payment();

@@ -2,12 +2,12 @@ package model.receipt;
 
 import model.money.Pesos;
 
-public class SellArticleSpecificationItem {
+public class SellItem {
 	private final double count;
 	private final Pesos sellValue;
 	private final Pesos costValue;
 
-	public SellArticleSpecificationItem(double count, Pesos sellValue, Pesos costValue) {
+	public SellItem(double count, Pesos sellValue, Pesos costValue) {
 		this.count = count;
 		this.sellValue = sellValue;
 		this.costValue = costValue;

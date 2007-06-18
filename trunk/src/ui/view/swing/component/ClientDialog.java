@@ -20,7 +20,7 @@ public class ClientDialog extends StandardDetailDialog implements ClientUI {
 	private void initComponents() {
 		clientNameField = new JTextField();
 		
-		detailPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
+		centerPanel().add(UI.instance().label(clientNameField, MessageId.clientName));
 	}
 
 	public String getClientName() {

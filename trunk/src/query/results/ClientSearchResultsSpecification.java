@@ -7,15 +7,15 @@ import model.money.Pesos;
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResultsSpecification;
 
-public class ClientSearchResultsSpecification extends
-		LazySearchResultsSpecification<JuridicPerson> {
+public class ClientSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public ClientSearchResultsSpecification() {
 		add(MessageId.clientName);
 		add(MessageId.clientDebt, Pesos.class);
 	}
 	
-	public Object value(JuridicPerson client, int columnIndex) {
+	public Object value(Object object, int columnIndex) {
+		JuridicPerson client = (JuridicPerson) object;
 		switch (columnIndex) {
 		case 0:
 			return client.getName();

@@ -1,8 +1,8 @@
 package query.framework.results;
 
 
-public interface SearchResults<T> extends Results {
+public interface SearchResults extends Results {
 
-	public abstract T getFoundObject(int rowIndex);
+	public abstract Object get(int row);
 	
 }

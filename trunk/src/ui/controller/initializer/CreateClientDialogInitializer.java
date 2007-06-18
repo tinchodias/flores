@@ -12,7 +12,7 @@ public class CreateClientDialogInitializer implements DialogInitializer {
 
 		//TODO Setear modo de pantalla
 		
-		clientDialog.setCreateAction(new CreateClientAction(clientDialog));
+		clientDialog.setAcceptAction(new CreateClientAction(clientDialog));
 		clientDialog.setCancelAction(new CloseDialogAction(clientDialog));
 		
 		return clientDialog;

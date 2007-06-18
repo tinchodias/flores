@@ -11,7 +11,6 @@ import ui.view.swing.util.ActionAdapter;
 
 public class StockArticleSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
 
-	private JTextField codeField;
 	private JTextField descriptionField;
 
 	public StockArticleSearchPanel() {
@@ -19,21 +18,14 @@ public class StockArticleSearchPanel extends StandardSearchPanel implements Stoc
 	}
 
 	private void initComponents() {
-		codeField = new JTextField();
 		descriptionField = new JTextField();
 		
-		this.filtersPanel().add(UI.instance().label(codeField, MessageId.articleCode));
 		this.filtersPanel().add(UI.instance().label(descriptionField, MessageId.articleDescription));
 	}
 
 	public void setSearchAction(Action action) {
 		ActionAdapter actionAdapter = new ActionAdapter(action);
-		codeField.addActionListener(actionAdapter);
 		descriptionField.addActionListener(actionAdapter);
-	}
-
-	public String getCode() {
-		return this.codeField.getText();
 	}
 
 	public String getDescription() {

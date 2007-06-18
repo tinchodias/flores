@@ -9,29 +9,29 @@ import model.stock.Article;
 
 
 
-public class SellArticleSpecification {
+public class SellItems {
 
-	Map<Article, SellArticleSpecificationItem> specifications = new HashMap<Article, SellArticleSpecificationItem>();
+	Map<Article, SellItem> items = new HashMap<Article, SellItem>();
 	
 	public void add(Article article, Double count, Pesos sellValue, Pesos costValue) {
-		specifications.put(article, new SellArticleSpecificationItem(count, sellValue, costValue));
+		items.put(article, new SellItem(count, sellValue, costValue));
 	}
 	
 	public Collection<Article> getArticles() {
-		return specifications.keySet();
+		return items.keySet();
 	}
 	
 	public Double getCount(Article article) {
-		return specifications.get(article).getCount();
+		return items.get(article).getCount();
 	}
 
 	public Pesos getSellValue(Article article) {
-		return specifications.get(article).getSellValue();
+		return items.get(article).getSellValue();
 	}
 	
 	public Pesos sellTotal() {
 		Pesos total = Pesos.newFor(0.0);
-		for (SellArticleSpecificationItem item : specifications.values()) {
+		for (SellItem item : items.values()) {
 			total = total.plus(item.getSellValue().by(item.getCount()));
 		}
 		return total;
@@ -39,7 +39,7 @@ public class SellArticleSpecification {
 
 	public Pesos costTotal() {
 		Pesos total = Pesos.newFor(0.0);
-		for (SellArticleSpecificationItem item : specifications.values()) {
+		for (SellItem item : items.values()) {
 			total = total.plus(item.getCostValue().by(item.getCount()));
 		}
 		return total;

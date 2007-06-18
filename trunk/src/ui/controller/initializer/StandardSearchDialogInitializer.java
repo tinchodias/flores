@@ -9,7 +9,7 @@ import ui.view.component.SearchDialogUI;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
 
-public abstract class StandardSearchDialogInitializer implements DialogInitializer {
+public abstract class StandardSearchDialogInitializer implements SearchDialogInitializer {
 
 	public SearchDialogUI dialog() {
 		StandardSearchPanel searchPanel = searchPanel();
