@@ -2,16 +2,16 @@ package ui.controller.action.objectpicker;
 
 import message.MessageId;
 import ui.controller.action.Action;
-import ui.controller.initializer.StandardSearchDialogInitializer;
+import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.util.ObjectPicker;
 
 public class ShowObjectPickerDialog implements Action {
 
-	private final StandardSearchDialogInitializer initializer;
+	private final SearchDialogInitializer initializer;
 	private final ObjectPicker picker;
 
-	public ShowObjectPickerDialog(StandardSearchDialogInitializer initializer, ObjectPicker picker) {
+	public ShowObjectPickerDialog(SearchDialogInitializer initializer, ObjectPicker picker) {
 		this.initializer = initializer;
 		this.picker = picker;
 	}

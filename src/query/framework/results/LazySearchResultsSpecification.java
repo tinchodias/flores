@@ -6,12 +6,12 @@ import java.util.List;
 
 import message.MessageId;
 
-public abstract class LazySearchResultsSpecification<T> {
+public abstract class LazySearchResultsSpecification {
 
 	private List<MessageId> columnMessageIdentifiers = new ArrayList<MessageId>();
 	private List<Class<?>> columnClasses = new ArrayList<Class<?>>();
 
-	public abstract Object value(T object, int columnIndex);
+	public abstract Object value(Object object, int columnIndex);
 
 	public List<Class<?>> columnClasses() {
 		return columnClasses;

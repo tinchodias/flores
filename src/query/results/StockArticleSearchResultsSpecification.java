@@ -7,28 +7,25 @@ import model.stock.Article;
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResultsSpecification;
 
-public class StockArticleSearchResultsSpecification extends
-		LazySearchResultsSpecification<Article> {
+public class StockArticleSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public StockArticleSearchResultsSpecification() {
-		add(MessageId.articleCode);
 		add(MessageId.articleDescription);
 		add(MessageId.articleGroup);
 		add(MessageId.count, Double.class);
 		add(MessageId.articleCost, Pesos.class);
 	}
 	
-	public Object value(Article article, int columnIndex) {
+	public Object value(Object object, int columnIndex) {
+		Article article = (Article) object;
 		switch (columnIndex) {
 		case 0:
-			return article.getCode();
-		case 1:
 			return article.getDescription();
-		case 2:
+		case 1:
 			return article.getGroup();
-		case 3:
+		case 2:
 			return ModelPersistence.instance().loadedModel().store().stock().count(article);
-		case 4:
+		case 3:
 			return ModelPersistence.instance().loadedModel().store().stock().cost(article);
 		}
 		return null;

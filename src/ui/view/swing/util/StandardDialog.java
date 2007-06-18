@@ -50,7 +50,7 @@ public class StandardDialog extends JDialog implements DialogUI {
 
 	private void initCenterPanel() {
 		centerPanel = new JPanel();
-		centerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		centerPanel.setBorder(new EmptyBorder(10, 10, 20, 10));
 	}
 
 	protected JPanel buttonPanel() {

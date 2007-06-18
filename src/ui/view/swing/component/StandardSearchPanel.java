@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ import query.framework.results.SearchResults;
 import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.SearchUI;
+import ui.view.swing.util.ActionAdapter;
 import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
 
@@ -87,6 +89,10 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		tableModelAdapter.setResults(results);
 	}
 
+	public SearchResults getResults() {
+		return (SearchResults) tableModelAdapter.getResults();
+	}
+	
 	public Criteria criteria() {
 		return this;
 	}
@@ -100,8 +106,13 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 			return null;
 		} else {
 			SearchResults searchResults = (SearchResults) tableModelAdapter.getResults();
-			return searchResults.getFoundObject(rowIndex);
+			return searchResults.get(rowIndex);
 		}
+	}
+
+	public void add(Action action) {
+		JButton button = new JButton(new ActionAdapter(action));
+		buttonPanel().add(button);
 	}
 	
 }

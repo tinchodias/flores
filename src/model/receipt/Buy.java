@@ -7,13 +7,13 @@ import org.joda.time.ReadableDateTime;
 
 public class Buy {
 
-	private final BuyArticleSpecification specification;
+	private final BuyItems items;
 	private final ReadableDateTime date;
 	private final JuridicPerson supplier;
 	private final Payment payment;
 
-	public Buy(BuyArticleSpecification spec, ReadableDateTime date, JuridicPerson supplier, Payment payment) {
-		this.specification = spec;
+	public Buy(BuyItems spec, ReadableDateTime date, JuridicPerson supplier, Payment payment) {
+		this.items = spec;
 		this.date = date;
 		this.supplier = supplier;
 		this.payment = payment;
@@ -23,8 +23,8 @@ public class Buy {
 		return date;
 	}
 
-	public BuyArticleSpecification specification() {
-		return specification;
+	public BuyItems specification() {
+		return items;
 	}
 
 	public Payment getPayment() {

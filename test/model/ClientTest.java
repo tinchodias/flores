@@ -22,7 +22,7 @@ public class ClientTest extends TestCase {
 		
 		store = StoreFactory.makeEmptyStore();
 
-		clavel = new Article("CL", "Paquete de Clavel");
+		clavel = new Article("Paquete de Clavel");
 		store.stockArticles().add(clavel);
 
 		eduardo = new JuridicPerson("Eduardo");
@@ -72,7 +72,7 @@ public class ClientTest extends TestCase {
 //	}
 //	
 //	private void doSellTo(JuridicPerson client) {
-//		SellArticleSpecification spec = new SellArticleSpecification();
+//		SellItems spec = new SellItems();
 //		spec.add(clavel, 100.0, Pesos.newFor(5.0), store.stock().cost(clavel));
 //
 //		Payment payment = new Payment();

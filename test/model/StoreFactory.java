@@ -5,7 +5,7 @@ import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyArticleSpecification;
+import model.receipt.BuyItems;
 import model.stock.Article;
 import model.stock.ArticleGroup;
 
@@ -31,14 +31,14 @@ public class StoreFactory {
 
 		ArticleGroup floresGroup = new ArticleGroup("Flores");
 		store.stockArticleGroups().add(floresGroup);
-		
-		Article paqueteClavel = new Article("CLAVEL", "Paquete de Clavel", floresGroup);
+
+		Article paqueteClavel = new Article("Paquete de Clavel", floresGroup);
 		store.stockArticles().add(paqueteClavel);
 
-		Article alquiler = new Article("ALQ", "Alquiler del depósito");
+		Article alquiler = new Article("Alquiler del depósito");
 		store.expensesArticles().add(alquiler);
 		
-		BuyArticleSpecification spec = new BuyArticleSpecification();
+		BuyItems spec = new BuyItems();
 		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
 		Buy buy = new Buy(spec, new DateTime(), marquez, new Payment());
 		store.add(buy);

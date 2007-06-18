@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import ui.controller.action.objectpicker.ShowObjectPickerDialog;
-import ui.controller.initializer.StandardSearchDialogInitializer;
+import ui.controller.initializer.SearchDialogInitializer;
 
 
 public class ObjectPicker extends Container {
@@ -34,7 +34,7 @@ public class ObjectPicker extends Container {
 		add(button, BorderLayout.EAST);
 	}
 
-	public void setSearchInitializer(StandardSearchDialogInitializer initializer) {
+	public void setSearchInitializer(SearchDialogInitializer initializer) {
 		button.setAction(new ActionAdapter(new ShowObjectPickerDialog(initializer, this)));
 	}
 

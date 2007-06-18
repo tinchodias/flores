@@ -4,9 +4,9 @@ import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
 
 
-public interface SearchQuery<T> extends Query {
+public interface SearchQuery extends Query {
 
-	SearchResults<T> results();
+	SearchResults results();
 
 	void setCriteria(Criteria criteria);
 }

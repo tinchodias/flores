@@ -34,7 +34,7 @@ public class AverageCostStrategy implements CostStrategy {
 	public void notify(Buy buy) {
 		for (Article article : buy.specification().getArticles()) {
 			Double inputCount = buy.specification().getCount(article);
-			Pesos inputCost = buy.specification().getPesos(article);
+			Pesos inputCost = buy.specification().getValue(article);
 			applyArticleMovement(article, inputCount, inputCost);
 		}
 	}
@@ -43,7 +43,7 @@ public class AverageCostStrategy implements CostStrategy {
 		Buy buy = annulment.getBuy();
 		for (Article article : buy.specification().getArticles()) {
 			Double inputCount = buy.specification().getCount(article);
-			Pesos inputCost = buy.specification().getPesos(article);
+			Pesos inputCost = buy.specification().getValue(article);
 			applyArticleMovement(article, -inputCount, inputCost);
 		}
 	}

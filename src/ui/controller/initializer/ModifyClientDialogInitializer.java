@@ -21,7 +21,7 @@ public class ModifyClientDialogInitializer implements DialogInitializer {
 		
 		clientDialog.setClientName(client.getName());
 		
-		clientDialog.setModifyAction(new ModifyClientAction(clientDialog, client));
+		clientDialog.setAcceptAction(new ModifyClientAction(clientDialog, client));
 		clientDialog.setCancelAction(new CloseDialogAction(clientDialog));
 		
 		return clientDialog;

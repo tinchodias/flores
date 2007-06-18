@@ -27,9 +27,9 @@ import query.results.StockDropOutSearchResultsSpecification;
 
 public class NativeQueryFactory extends QueryFactory {
 
-	public SearchQuery<JuridicPerson> clientSearchQuery() {
+	public SearchQuery clientSearchQuery() {
 		
-		SearchQuery<JuridicPerson> query = new SearchQuery<JuridicPerson>() {
+		SearchQuery query = new SearchQuery() {
 			
 			private ClientSearchCriteria criteria;
 
@@ -37,13 +37,13 @@ public class NativeQueryFactory extends QueryFactory {
 				this.criteria = (ClientSearchCriteria) criteria;
 			}
 
-			public SearchResults<JuridicPerson> results() {
+			public SearchResults results() {
 				Model model = ModelPersistence.instance().loadedModel();
 				Collection<JuridicPerson> clients = model.store().clients();
 				
 				//TODO Usar singleton en spec
-				LazySearchResults<JuridicPerson> results = 
-					new LazySearchResults<JuridicPerson>(new ClientSearchResultsSpecification());
+				LazySearchResults results = 
+					new LazySearchResults(new ClientSearchResultsSpecification());
 				
 				for (JuridicPerson client : clients) {
 					if (StringUtils.containsIgnoreCase(client.getName(), criteria.getClientName())) {
@@ -57,9 +57,9 @@ public class NativeQueryFactory extends QueryFactory {
 		return query;
 	}
 
-	public SearchQuery<Article> stockArticleSearchQuery() {
+	public SearchQuery stockArticleSearchQuery() {
 		
-		SearchQuery<Article> query = new SearchQuery<Article>() {
+		SearchQuery query = new SearchQuery() {
 			
 			private StockArticleSearchCriteria criteria;
 			
@@ -67,17 +67,16 @@ public class NativeQueryFactory extends QueryFactory {
 				this.criteria = (StockArticleSearchCriteria) criteria; 
 			}
 			
-			public SearchResults<Article> results() {
+			public SearchResults results() {
 				Model model = ModelPersistence.instance().loadedModel();
 				Collection<Article> articles = model.store().stockArticles();
 
 				//TODO Usar singleton en spec
-				LazySearchResults<Article> results = 
-					new LazySearchResults<Article>(new StockArticleSearchResultsSpecification());
+				LazySearchResults results = 
+					new LazySearchResults(new StockArticleSearchResultsSpecification());
 				
 				for (Article article : articles) {
-					if (StringUtils.containsIgnoreCase(article.getCode(), criteria.getCode()) &&
-						StringUtils.containsIgnoreCase(article.getDescription(), criteria.getDescription())) {
+					if (StringUtils.containsIgnoreCase(article.getDescription(), criteria.getDescription())) {
 						results.add(article);
 					}
 				}
@@ -88,8 +87,8 @@ public class NativeQueryFactory extends QueryFactory {
 		return query;
 	}
 
-	public SearchQuery<StockDropOut> stockDropOutSearchQuery() {
-		SearchQuery<StockDropOut> query = new SearchQuery<StockDropOut>() {
+	public SearchQuery stockDropOutSearchQuery() {
+		SearchQuery query = new SearchQuery() {
 			
 			private StockDropOutSearchCriteria criteria;
 			
@@ -97,13 +96,13 @@ public class NativeQueryFactory extends QueryFactory {
 				this.criteria = (StockDropOutSearchCriteria) criteria; 
 			}
 			
-			public SearchResults<StockDropOut> results() {
+			public SearchResults results() {
 				Model model = ModelPersistence.instance().loadedModel();
 				Collection<StockDropOut> dropOuts = model.store().stock().dropOuts();
 
 				//TODO Usar singleton en spec
-				LazySearchResults<StockDropOut> results = 
-					new LazySearchResults<StockDropOut>(new StockDropOutSearchResultsSpecification());
+				LazySearchResults results = 
+					new LazySearchResults(new StockDropOutSearchResultsSpecification());
 				
 				for (StockDropOut dropOut : dropOuts) {
 					if (criteria.getInterval().contains(dropOut.getDate())) {
@@ -117,9 +116,9 @@ public class NativeQueryFactory extends QueryFactory {
 		return query;
 	}
 
-	public SearchQuery<Buy> buySearchQuery() {
+	public SearchQuery buySearchQuery() {
 
-		SearchQuery<Buy> query = new SearchQuery<Buy>() {
+		SearchQuery query = new SearchQuery() {
 			
 			private BuySearchCriteria criteria;
 			
@@ -127,12 +126,12 @@ public class NativeQueryFactory extends QueryFactory {
 				this.criteria = (BuySearchCriteria) criteria; 
 			}
 			
-			public SearchResults<Buy> results() {
+			public SearchResults results() {
 				Model model = ModelPersistence.instance().loadedModel();
 				Collection<Buy> buys = model.store().buys();
 
-				LazySearchResults<Buy> results = 
-					new LazySearchResults<Buy>(new BuySearchResultsSpecification());
+				LazySearchResults results = 
+					new LazySearchResults(new BuySearchResultsSpecification());
 				
 				for (Buy buy : buys) {
 					if (criteria.getInterval().contains(buy.date())) {

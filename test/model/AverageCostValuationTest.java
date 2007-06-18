@@ -9,7 +9,7 @@ import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyArticleSpecification;
+import model.receipt.BuyItems;
 import model.stock.Article;
 import model.stock.AverageCostStrategy;
 
@@ -36,8 +36,8 @@ public class AverageCostValuationTest extends TestCase {
 		marquez = new JuridicPerson("Marquez");
 		depot.suppliers().add(marquez);
 		
-		paqueteRosa = new Article("RO40", "Paquete de Rosa x 40");
-		paqueteClavel = new Article("CL", "Paquete de Clavel");
+		paqueteRosa = new Article("Paquete de Rosa x 40");
+		paqueteClavel = new Article("Paquete de Clavel");
 		depot.stockArticles().add(paqueteClavel);
 		depot.stockArticles().add(paqueteRosa);
 	}
@@ -53,7 +53,7 @@ public class AverageCostValuationTest extends TestCase {
 		assertEquals(Pesos.newFor(0.0), depot.stock().cost(paqueteRosa));
 		assertEquals(Pesos.newFor(0.0), depot.stock().cost(paqueteClavel));
 
-		BuyArticleSpecification spec = new BuyArticleSpecification();
+		BuyItems spec = new BuyItems();
 		spec.add(paqueteRosa, 21.0, Pesos.newFor(15.0));
 		Buy buy = makeBuy(spec);
 		
@@ -62,7 +62,7 @@ public class AverageCostValuationTest extends TestCase {
 		assertEquals(Pesos.newFor(15.0), depot.stock().cost(paqueteRosa));
 		assertEquals(Pesos.newFor(0.0), depot.stock().cost(paqueteClavel));
 
-		BuyArticleSpecification spec2 = new BuyArticleSpecification();
+		BuyItems spec2 = new BuyItems();
 		spec2.add(paqueteRosa, 17.0, Pesos.newFor(17.5));
 		Buy buy2 = makeBuy(spec2);
 		depot.add(buy2);
@@ -75,7 +75,7 @@ public class AverageCostValuationTest extends TestCase {
 		return Pesos.newFor((oldCount * oldCost + inputCount * inputCost) / (oldCount + inputCount));
 	}
 
-	private Buy makeBuy(BuyArticleSpecification spec) {
+	private Buy makeBuy(BuyItems spec) {
 		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 	

@@ -3,24 +3,27 @@ package query.framework.results;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import message.MessageId;
 import message.MessageRepository;
 
 
-public class LazySearchResults<T> implements SearchResults<T> {
+public class LazySearchResults implements SearchResults {
 
-	private List<T> sources = new ArrayList<T>();
-	private LazySearchResultsSpecification<T> spec;
+	private List sources = new ArrayList();
+	private LazySearchResultsSpecification spec;
 
-	public LazySearchResults(LazySearchResultsSpecification<T> spec) {
+	public LazySearchResults(LazySearchResultsSpecification spec) {
 		this.spec = spec;
 	}
 	
-	public void add(T object) {
+	public void add(Object object) {
 		this.sources.add(object);
 	}
 
+	public boolean remove(Object object) {
+		return this.sources.remove(object);
+	}
+	
 	public Class<?> getColumnClass(int columnIndex) {
 		return spec.columnClasses().get(columnIndex);
 	}
@@ -43,8 +46,8 @@ public class LazySearchResults<T> implements SearchResults<T> {
 		return this.spec.value(sources.get(rowIndex), columnIndex);
 	}
 
-	public T getFoundObject(int rowIndex) {
-		return sources.get(rowIndex);
+	public Object get(int index) {
+		return sources.get(index);
 	}
 
 }

@@ -10,7 +10,7 @@ import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
-import model.receipt.BuyArticleSpecification;
+import model.receipt.BuyItems;
 import model.stock.Article;
 
 import org.joda.time.DateTime;
@@ -33,8 +33,8 @@ public class BuyTest extends TestCase {
 		marquez = new JuridicPerson("Marquez");
 		store.clients().add(marquez);
 		
-		rosas = new Article("RO40", "Paquete de Rosa x 40");
-		claveles = new Article("CL", "Paquete de Clavel");
+		rosas = new Article("Paquete de Rosa x 40");
+		claveles = new Article("Paquete de Clavel");
 		store.stockArticles().add(claveles);
 		store.stockArticles().add(rosas);
 	}
@@ -77,7 +77,7 @@ public class BuyTest extends TestCase {
 	}
 
 	private Buy createBuy1() {
-		BuyArticleSpecification spec = new BuyArticleSpecification();
+		BuyItems spec = new BuyItems();
 		spec.add(claveles, 20.0, Pesos.newFor(20.0));
 		spec.add(rosas, 10.0, Pesos.newFor(15.0));
 
@@ -85,7 +85,7 @@ public class BuyTest extends TestCase {
 	}
 	
 	private Buy createBuy2() {
-		BuyArticleSpecification spec = new BuyArticleSpecification();
+		BuyItems spec = new BuyItems();
 		spec.add(claveles, 100.0, Pesos.newFor(20.0));
 		spec.add(rosas, 200.0, Pesos.newFor(15.0));
 

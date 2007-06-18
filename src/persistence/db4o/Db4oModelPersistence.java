@@ -60,12 +60,13 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	public void open() {
 		try {
+			configureJodaTime();
+			
 			this.container = Db4o.openFile(getFileName());
 
 			//TODO
 			container.ext().configure().activationDepth(Integer.MAX_VALUE);
 
-			configureJodaTime();
 			
 		} catch (DatabaseFileLockedException e) {
 			throw e;
@@ -91,6 +92,8 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 
 	private void configureJodaTime() {
+		//Note: this configuration was published in a db4o forum.
+		
 		Configuration config = Db4o.configure();
 		
 	    Class clazz = org.joda.time.base.BaseDateTime.class;
@@ -153,4 +156,5 @@ public class Db4oModelPersistence extends ModelPersistence {
 	    oc = config.objectClass(clazz);   
 	    oc.translate(new TSerializable());		
 	}
+	
 }

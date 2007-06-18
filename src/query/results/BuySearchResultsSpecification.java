@@ -9,7 +9,7 @@ import org.joda.time.ReadableInstant;
 
 import query.framework.results.LazySearchResultsSpecification;
 
-public class BuySearchResultsSpecification extends LazySearchResultsSpecification<Buy> {
+public class BuySearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public BuySearchResultsSpecification() {
 		add(MessageId.date, ReadableInstant.class);
@@ -18,7 +18,8 @@ public class BuySearchResultsSpecification extends LazySearchResultsSpecificatio
 		add(MessageId.buyTotal, Pesos.class);
 	}
 	
-	public Object value(Buy buy, int columnIndex) {
+	public Object value(Object object, int columnIndex) {
+		Buy buy = (Buy) object;
 		switch (columnIndex) {
 		case 0:
 			return buy.date();
