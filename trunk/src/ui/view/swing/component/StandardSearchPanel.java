@@ -3,6 +3,7 @@ package ui.view.swing.component;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -20,7 +21,9 @@ import ui.controller.action.Action;
 import ui.view.component.SearchUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.ActionAdapter;
+import ui.view.swing.util.ClickAdapter;
 import ui.view.swing.util.FixedBoxLayout;
+import ui.view.swing.util.KeyTypedAdapter;
 import ui.view.swing.util.TableModelAdapter;
 
 public abstract class StandardSearchPanel extends JPanel implements SearchUI, Criteria {
@@ -46,7 +49,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
-		FixedBoxLayout fixedBoxLayout = new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(100, 25));
+		FixedBoxLayout fixedBoxLayout = new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 25));
 		buttonPanel.setLayout(fixedBoxLayout);
 		
 		buttonPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
@@ -75,8 +78,12 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		searchButton = new JButton();
 		
 		filtersButtonsPanel = new JPanel();
-		filtersButtonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		filtersButtonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+		filtersButtonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+		filtersButtonsPanel.setVisible(false);
+		
 		filtersButtonsPanel.add(searchButton);
+		
 	}
 
 	private void initFiltersPanel() {
@@ -120,6 +127,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 
 	public void setSearchAction(Action action) {
 		searchButton.setAction(new ActionAdapter(action));
+		filtersButtonsPanel.setVisible(true);
 	}
 	
 	public Object getSelection() {
@@ -137,5 +145,22 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		JButton button = new JButton(new ActionAdapter(action));
 		buttonPanel().add(button);
 	}
+	
+	public void setDefaultAction(Action action) {
+//		for (int i = 0; i < buttonPanel().getComponentCount(); i++) {
+//			JButton button = (JButton) buttonPanel().getComponent(i);
+//
+//			ActionAdapter actionAdapter = (ActionAdapter) button.getAction();
+//			if (actionAdapter.getAction().equals(action)) {
+//				getRootPane().setDefaultButton(button);
+//			}
+//		}
+		resultsTable.addMouseListener(new ClickAdapter(action, 2));
+		resultsTable.addKeyListener(new KeyTypedAdapter(action, KeyEvent.VK_ENTER));
+	}
+
+	public Action getSearchAction() {
+		return ((ActionAdapter) searchButton.getAction()).getAction();
+	}	
 	
 }

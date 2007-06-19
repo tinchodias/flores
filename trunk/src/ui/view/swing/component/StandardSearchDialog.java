@@ -10,8 +10,6 @@ import ui.view.component.SearchDialogUI;
 import ui.view.swing.util.ActionAdapter;
 import ui.view.swing.util.StandardDialog;
 
-//TODO Find a better name to this class?
-
 public class StandardSearchDialog extends StandardDialog implements SearchDialogUI {
 
 	private StandardSearchPanel searchPanel;
@@ -37,12 +35,8 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 		closeButton.setAction(new ActionAdapter(action));
 	}
 
-	public void add(Action action) {
-		searchPanel.add(action);
-	}
-
 	public StandardSearchPanel getSearchPanel() {
 		return searchPanel;
 	}
-	
+
 }

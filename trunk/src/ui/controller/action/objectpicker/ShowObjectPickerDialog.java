@@ -18,7 +18,9 @@ public class ShowObjectPickerDialog implements Action {
 
 	public void execute() {
 		SearchDialogUI dialogUI = initializer.dialog();
-		dialogUI.add(new ObjectPickerSelectAction(dialogUI, picker));
+		ObjectPickerSelectAction action = new ObjectPickerSelectAction(dialogUI, picker);
+		dialogUI.getSearchPanel().add(action);
+		dialogUI.getSearchPanel().setDefaultAction(action);
 		dialogUI.setVisible(true);
 	}
 
