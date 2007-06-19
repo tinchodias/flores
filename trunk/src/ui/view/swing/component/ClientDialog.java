@@ -3,6 +3,7 @@ package ui.view.swing.component;
 import javax.swing.JTextField;
 
 import message.MessageId;
+import ui.view.component.AddressUI;
 import ui.view.component.ClientUI;
 import ui.view.swing.SwingUI;
 
@@ -34,4 +35,7 @@ public class ClientDialog extends StandardDetailDialog implements ClientUI {
 		nameField.setText(name);
 	}
 
+	public AddressUI getAddressUI() {
+		return addressPanel;
+	}
 }

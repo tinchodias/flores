@@ -3,11 +3,8 @@ package ui.view.swing.component;
 import javax.swing.JTextField;
 
 import message.MessageId;
-import model.stock.ArticleGroup;
 import query.criteria.StockArticleSearchCriteria;
-import ui.controller.action.Action;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.ActionAdapter;
 
 public class StockArticleSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
 
@@ -23,18 +20,8 @@ public class StockArticleSearchPanel extends StandardSearchPanel implements Stoc
 		this.filtersPanel().add(SwingUI.instance().label(descriptionField, MessageId.articleDescription));
 	}
 
-	public void setSearchAction(Action action) {
-		ActionAdapter actionAdapter = new ActionAdapter(action);
-		descriptionField.addActionListener(actionAdapter);
-	}
-
 	public String getDescription() {
 		return this.descriptionField.getText();
-	}
-
-	public ArticleGroup getGroup() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

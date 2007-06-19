@@ -3,6 +3,8 @@ package ui.controller.action;
 import message.MessageId;
 import model.JuridicPerson;
 import model.Store;
+import model.address.Address;
+import model.address.City;
 import persistence.ModelPersistence;
 import ui.view.component.ClientUI;
 
@@ -24,7 +26,14 @@ public class CreateClientAction implements Action {
 
 	private JuridicPerson client() {
 		String name = clientUI.getClientName();
-		return new JuridicPerson(name);
+		Address address = address();
+		return new JuridicPerson(name, address);
+	}
+
+	private Address address() {
+		String address = clientUI.getAddressUI().getAddress();
+		City city = clientUI.getAddressUI().getCity();
+		return new Address(address, city);
 	}
 
 	public MessageId messageId() {

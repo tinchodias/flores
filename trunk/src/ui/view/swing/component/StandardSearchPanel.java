@@ -31,6 +31,9 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	private JTable resultsTable;
 	private JPanel filtersPanel;
 	private TableModelAdapter tableModelAdapter;
+	private JPanel northPanel;
+	private JPanel filtersButtonsPanel;
+	private JButton searchButton;
 
 	public StandardSearchPanel() {
 		initCenterPanel();
@@ -50,17 +53,35 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	}
 
 	private void initCenterPanel() {
-		initFiltersPanel();
+		initNorthPanel();
 		initResultsPanel();
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new BorderLayout());
-		centerPanel.add(filtersPanel, BorderLayout.NORTH);
+		centerPanel.add(northPanel, BorderLayout.NORTH);
 		centerPanel.add(resultsPanel, BorderLayout.CENTER);
+	}
+
+	private void initNorthPanel() {
+		initFiltersPanel();
+		initFiltersButtonsPanel();
+		
+		northPanel = new JPanel();
+		northPanel.setLayout(new BorderLayout());
+		northPanel.add(filtersPanel, BorderLayout.CENTER);
+		northPanel.add(filtersButtonsPanel, BorderLayout.SOUTH);
+	}
+
+	private void initFiltersButtonsPanel() {
+		searchButton = new JButton();
+		
+		filtersButtonsPanel = new JPanel();
+		filtersButtonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		filtersButtonsPanel.add(searchButton);
 	}
 
 	private void initFiltersPanel() {
 		filtersPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+		
 		String filtersTitle = MessageRepository.instance().get(MessageId.searchFiltersTitle);
 		filtersPanel.setBorder(BorderFactory.createTitledBorder(filtersTitle));
 	}
@@ -93,13 +114,15 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		return (SearchResults) tableModelAdapter.getResults();
 	}
 	
-	public Criteria criteria() {
+	public Criteria getCriteria() {
 		return this;
 	}
 
-	public abstract void setSearchAction(Action action);
+	public void setSearchAction(Action action) {
+		searchButton.setAction(new ActionAdapter(action));
+	}
 	
-	public Object selection() {
+	public Object getSelection() {
 		int rowIndex = resultsTable.getSelectedRow();
 		
 		if (rowIndex == -1) {

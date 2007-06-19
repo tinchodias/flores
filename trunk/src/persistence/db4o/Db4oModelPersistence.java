@@ -35,6 +35,15 @@ public class Db4oModelPersistence extends ModelPersistence {
 		configuration.exceptionsOnNotStorable(true);
 //		configuration.diagnostic().addListener(new DiagnosticToConsole());
 		
+		//For simple activation
+		configuration.activationDepth(Integer.MAX_VALUE);
+		
+		//For simple update
+		ObjectClass oc = configuration.objectClass(Model.class);
+		oc.cascadeOnUpdate(true);
+		oc.updateDepth(Integer.MAX_VALUE);
+		
+		configureJodaTime();
 	}
 
 	public void save(Model model) {
@@ -60,13 +69,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	public void open() {
 		try {
-			configureJodaTime();
-			
 			this.container = Db4o.openFile(getFileName());
-
-			//TODO
-			container.ext().configure().activationDepth(Integer.MAX_VALUE);
-
 			
 		} catch (DatabaseFileLockedException e) {
 			throw e;
