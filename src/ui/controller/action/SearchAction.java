@@ -15,7 +15,7 @@ public class SearchAction implements Action {
 	}
 
 	public void execute() {
-		searchQuery.setCriteria(searchUI.criteria());
+		searchQuery.setCriteria(searchUI.getCriteria());
 		searchUI.setResults(searchQuery.results());
 
 //		 TODO Usar mecanismo asincrónico como este?

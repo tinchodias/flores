@@ -8,14 +8,16 @@ import ui.view.swing.component.ClientDialog;
 public class CreateClientDialogInitializer implements DialogInitializer {
 	
 	public DialogUI dialog() {
-		ClientDialog clientDialog = new ClientDialog();
+		ClientDialog dialog = new ClientDialog();
 
 		//TODO Setear modo de pantalla
 		
-		clientDialog.setAcceptAction(new CreateClientAction(clientDialog));
-		clientDialog.setCancelAction(new CloseDialogAction(clientDialog));
+		dialog.setAcceptAction(new CreateClientAction(dialog));
+		dialog.setCancelAction(new CloseDialogAction(dialog));
 		
-		return clientDialog;
+		dialog.getAddressUI().setCitySearchInitializer(new CitiesDialogInitializer());
+		
+		return dialog;
 	}
 
 }

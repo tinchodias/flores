@@ -17,7 +17,7 @@ public class ObjectPickerSelectAction implements Action {
 	}
 
 	public void execute() {
-		Object selection = dialogUI.getSearchPanel().selection();
+		Object selection = dialogUI.getSearchPanel().getSelection();
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {

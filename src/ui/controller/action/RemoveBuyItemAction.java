@@ -14,7 +14,7 @@ public class RemoveBuyItemAction implements Action {
 	}
 
 	public void execute() {
-		Object selection = buyUI.getItemsPanel().selection();
+		Object selection = buyUI.getItemsPanel().getSelection();
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {

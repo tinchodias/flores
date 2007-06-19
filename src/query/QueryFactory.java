@@ -21,5 +21,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery stockDropOutSearchQuery();
 
 	public abstract SearchQuery buySearchQuery();
+
+	public abstract SearchQuery citySearchQuery();
 	
 }

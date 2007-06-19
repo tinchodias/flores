@@ -15,7 +15,7 @@ public class ShowModifyClientAction implements Action {
 	}
 
 	public void execute() {
-		JuridicPerson selection = (JuridicPerson) searchUI.selection();
+		JuridicPerson selection = (JuridicPerson) searchUI.getSelection();
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {

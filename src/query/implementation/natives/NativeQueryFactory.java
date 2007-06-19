@@ -3,24 +3,23 @@ package query.implementation.natives;
 import java.util.Collection;
 
 import model.JuridicPerson;
+import model.address.City;
 import model.receipt.Buy;
 import model.stock.Article;
 import model.stock.StockDropOut;
 
 import org.apache.commons.lang.StringUtils;
 
-import persistence.Model;
-import persistence.ModelPersistence;
 import query.QueryFactory;
 import query.criteria.BuySearchCriteria;
+import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
-import query.framework.criteria.Criteria;
 import query.framework.query.SearchQuery;
-import query.framework.results.LazySearchResults;
-import query.framework.results.SearchResults;
+import query.framework.results.LazySearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
+import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
@@ -28,121 +27,90 @@ import query.results.StockDropOutSearchResultsSpecification;
 public class NativeQueryFactory extends QueryFactory {
 
 	public SearchQuery clientSearchQuery() {
-		
-		SearchQuery query = new SearchQuery() {
-			
-			private ClientSearchCriteria criteria;
+		return new StandardSearchQuery<JuridicPerson, ClientSearchCriteria>() {
 
-			public void setCriteria(Criteria criteria) {
-				this.criteria = (ClientSearchCriteria) criteria;
+			protected boolean accepts(JuridicPerson object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getClientName());
 			}
 
-			public SearchResults results() {
-				Model model = ModelPersistence.instance().loadedModel();
-				Collection<JuridicPerson> clients = model.store().clients();
-				
-				//TODO Usar singleton en spec
-				LazySearchResults results = 
-					new LazySearchResults(new ClientSearchResultsSpecification());
-				
-				for (JuridicPerson client : clients) {
-					if (StringUtils.containsIgnoreCase(client.getName(), criteria.getClientName())) {
-						results.add(client);
-					}
-				}
-				return results;
+			protected Collection objects() {
+				return store().clients();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ClientSearchResultsSpecification();
 			}
 		};
-		
-		return query;
 	}
 
 	public SearchQuery stockArticleSearchQuery() {
-		
-		SearchQuery query = new SearchQuery() {
-			
-			private StockArticleSearchCriteria criteria;
-			
-			public void setCriteria(Criteria criteria) {
-				this.criteria = (StockArticleSearchCriteria) criteria; 
-			}
-			
-			public SearchResults results() {
-				Model model = ModelPersistence.instance().loadedModel();
-				Collection<Article> articles = model.store().stockArticles();
+		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
 
-				//TODO Usar singleton en spec
-				LazySearchResults results = 
-					new LazySearchResults(new StockArticleSearchResultsSpecification());
-				
-				for (Article article : articles) {
-					if (StringUtils.containsIgnoreCase(article.getDescription(), criteria.getDescription())) {
-						results.add(article);
-					}
-				}
-				return results;
+			protected boolean accepts(Article object) {
+				return StringUtils.containsIgnoreCase(object.getDescription(), criteria().getDescription());
+			}
+
+			protected Collection objects() {
+				return store().stockArticles();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new StockArticleSearchResultsSpecification();
 			}
 		};
-		
-		return query;
 	}
 
 	public SearchQuery stockDropOutSearchQuery() {
-		SearchQuery query = new SearchQuery() {
-			
-			private StockDropOutSearchCriteria criteria;
-			
-			public void setCriteria(Criteria criteria) {
-				this.criteria = (StockDropOutSearchCriteria) criteria; 
-			}
-			
-			public SearchResults results() {
-				Model model = ModelPersistence.instance().loadedModel();
-				Collection<StockDropOut> dropOuts = model.store().stock().dropOuts();
+		return new StandardSearchQuery<StockDropOut, StockDropOutSearchCriteria>() {
 
-				//TODO Usar singleton en spec
-				LazySearchResults results = 
-					new LazySearchResults(new StockDropOutSearchResultsSpecification());
-				
-				for (StockDropOut dropOut : dropOuts) {
-					if (criteria.getInterval().contains(dropOut.getDate())) {
-						results.add(dropOut);
-					}
-				}
-				return results;
+			protected boolean accepts(StockDropOut object) {
+				return criteria().getInterval().contains(object.getDate());
+			}
+
+			protected Collection objects() {
+				return store().stock().dropOuts();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new StockDropOutSearchResultsSpecification();
 			}
 		};
-		
-		return query;
 	}
 
 	public SearchQuery buySearchQuery() {
+		return new StandardSearchQuery<Buy, BuySearchCriteria>() {
 
-		SearchQuery query = new SearchQuery() {
-			
-			private BuySearchCriteria criteria;
-			
-			public void setCriteria(Criteria criteria) {
-				this.criteria = (BuySearchCriteria) criteria; 
+			protected boolean accepts(Buy object) {
+				return criteria().getInterval().contains(object.date());
+			}
+
+			protected Collection objects() {
+				return store().buys();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new BuySearchResultsSpecification();
 			}
 			
-			public SearchResults results() {
-				Model model = ModelPersistence.instance().loadedModel();
-				Collection<Buy> buys = model.store().buys();
-
-				LazySearchResults results = 
-					new LazySearchResults(new BuySearchResultsSpecification());
-				
-				for (Buy buy : buys) {
-					if (criteria.getInterval().contains(buy.date())) {
-						results.add(buy);
-					}
-				}
-				return results;
-			}
 		};
-		
-		return query;	
 	}
 
+	public SearchQuery citySearchQuery() {
+		return new StandardSearchQuery<City, CitySearchCriteria>() {
+
+			protected boolean accepts(City object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getCityName());
+			}
+
+			protected Collection objects() {
+				return store().cities();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new CitySearchResultsSpecification();
+			}
+			
+		};
+	}
+	
 }
