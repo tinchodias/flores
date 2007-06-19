@@ -51,6 +51,7 @@ public enum MessageId {
 	toDate, 
 	value, 
 	name, 
+	show, 
 	
 	city, 
 	address, 

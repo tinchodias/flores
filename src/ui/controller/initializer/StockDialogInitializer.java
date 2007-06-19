@@ -4,7 +4,6 @@ import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.action.Action;
-import ui.controller.action.ShowDialogAction;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
 import ui.view.swing.component.StockArticleSearchPanel;
@@ -12,11 +11,11 @@ import ui.view.swing.component.StockArticleSearchPanel;
 public class StockDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		Action showBuysDialogAction = new ShowDialogAction(new BuysDialogInitializer(), MessageId.buysDialogTitle);
-		Action showStockDropDownsAction = new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle);
+		Action showBuysDialogAction = showAndRefreshAction(new BuysDialogInitializer(), MessageId.buysDialogTitle, searchDialog);
+		Action showStockDropDownsAction = showAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle, searchDialog);
 
-		searchDialog.add(showBuysDialogAction);
-		searchDialog.add(showStockDropDownsAction);
+		searchDialog.getSearchPanel().add(showBuysDialogAction);
+		searchDialog.getSearchPanel().add(showStockDropDownsAction);
 	}
 
 	protected StandardSearchPanel searchPanel() {

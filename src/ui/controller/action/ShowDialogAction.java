@@ -13,6 +13,10 @@ public class ShowDialogAction implements Action {
 		this.titleMessageId = titleMessageId;
 	}
 
+	public ShowDialogAction(DialogInitializer initializer) {
+		this(initializer, MessageId.show);
+	}
+
 	public void execute() {
 		initializer.dialog().setVisible(true);
 	}

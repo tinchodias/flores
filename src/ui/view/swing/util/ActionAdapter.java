@@ -23,7 +23,7 @@ public class ActionAdapter extends AbstractAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.action.execute();
+		action.execute();
 	}
 	
 	private void initIcon() {
@@ -36,6 +36,10 @@ public class ActionAdapter extends AbstractAction {
 	private void initName() {
 		String name = MessageRepository.instance().get(action.messageId());
 		putValue(NAME, name);
+	}
+
+	public Action getAction() {
+		return action;
 	}
 	
 }
