@@ -16,6 +16,7 @@ import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
+import query.criteria.SupplierSearchCriteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
@@ -23,6 +24,7 @@ import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
+import query.results.SupplierSearchResultsSpecification;
 
 public class NativeQueryFactory extends QueryFactory {
 
@@ -110,6 +112,23 @@ public class NativeQueryFactory extends QueryFactory {
 				return new CitySearchResultsSpecification();
 			}
 			
+		};
+	}
+
+	public SearchQuery suppliersSearchQuery() {
+		return new StandardSearchQuery<JuridicPerson, SupplierSearchCriteria>() {
+
+			protected boolean accepts(JuridicPerson object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getSupplierName());
+			}
+
+			protected Collection objects() {
+				return store().suppliers();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new SupplierSearchResultsSpecification();
+			}
 		};
 	}
 	

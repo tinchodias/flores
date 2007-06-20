@@ -42,11 +42,11 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 	}
 
 	public double getCount() {
-		return (Double) countField.getValue();
+		return Double.valueOf(countField.getValue().toString());
 	}
 
 	public Pesos getValue() {
-		return Pesos.newFor((Double) valueField.getValue());
+		return Pesos.newFor(Double.valueOf(valueField.getValue().toString()));
 	}
 	
 }

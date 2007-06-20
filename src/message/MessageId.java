@@ -58,6 +58,12 @@ public enum MessageId {
 	citiesDialogTitle, 
 	province, 
 	
+	suppliersDialogTitle, 
+	supplierName, 
+	supplierDialogTitle, 
+	
+	cashPay, 
+	
 	;
 	
 }

@@ -16,6 +16,7 @@ import ui.controller.initializer.ClientsDialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
 import ui.controller.initializer.StockDialogInitializer;
 import ui.controller.initializer.StockDropOutsDialogInitializer;
+import ui.controller.initializer.SuppliersDialogInitializer;
 import ui.view.component.MainUI;
 import ui.view.swing.util.ActionAdapter;
 
@@ -63,9 +64,11 @@ public class MainFrame extends JFrame implements MainUI {
 		personsMenu = new JMenu("Personas");
 
 		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clientsDialogTitle));
+		ActionAdapter showSuppliersAction = new ActionAdapter(new ShowDialogAction(new SuppliersDialogInitializer(), MessageId.suppliersDialogTitle));
 		ActionAdapter showCitiesAction = new ActionAdapter(new ShowDialogAction(new CitiesDialogInitializer(), MessageId.citiesDialogTitle));
 
 		personsMenu.add(new JMenuItem(showClientsAction));
+		personsMenu.add(new JMenuItem(showSuppliersAction));
 		personsMenu.add(new JMenuItem(showCitiesAction));
 		
 		return personsMenu;

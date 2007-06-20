@@ -30,6 +30,8 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 		okButton = new JButton();
 		cancelButton = new JButton();
 
+		getRootPane().setDefaultButton(okButton);
+		
 		buttonPanel().add(okButton);
 		buttonPanel().add(cancelButton);
 	}
