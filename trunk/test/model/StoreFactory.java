@@ -39,7 +39,7 @@ public class StoreFactory {
 		ArticleGroup floresGroup = new ArticleGroup("Flores");
 		store.stockArticleGroups().add(floresGroup);
 
-		Article paqueteClavel = new Article("Paquete de Clavel", floresGroup);
+		Article paqueteClavel = new Article("Clavel", floresGroup);
 		store.stockArticles().add(paqueteClavel);
 
 		Article alquiler = new Article("Alquiler del depósito");

@@ -3,10 +3,10 @@ import persistence.Model;
 import persistence.ModelFactory;
 import persistence.ModelPersistence;
 
-public class Db4oModelBuilder {
+public class SimpleModelBuilder {
 
 	public static void main(String[] args) {
-		new Db4oModelBuilder().run();
+		new SimpleModelBuilder().run();
 	}
 
 	public void run() {

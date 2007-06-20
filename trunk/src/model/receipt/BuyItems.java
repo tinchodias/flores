@@ -17,6 +17,10 @@ public class BuyItems {
 		items.put(article, new BuyItem(article, count, value));
 	}
 	
+	public void add(BuyItem item) {
+		items.put(item.getArticle(), item);
+	}
+	
 	public Collection<Article> getArticles() {
 		return items.keySet();
 	}
@@ -36,5 +40,6 @@ public class BuyItems {
 		}
 		return total;
 	}
+
 }
 
