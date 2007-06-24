@@ -88,5 +88,9 @@ public class SwingUI extends UI {
 	public MainFrame mainUI() {
 		return (MainFrame) super.mainUI();
 	}
+
+	public Pesos pesosFrom(JFormattedTextField field) {
+		return Pesos.newFor(Double.valueOf(field.getValue().toString()));
+	}
 	
 }

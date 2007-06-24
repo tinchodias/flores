@@ -7,13 +7,12 @@ import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyItem;
 import model.receipt.BuyItems;
 
 import org.joda.time.DateTime;
 
 import persistence.ModelPersistence;
-import query.framework.results.LazySearchResults;
+import query.framework.results.BuyItemsLazySearchResults;
 import ui.view.component.BuyUI;
 
 public class CreateBuyAction implements Action {
@@ -37,13 +36,9 @@ public class CreateBuyAction implements Action {
 	}
 
 	private BuyItems buyItems() {
-		LazySearchResults results = (LazySearchResults) buyUI.getItemsPanel().getResults();
-		BuyItems items = new BuyItems();
-
-		for (int i = 0; i < results.getRowCount(); i++) {
-			items.add((BuyItem) results.get(i));
-		}
-		return items ;
+		BuyItemsLazySearchResults results = 
+			(BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();
+		return results.getBuyItems();
 	}
 
 	private JuridicPerson supplier() {

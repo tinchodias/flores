@@ -18,13 +18,18 @@ public class CreateBuyItemAction implements Action {
 
 	public void execute() {
 		//TODO re think this Action?
-		LazySearchResults results = (LazySearchResults) buyUI.getItemsPanel().getResults();
-		
-		results.add(new BuyItem(buyItemUI.getArticle(), buyItemUI.getCount(), buyItemUI.getValue()));
+		LazySearchResults results = 
+			(LazySearchResults) buyUI.getItemsPanel().getResults();
+
+		results.add(buyItem());
 
 		buyUI.getItemsPanel().setResults(results);
 		
 		buyItemUI.setVisible(false);
+	}
+
+	private BuyItem buyItem() {
+		return new BuyItem(buyItemUI.getArticle(), buyItemUI.getCount(), buyItemUI.getValue());
 	}
 
 	public MessageId messageId() {

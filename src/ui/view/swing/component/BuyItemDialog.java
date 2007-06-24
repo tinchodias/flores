@@ -46,7 +46,7 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 	}
 
 	public Pesos getValue() {
-		return Pesos.newFor(Double.valueOf(valueField.getValue().toString()));
+		return SwingUI.instance().pesosFrom(valueField);
 	}
 	
 }

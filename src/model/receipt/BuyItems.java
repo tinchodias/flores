@@ -1,8 +1,7 @@
 package model.receipt;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import model.money.Pesos;
 import model.stock.Article;
@@ -11,7 +10,7 @@ import model.stock.Article;
 
 public class BuyItems {
 
-	Map<Article, BuyItem> items = new HashMap<Article, BuyItem>();
+	LinkedHashMap<Article, BuyItem> items = new LinkedHashMap<Article, BuyItem>();
 	
 	public void add(Article article, Double count, Pesos value) {
 		items.put(article, new BuyItem(article, count, value));
@@ -39,6 +38,28 @@ public class BuyItems {
 			total = total.plus(item.getValue().by(item.getCount()));
 		}
 		return total;
+	}
+
+	public Object get(int index) {
+		return items.values().toArray()[index];
+	}
+
+	public boolean remove(Object object) {
+		BuyItem buyItem = (BuyItem) object;
+		return items.remove(buyItem.getArticle()) != null;
+	}
+
+	public int size() {
+		return items.size();
+	}
+
+	public void adjustTotal(Pesos adjustedTotal) {
+		Pesos adjustCoefficient = adjustedTotal.dividedBy(total());
+		
+		for (BuyItem item : items.values()) {
+			Pesos adjustedValue = item.getValue().by(adjustCoefficient);
+			item.setValue(adjustedValue);
+		}
 	}
 
 }

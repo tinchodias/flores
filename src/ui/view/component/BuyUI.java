@@ -2,6 +2,7 @@ package ui.view.component;
 
 import model.JuridicPerson;
 import model.money.Pesos;
+import ui.controller.action.Action;
 import ui.controller.initializer.SearchDialogInitializer;
 
 public interface BuyUI extends DetailUI {
@@ -13,5 +14,7 @@ public interface BuyUI extends DetailUI {
 	SearchUI getItemsPanel();
 	
 	void setSupplierSearchInitializer(SearchDialogInitializer initializer);
+	
+	void setAdjustTotalAction(Action action);
 	
 }

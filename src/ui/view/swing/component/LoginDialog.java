@@ -9,7 +9,6 @@ import ui.controller.action.Action;
 import ui.view.component.LoginUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.ActionAdapter;
-import ui.view.swing.util.StandardDialog;
 
 public class LoginDialog extends StandardDialog implements LoginUI {
 

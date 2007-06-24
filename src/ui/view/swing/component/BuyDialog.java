@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import message.MessageId;
 import model.JuridicPerson;
 import model.money.Pesos;
+import ui.controller.action.Action;
 import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.BuyUI;
-import ui.view.component.SearchUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.ObjectPicker;
 
@@ -39,7 +39,7 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 		centerPanel().add(itemsPanel, BorderLayout.CENTER);
 	}
 
-	private JPanel initNorthPanel() {
+	private void initNorthPanel() {
 		supplierPicker = new ObjectPicker();
 		cashField = SwingUI.instance().currencyField();
 		
@@ -48,10 +48,9 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 		
 		northPanel.add(SwingUI.instance().label(supplierPicker, MessageId.supplier));
 		northPanel.add(SwingUI.instance().label(cashField, MessageId.cashPay));
-		return northPanel;
 	}
 
-	public SearchUI getItemsPanel() {
+	public BuyItemsPanel getItemsPanel() {
 		return itemsPanel;
 	}
 
@@ -64,7 +63,11 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 	}
 
 	public Pesos getCashPay() {
-		return Pesos.newFor(Double.valueOf(cashField.getValue().toString()));
+		return SwingUI.instance().pesosFrom(cashField);
 	}
-	
+
+	public void setAdjustTotalAction(Action action) {
+		itemsPanel.setAdjustTotalAction(action);
+	}
+
 }
