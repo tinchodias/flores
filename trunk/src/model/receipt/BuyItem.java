@@ -4,8 +4,8 @@ import model.money.Pesos;
 import model.stock.Article;
 
 public class BuyItem {
-	private final double count;
-	private final Pesos value;
+	private double count;
+	private Pesos value;
 	private final Article article;
 
 	public BuyItem(Article article, double count, Pesos value) {
@@ -24,6 +24,10 @@ public class BuyItem {
 
 	public Article getArticle() {
 		return article;
+	}
+
+	public void setValue(Pesos value) {
+		this.value = value;
 	}
 	
 }

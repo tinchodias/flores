@@ -1,4 +1,4 @@
-package ui.view.swing.util;
+package ui.view.swing.component;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

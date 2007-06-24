@@ -52,6 +52,8 @@ public enum MessageId {
 	value, 
 	name, 
 	show, 
+	cashPay, 
+	total, 
 	
 	city, 
 	address, 
@@ -62,7 +64,8 @@ public enum MessageId {
 	supplierName, 
 	supplierDialogTitle, 
 	
-	cashPay, 
+	adjustTotal, 
+	adjustedTotal,
 	
 	;
 	

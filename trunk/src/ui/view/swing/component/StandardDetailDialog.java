@@ -8,7 +8,6 @@ import message.MessageId;
 import ui.controller.action.Action;
 import ui.view.component.DetailUI;
 import ui.view.swing.util.ActionAdapter;
-import ui.view.swing.util.StandardDialog;
 
 public abstract class StandardDetailDialog extends StandardDialog implements DetailUI {
 

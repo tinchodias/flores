@@ -7,6 +7,7 @@ import persistence.Model;
 import persistence.ModelPersistence;
 import query.framework.criteria.Criteria;
 import query.framework.query.SearchQuery;
+import query.framework.results.DefaultLazySearchResults;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.framework.results.SearchResults;
@@ -23,7 +24,7 @@ abstract class StandardSearchQuery <GenericType, GenericCriteria extends Criteri
 	public SearchResults results() {
 		Collection objects = objects();
 
-		LazySearchResults results = new LazySearchResults(resultsSpecification());
+		LazySearchResults results = new DefaultLazySearchResults(resultsSpecification());
 		
 		for (Object object : objects) {
 			if (accepts((GenericType) object)) {

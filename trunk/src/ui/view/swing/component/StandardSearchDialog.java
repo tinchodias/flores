@@ -8,7 +8,6 @@ import message.MessageId;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.util.ActionAdapter;
-import ui.view.swing.util.StandardDialog;
 
 public class StandardSearchDialog extends StandardDialog implements SearchDialogUI {
 

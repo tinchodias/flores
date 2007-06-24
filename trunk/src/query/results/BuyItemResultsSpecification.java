@@ -11,7 +11,7 @@ public class BuyItemResultsSpecification extends LazySearchResultsSpecification 
 	public BuyItemResultsSpecification() {
 		add(MessageId.article);
 		add(MessageId.count, Double.class);
-		add(MessageId.articleCost, Pesos.class);
+		add(MessageId.value, Pesos.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

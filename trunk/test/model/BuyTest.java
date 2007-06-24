@@ -91,4 +91,15 @@ public class BuyTest extends TestCase {
 
 		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
+	
+	public void testAdjustBuyTotal() {
+		BuyItems buyItems = new BuyItems();
+		buyItems.add(claveles, 20.0, Pesos.newFor(20.0));
+		buyItems.add(rosas, 10.0, Pesos.newFor(15.0));
+
+		Pesos adjustedTotal = Pesos.newFor(30.0);
+		buyItems.adjustTotal(adjustedTotal);
+		
+		assertEquals(adjustedTotal, buyItems.total());
+	}
 }

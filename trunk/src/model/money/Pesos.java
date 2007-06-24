@@ -54,5 +54,13 @@ public class Pesos {
 	public Pesos by(double multiplier) {
 		return Pesos.newFor(this.value() * multiplier);
 	}
+
+	public Pesos by(Pesos pesos) {
+		return Pesos.newFor(this.value() * pesos.value());
+	}
 	
+	public Pesos dividedBy(Pesos pesos) {
+		return Pesos.newFor(this.value() / pesos.value());
+	}
+
 }
