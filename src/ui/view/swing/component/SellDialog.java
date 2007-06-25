@@ -11,26 +11,26 @@ import model.JuridicPerson;
 import model.money.Pesos;
 import ui.controller.action.Action;
 import ui.controller.initializer.SearchDialogInitializer;
-import ui.view.component.BuyUI;
+import ui.view.component.SellUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.objectpicker.ObjectPicker;
 
-public class BuyDialog extends StandardDetailDialog implements BuyUI {
+public class SellDialog extends StandardDetailDialog implements SellUI {
 
-	private ObjectPicker supplierPicker;
-	private BuyItemsPanel itemsPanel;
+	private ObjectPicker clientPicker;
+	private SellItemsPanel itemsPanel;
 	private JPanel northPanel;
 	private JFormattedTextField cashField;
 
-	public BuyDialog() {
-		super(MessageId.buy);
+	public SellDialog() {
+		super(MessageId.sell);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);
 	}
 
 	private void initComponents() {
-		itemsPanel = new BuyItemsPanel();
+		itemsPanel = new SellItemsPanel();
 		
 		initNorthPanel();
 		
@@ -40,26 +40,26 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 	}
 
 	private void initNorthPanel() {
-		supplierPicker = new ObjectPicker();
+		clientPicker = new ObjectPicker();
 		cashField = SwingUI.instance().currencyField();
 		
 		northPanel = new JPanel();
 		northPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		northPanel.add(SwingUI.instance().label(supplierPicker, MessageId.supplier));
+		northPanel.add(SwingUI.instance().label(clientPicker, MessageId.client));
 		northPanel.add(SwingUI.instance().label(cashField, MessageId.cashPay));
 	}
 
-	public BuyItemsPanel getItemsPanel() {
+	public SellItemsPanel getItemsPanel() {
 		return itemsPanel;
 	}
 
-	public void setSupplierSearchInitializer(SearchDialogInitializer initializer) {
-		supplierPicker.setSearchInitializer(initializer);
+	public void setClientSearchInitializer(SearchDialogInitializer initializer) {
+		clientPicker.setSearchInitializer(initializer);
 	}
 
-	public JuridicPerson getSupplier() {
-		return (JuridicPerson) supplierPicker.getSelection();
+	public JuridicPerson getClient() {
+		return (JuridicPerson) clientPicker.getSelection();
 	}
 
 	public Pesos getCashPay() {

@@ -1,30 +1,30 @@
 package ui.controller.action;
 
-import query.framework.results.BuyItemsLazySearchResults;
 import message.MessageId;
 import model.money.Pesos;
-import ui.view.swing.component.AdjustBuyTotalDialog;
-import ui.view.swing.component.BuyDialog;
+import query.framework.results.BuyItemsLazySearchResults;
+import ui.view.component.BuyUI;
+import ui.view.swing.component.AdjustTotalDialog;
 
 public class AdjustBuyTotalAction implements Action {
 
-	private final BuyDialog buyDialog;
-	private final AdjustBuyTotalDialog adjustDialog;
+	private final BuyUI buyUI;
+	private final AdjustTotalDialog adjustDialog;
 
-	public AdjustBuyTotalAction(AdjustBuyTotalDialog adjustDialog, BuyDialog buyDialog) {
+	public AdjustBuyTotalAction(AdjustTotalDialog adjustDialog, BuyUI buyUI) {
 		this.adjustDialog = adjustDialog;
-		this.buyDialog = buyDialog;
+		this.buyUI = buyUI;
 	}
 
 	public void execute() {
 		Pesos adjustedTotal = adjustDialog.getAdjustedTotal();
 		
 		BuyItemsLazySearchResults buyItemsResults = 
-			(BuyItemsLazySearchResults) buyDialog.getItemsPanel().getResults();
+			(BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();
 		
 		buyItemsResults.getBuyItems().adjustTotal(adjustedTotal);
 		
-		buyDialog.getItemsPanel().setResults(buyItemsResults);
+		buyUI.getItemsPanel().setResults(buyItemsResults);
 		
 		adjustDialog.setVisible(false);
 	}

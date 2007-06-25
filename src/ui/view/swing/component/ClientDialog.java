@@ -13,7 +13,7 @@ public class ClientDialog extends StandardDetailDialog implements ClientUI {
 	private AddressPanel addressPanel;
 
 	public ClientDialog() {
-		super(MessageId.clientDialogTitle);
+		super(MessageId.client);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);

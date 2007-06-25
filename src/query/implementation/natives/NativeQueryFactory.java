@@ -5,6 +5,7 @@ import java.util.Collection;
 import model.JuridicPerson;
 import model.address.City;
 import model.receipt.Buy;
+import model.receipt.Sell;
 import model.stock.Article;
 import model.stock.StockDropOut;
 
@@ -14,6 +15,7 @@ import query.QueryFactory;
 import query.criteria.BuySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
+import query.criteria.SellSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
@@ -22,6 +24,7 @@ import query.framework.results.LazySearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
+import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
 import query.results.SupplierSearchResultsSpecification;
@@ -129,6 +132,24 @@ public class NativeQueryFactory extends QueryFactory {
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new SupplierSearchResultsSpecification();
 			}
+		};
+	}
+
+	public SearchQuery sellSearchQuery() {
+		return new StandardSearchQuery<Sell, SellSearchCriteria>() {
+
+			protected boolean accepts(Sell object) {
+				return criteria().getInterval().contains(object.date());
+			}
+
+			protected Collection objects() {
+				return store().sells();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new SellSearchResultsSpecification();
+			}
+			
 		};
 	}
 	

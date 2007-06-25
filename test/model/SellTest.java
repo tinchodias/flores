@@ -4,8 +4,6 @@
 package model;
 
 import junit.framework.TestCase;
-import model.JuridicPerson;
-import model.Store;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
@@ -84,4 +82,15 @@ public class SellTest extends TestCase {
 		
 		store.add(annulment);
 	}
+	
+	public void testAdjustSellTotal() {
+		SellItems sellItems = new SellItems();
+		sellItems.add(clavel, 20.0, Pesos.newFor(20.0), Pesos.newFor(10.0));
+
+		Pesos adjustedTotal = Pesos.newFor(6.5);
+		sellItems.adjustTotal(adjustedTotal);
+		
+		assertEquals(adjustedTotal, sellItems.sellTotal());
+	}
+	
 }

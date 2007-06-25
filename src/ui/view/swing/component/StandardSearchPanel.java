@@ -20,11 +20,11 @@ import query.framework.results.SearchResults;
 import ui.controller.action.Action;
 import ui.view.component.SearchUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.ActionAdapter;
-import ui.view.swing.util.ClickAdapter;
 import ui.view.swing.util.FixedBoxLayout;
-import ui.view.swing.util.KeyTypedAdapter;
 import ui.view.swing.util.TableModelAdapter;
+import ui.view.swing.util.actionadapter.ActionAdapter;
+import ui.view.swing.util.actionadapter.ClickAdapter;
+import ui.view.swing.util.actionadapter.KeyTypedAdapter;
 
 public abstract class StandardSearchPanel extends JPanel implements SearchUI, Criteria {
 

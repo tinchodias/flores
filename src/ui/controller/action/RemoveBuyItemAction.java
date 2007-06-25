@@ -20,7 +20,6 @@ public class RemoveBuyItemAction implements Action {
 		} else {
 			LazySearchResults results = (LazySearchResults) buyUI.getItemsPanel().getResults();
 			results.remove(selection);
-			//TODO Implement listener mecanism in Results to avoid this call?
 			buyUI.getItemsPanel().setResults(results);
 		}
 	}

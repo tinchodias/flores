@@ -25,7 +25,7 @@ public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.clientsDialogTitle;
+		return MessageId.clients;
 	}
 
 }

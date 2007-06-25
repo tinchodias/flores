@@ -22,7 +22,7 @@ public class SuppliersDialogInitializer extends StandardSearchDialogInitializer 
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.suppliersDialogTitle;
+		return MessageId.suppliers;
 	}
 
 }

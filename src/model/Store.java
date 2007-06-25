@@ -95,7 +95,11 @@ public class Store {
 	public Collection<Buy> buys() {
 		return buys;
 	}
-	
+
+	public Collection<Sell> sells() {
+		return sells;
+	}
+
 	public void add(Buy buy) {
 		buys.add(buy);
 		stock.apply(buy);

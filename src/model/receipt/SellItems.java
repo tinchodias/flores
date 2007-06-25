@@ -14,7 +14,11 @@ public class SellItems {
 	Map<Article, SellItem> items = new HashMap<Article, SellItem>();
 	
 	public void add(Article article, Double count, Pesos sellValue, Pesos costValue) {
-		items.put(article, new SellItem(count, sellValue, costValue));
+		items.put(article, new SellItem(article, count, sellValue, costValue));
+	}
+	
+	public void add(SellItem item) {
+		items.put(item.getArticle(), item);
 	}
 	
 	public Collection<Article> getArticles() {
@@ -44,5 +48,28 @@ public class SellItems {
 		}
 		return total;
 	}
+
+	public Object get(int index) {
+		return items.values().toArray()[index];
+	}
+
+	public boolean remove(Object object) {
+		SellItem sellItem = (SellItem) object;
+		return items.remove(sellItem.getArticle()) != null;
+	}
+
+	public int size() {
+		return items.size();
+	}
+
+	public void adjustTotal(Pesos adjustedTotal) {
+		Pesos adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
+		
+		for (SellItem item : items.values()) {
+			Pesos adjustedValue = item.getSellValue().by(adjustCoefficient);
+			item.setSellValue(adjustedValue);
+		}
+	}
+
 }
 

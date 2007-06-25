@@ -40,6 +40,15 @@ public class BuyItems {
 		return total;
 	}
 
+	public void adjustTotal(Pesos adjustedTotal) {
+		Pesos adjustCoefficient = adjustedTotal.dividedBy(total());
+		
+		for (BuyItem item : items.values()) {
+			Pesos adjustedValue = item.getValue().by(adjustCoefficient);
+			item.setValue(adjustedValue);
+		}
+	}
+
 	public Object get(int index) {
 		return items.values().toArray()[index];
 	}
@@ -51,15 +60,6 @@ public class BuyItems {
 
 	public int size() {
 		return items.size();
-	}
-
-	public void adjustTotal(Pesos adjustedTotal) {
-		Pesos adjustCoefficient = adjustedTotal.dividedBy(total());
-		
-		for (BuyItem item : items.values()) {
-			Pesos adjustedValue = item.getValue().by(adjustCoefficient);
-			item.setValue(adjustedValue);
-		}
 	}
 
 }

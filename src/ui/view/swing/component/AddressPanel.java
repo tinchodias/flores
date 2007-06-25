@@ -10,7 +10,7 @@ import model.address.City;
 import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.AddressUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.ObjectPicker;
+import ui.view.swing.util.objectpicker.ObjectPicker;
 
 public class AddressPanel extends JPanel implements AddressUI {
 

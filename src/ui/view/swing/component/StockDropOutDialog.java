@@ -7,7 +7,7 @@ import model.stock.Article;
 import ui.controller.initializer.SearchDialogInitializer;
 import ui.view.component.StockDropOutUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.ObjectPicker;
+import ui.view.swing.util.objectpicker.ObjectPicker;
 
 public class StockDropOutDialog extends StandardDetailDialog implements StockDropOutUI {
 
