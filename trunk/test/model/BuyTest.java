@@ -102,4 +102,5 @@ public class BuyTest extends TestCase {
 		
 		assertEquals(adjustedTotal, buyItems.total());
 	}
+	
 }

@@ -4,14 +4,14 @@ import javax.swing.JFormattedTextField;
 
 import message.MessageId;
 import model.money.Pesos;
-import ui.view.component.AdjustBuyTotalUI;
+import ui.view.component.AdjustTotalUI;
 import ui.view.swing.SwingUI;
 
-public class AdjustBuyTotalDialog extends StandardDetailDialog implements AdjustBuyTotalUI {
+public class AdjustTotalDialog extends StandardDetailDialog implements AdjustTotalUI {
 
 	private JFormattedTextField adjustedTotal;
 
-	public AdjustBuyTotalDialog() {
+	public AdjustTotalDialog() {
 		super(MessageId.adjustTotal);
 		init();
 		pack();

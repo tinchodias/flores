@@ -22,7 +22,7 @@ public class StockDropOutsDialogInitializer extends StandardSearchDialogInitiali
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.stockDropOutsDialogTitle;
+		return MessageId.stockDropOuts;
 	}
 
 }

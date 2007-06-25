@@ -1,23 +1,27 @@
 package ui.view.swing.component;
 
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 
 import message.MessageId;
 import model.money.Pesos;
 import model.stock.Article;
+import ui.controller.action.Action;
 import ui.controller.initializer.SearchDialogInitializer;
-import ui.view.component.BuyItemUI;
+import ui.view.component.SellItemUI;
 import ui.view.swing.SwingUI;
+import ui.view.swing.util.actionadapter.SelectionListenerAdapter;
 import ui.view.swing.util.objectpicker.ObjectPicker;
 
-public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
+public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 
 	private ObjectPicker articlePicker;
 	private JFormattedTextField countField;
 	private JFormattedTextField valueField;
+	private JLabel costLabel;
 
-	public BuyItemDialog() {
-		super(MessageId.buyItem);
+	public SellItemDialog() {
+		super(MessageId.sellItem);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);
@@ -27,10 +31,12 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 		articlePicker = new ObjectPicker();
 		countField = SwingUI.instance().decimalField();
 		valueField = SwingUI.instance().currencyField();
+		costLabel = new JLabel(" ");
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 		centerPanel().add(SwingUI.instance().label(valueField, MessageId.value));
+		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.articleCost));
 	}
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {
@@ -47,6 +53,14 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 
 	public Pesos getValue() {
 		return SwingUI.instance().pesosFrom(valueField);
+	}
+
+	public void setCostAction(Action action) {
+		articlePicker.addSelectionListener(new SelectionListenerAdapter(action));
+	}
+
+	public void setCost(String cost) {
+		costLabel.setText(cost);
 	}
 	
 }

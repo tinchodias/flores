@@ -1,15 +1,18 @@
-package ui.view.swing.util;
+package ui.view.swing.util.objectpicker;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import ui.controller.action.objectpicker.ShowObjectPickerDialog;
 import ui.controller.initializer.SearchDialogInitializer;
+import ui.view.swing.util.actionadapter.ActionAdapter;
 
 
 public class ObjectPicker extends Container {
@@ -17,6 +20,7 @@ public class ObjectPicker extends Container {
 	private JTextField textField;
 	private JButton button;
 	private Object selection;
+	private List<SelectionListener> selectionListeners = new ArrayList();
 
 	public ObjectPicker() {
 		setLayout(new BorderLayout());
@@ -41,10 +45,21 @@ public class ObjectPicker extends Container {
 	public void setSelection(Object selection) {
 		this.selection = selection;
 		textField.setText(selection.toString());
+		notifySelection();
 	}
 
 	public Object getSelection() {
 		return selection;
+	}
+
+	private void notifySelection() {
+		for (SelectionListener listener: selectionListeners) {
+			listener.selected(getSelection());
+		}  
+	}
+	
+	public void addSelectionListener(SelectionListener listener) {
+		selectionListeners.add(listener);
 	}
 
 }

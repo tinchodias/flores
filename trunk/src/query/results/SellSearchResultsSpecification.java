@@ -3,32 +3,35 @@ package query.results;
 
 import message.MessageId;
 import model.money.Pesos;
-import model.receipt.Buy;
+import model.receipt.Sell;
 
 import org.joda.time.ReadableInstant;
 
 import query.framework.results.LazySearchResultsSpecification;
 
-public class BuySearchResultsSpecification extends LazySearchResultsSpecification {
+public class SellSearchResultsSpecification extends LazySearchResultsSpecification {
 
-	public BuySearchResultsSpecification() {
+	public SellSearchResultsSpecification() {
 		add(MessageId.date, ReadableInstant.class);
-		add(MessageId.supplier);
+		add(MessageId.client);
 		add(MessageId.paymentTotal, Pesos.class);
+		add(MessageId.costTotal, Pesos.class);
 		add(MessageId.total, Pesos.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {
-		Buy buy = (Buy) object;
+		Sell sell = (Sell) object;
 		switch (columnIndex) {
 		case 0:
-			return buy.date();
+			return sell.date();
 		case 1:
-			return buy.getSupplier();
+			return sell.client();
 		case 2:
-			return buy.getPayment().total();
+			return sell.payment().total();
 		case 3:
-			return buy.items().total();
+			return sell.items().costTotal();
+		case 4:
+			return sell.items().sellTotal();
 		}
 		return null;
 	}

@@ -12,8 +12,8 @@ public enum MessageId {
 	userName, 
 	userPassword, 
 	
-	clientsDialogTitle, 
-	clientDialogTitle, 
+	clients, 
+	client, 
 	clientName, 
 	clientDebt, 
 
@@ -23,14 +23,13 @@ public enum MessageId {
 	articleCost,
 	articleGroup, 
 
-	buysDialogTitle, 
+	buys, 
 	supplier, 
 	paymentTotal, 
-	buyTotal,
 	buy,
 	buyItem, 
 	
-	stockDropOutsDialogTitle, 
+	stockDropOuts, 
 	stockDropOutDialogTitle,
 	
 	searchFiltersTitle,
@@ -57,15 +56,20 @@ public enum MessageId {
 	
 	city, 
 	address, 
-	citiesDialogTitle, 
+	cities, 
 	province, 
 	
-	suppliersDialogTitle, 
+	suppliers, 
 	supplierName, 
 	supplierDialogTitle, 
 	
 	adjustTotal, 
-	adjustedTotal,
+	adjustedTotal, 
+	
+	sells, 
+	sell, 
+	costTotal, 
+	sellItem, 
 	
 	;
 	

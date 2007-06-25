@@ -11,8 +11,8 @@ import ui.view.swing.component.StockArticleSearchPanel;
 public class StockDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		Action showBuysDialogAction = showAndRefreshAction(new BuysDialogInitializer(), MessageId.buysDialogTitle, searchDialog);
-		Action showStockDropDownsAction = showAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle, searchDialog);
+		Action showBuysDialogAction = showAndRefreshAction(new BuysDialogInitializer(), MessageId.buys, searchDialog);
+		Action showStockDropDownsAction = showAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts, searchDialog);
 
 		searchDialog.getSearchPanel().add(showBuysDialogAction);
 		searchDialog.getSearchPanel().add(showStockDropDownsAction);

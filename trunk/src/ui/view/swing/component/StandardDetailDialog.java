@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import message.MessageId;
 import ui.controller.action.Action;
 import ui.view.component.DetailUI;
-import ui.view.swing.util.ActionAdapter;
+import ui.view.swing.util.actionadapter.ActionAdapter;
 
 public abstract class StandardDetailDialog extends StandardDialog implements DetailUI {
 

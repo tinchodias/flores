@@ -21,7 +21,7 @@ public class CitiesDialogInitializer extends StandardSearchDialogInitializer {
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.citiesDialogTitle;
+		return MessageId.cities;
 	}
 
 }

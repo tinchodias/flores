@@ -4,7 +4,7 @@ import message.MessageId;
 import ui.UI;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
-import ui.view.swing.util.ObjectPicker;
+import ui.view.swing.util.objectpicker.ObjectPicker;
 
 public class ObjectPickerSelectAction implements Action {
 

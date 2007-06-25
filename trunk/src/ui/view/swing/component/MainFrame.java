@@ -2,11 +2,13 @@ package ui.view.swing.component;
 
 import java.awt.Component;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import message.IconRepository;
 import message.MessageId;
 import message.MessageRepository;
 import ui.controller.action.ShowDialogAction;
@@ -14,11 +16,12 @@ import ui.controller.initializer.BuysDialogInitializer;
 import ui.controller.initializer.CitiesDialogInitializer;
 import ui.controller.initializer.ClientsDialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
+import ui.controller.initializer.SellsDialogInitializer;
 import ui.controller.initializer.StockDialogInitializer;
 import ui.controller.initializer.StockDropOutsDialogInitializer;
 import ui.controller.initializer.SuppliersDialogInitializer;
 import ui.view.component.MainUI;
-import ui.view.swing.util.ActionAdapter;
+import ui.view.swing.util.actionadapter.ActionAdapter;
 
 //TODO Remove Action instanciations from here.
 
@@ -30,6 +33,11 @@ public class MainFrame extends JFrame implements MainUI {
 
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
+		
+		ImageIcon icon = IconRepository.instance().get(MessageId.mainTitle);
+		if (icon != null) {
+			setIconImage(icon.getImage());
+		}
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setJMenuBar(newMenuBar());
@@ -50,12 +58,14 @@ public class MainFrame extends JFrame implements MainUI {
 		storeMenu = new JMenu("Depósito");
 
 		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
-		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOutsDialogTitle));
-		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buysDialogTitle));
+		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
+		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buys));
+		ActionAdapter showSellsAction = new ActionAdapter(new ShowDialogAction(new SellsDialogInitializer(), MessageId.sells));
 
 		storeMenu.add(new JMenuItem(showStockAction));
 		storeMenu.add(new JMenuItem(showStockDropDownsAction));
 		storeMenu.add(new JMenuItem(showBuysAction));
+		storeMenu.add(new JMenuItem(showSellsAction));
 		
 		return storeMenu;
 	}
@@ -63,9 +73,9 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newPersonsMenu() {
 		personsMenu = new JMenu("Personas");
 
-		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clientsDialogTitle));
-		ActionAdapter showSuppliersAction = new ActionAdapter(new ShowDialogAction(new SuppliersDialogInitializer(), MessageId.suppliersDialogTitle));
-		ActionAdapter showCitiesAction = new ActionAdapter(new ShowDialogAction(new CitiesDialogInitializer(), MessageId.citiesDialogTitle));
+		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clients));
+		ActionAdapter showSuppliersAction = new ActionAdapter(new ShowDialogAction(new SuppliersDialogInitializer(), MessageId.suppliers));
+		ActionAdapter showCitiesAction = new ActionAdapter(new ShowDialogAction(new CitiesDialogInitializer(), MessageId.cities));
 
 		personsMenu.add(new JMenuItem(showClientsAction));
 		personsMenu.add(new JMenuItem(showSuppliersAction));

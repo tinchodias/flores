@@ -3,7 +3,7 @@ package ui.controller.initializer;
 import ui.controller.action.AdjustBuyTotalAction;
 import ui.controller.action.CloseDialogAction;
 import ui.view.component.DialogUI;
-import ui.view.swing.component.AdjustBuyTotalDialog;
+import ui.view.swing.component.AdjustTotalDialog;
 import ui.view.swing.component.BuyDialog;
 
 public class AdjustBuyTotalDialogInitializer implements DialogInitializer {
@@ -15,7 +15,7 @@ public class AdjustBuyTotalDialogInitializer implements DialogInitializer {
 	}
 
 	public DialogUI dialog() {
-		AdjustBuyTotalDialog dialog = new AdjustBuyTotalDialog();
+		AdjustTotalDialog dialog = new AdjustTotalDialog();
 		
 		dialog.setAcceptAction(new AdjustBuyTotalAction(dialog, buyDialog));
 		dialog.setCancelAction(new CloseDialogAction(dialog));
