@@ -8,20 +8,20 @@ import ui.view.swing.SwingUI;
 
 public class StockArticleSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
 
-	private JTextField descriptionField;
+	private JTextField nameField;
 
 	public StockArticleSearchPanel() {
 		initComponents();
 	}
 
 	private void initComponents() {
-		descriptionField = new JTextField();
+		nameField = new JTextField();
 		
-		this.filtersPanel().add(SwingUI.instance().label(descriptionField, MessageId.articleDescription));
+		this.filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
 	}
 
-	public String getDescription() {
-		return this.descriptionField.getText();
+	public String getArticleName() {
+		return this.nameField.getText();
 	}
 
 }

@@ -13,9 +13,11 @@ public class StockDialogInitializer extends StandardSearchDialogInitializer {
 	protected void addActions(StandardSearchDialog searchDialog) {
 		Action showBuysDialogAction = showAndRefreshAction(new BuysDialogInitializer(), MessageId.buys, searchDialog);
 		Action showStockDropDownsAction = showAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts, searchDialog);
+		Action createStockArticleAction = showAndRefreshAction(new CreateStockArticleDialogInitializer(), MessageId.create, searchDialog);
 
 		searchDialog.getSearchPanel().add(showBuysDialogAction);
 		searchDialog.getSearchPanel().add(showStockDropDownsAction);
+		searchDialog.getSearchPanel().add(createStockArticleAction);
 	}
 
 	protected StandardSearchPanel searchPanel() {
