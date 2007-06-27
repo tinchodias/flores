@@ -7,11 +7,13 @@ import model.address.City;
 import model.receipt.Buy;
 import model.receipt.Sell;
 import model.stock.Article;
+import model.stock.ArticleGroup;
 import model.stock.StockDropOut;
 
 import org.apache.commons.lang.StringUtils;
 
 import query.QueryFactory;
+import query.criteria.ArticleGroupSearchCriteria;
 import query.criteria.BuySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
@@ -21,6 +23,7 @@ import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResultsSpecification;
+import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
@@ -52,7 +55,7 @@ public class NativeQueryFactory extends QueryFactory {
 		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
 
 			protected boolean accepts(Article object) {
-				return StringUtils.containsIgnoreCase(object.getDescription(), criteria().getDescription());
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
 			}
 
 			protected Collection objects() {
@@ -149,8 +152,23 @@ public class NativeQueryFactory extends QueryFactory {
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new SellSearchResultsSpecification();
 			}
-			
 		};
 	}
 	
+	public SearchQuery articleGroupSearchQuery() {
+		return new StandardSearchQuery<ArticleGroup, ArticleGroupSearchCriteria>() {
+
+			protected boolean accepts(ArticleGroup object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleGroupName());
+			}
+
+			protected Collection objects() {
+				return store().stockArticleGroups();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ArticleGroupSearchResultsSpecification();
+			}
+		};
+	}
 }

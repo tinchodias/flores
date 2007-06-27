@@ -10,7 +10,7 @@ import query.framework.results.LazySearchResultsSpecification;
 public class StockArticleSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public StockArticleSearchResultsSpecification() {
-		add(MessageId.articleDescription);
+		add(MessageId.name);
 		add(MessageId.articleGroup);
 		add(MessageId.count, Double.class);
 		add(MessageId.articleCost, Pesos.class);
@@ -20,7 +20,7 @@ public class StockArticleSearchResultsSpecification extends LazySearchResultsSpe
 		Article article = (Article) object;
 		switch (columnIndex) {
 		case 0:
-			return article.getDescription();
+			return article.getName();
 		case 1:
 			return article.getGroup();
 		case 2:

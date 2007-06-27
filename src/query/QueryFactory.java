@@ -27,5 +27,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery suppliersSearchQuery();
 
 	public abstract SearchQuery sellSearchQuery();
+
+	public abstract SearchQuery articleGroupSearchQuery();
 	
 }

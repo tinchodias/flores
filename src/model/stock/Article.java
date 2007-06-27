@@ -2,7 +2,7 @@ package model.stock;
 
 public class Article {
 
-	private final String description;
+	private final String name;
 	private final ArticleGroup group;
 
 	public Article(String description) {
@@ -11,12 +11,12 @@ public class Article {
 	}
 	
 	public Article(String description, ArticleGroup group) {
-		this.description = description;
+		this.name = description;
 		this.group = group;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
 	public ArticleGroup getGroup() {
@@ -24,7 +24,7 @@ public class Article {
 	}
 
 	public String toString() {
-		return getDescription();
+		return getName();
 	}
 	
 }

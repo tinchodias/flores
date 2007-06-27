@@ -19,7 +19,6 @@ public enum MessageId {
 
 	stockDialogTitle, 
 	article, 
-	articleDescription, 
 	articleCost,
 	articleGroup, 
 
@@ -70,6 +69,8 @@ public enum MessageId {
 	sell, 
 	costTotal, 
 	sellItem, 
+	
+	articleGroups, 
 	
 	;
 	
