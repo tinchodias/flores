@@ -17,7 +17,7 @@ public class BuySearchPanel extends StandardSearchPanel implements BuySearchCrit
 
 	private void initComponents() {
 		intervalPicker = new IntervalPicker();
-		intervalPicker.setInterval(TimeUtils.recentDaysInterval(14));
+		intervalPicker.setInterval(TimeUtils.recentYearsInterval(2));
 		
 		filtersPanel().add(intervalPicker);		
 	}

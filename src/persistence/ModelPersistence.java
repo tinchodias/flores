@@ -1,5 +1,8 @@
 package persistence;
 
+import java.util.List;
+import java.util.Map;
+
 import persistence.db4o.Db4oModelPersistence;
 import persistence.exception.MessageIdentifiedException;
 
@@ -24,4 +27,11 @@ public abstract class ModelPersistence {
 	public abstract Model load() throws MessageIdentifiedException;
 
 	public abstract Model loadedModel();
+
+	//TODO
+	public abstract List newList();
+
+	//TODO
+	public abstract Map newMap();
+	
 }

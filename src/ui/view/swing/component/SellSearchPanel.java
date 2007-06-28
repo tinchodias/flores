@@ -17,7 +17,7 @@ public class SellSearchPanel extends StandardSearchPanel implements SellSearchCr
 
 	private void initComponents() {
 		intervalPicker = new IntervalPicker();
-		intervalPicker.setInterval(TimeUtils.recentDaysInterval(14));
+		intervalPicker.setInterval(TimeUtils.recentYearsInterval(2));
 		
 		filtersPanel().add(intervalPicker);		
 	}

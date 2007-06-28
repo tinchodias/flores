@@ -17,7 +17,7 @@ public class StockDropOutSearchPanel extends StandardSearchPanel implements Stoc
 
 	private void initComponents() {
 		picker = new IntervalPicker();
-		picker.setInterval(TimeUtils.recentDaysInterval(14));
+		picker.setInterval(TimeUtils.recentYearsInterval(2));
 		
 		filtersPanel().add(picker);		
 	}
