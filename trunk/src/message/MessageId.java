@@ -68,6 +68,7 @@ public enum MessageId {
 	sells, 
 	sell, 
 	costTotal, 
+	sellTotal, 
 	sellItem, 
 	
 	articleGroups, 

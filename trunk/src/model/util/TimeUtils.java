@@ -5,6 +5,7 @@ import org.joda.time.Days;
 import org.joda.time.Interval;
 import org.joda.time.ReadableDateTime;
 import org.joda.time.ReadableInterval;
+import org.joda.time.Years;
 
 public class TimeUtils {
 
@@ -21,4 +22,9 @@ public class TimeUtils {
 		return new Interval(Days.days(dayCount), tomorrowMidnight());
 	}
 
+	//TODO test
+	public static ReadableInterval recentYearsInterval(int yearCount) {
+		return new Interval(Years.years(yearCount), tomorrowMidnight());
+	}
+	
 }

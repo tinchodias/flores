@@ -16,7 +16,7 @@ public class SellSearchResultsSpecification extends LazySearchResultsSpecificati
 		add(MessageId.client);
 		add(MessageId.paymentTotal, Pesos.class);
 		add(MessageId.costTotal, Pesos.class);
-		add(MessageId.total, Pesos.class);
+		add(MessageId.sellTotal, Pesos.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

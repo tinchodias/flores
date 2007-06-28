@@ -13,4 +13,10 @@ public class ModelFactory {
 		return new Model(store, users);
 	}
 
+	public static Model makeStressModel() {
+		Store store = StoreFactory.makeStressStore();
+		Users users = UsersFactory.makeSimpleUsers();
+		return new Model(store, users);
+	}
+	
 }

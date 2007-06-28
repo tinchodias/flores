@@ -26,19 +26,19 @@ import org.joda.time.ReadableInterval;
 
 public class Store {
 
-	private Collection<Buy> buys = CollectionFactory.newSet();
-	private Collection<Sell> sells = CollectionFactory.newSet();
-	private Collection<BuyAnnulment> buyAnnulments = CollectionFactory.newSet();
-	private Collection<SellAnnulment> sellAnnulments = CollectionFactory.newSet();
-	private Collection<Article> stockArticles = CollectionFactory.newSet();
-	private Collection<Article> expensesArticles = CollectionFactory.newSet();
-	private Collection<Expense> expenses = CollectionFactory.newSet();
-	private Collection<JuridicPerson> clients = CollectionFactory.newSet(); 
-	private Collection<JuridicPerson> suppliers = CollectionFactory.newSet();
-	private Collection<JuridicPerson> vendors = CollectionFactory.newSet();
-	private Collection<ArticleGroup> stockArticleGroups = CollectionFactory.newSet();
-	private Collection<Province> provinces = CollectionFactory.newSet();
-	private Collection<City> cities = CollectionFactory.newSet();
+	private Collection<Buy> buys = CollectionFactory.newList();
+	private Collection<Sell> sells = CollectionFactory.newList();
+	private Collection<BuyAnnulment> buyAnnulments = CollectionFactory.newList();
+	private Collection<SellAnnulment> sellAnnulments = CollectionFactory.newList();
+	private Collection<Article> stockArticles = CollectionFactory.newList();
+	private Collection<Article> expensesArticles = CollectionFactory.newList();
+	private Collection<Expense> expenses = CollectionFactory.newList();
+	private Collection<JuridicPerson> clients = CollectionFactory.newList(); 
+	private Collection<JuridicPerson> suppliers = CollectionFactory.newList();
+	private Collection<JuridicPerson> vendors = CollectionFactory.newList();
+	private Collection<ArticleGroup> stockArticleGroups = CollectionFactory.newList();
+	private Collection<Province> provinces = CollectionFactory.newList();
+	private Collection<City> cities = CollectionFactory.newList();
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts();
