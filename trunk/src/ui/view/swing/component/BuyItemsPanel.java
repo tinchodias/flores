@@ -7,11 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import query.framework.results.BuyItemsLazySearchResults;
-import query.framework.results.SearchResults;
-
 import message.MessageId;
 import model.receipt.BuyItems;
+import query.framework.results.BuyItemsLazySearchResults;
+import query.framework.results.SearchResults;
 import ui.controller.action.Action;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.actionadapter.ActionAdapter;
@@ -37,6 +36,8 @@ public class BuyItemsPanel extends StandardSearchPanel {
 
 	private void initInfoPanel() {
 		totalLabel = new JLabel("                    ");
+		totalLabel.setFont(totalLabel.getFont().deriveFont(20.0f));
+		
 		adjustTotalButton = new JButton();
 		
 		infoPanel = new JPanel();

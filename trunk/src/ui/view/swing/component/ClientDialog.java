@@ -24,7 +24,7 @@ public class ClientDialog extends StandardDetailDialog implements ClientUI {
 		addressPanel = new AddressPanel();
 		
 		centerPanel().add(SwingUI.instance().label(nameField, MessageId.clientName));
-		centerPanel().add(addressPanel);
+		centerPanel().add(SwingUI.instance().titledBorderPanel(addressPanel, MessageId.mainAddress));
 	}
 
 	public String getClientName() {

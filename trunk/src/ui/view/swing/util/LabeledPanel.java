@@ -5,16 +5,17 @@ import java.awt.Component;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class LabeledPanel extends JPanel {
 
 	private JLabel label;
 	private final Component component;
 
-	public LabeledPanel(Component component, String label) {
+	public LabeledPanel(Component component, String label, Border border) {
 		this.component = component;
 
-		setBorder(null);
+		setBorder(border);
 		setLayout(new BorderLayout());
 		
 		this.label = new JLabel(label);
@@ -22,6 +23,10 @@ public class LabeledPanel extends JPanel {
 		add(component, BorderLayout.CENTER);
 	}
 
+	public LabeledPanel(Component component, String label) {
+		this(component, label, null);
+	}
+	
 	public void setLabel(String string) {
 		label.setText(string);
 	}

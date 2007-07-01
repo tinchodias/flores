@@ -1,7 +1,6 @@
 package ui.view.swing.component;
 
-import java.awt.FlowLayout;
-
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import message.MessageId;
@@ -22,7 +21,8 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	private void initComponents() {
 		initButtons();
 		
-		this.centerPanel().setLayout(new FlowLayout(FlowLayout.LEFT));
+//		this.centerPanel().setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.centerPanel().setLayout(new BoxLayout(centerPanel(), BoxLayout.PAGE_AXIS));
 	}
 
 	private void initButtons() {

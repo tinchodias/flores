@@ -36,6 +36,8 @@ public class SellItemsPanel extends StandardSearchPanel {
 
 	private void initInfoPanel() {
 		totalLabel = new JLabel("                    ");
+		totalLabel.setFont(totalLabel.getFont().deriveFont(20.0f));
+
 		adjustTotalButton = new JButton();
 		
 		infoPanel = new JPanel();

@@ -136,7 +136,7 @@ public class StoreFactory {
 					Article article = (Article) oneOf(store.stockArticles());
 					spec.add(article, new Double(RandomUtils.nextInt(20)), randomPesos(40), store.stock().cost(article));
 				}
-				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.sellTotal()), (JuridicPerson) oneOf(store.vendors()));
+				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (JuridicPerson) oneOf(store.vendors()));
 				store.add(sell);
 			}
 		}
