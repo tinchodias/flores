@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
 
 import message.MessageId;
 import message.MessageRepository;
@@ -37,22 +37,31 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	private JPanel northPanel;
 	private JPanel filtersButtonsPanel;
 	private JButton searchButton;
+	private JPanel eastPanel;
 
 	public StandardSearchPanel() {
 		initCenterPanel();
-		initButtonPanel();
+		initEastPanel();
 		
 		this.setLayout(new BorderLayout());
 		this.add(centerPanel, BorderLayout.CENTER);
-		this.add(buttonPanel, BorderLayout.EAST);
+		this.add(eastPanel, BorderLayout.EAST);
+	}
+
+	private void initEastPanel() {
+		initButtonPanel();
+		
+		eastPanel = SwingUI.instance().titledBorderPanel(buttonPanel, MessageId.searchPanelButtons);
+		Border titledBorder = eastPanel.getBorder();
+		Border emptyBorder = BorderFactory.createEmptyBorder(0, 5, 0, 0);
+		Border compoundBorder = BorderFactory.createCompoundBorder(emptyBorder, titledBorder);
+		eastPanel.setBorder(compoundBorder);
+		eastPanel.setVisible(false);
 	}
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
-		FixedBoxLayout fixedBoxLayout = new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 25));
-		buttonPanel.setLayout(fixedBoxLayout);
-		
-		buttonPanel.setBorder(new EmptyBorder(0, 10, 0, 0));
+		buttonPanel.setLayout(new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 25)));
 	}
 
 	private void initCenterPanel() {
@@ -144,6 +153,9 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	public void add(Action action) {
 		JButton button = new JButton(new ActionAdapter(action));
 		buttonPanel().add(button);
+		
+		// Makes visible the east panel (initially hidden)
+		eastPanel.setVisible(true);
 	}
 	
 	public void setDefaultAction(Action action) {

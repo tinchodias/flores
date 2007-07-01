@@ -1,6 +1,7 @@
 package ui.view.swing.component;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 
@@ -18,6 +19,7 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 		super(titleMessageId);
 		this.searchPanel = searchPanel;  
 		initComponents();
+		setPreferredSize(new Dimension(640, 480));
 		pack();
 		setLocationRelativeTo(null);
 	}

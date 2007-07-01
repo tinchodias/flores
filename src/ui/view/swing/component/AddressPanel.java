@@ -1,7 +1,6 @@
 package ui.view.swing.component;
 
-import java.awt.FlowLayout;
-
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +24,10 @@ public class AddressPanel extends JPanel implements AddressUI {
 		addressField = new JTextField();
 		cityPicker = new ObjectPicker();
 
-		setLayout(new FlowLayout(FlowLayout.LEFT));
+//		setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+//		Border titledBorder = BorderFactory.createTitledBorder("Domicilio Principal");
+//		setBorder(titledBorder);
 		add(SwingUI.instance().label(addressField, MessageId.address));
 		add(SwingUI.instance().label(cityPicker, MessageId.city));
 	}

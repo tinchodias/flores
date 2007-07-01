@@ -1,5 +1,6 @@
 package ui.view.swing.component;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -31,6 +32,7 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		
 		getRootPane().setDefaultButton(loginButton);
 
+		centerPanel().setLayout(new BoxLayout(centerPanel(), BoxLayout.PAGE_AXIS));
 		centerPanel().add(SwingUI.instance().label(nameField, MessageId.userName));
 		centerPanel().add(SwingUI.instance().label(passwordField, MessageId.userPassword));
 		buttonPanel().add(loginButton);

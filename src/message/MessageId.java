@@ -32,6 +32,7 @@ public enum MessageId {
 	stockDropOutDialogTitle,
 	
 	searchFiltersTitle,
+	searchPanelButtons, 
 
 	objectPickerButton, 
 	
@@ -57,6 +58,7 @@ public enum MessageId {
 	address, 
 	cities, 
 	province, 
+	mainAddress, 
 	
 	suppliers, 
 	supplierName, 

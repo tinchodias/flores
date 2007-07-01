@@ -1,16 +1,22 @@
 package ui.view.swing;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
+import javax.swing.border.Border;
 import javax.swing.table.TableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
@@ -46,20 +52,35 @@ public class SwingUI extends UI {
 		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
 	}
 
-	public Component label(Component component, MessageId messageId) {
+	public JPanel label(Component component, MessageId messageId) {
 		LabeledPanel labeledPanel = new LabeledPanel(component, MessageRepository.instance().get(messageId) + ":");
 
 		//TODO hardcoded width
 		Dimension size = labeledPanel.getPreferredSize();
 		size.width = 150;
 		labeledPanel.setPreferredSize(size);
+		labeledPanel.setMinimumSize(size);
 		
 		return labeledPanel;
 	}
 
+	public JPanel titledBorderPanel(Component component, MessageId messageId) {
+		String title = MessageRepository.instance().get(messageId);
+		Border titledBorder = BorderFactory.createTitledBorder(title);
+		Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border compoundBorder = BorderFactory.createCompoundBorder(titledBorder, emptyBorder);
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setBorder(compoundBorder);
+		panel.add(component);
+		return panel;
+	}
+
 	public JTable table(TableModel tableModel) {
 		JTable table = new JTable(tableModel);
+		table.setGridColor(Color.LIGHT_GRAY);
+		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
 		return table;
