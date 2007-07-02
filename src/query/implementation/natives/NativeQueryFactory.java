@@ -21,6 +21,7 @@ import query.criteria.SellSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
+import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.ArticleGroupSearchResultsSpecification;
@@ -169,6 +170,27 @@ public class NativeQueryFactory extends QueryFactory {
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new ArticleGroupSearchResultsSpecification();
 			}
+		};
+	}
+	
+	public SearchQuery stringSearchQuery(final Iterable items) {
+		return new StandardSearchQuery<Object, StringCriteria>() {
+
+			protected boolean accepts(Object object) {
+				String criteriaString = StringUtils.lowerCase(criteria().getString());
+				String objectString = StringUtils.lowerCase(object.toString());
+				return objectString.startsWith(criteriaString);
+			}
+
+			protected Iterable objects() {
+				return items;
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				//TODO
+				return null;
+			}
+			
 		};
 	}
 }

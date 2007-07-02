@@ -29,5 +29,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery sellSearchQuery();
 
 	public abstract SearchQuery articleGroupSearchQuery();
+
+	public abstract SearchQuery stringSearchQuery(Iterable items);
 	
 }
