@@ -1,7 +1,5 @@
 package query.implementation.natives;
 
-import java.util.Collection;
-
 import model.Store;
 import persistence.Model;
 import persistence.ModelPersistence;
@@ -22,7 +20,7 @@ abstract class StandardSearchQuery <GenericType, GenericCriteria extends Criteri
 	}
 	
 	public SearchResults results() {
-		Collection objects = objects();
+		Iterable objects = objects();
 
 		LazySearchResults results = new DefaultLazySearchResults(resultsSpecification());
 		
@@ -50,6 +48,6 @@ abstract class StandardSearchQuery <GenericType, GenericCriteria extends Criteri
 
 	protected abstract LazySearchResultsSpecification resultsSpecification();
 
-	protected abstract Collection objects();
+	protected abstract Iterable objects();
 	
 }
