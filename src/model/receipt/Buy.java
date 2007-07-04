@@ -27,11 +27,11 @@ public class Buy {
 		return items;
 	}
 
-	public Payment getPayment() {
+	public Payment payment() {
 		return payment;
 	}
 
-	public JuridicPerson getSupplier() {
+	public JuridicPerson supplier() {
 		return supplier;
 	}
 

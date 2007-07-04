@@ -41,8 +41,9 @@ public class Store {
 	private Collection<City> cities = CollectionFactory.newList();
 
 	private Stock stock = new Stock();
-	private ClientsDebts clientsDebts = new ClientsDebts();
+	private ClientsDebts clientsDebts = new ClientsDebts(this);
 	private CommisionsManager commissions = new BasicCommissionsManager(this);
+	private CashBook cashBook = new CashBook();
 
 	public Stock stock() {
 		return stock;
@@ -76,7 +77,11 @@ public class Store {
 		return commissions;
 	}
 	
-	public Collection<Expense> expenses() {
+	public CashBook cashBook() {
+		return cashBook;
+	}
+
+	public Iterable<Expense> expenses() {
 		return expenses;
 	}
 
@@ -92,34 +97,43 @@ public class Store {
 		return cities;
 	}
 
-	public Collection<Buy> buys() {
+	public Iterable<Buy> buys() {
 		return buys;
 	}
 
-	public Collection<Sell> sells() {
+	public Iterable<Sell> sells() {
 		return sells;
 	}
 
 	public void add(Buy buy) {
 		buys.add(buy);
 		stock.apply(buy);
+		cashBook.add(buy);
 	}
 
 	public void add(Sell sell) {
 		sells.add(sell);
 		stock.apply(sell);
 		clientsDebts.apply(sell);
+		cashBook.add(sell);
 	}
 
 	public void add(BuyAnnulment annulment) {
 		buyAnnulments.add(annulment);
 		stock.apply(annulment);
+		cashBook.add(annulment);
 	}
 
 	public void add(SellAnnulment annulment) {
 		sellAnnulments.add(annulment);
 		stock.apply(annulment);
 		clientsDebts.apply(annulment);
+		cashBook.add(annulment);
+	}
+
+	public void add(Expense expense) {
+		expenses.add(expense);
+		cashBook.add(expense);
 	}
 
 	public Collection<Sell> sellsAt(JuridicPerson vendor, ReadableInterval lapse) {

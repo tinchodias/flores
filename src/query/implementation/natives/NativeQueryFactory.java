@@ -93,7 +93,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return criteria().getInterval().contains(object.date());
 			}
 
-			protected Collection objects() {
+			protected Iterable objects() {
 				return store().buys();
 			}
 
@@ -146,7 +146,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return criteria().getInterval().contains(object.date());
 			}
 
-			protected Collection objects() {
+			protected Iterable objects() {
 				return store().sells();
 			}
 

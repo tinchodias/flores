@@ -28,7 +28,7 @@ public class BuyTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeEmptyStore();
+		store = StoreFixture.emptyStore();
 
 		marquez = new JuridicPerson("Marquez");
 		store.clients().add(marquez);
@@ -37,13 +37,6 @@ public class BuyTest extends TestCase {
 		claveles = new Article("Paquete de Clavel");
 		store.stockArticles().add(claveles);
 		store.stockArticles().add(rosas);
-	}
-
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
 	}
 
 	public void testBuyAndAnnulment() {
