@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.JuridicPerson;
+import model.Store;
 import model.money.Pesos;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
@@ -15,6 +16,11 @@ public class ClientsDebts {
 	private Map<JuridicPerson, Pesos> debts = new HashMap<JuridicPerson, Pesos>();
 	private Collection<LostDebtDeclaration> declarations = new ArrayList<LostDebtDeclaration>();
 	private Collection<ClientDebtCancellation> cancellations = new ArrayList<ClientDebtCancellation>();
+	private final Store store;
+
+	public ClientsDebts(Store store) {
+		this.store = store;
+	}
 
 	public Pesos debtOf(JuridicPerson client) {
 		Pesos debt = debts.get(client);
@@ -39,6 +45,7 @@ public class ClientsDebts {
 	public void add(ClientDebtCancellation cancellation) {
 		cancellations.add(cancellation);
 		reduceDebt(cancellation.getClient(), cancellation.getAmount());
+		store.cashBook().add(cancellation);
 	}
 
 	public void apply(Sell sell) {

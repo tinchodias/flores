@@ -4,15 +4,11 @@
 package model;
 
 import junit.framework.TestCase;
-import model.money.Cash;
-import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.receipt.SellItems;
 import model.stock.Article;
-
-import org.joda.time.DateTime;
 
 public class SellTest extends TestCase {
 
@@ -28,7 +24,7 @@ public class SellTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeSimpleStore();
+		store = StoreFixture.simpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
 		
@@ -49,38 +45,17 @@ public class SellTest extends TestCase {
 		Pesos initialDebt = store.debts().debtOf(elvira);
 		double initialStock = store.stock().count(clavel);
 		
-		doSell();
+		sell = StoreFixture.simpleSell(clavel, elvira, eduardo, store.stock().cost(clavel));
+		store.add(sell);
 
 		assertEquals(initialDebt.plus(Pesos.newFor(400.0)), store.debts().debtOf(elvira));
 		assertEquals(initialStock - 100.0, store.stock().count(clavel));
-		
-		doAnnulment();
+
+		SellAnnulment annulment = StoreFixture.sellAnnulment(sell);
+		store.add(annulment);
 		
 		assertEquals(initialDebt, store.debts().debtOf(elvira));
 		assertEquals(initialStock, store.stock().count(clavel));
-	}
-
-	/**
-	 * Elvira buys 100 claveles at $9 each, paying $500. 
-	 */
-	private void doSell() {
-		SellItems spec = new SellItems();
-		spec.add(clavel, 100.0, Pesos.newFor(9.0), store.stock().cost(clavel));
-		
-		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(500.0)));
-		
-		sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
-		store.add(sell);
-	}
-	
-	/**
-	 * Makes the annulment of the sell.
-	 */
-	private void doAnnulment() {
-		SellAnnulment annulment = new SellAnnulment(sell, new DateTime());
-		
-		store.add(annulment);
 	}
 	
 	public void testAdjustSellTotal() {

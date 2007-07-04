@@ -5,12 +5,17 @@ import java.util.Collection;
 import model.address.Address;
 import model.address.City;
 import model.address.Province;
+import model.debts.ClientDebtCancellation;
+import model.debts.LostDebtDeclaration;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
+import model.receipt.BuyAnnulment;
 import model.receipt.BuyItems;
+import model.receipt.Expense;
 import model.receipt.Sell;
+import model.receipt.SellAnnulment;
 import model.receipt.SellItems;
 import model.stock.Article;
 import model.stock.ArticleGroup;
@@ -21,13 +26,13 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.ReadableDateTime;
 
-public class StoreFactory {
+public class StoreFixture {
 
-	public static Store makeEmptyStore() {
+	public static Store emptyStore() {
 		return new Store();
 	}
 
-	public static Store makeSimpleStore() {
+	public static Store simpleStore() {
 		Store store = new Store();
 
 		Province salta = new Province("Salta");
@@ -54,15 +59,10 @@ public class StoreFactory {
 		Article alquiler = new Article("Alquiler del depósito");
 		store.expensesArticles().add(alquiler);
 		
-		BuyItems spec = new BuyItems();
-		spec.add(paqueteClavel, 2000.0, Pesos.newFor(20.0));
-		Buy buy = new Buy(spec, new DateTime(), marquez, new Payment());
-		store.add(buy);
-		
 		return store;
 	}
 
-	public static Store makeStressStore() {
+	public static Store stressStore() {
 		Store store = new Store();
 		
 		System.out.println("Generating Provinces");
@@ -161,8 +161,92 @@ public class StoreFactory {
 
 	private static Object oneOf(Collection objects) {
 		int i = RandomUtils.nextInt(objects.size());
-		//TODO too slow?
 		return objects.toArray()[i];
 	}
 
+	/**
+	 * An expense of $300.
+	 * 
+	 * @param article
+	 * @return
+	 */
+	public static Expense simpleExpense(Article article) {
+		return new Expense(article, Pesos.newFor(300.0), new DateTime());
+	}
+
+	/**
+	 * The client buys 100 claveles at $9 each, paying $500.
+	 *  
+	 * @param article 
+	 * @param client 
+	 * @param vendor 
+	 * @param cost 
+	 * @return 
+	 */
+	public static Sell simpleSell(Article article, JuridicPerson client, JuridicPerson vendor, Pesos cost) {
+		SellItems spec = new SellItems();
+		spec.add(article, 100.0, Pesos.newFor(9.0), cost);
+		
+		Payment payment = new Payment();
+		payment.add(new Cash(Pesos.newFor(500.0)));
+		
+		return new Sell(spec, new DateTime(), client, payment, vendor);
+	}
+
+	/**
+	 * Creates a buy annullment.
+	 * 
+	 * @param sell The sell to cancel.
+	 * @return The annulment of the sell. 
+	 */
+	public static SellAnnulment sellAnnulment(Sell sell) {
+		return new SellAnnulment(sell, new DateTime());
+	}
+
+	/**
+	 * Creates a buy to the supplier of 2000 articles, paying $950.
+	 * 
+	 * @param stockArticle
+	 * @param supplier
+	 * @return A buy.
+	 */
+	public static Buy simpleBuy(Article stockArticle, JuridicPerson supplier) {
+		BuyItems spec = new BuyItems();
+		spec.add(stockArticle, 2000.0, Pesos.newFor(20.0));
+
+		Payment payment = new Payment();
+		payment.add(new Cash(Pesos.newFor(950.0)));
+
+		return new Buy(spec, new DateTime(), supplier, payment);
+	}
+
+	/**
+	 * Craetes a buy annulment.
+	 * 
+	 * @param buy The buy to cancel.
+	 * @return The annulment of the buy.
+	 */
+	public static BuyAnnulment buyAnnulment(Buy buy) {
+		return new BuyAnnulment(buy, new DateTime());
+	}
+
+	/**
+	 * Creates a debt cancellation of $40.
+	 * 
+	 * @param client
+	 * @return
+	 */
+	public static ClientDebtCancellation simpleClientDebtCancellation(JuridicPerson client) {
+		return new ClientDebtCancellation(client, Pesos.newFor(40.0), new DateTime());
+	}
+
+	/**
+	 * Creates a lost debt declaration of $40.
+	 * 
+	 * @param client
+	 * @return
+	 */
+	public static LostDebtDeclaration simpleLostDebtDeclaration(JuridicPerson client) {
+		return new LostDebtDeclaration(client, Pesos.newFor(40.0), new DateTime());
+	}
 }

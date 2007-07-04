@@ -4,10 +4,6 @@
 package model;
 
 import junit.framework.TestCase;
-import model.JuridicPerson;
-import model.Store;
-import model.debts.ClientDebtCancellation;
-import model.debts.LostDebtDeclaration;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
@@ -30,7 +26,7 @@ public class ClientsDebtsTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeSimpleStore();
+		store = StoreFixture.simpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
 		
@@ -51,10 +47,10 @@ public class ClientsDebtsTest extends TestCase {
 		
 		assertEquals(Pesos.newFor(100.0), store.debts().debtOf(elvira));
 
-		store.debts().add(new ClientDebtCancellation(elvira, Pesos.newFor(40.0), new DateTime()));
+		store.debts().add(StoreFixture.simpleClientDebtCancellation(elvira));
 		assertEquals(Pesos.newFor(60.0), store.debts().debtOf(elvira));
 		
-		store.debts().add(new LostDebtDeclaration(elvira, Pesos.newFor(40.0), new DateTime()));
+		store.debts().add(StoreFixture.simpleLostDebtDeclaration(elvira));
 		assertEquals(Pesos.newFor(20.0), store.debts().debtOf(elvira));
 	}
 

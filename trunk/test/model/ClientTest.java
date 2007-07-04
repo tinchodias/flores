@@ -20,7 +20,7 @@ public class ClientTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeEmptyStore();
+		store = StoreFixture.emptyStore();
 
 		clavel = new Article("Paquete de Clavel");
 		store.stockArticles().add(clavel);

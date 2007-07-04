@@ -19,7 +19,7 @@ public class ArticleGroupsTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeSimpleStore();
+		store = StoreFixture.simpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
 		

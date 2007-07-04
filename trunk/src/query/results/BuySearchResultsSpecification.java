@@ -24,9 +24,9 @@ public class BuySearchResultsSpecification extends LazySearchResultsSpecificatio
 		case 0:
 			return buy.date();
 		case 1:
-			return buy.getSupplier();
+			return buy.supplier();
 		case 2:
-			return buy.getPayment().total();
+			return buy.payment().total();
 		case 3:
 			return buy.items().total();
 		}

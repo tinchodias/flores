@@ -34,7 +34,7 @@ public class BasicCommissionsTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		store = StoreFactory.makeSimpleStore();
+		store = StoreFixture.simpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
 		
@@ -109,6 +109,6 @@ public class BasicCommissionsTest extends TestCase {
 	 */
 	private void doExpense() {
 		Expense expense = new Expense(alquiler, Pesos.newFor(200.0), new DateTime());
-		store.expenses().add(expense);
+		store.add(expense);
 	}
 }
