@@ -53,6 +53,7 @@ public enum MessageId {
 	show, 
 	cashPay, 
 	total, 
+	reason, 
 	
 	city, 
 	address, 
@@ -74,6 +75,9 @@ public enum MessageId {
 	sellItem, 
 	
 	articleGroups, 
+	
+	cashBook, 
+	currentCash, 
 	
 	;
 	

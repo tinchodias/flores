@@ -14,6 +14,7 @@ import message.MessageRepository;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.ArticleGroupsDialogInitializer;
 import ui.controller.initializer.BuysDialogInitializer;
+import ui.controller.initializer.CashBookDialogInitializer;
 import ui.controller.initializer.CitiesDialogInitializer;
 import ui.controller.initializer.ClientsDialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
@@ -56,14 +57,16 @@ public class MainFrame extends JFrame implements MainUI {
 	}
 
 	private Component newStoreMenu() {
-		storeMenu = new JMenu("Depósito");
+		storeMenu = new JMenu("Stock");
 
+		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
 		ActionAdapter showArticleGroupsAction = new ActionAdapter(new ShowDialogAction(new ArticleGroupsDialogInitializer(), MessageId.articleGroups));
 		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
 		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
 		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buys));
 		ActionAdapter showSellsAction = new ActionAdapter(new ShowDialogAction(new SellsDialogInitializer(), MessageId.sells));
 
+		storeMenu.add(new JMenuItem(showCashBookAction));
 		storeMenu.add(new JMenuItem(showArticleGroupsAction));
 		storeMenu.add(new JMenuItem(showStockAction));
 		storeMenu.add(new JMenuItem(showStockDropDownsAction));

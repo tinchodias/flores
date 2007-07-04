@@ -14,6 +14,8 @@ public abstract class UI {
 
 	private MainUI mainUI;
 
+	public abstract void showMessage(String message, String title);
+	
 	public abstract void showInfo(String message);
 
 	public abstract void showError(String message);

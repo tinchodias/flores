@@ -23,12 +23,14 @@ import javax.swing.text.NumberFormatter;
 
 import message.MessageId;
 import message.MessageRepository;
+import model.CashBookEntry;
 import model.money.Pesos;
 
 import org.joda.time.ReadableInstant;
 
 import ui.UI;
 import ui.view.swing.component.MainFrame;
+import ui.view.swing.util.CashBookCellRenderer;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.PesosTableCellRenderer;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
@@ -42,6 +44,10 @@ public class SwingUI extends UI {
 			instance = new SwingUI();
 		}
 		return instance;
+	}
+	
+	public void showMessage(String message, String title) {
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public void showInfo(String message) {
@@ -83,6 +89,7 @@ public class SwingUI extends UI {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
+		table.setDefaultRenderer(CashBookEntry.class, CashBookCellRenderer.instance());
 		return table;
 	}
 
