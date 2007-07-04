@@ -2,6 +2,7 @@ package query.implementation.natives;
 
 import java.util.Collection;
 
+import model.CashBookEntry;
 import model.JuridicPerson;
 import model.address.City;
 import model.receipt.Buy;
@@ -15,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import query.QueryFactory;
 import query.criteria.ArticleGroupSearchCriteria;
 import query.criteria.BuySearchCriteria;
+import query.criteria.CashBookEntrySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.SellSearchCriteria;
@@ -26,6 +28,7 @@ import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
+import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
@@ -189,6 +192,23 @@ public class NativeQueryFactory extends QueryFactory {
 			protected LazySearchResultsSpecification resultsSpecification() {
 				//TODO
 				return null;
+			}
+		};
+	}
+	
+	public SearchQuery cashBookEntrySearchQuery() {
+		return new StandardSearchQuery<CashBookEntry, CashBookEntrySearchCriteria>() {
+
+			protected boolean accepts(CashBookEntry object) {
+				return criteria().getInterval().contains(object.getDate());
+			}
+
+			protected Iterable objects() {
+				return store().cashBook().entries();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new CashBookEntrySearchResultsSpecification();
 			}
 			
 		};

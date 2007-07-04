@@ -31,5 +31,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery articleGroupSearchQuery();
 
 	public abstract SearchQuery stringSearchQuery(Iterable items);
+
+	public abstract SearchQuery cashBookEntrySearchQuery();
 	
 }
