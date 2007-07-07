@@ -3,7 +3,7 @@ package ui.view.component;
 import model.money.Pesos;
 import model.stock.Article;
 import ui.controller.action.Action;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 
 public interface SellItemUI extends DetailUI {
 

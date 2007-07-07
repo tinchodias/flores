@@ -1,4 +1,4 @@
-package ui.controller.initializer;
+package ui.controller.initializer.search;
 
 import message.MessageId;
 import query.framework.query.SearchQuery;
@@ -7,6 +7,7 @@ import ui.controller.action.CloseDialogAction;
 import ui.controller.action.CompositeAction;
 import ui.controller.action.SearchAction;
 import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.DialogInitializer;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;

@@ -49,6 +49,7 @@ public enum MessageId {
 	fromDate,
 	toDate, 
 	value, 
+	amount, 
 	name, 
 	show, 
 	cashPay, 

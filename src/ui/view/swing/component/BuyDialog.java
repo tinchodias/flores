@@ -10,7 +10,7 @@ import message.MessageId;
 import model.JuridicPerson;
 import model.money.Pesos;
 import ui.controller.action.Action;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.BuyUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.objectpicker.ObjectPicker;
