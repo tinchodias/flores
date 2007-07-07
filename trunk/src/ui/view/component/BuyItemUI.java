@@ -2,7 +2,7 @@ package ui.view.component;
 
 import model.money.Pesos;
 import model.stock.Article;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 
 public interface BuyItemUI extends DetailUI {
 

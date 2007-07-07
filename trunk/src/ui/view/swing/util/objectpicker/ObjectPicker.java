@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import ui.controller.action.objectpicker.ShowObjectPickerDialog;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
 

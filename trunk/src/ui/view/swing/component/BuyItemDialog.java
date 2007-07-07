@@ -5,7 +5,7 @@ import javax.swing.JFormattedTextField;
 import message.MessageId;
 import model.money.Pesos;
 import model.stock.Article;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.BuyItemUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.objectpicker.ObjectPicker;

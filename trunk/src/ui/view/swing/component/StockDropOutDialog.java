@@ -4,7 +4,7 @@ import javax.swing.JTextField;
 
 import message.MessageId;
 import model.stock.Article;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.StockDropOutUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.objectpicker.ObjectPicker;

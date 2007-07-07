@@ -1,27 +1,27 @@
-package ui.controller.initializer;
+package ui.controller.initializer.search;
 
 import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
-import ui.view.swing.component.ArticleGroupSearchPanel;
+import ui.view.swing.component.CitySearchPanel;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
 
-public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitializer {
+public class CitiesDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
 	}
 
 	protected StandardSearchPanel searchPanel() {
-		return new ArticleGroupSearchPanel();
+		return new CitySearchPanel();
 	}
 
 	protected SearchQuery searchQuery() {
-		return QueryFactory.instance().articleGroupSearchQuery();
+		return QueryFactory.instance().citySearchQuery();
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.articleGroup;
+		return MessageId.cities;
 	}
 
 }

@@ -7,7 +7,7 @@ import message.MessageId;
 import model.money.Pesos;
 import model.stock.Article;
 import ui.controller.action.Action;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.SellItemUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.actionadapter.SelectionListenerAdapter;

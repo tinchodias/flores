@@ -1,5 +1,6 @@
 package ui.view.swing.util;
 
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import message.MessageId;
@@ -21,6 +22,7 @@ public class CashBookCellRenderer extends DefaultTableCellRenderer {
 	
 	private CashBookCellRenderer() {
 		super();
+		this.setHorizontalAlignment(JLabel.CENTER);
 	}
 
 	protected void setValue(Object value) {

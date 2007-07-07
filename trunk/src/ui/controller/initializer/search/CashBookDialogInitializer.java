@@ -1,4 +1,4 @@
-package ui.controller.initializer;
+package ui.controller.initializer.search;
 
 import message.MessageId;
 import query.QueryFactory;

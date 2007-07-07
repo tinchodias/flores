@@ -3,7 +3,7 @@ package ui.controller.action;
 import message.MessageId;
 import model.JuridicPerson;
 import ui.UI;
-import ui.controller.initializer.ModifyClientDialogInitializer;
+import ui.controller.initializer.detail.ModifyClientDialogInitializer;
 import ui.view.component.SearchUI;
 
 public class ShowModifyClientAction implements Action {

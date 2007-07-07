@@ -2,7 +2,7 @@ package ui.controller.action.objectpicker;
 
 import message.MessageId;
 import ui.controller.action.Action;
-import ui.controller.initializer.SearchDialogInitializer;
+import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.util.objectpicker.ObjectPicker;
 

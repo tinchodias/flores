@@ -1,28 +1,27 @@
-package ui.controller.initializer;
+package ui.controller.initializer.search;
 
 import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
-import ui.view.swing.component.SellSearchPanel;
+import ui.view.swing.component.ArticleGroupSearchPanel;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
 
-public class SellsDialogInitializer extends StandardSearchDialogInitializer {
+public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		searchDialog.getSearchPanel().add(showAndRefreshAction(new CreateSellDialogInitializer(), MessageId.create, searchDialog));
 	}
 
 	protected StandardSearchPanel searchPanel() {
-		return new SellSearchPanel();
+		return new ArticleGroupSearchPanel();
 	}
 
 	protected SearchQuery searchQuery() {
-		return QueryFactory.instance().sellSearchQuery();
+		return QueryFactory.instance().articleGroupSearchQuery();
 	}
 
 	protected MessageId titleMessageId() {
-		return MessageId.sells;
+		return MessageId.articleGroup;
 	}
 
 }
