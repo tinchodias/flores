@@ -13,7 +13,7 @@ public class CashBookEntrySearchResultsSpecification extends LazySearchResultsSp
 
 	public CashBookEntrySearchResultsSpecification() {
 		add(MessageId.date, ReadableInstant.class);
-		add(MessageId.value, Pesos.class);
+		add(MessageId.amount, Pesos.class);
 		add(MessageId.reason, CashBookEntry.class);
 	}
 	
