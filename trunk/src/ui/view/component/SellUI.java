@@ -10,8 +10,13 @@ public interface SellUI extends DetailUI {
 	JuridicPerson getClient();
 	
 	Pesos getCashPay();
+
+	void setClient(JuridicPerson client);
+	
+	void setCashPay(Pesos value);
 	
 	SearchUI getItemsPanel();
+	
 	
 	void setClientSearchInitializer(SearchDialogInitializer initializer);
 	

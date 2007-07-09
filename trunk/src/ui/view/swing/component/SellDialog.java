@@ -62,10 +62,18 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 		return (JuridicPerson) clientPicker.getSelection();
 	}
 
+	public void setClient(JuridicPerson client) {
+		clientPicker.setSelection(client);
+	}
+	
 	public Pesos getCashPay() {
 		return SwingUI.instance().pesosFrom(cashField);
 	}
 
+	public void setCashPay(Pesos value) {
+		cashField.setValue(value.value());
+	}
+	
 	public void setAdjustTotalAction(Action action) {
 		itemsPanel.setAdjustTotalAction(action);
 	}
