@@ -11,7 +11,7 @@ import ui.view.swing.component.StandardSearchPanel;
 public class SellsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		searchDialog.getSearchPanel().add(showAndRefreshAction(new CreateSellDialogInitializer(), MessageId.create, searchDialog));
+		addShowAndRefreshAction(new CreateSellDialogInitializer(), MessageId.create, searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

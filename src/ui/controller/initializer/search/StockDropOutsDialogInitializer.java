@@ -11,7 +11,7 @@ import ui.view.swing.component.StockDropOutSearchPanel;
 public class StockDropOutsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		searchDialog.getSearchPanel().add(showAndRefreshAction(new CreateStockDropOutDialogInitializer(), MessageId.create, searchDialog));
+		addShowAndRefreshAction(new CreateStockDropOutDialogInitializer(), MessageId.create, searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

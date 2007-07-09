@@ -11,7 +11,7 @@ import ui.view.swing.component.SuppliersSearchPanel;
 public class SuppliersDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		searchDialog.getSearchPanel().add(showAndRefreshAction(new CreateSupplierDialogInitializer(), MessageId.create, searchDialog));
+		addShowAndRefreshAction(new CreateSupplierDialogInitializer(), MessageId.create, searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

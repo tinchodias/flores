@@ -114,7 +114,7 @@ public class StoreFixture {
 
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 2, 1);
+		DateMidnight buysEnd = new DateMidnight(2006, 1, 10);
 		for (ReadableDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
@@ -128,7 +128,7 @@ public class StoreFixture {
 
 		System.out.println("Generating Sells");
 		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
-		DateMidnight sellsEnd = new DateMidnight(2007, 2, 1);
+		DateMidnight sellsEnd = new DateMidnight(2007, 1, 10);
 		for (ReadableDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 100; i++) {
 				SellItems spec = new SellItems();
