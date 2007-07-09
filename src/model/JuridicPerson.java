@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.commons.lang.StringUtils;
+
 import model.address.Address;
 
 public class JuridicPerson {
@@ -8,6 +10,11 @@ public class JuridicPerson {
 	private Address address;
 
 	public JuridicPerson(String name, Address address) {
+		//TODO!
+		if (StringUtils.isBlank(name)) {
+			throw new RuntimeException("Nombre incorrecto");
+		}
+		
 		this.name = name;
 		this.address = address;
 	}

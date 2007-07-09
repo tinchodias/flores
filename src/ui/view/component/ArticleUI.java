@@ -5,10 +5,23 @@ import model.stock.ArticleGroup;
 
 public interface ArticleUI extends DetailUI {
 
-	public String getArticleName();
+	String getCode();
+
+	String getArticleName();
+
+	String getArticleSize();
 	
-	public ArticleGroup getArticleGroup();
+	ArticleGroup getArticleGroup();
 	
-	public void setArticleGroupSearchInitializer(SearchDialogInitializer initializer);
+	void setCode(String code);
+	
+	void setArticleName(String name);
+
+	void setArticleSize(String size);
+
+	void setArticleGroup(ArticleGroup articleGroup);
+
+	
+	void setArticleGroupSearchInitializer(SearchDialogInitializer initializer);
 	
 }

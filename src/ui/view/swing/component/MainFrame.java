@@ -32,6 +32,7 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu systemMenu;
 	private JMenu personsMenu;
 	private JMenu storeMenu;
+	private JMenu reportsMenu;
 
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
@@ -53,27 +54,36 @@ public class MainFrame extends JFrame implements MainUI {
 		menuBar.add(newSystemMenu());
 		menuBar.add(newPersonsMenu());
 		menuBar.add(newStoreMenu());
+		menuBar.add(newReportsMenu());
 		return menuBar;
 	}
 
 	private Component newStoreMenu() {
 		storeMenu = new JMenu("Stock");
 
-		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
-		ActionAdapter showArticleGroupsAction = new ActionAdapter(new ShowDialogAction(new ArticleGroupsDialogInitializer(), MessageId.articleGroups));
-		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
-		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
 		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buys));
 		ActionAdapter showSellsAction = new ActionAdapter(new ShowDialogAction(new SellsDialogInitializer(), MessageId.sells));
+		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
+		ActionAdapter showArticleGroupsAction = new ActionAdapter(new ShowDialogAction(new ArticleGroupsDialogInitializer(), MessageId.articleGroups));
+		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
 
-		storeMenu.add(new JMenuItem(showCashBookAction));
-		storeMenu.add(new JMenuItem(showArticleGroupsAction));
-		storeMenu.add(new JMenuItem(showStockAction));
-		storeMenu.add(new JMenuItem(showStockDropDownsAction));
 		storeMenu.add(new JMenuItem(showBuysAction));
 		storeMenu.add(new JMenuItem(showSellsAction));
+		storeMenu.add(new JMenuItem(showStockAction));
+		storeMenu.add(new JMenuItem(showArticleGroupsAction));
+		storeMenu.add(new JMenuItem(showStockDropDownsAction));
 		
 		return storeMenu;
+	}
+
+	private Component newReportsMenu() {
+		reportsMenu = new JMenu("Reportes");
+
+		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
+
+		reportsMenu.add(new JMenuItem(showCashBookAction));
+		
+		return reportsMenu;
 	}
 
 	private Component newPersonsMenu() {
@@ -103,12 +113,14 @@ public class MainFrame extends JFrame implements MainUI {
 		systemMenu.setEnabled(true);
 		personsMenu.setEnabled(false);
 		storeMenu.setEnabled(false);
+		reportsMenu.setEnabled(false);
 	}
 	
 	public void setLoggedUserState() {
 		systemMenu.setEnabled(false);
 		personsMenu.setEnabled(true);
 		storeMenu.setEnabled(true);
+		reportsMenu.setEnabled(true);
 	}
 
 }

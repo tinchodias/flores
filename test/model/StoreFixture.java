@@ -71,20 +71,28 @@ public class StoreFixture {
 			store.provinces().add(province);
 		}
 		
+		System.out.println("Generating Null City");
+		City nullCity = new City("Ninguna", (Province) oneOf(store.provinces()));
+		store.cities().add(nullCity);
+
 		System.out.println("Generating Cities");
 		for (int i = 0; i < 500; i++) {
 			City city = new City("Ciudad " + i, (Province) oneOf(store.provinces()));
 			store.cities().add(city);
 		}
 
+		System.out.println("Generating Final Consumer Client");
+		JuridicPerson finalConsumerClient = new JuridicPerson("Consumidor Final", new Address("Ninguna", store.cities().iterator().next()));
+		store.clients().add(finalConsumerClient);
+		
 		System.out.println("Generating Clients");
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 50; i++) {
 			JuridicPerson client = new JuridicPerson("Cliente " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
 			store.clients().add(client);
 		}
 		
 		System.out.println("Generating Suppliers");
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 50; i++) {
 			JuridicPerson supplier = new JuridicPerson("Proveedor " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
 			store.suppliers().add(supplier);
 		}
@@ -96,13 +104,13 @@ public class StoreFixture {
 		
 		System.out.println("Generating Stock Article Groups");
 		for (int i = 0; i < 100; i++) {
-			ArticleGroup group = new ArticleGroup("Grupo " + i);
+			ArticleGroup group = new ArticleGroup("Marca " + i);
 			store.stockArticleGroups().add(group);
 		}
 		
 		System.out.println("Generating Stock Articles");
 		for (int i = 0; i < 800; i++) {
-			Article article = new Article("Artículo " + i, (ArticleGroup) oneOf(store.stockArticleGroups()));
+			Article article = new Article(String.valueOf(1000000 + i), "Artículo " + i, String.valueOf(RandomUtils.nextInt(i + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
 			store.stockArticles().add(article);
 		}
 

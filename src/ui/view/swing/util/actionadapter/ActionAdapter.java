@@ -7,6 +7,7 @@ import javax.swing.Icon;
 
 import message.IconRepository;
 import message.MessageRepository;
+import ui.UI;
 import ui.controller.action.Action;
 
 public class ActionAdapter extends AbstractAction {
@@ -23,7 +24,12 @@ public class ActionAdapter extends AbstractAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		action.execute();
+		//TODO
+		try {
+			action.execute();
+		} catch (Exception ex) {
+			UI.instance().showInfo(ex.getMessage());
+		}
 	}
 	
 	private void initIcon() {

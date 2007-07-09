@@ -3,7 +3,6 @@ package ui.view.swing.component;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -24,7 +23,6 @@ import ui.view.swing.util.FixedBoxLayout;
 import ui.view.swing.util.TableModelAdapter;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 import ui.view.swing.util.actionadapter.ClickAdapter;
-import ui.view.swing.util.actionadapter.KeyTypedAdapter;
 
 public abstract class StandardSearchPanel extends JPanel implements SearchUI, Criteria {
 
@@ -168,7 +166,9 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 //			}
 //		}
 		resultsTable.addMouseListener(new ClickAdapter(action, 2));
-		resultsTable.addKeyListener(new KeyTypedAdapter(action, KeyEvent.VK_ENTER));
+
+		//FIXME ENTER selects the next row!
+//		resultsTable.addKeyListener(new KeyTypedAdapter(action, KeyEvent.VK_ENTER));
 	}
 
 	public Action getSearchAction() {

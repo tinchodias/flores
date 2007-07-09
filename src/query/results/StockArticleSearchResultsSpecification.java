@@ -10,6 +10,7 @@ import query.framework.results.LazySearchResultsSpecification;
 public class StockArticleSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public StockArticleSearchResultsSpecification() {
+		add(MessageId.code);
 		add(MessageId.name);
 		add(MessageId.articleGroup);
 		add(MessageId.count, Double.class);
@@ -20,12 +21,14 @@ public class StockArticleSearchResultsSpecification extends LazySearchResultsSpe
 		Article article = (Article) object;
 		switch (columnIndex) {
 		case 0:
-			return article.getName();
+			return article.getCode();
 		case 1:
-			return article.getGroup();
+			return article.toString();
 		case 2:
-			return ModelPersistence.instance().loadedModel().store().stock().count(article);
+			return article.getGroup();
 		case 3:
+			return ModelPersistence.instance().loadedModel().store().stock().count(article);
+		case 4:
 			return ModelPersistence.instance().loadedModel().store().stock().cost(article);
 		}
 		return null;
