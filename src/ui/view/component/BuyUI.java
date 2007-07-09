@@ -10,8 +10,13 @@ public interface BuyUI extends DetailUI {
 	JuridicPerson getSupplier();
 	
 	Pesos getCashPay();
+
+	void setSupplier(JuridicPerson supplier);
+	
+	void setCashPay(Pesos pay);
 	
 	SearchUI getItemsPanel();
+
 	
 	void setSupplierSearchInitializer(SearchDialogInitializer initializer);
 	

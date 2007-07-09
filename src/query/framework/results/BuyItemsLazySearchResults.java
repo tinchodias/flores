@@ -7,10 +7,15 @@ import query.results.BuyItemResultsSpecification;
 
 public class BuyItemsLazySearchResults extends LazySearchResults {
 
-	private BuyItems buyItems = new BuyItems();
+	private BuyItems buyItems;
 
-	public BuyItemsLazySearchResults() {
+	public BuyItemsLazySearchResults(BuyItems buyItems) {
 		super(new BuyItemResultsSpecification());
+		this.buyItems = buyItems;
+	}
+	
+	public BuyItemsLazySearchResults() {
+		this(new BuyItems());
 	}
 	
 	public void add(Object object) {

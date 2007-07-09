@@ -62,10 +62,18 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 		return (JuridicPerson) supplierPicker.getSelection();
 	}
 
+	public void setSupplier(JuridicPerson supplier) {
+		supplierPicker.setSelection(supplier);
+	}
+	
 	public Pesos getCashPay() {
 		return SwingUI.instance().pesosFrom(cashField);
 	}
 
+	public void setCashPay(Pesos value) {
+		cashField.setValue(value.value());
+	}
+	
 	public void setAdjustTotalAction(Action action) {
 		itemsPanel.setAdjustTotalAction(action);
 	}

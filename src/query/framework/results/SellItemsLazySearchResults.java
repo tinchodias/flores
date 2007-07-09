@@ -7,10 +7,15 @@ import query.results.SellItemResultsSpecification;
 
 public class SellItemsLazySearchResults extends LazySearchResults {
 
-	private SellItems sellItems = new SellItems();
+	private SellItems sellItems;
 
-	public SellItemsLazySearchResults() {
+	public SellItemsLazySearchResults(SellItems sellItems) {
 		super(new SellItemResultsSpecification());
+		this.sellItems = sellItems;
+	}
+	
+	public SellItemsLazySearchResults() {
+		this(new SellItems());
 	}
 	
 	public void add(Object object) {

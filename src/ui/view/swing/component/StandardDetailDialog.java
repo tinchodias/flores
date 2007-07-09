@@ -29,8 +29,10 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	}
 
 	private void initButtons() {
-		okButton = new JButton();
 		cancelButton = new JButton();
+		okButton = new JButton();
+		okButton.setVisible(false);
+		
 
 		getRootPane().setDefaultButton(okButton);
 		
@@ -39,6 +41,7 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	}
 
 	public void setAcceptAction(Action action) {
+		okButton.setVisible(true);
 		okButton.setAction(new ActionAdapter(action));
 	}
 	

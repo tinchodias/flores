@@ -13,6 +13,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -65,7 +66,7 @@ public class SwingUI extends UI {
 
 		//TODO hardcoded width
 		Dimension size = labeledPanel.getPreferredSize();
-		size.width = 200;
+		size.width = 215;
 		labeledPanel.setPreferredSize(size);
 		labeledPanel.setMinimumSize(size);
 		
@@ -130,7 +131,8 @@ public class SwingUI extends UI {
 				Container container2 = (Container) component;
 				setEnableRecursively(container2, enable);
 			}
-			if (!(component instanceof JLabel)) {
+			if (!(component instanceof JLabel) &&
+				!(component instanceof JScrollBar)) {
 				component.setEnabled(enable);
 			}
 		}
