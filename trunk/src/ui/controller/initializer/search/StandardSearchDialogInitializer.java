@@ -6,8 +6,10 @@ import ui.controller.action.Action;
 import ui.controller.action.CloseDialogAction;
 import ui.controller.action.CompositeAction;
 import ui.controller.action.SearchAction;
+import ui.controller.action.ShowDetailOnSelectionAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.DialogInitializer;
+import ui.controller.initializer.detail.DetailDialogInitializer;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
@@ -37,9 +39,22 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 	protected abstract StandardSearchPanel searchPanel();
 
 	protected static Action showAndRefreshAction(DialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
-		Action searchAction = searchDialog.getSearchPanel().getSearchAction();
 		Action showAction = new ShowDialogAction(initializer);
-		return new CompositeAction(showAction, searchAction, messageId);
+		Action refreshAction = searchDialog.getSearchPanel().getSearchAction();
+		Action showAndRefreshAction = new CompositeAction(showAction, refreshAction, messageId);
+		return showAndRefreshAction;
+	}
+	
+	protected static void addShowAndRefreshAction(DialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
+		Action showAndRefreshAction = showAndRefreshAction(initializer, messageId, searchDialog);
+		searchDialog.getSearchPanel().add(showAndRefreshAction);
 	}
 
+	protected static void addShowOnSelectionAndRefreshAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
+		Action showAndRefreshAction = showAndRefreshAction(initializer, messageId, searchDialog);
+		Action showOnSelectionAction = 
+			new ShowDetailOnSelectionAction(searchDialog.getSearchPanel(), initializer.populator(), showAndRefreshAction, messageId);
+		searchDialog.getSearchPanel().add(showOnSelectionAction);
+	}
+	
 }

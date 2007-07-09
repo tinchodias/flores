@@ -3,7 +3,6 @@ package ui.controller.initializer.search;
 import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
-import ui.controller.action.Action;
 import ui.controller.initializer.detail.CreateStockArticleDialogInitializer;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
@@ -12,13 +11,9 @@ import ui.view.swing.component.StockArticleSearchPanel;
 public class StockDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		Action showBuysDialogAction = showAndRefreshAction(new BuysDialogInitializer(), MessageId.buys, searchDialog);
-		Action showStockDropDownsAction = showAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts, searchDialog);
-		Action createStockArticleAction = showAndRefreshAction(new CreateStockArticleDialogInitializer(), MessageId.create, searchDialog);
-
-		searchDialog.getSearchPanel().add(showBuysDialogAction);
-		searchDialog.getSearchPanel().add(showStockDropDownsAction);
-		searchDialog.getSearchPanel().add(createStockArticleAction);
+		addShowAndRefreshAction(new BuysDialogInitializer(), MessageId.buys, searchDialog);
+		addShowAndRefreshAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts, searchDialog);
+		addShowAndRefreshAction(new CreateStockArticleDialogInitializer(), MessageId.create, searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

@@ -9,6 +9,10 @@ public interface AddressUI {
 	
 	public City getCity();
 	
+	public void setAddress(String address);
+	
+	public void setCity(City city);
+	
 	public void setCitySearchInitializer(SearchDialogInitializer initializer);
 	
 }

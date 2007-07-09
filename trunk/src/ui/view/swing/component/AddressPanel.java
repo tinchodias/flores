@@ -36,10 +36,18 @@ public class AddressPanel extends JPanel implements AddressUI {
 		return addressField.getText();
 	}
 
+	public void setAddress(String address) {
+		addressField.setText(address);
+	}
+	
 	public City getCity() {
 		return (City) cityPicker.getSelection();
 	}
 
+	public void setCity(City city) {
+		cityPicker.setSelection(city);
+	}
+	
 	public void setCitySearchInitializer(SearchDialogInitializer initializer) {
 		cityPicker.setSearchInitializer(initializer);
 	}

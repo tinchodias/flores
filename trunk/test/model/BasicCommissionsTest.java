@@ -14,9 +14,10 @@ import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellItems;
 import model.stock.Article;
-import model.util.TimeUtils;
 
 import org.joda.time.DateTime;
+
+import util.TimeUtils;
 
 public class BasicCommissionsTest extends TestCase {
 

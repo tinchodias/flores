@@ -3,12 +3,14 @@ package ui.view.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -63,7 +65,7 @@ public class SwingUI extends UI {
 
 		//TODO hardcoded width
 		Dimension size = labeledPanel.getPreferredSize();
-		size.width = 150;
+		size.width = 200;
 		labeledPanel.setPreferredSize(size);
 		labeledPanel.setMinimumSize(size);
 		
@@ -119,6 +121,19 @@ public class SwingUI extends UI {
 
 	public Pesos pesosFrom(JFormattedTextField field) {
 		return Pesos.newFor(Double.valueOf(field.getValue().toString()));
+	}
+
+	public void setEnableRecursively(Container container, boolean enable) {
+		for (int i = 0; i < container.getComponentCount(); i++) {
+			Component component = container.getComponent(i);
+			if (component instanceof Container) {
+				Container container2 = (Container) component;
+				setEnableRecursively(container2, enable);
+			}
+			if (!(component instanceof JLabel)) {
+				component.setEnabled(enable);
+			}
+		}
 	}
 	
 }

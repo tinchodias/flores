@@ -1,11 +1,11 @@
 package ui.view.swing.component;
 
-import model.util.TimeUtils;
 
 import org.joda.time.ReadableInterval;
 
 import query.criteria.StockDropOutSearchCriteria;
 import ui.view.swing.util.IntervalPicker;
+import util.TimeUtils;
 
 public class StockDropOutSearchPanel extends StandardSearchPanel implements StockDropOutSearchCriteria {
 
