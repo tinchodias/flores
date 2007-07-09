@@ -11,16 +11,19 @@ import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
+import model.stock.cost.CostStrategy;
+import model.stock.cost.LastPrevailsCostStrategy;
 
 
 public class Stock {
 
 	private Map<Article, Double> stockArticles = new HashMap<Article, Double>();
-	private CostStrategy costValuation;
+	private CostStrategy costStrategy;
 	private Collection<StockDropOut> dropOuts = new LinkedList<StockDropOut>();
 	
 	public Stock() {
-		costValuation = new AverageCostStrategy(this);
+//		costStrategy = new AverageCostStrategy(this);
+		costStrategy = new LastPrevailsCostStrategy(this);
 	}
 	
 	public Double count(Article article) {
@@ -29,19 +32,19 @@ public class Stock {
 	}
 
 	public Pesos cost(Article article) {
-		return costValuation.cost(article);
+		return costStrategy.cost(article);
 	}
 
-	public CostStrategy getCostValuation() {
-		return costValuation;
+	public CostStrategy getCostStrategy() {
+		return costStrategy;
 	}
 
-	public void setCostValuation(CostStrategy costValuation) {
-		this.costValuation = costValuation;
+	public void setCostStrategy(CostStrategy costValuation) {
+		this.costStrategy = costValuation;
 	}
 
 	public void apply(Buy buy) {
-		costValuation.notify(buy);
+		costStrategy.notify(buy);
 		for (Article article : buy.items().getArticles()) {
 			Double boughtCount = buy.items().getCount(article);
 			addToStock(article, boughtCount);
@@ -49,7 +52,7 @@ public class Stock {
 	}
 
 	public void apply(Sell sell) {
-		costValuation.notify(sell);
+		costStrategy.notify(sell);
 		for (Article article : sell.items().getArticles()) {
 			Double soldCount = sell.items().getCount(article);
 			removeFromStock(article, soldCount);
@@ -57,7 +60,7 @@ public class Stock {
 	}
 
 	public void apply(BuyAnnulment annulment) {
-		costValuation.notify(annulment);
+		costStrategy.notify(annulment);
 		Buy buy = annulment.getBuy();
 		for (Article article : buy.items().getArticles()) {
 			Double boughtCount = buy.items().getCount(article);
@@ -66,7 +69,7 @@ public class Stock {
 	}
 
 	public void apply(SellAnnulment annulment) {
-		costValuation.notify(annulment);
+		costStrategy.notify(annulment);
 		Sell sell = annulment.getSell();
 		for (Article article : sell.items().getArticles()) {
 			Double soldCount = sell.items().getCount(article);
@@ -86,7 +89,7 @@ public class Stock {
 	public void add(StockDropOut dropOut) {
 		dropOuts.add(dropOut);
 
-		costValuation.notify(dropOut);
+		costStrategy.notify(dropOut);
 		removeFromStock(dropOut.getArticle(), dropOut.getCount());
 	}
 

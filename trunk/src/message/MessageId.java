@@ -21,6 +21,8 @@ public enum MessageId {
 	article, 
 	articleCost,
 	articleGroup, 
+	code, 
+	size, 
 
 	buys, 
 	supplier, 
@@ -80,6 +82,8 @@ public enum MessageId {
 	
 	cashBook, 
 	currentCash, 
+	
+	acceptAndCreateOther, 
 	
 	;
 	

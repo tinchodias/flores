@@ -10,6 +10,8 @@ import ui.controller.action.ShowDetailOnSelectionAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.DialogInitializer;
 import ui.controller.initializer.detail.DetailDialogInitializer;
+import ui.controller.initializer.detail.mode.DetailMode;
+import ui.controller.populator.DetailPopulator;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.component.StandardSearchDialog;
 import ui.view.swing.component.StandardSearchPanel;
@@ -56,5 +58,24 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 			new ShowDetailOnSelectionAction(searchDialog.getSearchPanel(), initializer.populator(), showAndRefreshAction, messageId);
 		searchDialog.getSearchPanel().add(showOnSelectionAction);
 	}
+
+	protected static void addShowCreatingAction(DetailDialogInitializer initializer, DetailPopulator populator, StandardSearchDialog searchDialog) {
+		initializer.mode(DetailMode.CREATING);
+		initializer.populator(populator);
+		addShowAndRefreshAction(initializer, MessageId.create, searchDialog);
+	}
+
+	protected static void addShowModifyingAction(DetailDialogInitializer initializer, DetailPopulator populator, StandardSearchDialog searchDialog) {
+		initializer.mode(DetailMode.MODIFYING);
+		initializer.populator(populator);
+		addShowOnSelectionAndRefreshAction(initializer, MessageId.modify, searchDialog);
+	}
+
+	protected static void addShowViewingAction(DetailDialogInitializer initializer, DetailPopulator populator, StandardSearchDialog searchDialog) {
+		initializer.mode(DetailMode.VIEWING);
+		initializer.populator(populator);
+		addShowOnSelectionAndRefreshAction(initializer, MessageId.view, searchDialog);
+	}
+
 	
 }

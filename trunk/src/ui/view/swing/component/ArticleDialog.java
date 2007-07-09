@@ -11,7 +11,9 @@ import ui.view.swing.util.objectpicker.ObjectPicker;
 
 public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 
+	private JTextField codeField;
 	private JTextField nameField;
+	private JTextField sizeField;
 	private ObjectPicker groupPicker;
 
 	public ArticleDialog() {
@@ -22,10 +24,14 @@ public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 	}
 
 	private void initComponents() {
+		codeField = new JTextField();
 		nameField = new JTextField();
+		sizeField = new JTextField();
 		groupPicker = new ObjectPicker();
 		
+		centerPanel().add(SwingUI.instance().label(codeField, MessageId.code));
 		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		centerPanel().add(SwingUI.instance().label(sizeField, MessageId.size));
 		centerPanel().add(SwingUI.instance().label(groupPicker, MessageId.articleGroup));
 	}
 
@@ -39,6 +45,30 @@ public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 
 	public void setArticleGroupSearchInitializer(SearchDialogInitializer initializer) {
 		groupPicker.setSearchInitializer(initializer);
+	}
+
+	public String getCode() {
+		return codeField.getText();
+	}
+
+	public String getArticleSize() {
+		return sizeField.getText();
+	}
+
+	public void setArticleGroup(ArticleGroup articleGroup) {
+		groupPicker.setSelection(articleGroup);
+	}
+
+	public void setArticleName(String name) {
+		nameField.setText(name);
+	}
+
+	public void setCode(String code) {
+		codeField.setText(code);
+	}
+
+	public void setArticleSize(String size) {
+		sizeField.setText(size);
 	}
 
 }

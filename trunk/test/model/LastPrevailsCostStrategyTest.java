@@ -4,20 +4,18 @@
 package model;
 
 import junit.framework.TestCase;
-import model.JuridicPerson;
-import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyItems;
 import model.stock.Article;
-import model.stock.AverageCostStrategy;
+import model.stock.cost.LastPrevailsCostStrategy;
 
 import org.joda.time.DateTime;
 
 //TODO Add tests for BuyAnnulment 
 
-public class AverageCostValuationTest extends TestCase {
+public class LastPrevailsCostStrategyTest extends TestCase {
 
 	private Store depot;
 	private Article paqueteRosa;
@@ -31,7 +29,7 @@ public class AverageCostValuationTest extends TestCase {
 		super.setUp();
 		
 		depot = StoreFixture.emptyStore();
-		depot.stock().setCostValuation(new AverageCostStrategy(depot.stock()));
+		depot.stock().setCostStrategy(new LastPrevailsCostStrategy(depot.stock()));
 		
 		marquez = new JuridicPerson("Marquez");
 		depot.suppliers().add(marquez);
@@ -67,12 +65,8 @@ public class AverageCostValuationTest extends TestCase {
 		Buy buy2 = makeBuy(spec2);
 		depot.add(buy2);
 		
-		assertEquals(calculeAverageCost(21.0, 15.0, 17.0, 17.5), depot.stock().cost(paqueteRosa));
+		assertEquals(Pesos.newFor(17.5), depot.stock().cost(paqueteRosa));
 		assertEquals(Pesos.newFor(0.0), depot.stock().cost(paqueteClavel));
-	}
-
-	private Pesos calculeAverageCost(double oldCount, double oldCost, double inputCount, double inputCost) {
-		return Pesos.newFor((oldCount * oldCost + inputCount * inputCost) / (oldCount + inputCount));
 	}
 
 	private Buy makeBuy(BuyItems spec) {

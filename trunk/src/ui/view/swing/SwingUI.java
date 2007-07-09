@@ -66,7 +66,7 @@ public class SwingUI extends UI {
 
 		//TODO hardcoded width
 		Dimension size = labeledPanel.getPreferredSize();
-		size.width = 215;
+		size.width = 230;
 		labeledPanel.setPreferredSize(size);
 		labeledPanel.setMinimumSize(size);
 		

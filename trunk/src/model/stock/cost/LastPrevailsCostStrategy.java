@@ -1,20 +1,25 @@
-package model.stock;
+package model.stock.cost;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
+import model.stock.Article;
+import model.stock.Stock;
+import model.stock.StockDropOut;
 
-public class AverageCostStrategy implements CostStrategy {
+public class LastPrevailsCostStrategy implements CostStrategy {
 
 	private Map<Article, Pesos> costs = new HashMap<Article, Pesos>();
 	private Stock stock;
 	
-	public AverageCostStrategy(Stock stock) {
+	public LastPrevailsCostStrategy(Stock stock) {
 		this.stock = stock;
 	}
 
@@ -33,19 +38,14 @@ public class AverageCostStrategy implements CostStrategy {
 
 	public void notify(Buy buy) {
 		for (Article article : buy.items().getArticles()) {
-			Double inputCount = buy.items().getCount(article);
 			Pesos inputCost = buy.items().getValue(article);
-			applyArticleMovement(article, inputCount, inputCost);
+			costs.put(article, inputCost);
 		}
 	}
 
 	public void notify(BuyAnnulment annulment) {
-		Buy buy = annulment.getBuy();
-		for (Article article : buy.items().getArticles()) {
-			Double inputCount = buy.items().getCount(article);
-			Pesos inputCost = buy.items().getValue(article);
-			applyArticleMovement(article, -inputCount, inputCost);
-		}
+		//TODO
+		throw new NotImplementedException();
 	}
 
 	public void notify(Sell sell) {
@@ -60,14 +60,4 @@ public class AverageCostStrategy implements CostStrategy {
 		//Do nothing on StockDropOut
 	}
 
-	private void applyArticleMovement(Article article, Double inputCount, Pesos inputCost) {
-		Pesos actualCost = stock.cost(article);
-		Double actualCount = stock.count(article);
-		
-		Double newCostValue = 
-			(actualCount * actualCost.value() + inputCount * inputCost.value()) 
-			/ (actualCount + inputCount);
-		
-		costs.put(article, Pesos.newFor(newCostValue));
-	}
 }

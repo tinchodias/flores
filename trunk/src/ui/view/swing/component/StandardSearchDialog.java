@@ -19,7 +19,7 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 		super(titleMessageId);
 		this.searchPanel = searchPanel;  
 		initComponents();
-		setPreferredSize(new Dimension(640, 480));
+		setPreferredSize(new Dimension(760, 480));
 		pack();
 		setLocationRelativeTo(null);
 	}
