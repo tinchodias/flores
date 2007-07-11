@@ -31,7 +31,7 @@ public class ObjectPicker2 extends Container {
 		button.setPreferredSize(new Dimension(size.height, size.height));
 		
 		add(combo, BorderLayout.CENTER);
-		add(button, BorderLayout.EAST);
+//		add(button, BorderLayout.EAST);
 	}
 
 	public void setQuery(SearchQuery query) {

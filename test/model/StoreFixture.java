@@ -212,7 +212,7 @@ public class StoreFixture {
 	}
 
 	/**
-	 * Creates a buy to the supplier of 2000 articles, paying $950.
+	 * Creates a buy to the supplier of 2000 articles as $20 each, paying $950.
 	 * 
 	 * @param stockArticle
 	 * @param supplier

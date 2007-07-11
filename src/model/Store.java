@@ -8,6 +8,8 @@ import model.address.Province;
 import model.commission.BasicCommissionsManager;
 import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
+import model.price.PriceStrategy;
+import model.price.SimplePercentagePriceStrategy;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.receipt.Expense;
@@ -44,7 +46,8 @@ public class Store {
 	private ClientsDebts clientsDebts = new ClientsDebts(this);
 	private CommisionsManager commissions = new BasicCommissionsManager(this);
 	private CashBook cashBook = new CashBook();
-
+	private PriceStrategy priceStrategy = new SimplePercentagePriceStrategy(this);
+	
 	public Stock stock() {
 		return stock;
 	}
@@ -79,6 +82,10 @@ public class Store {
 	
 	public CashBook cashBook() {
 		return cashBook;
+	}
+
+	public PriceStrategy priceStrategy() {
+		return priceStrategy;
 	}
 
 	public Iterable<Expense> expenses() {
