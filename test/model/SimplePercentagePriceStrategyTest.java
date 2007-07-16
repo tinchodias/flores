@@ -22,7 +22,7 @@ public class SimplePercentagePriceStrategyTest extends TestCase {
 	}
 
 	public void testSimple() {
-		priceStrategy.setGeneralPercentage(1.5);
+		priceStrategy.setDefaultPriceMargin(50.0);
 
 		assertEquals(Pesos.newFor(0.0), priceStrategy.priceFor(article));
 		
@@ -30,6 +30,10 @@ public class SimplePercentagePriceStrategyTest extends TestCase {
 		store.add(buy);
 		
 		assertEquals(Pesos.newFor(30.0), priceStrategy.priceFor(article));
+		
+		priceStrategy.setPriceMargin(article, 75.0);
+		
+		assertEquals(Pesos.newFor(35.0), priceStrategy.priceFor(article));
 	}
 
 }

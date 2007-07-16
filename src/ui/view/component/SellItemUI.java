@@ -7,16 +7,20 @@ import ui.controller.initializer.search.SearchDialogInitializer;
 
 public interface SellItemUI extends DetailUI {
 
-	public Article getArticle();
+	Article getArticle();
 	
-	public double getCount();
+	double getCount();
 	
-	public Pesos getValue();
+	Pesos getValue();
 	
-	public void setArticleSearchInitializer(SearchDialogInitializer initializer);
+	void setCount(double count);
+	
+	void setValue(double value);
+	
+	void setArticleSearchInitializer(SearchDialogInitializer initializer);
 
-	public void setCostAction(Action action);
+	void addOnArticleSelectionAction(Action action);
 	
-	public void setCost(String cost);
+	void setCost(String cost);
 	
 }

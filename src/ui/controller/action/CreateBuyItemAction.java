@@ -29,7 +29,7 @@ public class CreateBuyItemAction implements Action {
 	}
 
 	private BuyItem buyItem() {
-		return new BuyItem(buyItemUI.getArticle(), buyItemUI.getCount(), buyItemUI.getValue());
+		return new BuyItem(buyItemUI.getArticle(), buyItemUI.getCount(), buyItemUI.getValue(), buyItemUI.getPriceMargin());
 	}
 
 	public MessageId messageId() {

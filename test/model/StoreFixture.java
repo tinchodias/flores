@@ -12,6 +12,7 @@ import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
+import model.receipt.BuyItem;
 import model.receipt.BuyItems;
 import model.receipt.Expense;
 import model.receipt.Sell;
@@ -127,7 +128,8 @@ public class StoreFixture {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
 				for (int j = 0; j < 100; j++) {
-					spec.add((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomPesos(20));
+					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomPesos(20), 0.5);
+					spec.add(buyItem);
 				}
 				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
 				store.add(buy);

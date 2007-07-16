@@ -11,7 +11,7 @@ public class SellItemResultsSpecification extends LazySearchResultsSpecification
 	public SellItemResultsSpecification() {
 		add(MessageId.article);
 		add(MessageId.count, Double.class);
-		add(MessageId.value, Pesos.class);
+		add(MessageId.unitPrice, Pesos.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {
