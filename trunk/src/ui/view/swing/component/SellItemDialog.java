@@ -35,7 +35,7 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
-		centerPanel().add(SwingUI.instance().label(valueField, MessageId.value));
+		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitPrice));
 		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.articleCost));
 	}
 	
@@ -55,7 +55,7 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		return SwingUI.instance().pesosFrom(valueField);
 	}
 
-	public void setCostAction(Action action) {
+	public void addOnArticleSelectionAction(Action action) {
 		articlePicker.addSelectionListener(new SelectionListenerAdapter(action));
 	}
 
@@ -63,4 +63,12 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		costLabel.setText(cost);
 	}
 	
+	public void setValue(double value) {
+		valueField.setValue(value);
+	}
+
+	public void setCount(double count) {
+		countField.setValue(count);
+	}
+
 }

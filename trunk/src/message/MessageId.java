@@ -29,6 +29,7 @@ public enum MessageId {
 	paymentTotal, 
 	buy,
 	buyItem, 
+	priceMargin, 
 	
 	stockDropOuts, 
 	stockDropOutDialogTitle,
@@ -50,7 +51,7 @@ public enum MessageId {
 	select,
 	fromDate,
 	toDate, 
-	value, 
+	unitPrice, 
 	amount, 
 	name, 
 	show, 

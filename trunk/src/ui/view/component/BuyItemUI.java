@@ -13,5 +13,7 @@ public interface BuyItemUI extends DetailUI {
 	public Pesos getValue();
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer);
+
+	public double getPriceMargin();
 	
 }

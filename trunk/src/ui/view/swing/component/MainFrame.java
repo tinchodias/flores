@@ -32,7 +32,7 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu systemMenu;
 	private JMenu personsMenu;
 	private JMenu storeMenu;
-	private JMenu reportsMenu;
+	private JMenu cashMenu;
 
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
@@ -54,7 +54,7 @@ public class MainFrame extends JFrame implements MainUI {
 		menuBar.add(newSystemMenu());
 		menuBar.add(newPersonsMenu());
 		menuBar.add(newStoreMenu());
-		menuBar.add(newReportsMenu());
+		menuBar.add(newCashMenu());
 		return menuBar;
 	}
 
@@ -76,14 +76,14 @@ public class MainFrame extends JFrame implements MainUI {
 		return storeMenu;
 	}
 
-	private Component newReportsMenu() {
-		reportsMenu = new JMenu("Reportes");
+	private Component newCashMenu() {
+		cashMenu = new JMenu("Caja");
 
 		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
 
-		reportsMenu.add(new JMenuItem(showCashBookAction));
+		cashMenu.add(new JMenuItem(showCashBookAction));
 		
-		return reportsMenu;
+		return cashMenu;
 	}
 
 	private Component newPersonsMenu() {
@@ -113,14 +113,14 @@ public class MainFrame extends JFrame implements MainUI {
 		systemMenu.setEnabled(true);
 		personsMenu.setEnabled(false);
 		storeMenu.setEnabled(false);
-		reportsMenu.setEnabled(false);
+		cashMenu.setEnabled(false);
 	}
 	
 	public void setLoggedUserState() {
 		systemMenu.setEnabled(false);
 		personsMenu.setEnabled(true);
 		storeMenu.setEnabled(true);
-		reportsMenu.setEnabled(true);
+		cashMenu.setEnabled(true);
 	}
 
 }

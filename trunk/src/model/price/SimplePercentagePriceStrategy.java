@@ -3,15 +3,19 @@ package model.price;
 import java.util.HashMap;
 import java.util.Map;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import model.Store;
 import model.money.Pesos;
+import model.receipt.Buy;
+import model.receipt.BuyAnnulment;
 import model.stock.Article;
 
 public class SimplePercentagePriceStrategy implements PriceStrategy {
 
 	private final Store store;
 	private Map<Article, Double> percentages = new HashMap<Article, Double>();
-	private Double generalPercentage = 0.0;
+	private Double defaultPriceMargin = 0.0;
 
 	public SimplePercentagePriceStrategy(Store store) {
 		this.store = store;
@@ -19,32 +23,44 @@ public class SimplePercentagePriceStrategy implements PriceStrategy {
 
 	public Pesos priceFor(Article article) {
 		Pesos cost = store.stock().cost(article);
-		Double percentage = getPercentage(article);
-		return cost.by(percentage);
+		Double margin = getPriceMargin(article);
+		return cost.by(1 + margin / 100.0);
 	}
 
-	public Double getPercentage(Article article) {
-		Double percentage;
-		Double particularPercentage = percentages.get(article);
+	public Double getPriceMargin(Article article) {
+		Double margin;
+		Double particularMargin = percentages.get(article);
 		
-		if (particularPercentage != null) {
-			percentage = particularPercentage;
+		if (particularMargin != null) {
+			margin = particularMargin;
 		} else {
-			percentage = generalPercentage;
+			margin = defaultPriceMargin;
 		}
-		return percentage;
+		return margin;
 	}
 
-	public void setPercentage(Article article, Double percentage) {
+	public void setPriceMargin(Article article, Double percentage) {
 		percentages.put(article, percentage);
 	}
 	
-	public Double getGeneralPercentage() {
-		return generalPercentage;
+	public Double getDefaultPriceMargin() {
+		return defaultPriceMargin;
 	}
 
-	public void setGeneralPercentage(Double generalPercentage) {
-		this.generalPercentage = generalPercentage;
+	public void setDefaultPriceMargin(Double percentage) {
+		this.defaultPriceMargin = percentage;
+	}
+
+	public void apply(Buy buy) {
+		for (Article article : buy.items().getArticles()) {
+			Double margin = buy.items().getPriceMargin(article);
+			this.setPriceMargin(article, margin);
+		}
+	}
+
+	public void apply(BuyAnnulment annulment) {
+		// TODO not implemented
+		throw new NotImplementedException();
 	}
 
 }

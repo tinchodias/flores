@@ -3,6 +3,7 @@ package persistence;
 
 import junit.framework.TestCase;
 import persistence.exception.MessageIdentifiedException;
+import persistence.util.EqualsBuilder;
 
 public abstract class PersistenceTest extends TestCase {
 
@@ -46,8 +47,9 @@ public abstract class PersistenceTest extends TestCase {
 		Model loadedModel = modelPersistence.load();
 		assertEqualsModels(savedModel, loadedModel);
 	}
-
+	
 	private static void assertEqualsModels(Model model1, Model model2) {
+		assertTrue("The models must be equal", EqualsBuilder.reflectionEquals(model1, model2));
 		//TODO Para poder hacer una "deep comparison", podría implementar
 		//EqualsBuilder.reflectionEquals( ) en cada objeto que cuelgue de Model. 
 		//Por consiguiente, habría que usar además en cada

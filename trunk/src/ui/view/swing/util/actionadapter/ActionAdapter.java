@@ -20,11 +20,11 @@ public class ActionAdapter extends AbstractAction {
 		initIcon();
 		
 		//TODO only for development time!
-		putValue(SHORT_DESCRIPTION, action.messageId().toString());
+//		putValue(SHORT_DESCRIPTION, action.messageId().toString());
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		//TODO
+		//TODO better descriptions for exceptions
 		try {
 			action.execute();
 		} catch (Exception ex) {
