@@ -7,7 +7,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/joda-time-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/db4o-6.1-java5.jar"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.3.jar" sourcepath="D:/Algunos/eclipse/libs/commons-lang-2.3/commons-lang-2.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-2.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/spring/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/spring/aspectjrt-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/spring/spring-aop-2.0.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
