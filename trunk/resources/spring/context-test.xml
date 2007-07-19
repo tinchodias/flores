@@ -11,12 +11,16 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/aop 
   http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
- <!-- this is the service object that we want to make transactional --> 
 
- <bean id="fooService" class="transaction.spring.SpringTransactionManager"/>
+ <bean id="objectContainer" class="org.springmodules.db4o.ObjectContainerFactoryBean">
+   <property name="databaseFile" value="file://./db4o.db"/>
+ </bean>
+
+ <!-- this is the service object that we want to make transactional --> 
+   <bean id="fooService" class="transaction.spring.SpringTransactionManager"/>
 
  <!-- the transactional advice (i.e. what 'happens'; see the <aop:advisor/> bean below) --> 
- <tx:advice id="txAdvice" transaction-manager="txManager"> 
+   <tx:advice id="txAdvice" transaction-manager="txManager"> 
  <!-- the transactional semantics... --> 
    <tx:attributes>
      <tx:method name="*"/>
@@ -28,11 +32,11 @@ http://www.springframework.org/schema/aop
     operation defined by the FooService interface 
   --> 
  <aop:config> 
-  <aop:pointcut id="fooServiceOperation" expression="execution(*.SpringTransactionManager.*(..))"/> 
+  <aop:pointcut id="fooServiceOperation" expression="execution(* transaction.spring.SpringTransactionManager.*(..))"/> 
   <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/> 
  </aop:config>
 
- <bean id="txManager" class="org.db4ospring.Db4oTransactionManager">
+ <bean id="txManager" class="org.springmodules.db4o.Db4oTransactionManager">
   <property name="objectContainer" ref="objectContainer"/>
  </bean>
 
