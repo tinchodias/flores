@@ -5,6 +5,7 @@ import java.util.Map;
 
 import persistence.db4o.Db4oModelPersistence;
 import persistence.exception.MessageIdentifiedException;
+import transaction.TransactionManager;
 
 
 public abstract class ModelPersistence {
@@ -33,5 +34,7 @@ public abstract class ModelPersistence {
 
 	//TODO
 	public abstract Map newMap();
+
+	public abstract TransactionManager transactionManager();
 	
 }

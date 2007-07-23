@@ -1,12 +1,13 @@
 package model.money;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
+
+import model.util.CollectionFactory;
 
 public class Payment implements Collection<PayMode> {
 
-	Collection<PayMode> pays = new HashSet<PayMode>();
+	Collection<PayMode> pays = CollectionFactory.newList();
 	
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);

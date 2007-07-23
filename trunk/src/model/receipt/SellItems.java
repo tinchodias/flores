@@ -1,17 +1,15 @@
 package model.receipt;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 import model.money.Pesos;
 import model.stock.Article;
-
-
+import model.util.CollectionFactory;
 
 public class SellItems {
 
-	Map<Article, SellItem> items = new HashMap<Article, SellItem>();
+	Map<Article, SellItem> items = CollectionFactory.newMap();
 	
 	public void add(Article article, Double count, Pesos sellValue, Pesos costValue) {
 		items.put(article, new SellItem(article, count, sellValue, costValue));
@@ -35,7 +33,8 @@ public class SellItems {
 	
 	public Pesos sellTotal() {
 		Pesos total = Pesos.newFor(0.0);
-		for (SellItem item : items.values()) {
+		for (Article article : items.keySet()) {
+			SellItem item = items.get(article);
 			total = total.plus(item.getSellValue().by(item.getCount()));
 		}
 		return total;
@@ -43,14 +42,16 @@ public class SellItems {
 
 	public Pesos costTotal() {
 		Pesos total = Pesos.newFor(0.0);
-		for (SellItem item : items.values()) {
+		for (Article article : items.keySet()) {
+			SellItem item = items.get(article);
 			total = total.plus(item.getCostValue().by(item.getCount()));
 		}
 		return total;
 	}
 
 	public Object get(int index) {
-		return items.values().toArray()[index];
+		Article article = (Article) items.keySet().toArray()[index];
+		return items.get(article);
 	}
 
 	public boolean remove(Object object) {
@@ -65,7 +66,8 @@ public class SellItems {
 	public void adjustTotal(Pesos adjustedTotal) {
 		Pesos adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
 		
-		for (SellItem item : items.values()) {
+		for (Article article : items.keySet()) {
+			SellItem item = items.get(article);
 			Pesos adjustedValue = item.getSellValue().by(adjustCoefficient);
 			item.setSellValue(adjustedValue);
 		}

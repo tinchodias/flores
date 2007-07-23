@@ -29,6 +29,7 @@ public class ActionAdapter extends AbstractAction {
 			action.execute();
 		} catch (Exception ex) {
 			UI.instance().showInfo(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 	

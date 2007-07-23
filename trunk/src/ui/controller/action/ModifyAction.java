@@ -1,6 +1,8 @@
 package ui.controller.action;
 
+import persistence.ModelPersistence;
 import message.MessageId;
+import transaction.Block;
 import ui.controller.populator.DetailPopulator;
 import ui.view.component.DetailUI;
 
@@ -15,7 +17,12 @@ public class ModifyAction implements Action {
 	}
 
 	public void execute() {
-		populator.modifyFrom(dialog);
+		ModelPersistence.instance().transactionManager().execute(new Block() {
+			public Object executeBlock() {
+				populator.modifyFrom(dialog);
+				return null;
+			}
+		});
 		
 		dialog.setVisible(false);
 	}

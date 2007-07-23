@@ -2,8 +2,6 @@ package model.stock;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import model.money.Pesos;
@@ -13,13 +11,13 @@ import model.receipt.Sell;
 import model.receipt.SellAnnulment;
 import model.stock.cost.CostStrategy;
 import model.stock.cost.LastPrevailsCostStrategy;
-
+import model.util.CollectionFactory;
 
 public class Stock {
 
-	private Map<Article, Double> stockArticles = new HashMap<Article, Double>();
+	private Map<Article, Double> stockArticles = CollectionFactory.<Article, Double>newMap();
 	private CostStrategy costStrategy;
-	private Collection<StockDropOut> dropOuts = new LinkedList<StockDropOut>();
+	private Collection<StockDropOut> dropOuts = CollectionFactory.<StockDropOut>newList();
 	
 	public Stock() {
 //		costStrategy = new AverageCostStrategy(this);

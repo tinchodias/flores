@@ -1,20 +1,19 @@
 package model.price;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import model.Store;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
 import model.stock.Article;
+import model.util.CollectionFactory;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SimplePercentagePriceStrategy implements PriceStrategy {
 
 	private final Store store;
-	private Map<Article, Double> percentages = new HashMap<Article, Double>();
+	private Map<Article, Double> percentages = CollectionFactory.<Article, Double>newMap();
 	private Double defaultPriceMargin = 0.0;
 
 	public SimplePercentagePriceStrategy(Store store) {
