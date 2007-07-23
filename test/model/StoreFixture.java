@@ -27,6 +27,8 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.ReadableDateTime;
 
+import persistence.ModelPersistence;
+
 public class StoreFixture {
 
 	public static Store emptyStore() {
@@ -65,17 +67,16 @@ public class StoreFixture {
 
 	public static Store stressStore() {
 		Store store = new Store();
-		
+
 		System.out.println("Generating Provinces");
 		for (int i = 0; i < 30; i++) {
 			Province province = new Province("Provincia " + i);
 			store.provinces().add(province);
 		}
-		
 		System.out.println("Generating Null City");
 		City nullCity = new City("Ninguna", (Province) oneOf(store.provinces()));
 		store.cities().add(nullCity);
-
+/*
 		System.out.println("Generating Cities");
 		for (int i = 0; i < 500; i++) {
 			City city = new City("Ciudad " + i, (Province) oneOf(store.provinces()));
@@ -91,6 +92,8 @@ public class StoreFixture {
 			JuridicPerson client = new JuridicPerson("Cliente " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
 			store.clients().add(client);
 		}
+
+//		ModelPersistence.instance().transactionManager().commit();
 		
 		System.out.println("Generating Suppliers");
 		for (int i = 0; i < 50; i++) {
@@ -121,9 +124,11 @@ public class StoreFixture {
 			store.expensesArticles().add(expenseArticle);
 		}
 
+//		ModelPersistence.instance().transactionManager().commit();
+		/*
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 1, 10);
+		DateMidnight buysEnd = new DateMidnight(2006, 1, 2);
 		for (ReadableDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
@@ -134,11 +139,12 @@ public class StoreFixture {
 				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
 				store.add(buy);
 			}
+			ModelPersistence.instance().transactionManager().commit();
 		}
 
 		System.out.println("Generating Sells");
 		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
-		DateMidnight sellsEnd = new DateMidnight(2007, 1, 10);
+		DateMidnight sellsEnd = new DateMidnight(2007, 1, 2);
 		for (ReadableDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 100; i++) {
 				SellItems spec = new SellItems();
@@ -149,7 +155,8 @@ public class StoreFixture {
 				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (JuridicPerson) oneOf(store.vendors()));
 				store.add(sell);
 			}
-		}
+			ModelPersistence.instance().transactionManager().commit();
+		}*/
 
 		return store;
 	}

@@ -1,9 +1,6 @@
 package model.stock.cost;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import model.money.Pesos;
 import model.receipt.Buy;
@@ -13,10 +10,12 @@ import model.receipt.SellAnnulment;
 import model.stock.Article;
 import model.stock.Stock;
 import model.stock.StockDropOut;
+import model.util.CollectionFactory;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LastPrevailsCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = new HashMap<Article, Pesos>();
+	private Map<Article, Pesos> costs = CollectionFactory.newMap();
 	private Stock stock;
 	
 	public LastPrevailsCostStrategy(Stock stock) {

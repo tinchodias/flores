@@ -1,8 +1,6 @@
 package model.debts;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 import model.JuridicPerson;
@@ -10,12 +8,13 @@ import model.Store;
 import model.money.Pesos;
 import model.receipt.Sell;
 import model.receipt.SellAnnulment;
+import model.util.CollectionFactory;
 
 public class ClientsDebts {
 
-	private Map<JuridicPerson, Pesos> debts = new HashMap<JuridicPerson, Pesos>();
-	private Collection<LostDebtDeclaration> declarations = new ArrayList<LostDebtDeclaration>();
-	private Collection<ClientDebtCancellation> cancellations = new ArrayList<ClientDebtCancellation>();
+	private Map<JuridicPerson, Pesos> debts = CollectionFactory.<JuridicPerson, Pesos>newMap();
+	private Collection<LostDebtDeclaration> declarations = CollectionFactory.<LostDebtDeclaration>newList();
+	private Collection<ClientDebtCancellation> cancellations = CollectionFactory.<ClientDebtCancellation>newList();
 	private final Store store;
 
 	public ClientsDebts(Store store) {

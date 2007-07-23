@@ -13,7 +13,7 @@ public class SimplePercentagePriceStrategyTest extends TestCase {
 	private Article article;
 	private JuridicPerson supplier;
 
-	public void setUp() throws Exception {
+	protected void setUp() throws Exception {
 		store = StoreFixture.simpleStore();
 		article = store.stockArticles().iterator().next();
 		supplier = store.suppliers().iterator().next();

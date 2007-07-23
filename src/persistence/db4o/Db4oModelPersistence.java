@@ -7,6 +7,9 @@ import message.MessageId;
 import persistence.Model;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
+import transaction.NullTransactionManager;
+import transaction.TransactionManager;
+import transaction.simple.SimpleDb4oTransactionManager;
 
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -22,6 +25,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 	private String fileName = "model.db4o";
 	private ObjectContainer container;
 	private Model loadedModel;
+	private TransactionManager transactionManager = new NullTransactionManager();
 	
 	public Db4oModelPersistence() {
 		super();
@@ -72,7 +76,9 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	public void open() {
 		try {
-			this.container = Db4o.openFile(getFileName());
+			container = Db4o.openFile(getFileName());
+			//FIXME hardcoded!
+			transactionManager = new SimpleDb4oTransactionManager(container);
 			
 		} catch (DatabaseFileLockedException e) {
 			throw e;
@@ -169,5 +175,9 @@ public class Db4oModelPersistence extends ModelPersistence {
 	
 	public Map newMap() {
 		return container.ext().collections().newHashMap(0);
+	}
+
+	public TransactionManager transactionManager() {
+		return transactionManager;
 	}
 }
