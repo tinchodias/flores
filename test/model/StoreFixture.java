@@ -12,7 +12,6 @@ import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyAnnulment;
-import model.receipt.BuyItem;
 import model.receipt.BuyItems;
 import model.receipt.Expense;
 import model.receipt.Sell;
@@ -22,12 +21,7 @@ import model.stock.Article;
 import model.stock.ArticleGroup;
 
 import org.apache.commons.lang.math.RandomUtils;
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.ReadableDateTime;
-
-import persistence.ModelPersistence;
 
 public class StoreFixture {
 
