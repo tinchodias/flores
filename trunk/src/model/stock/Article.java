@@ -1,5 +1,6 @@
 package model.stock;
 
+
 public class Article {
 
 	private String code;
@@ -59,4 +60,17 @@ public class Article {
 		return getName() + " x " + getSize();
 	}
 
+	public int hashCode() {
+		//FIXME
+		return toString().hashCode();
+	}
+	
+	public boolean equals(Object obj) {
+		//FIXME
+		if (obj != null && obj instanceof Article) {
+			Article a = (Article) obj;
+			return this.toString().equals(a.toString());
+		}
+		return false;
+	}
 }

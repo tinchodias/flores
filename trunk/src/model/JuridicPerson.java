@@ -1,8 +1,8 @@
 package model;
 
-import org.apache.commons.lang.StringUtils;
-
 import model.address.Address;
+
+import org.apache.commons.lang.StringUtils;
 
 public class JuridicPerson {
 
@@ -44,5 +44,19 @@ public class JuridicPerson {
 		return getName();
 	}
 
+	public int hashCode() {
+		//FIXME
+		return toString().hashCode();
+	}
+	
+	public boolean equals(Object obj) {
+		//FIXME
+		if (obj != null && obj instanceof JuridicPerson) {
+			JuridicPerson a = (JuridicPerson) obj;
+			return this.toString().equals(a.toString());
+		}
+		return false;
+	}
+	
 	
 }
