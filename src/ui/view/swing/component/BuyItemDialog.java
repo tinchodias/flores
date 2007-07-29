@@ -15,7 +15,6 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 	private ObjectPicker articlePicker;
 	private JFormattedTextField countField;
 	private JFormattedTextField valueField;
-	private JFormattedTextField priceMarginField;
 
 	public BuyItemDialog() {
 		super(MessageId.buyItem);
@@ -28,12 +27,10 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 		articlePicker = new ObjectPicker();
 		countField = SwingUI.instance().decimalField();
 		valueField = SwingUI.instance().currencyField();
-		priceMarginField = SwingUI.instance().decimalField();
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 		centerPanel().add(SwingUI.instance().label(valueField, MessageId.articleCost));
-		centerPanel().add(SwingUI.instance().label(priceMarginField, MessageId.priceMargin));
 	}
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {
@@ -52,8 +49,4 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 		return SwingUI.instance().pesosFrom(valueField);
 	}
 
-	public double getPriceMargin() {
-		return Double.valueOf(priceMarginField.getValue().toString());
-	}
-	
 }

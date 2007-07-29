@@ -4,11 +4,8 @@ import java.util.Map;
 
 import model.Store;
 import model.money.Pesos;
-import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
 import model.stock.Article;
 import model.util.CollectionFactory;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SimplePercentagePriceStrategy implements PriceStrategy {
 
@@ -48,18 +45,6 @@ public class SimplePercentagePriceStrategy implements PriceStrategy {
 
 	public void setDefaultPriceMargin(Double percentage) {
 		this.defaultPriceMargin = percentage;
-	}
-
-	public void apply(Buy buy) {
-		for (Article article : buy.items().getArticles()) {
-			Double margin = buy.items().getPriceMargin(article);
-			this.setPriceMargin(article, margin);
-		}
-	}
-
-	public void apply(BuyAnnulment annulment) {
-		// TODO not implemented
-		throw new NotImplementedException();
 	}
 
 }

@@ -14,6 +14,4 @@ public interface BuyItemUI extends DetailUI {
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer);
 
-	public double getPriceMargin();
-	
 }
