@@ -48,7 +48,7 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 	}
 
 	public double getCount() {
-		return Double.valueOf(countField.getValue().toString());
+		return SwingUI.instance().doubleFrom(countField);
 	}
 
 	public Pesos getValue() {

@@ -10,6 +10,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import org.apache.commons.lang.ObjectUtils;
+
 import ui.controller.action.objectpicker.ShowObjectPickerDialog;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.swing.util.actionadapter.ActionAdapter;
@@ -44,7 +46,7 @@ public class ObjectPicker extends Container {
 
 	public void setSelection(Object selection) {
 		this.selection = selection;
-		textField.setText(selection.toString());
+		textField.setText(ObjectUtils.toString(selection));
 		notifySelection();
 	}
 

@@ -29,6 +29,7 @@ import message.MessageRepository;
 import model.CashBookEntry;
 import model.money.Pesos;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.joda.time.ReadableInstant;
 
 import ui.UI;
@@ -121,7 +122,11 @@ public class SwingUI extends UI {
 	}
 
 	public Pesos pesosFrom(JFormattedTextField field) {
-		return Pesos.newFor(Double.valueOf(field.getValue().toString()));
+		return Pesos.newFor(NumberUtils.toDouble(String.valueOf(field.getValue())));
+	}
+
+	public Double doubleFrom(JFormattedTextField field) {
+		return NumberUtils.toDouble(String.valueOf(field.getValue()));
 	}
 
 	public void setEnableRecursively(Container container, boolean enable) {

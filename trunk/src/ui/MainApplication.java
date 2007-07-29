@@ -4,7 +4,6 @@ import javax.swing.UIManager;
 
 import message.MessageId;
 import persistence.ModelPersistence;
-import persistence.exception.MessageIdentifiedException;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.LoginDialogInitializer;
 
