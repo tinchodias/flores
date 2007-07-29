@@ -11,11 +11,11 @@ import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.BuyItems;
 import model.receipt.Expense;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.receipt.SellItems;
 import model.stock.Article;
 import model.stock.ArticleGroup;
@@ -210,8 +210,8 @@ public class StoreFixture {
 	 * @param sell The sell to cancel.
 	 * @return The annulment of the sell. 
 	 */
-	public static SellAnnulment sellAnnulment(Sell sell) {
-		return new SellAnnulment(sell, new DateTime());
+	public static SellCancellation sellCancellation(Sell sell) {
+		return new SellCancellation(sell, new DateTime());
 	}
 
 	/**
@@ -237,8 +237,8 @@ public class StoreFixture {
 	 * @param buy The buy to cancel.
 	 * @return The annulment of the buy.
 	 */
-	public static BuyAnnulment buyAnnulment(Buy buy) {
-		return new BuyAnnulment(buy, new DateTime());
+	public static BuyCancellation buyCancellation(Buy buy) {
+		return new BuyCancellation(buy, new DateTime());
 	}
 
 	/**

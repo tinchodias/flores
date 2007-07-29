@@ -2,7 +2,6 @@ package security;
 
 import message.MessageId;
 import persistence.ModelPersistence;
-import persistence.exception.MessageIdentifiedException;
 
 public class Security {
 
@@ -20,12 +19,19 @@ public class Security {
 	private Security() {
 	}
 
-	public void login(String name, String password) throws MessageIdentifiedException {
+	/**
+	 * Tries to login a user.
+	 * 
+	 * @param name
+	 * @param password
+	 * @throws ModelSecurityException on invalid login data.
+	 */
+	public void login(String name, String password) throws ModelSecurityException {
 		Users users = ModelPersistence.instance().loadedModel().users();
 		if (users.isValid(name, password)) {
 			loggedUser(users.get(name));
 		} else {
-			throw new MessageIdentifiedException(MessageId.securityInvalidLogin);
+			throw new ModelSecurityException(MessageId.securityInvalidLogin);
 		}
 	}
 
@@ -33,7 +39,7 @@ public class Security {
 		loggedUser = user;
 	}
 
-	public User getLoggedUser() {
+	public User loggedUser() {
 		return loggedUser;
 	}
 	

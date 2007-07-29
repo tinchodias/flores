@@ -15,7 +15,7 @@ import model.stock.cost.AverageCostStrategy;
 
 import org.joda.time.DateTime;
 
-//TODO Add tests for BuyAnnulment 
+//TODO Add tests for BuyCancellation 
 
 public class AverageCostStrategyTest extends TestCase {
 

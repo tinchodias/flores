@@ -2,7 +2,6 @@ package persistence;
 
 
 import junit.framework.TestCase;
-import persistence.exception.MessageIdentifiedException;
 import persistence.util.EqualsBuilder;
 
 public abstract class PersistenceTest extends TestCase {
@@ -34,7 +33,7 @@ public abstract class PersistenceTest extends TestCase {
 		try {
 			modelPersistence.load();
 			fail("Load on a closed ModelPersistence must throw an exception");
-		} catch (MessageIdentifiedException e) {
+		} catch (Exception e) {
 		}
 	}
 	

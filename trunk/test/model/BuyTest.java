@@ -9,7 +9,7 @@ import model.Store;
 import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.BuyItems;
 import model.stock.Article;
 
@@ -39,7 +39,7 @@ public class BuyTest extends TestCase {
 		store.stockArticles().add(rosas);
 	}
 
-	public void testBuyAndAnnulment() {
+	public void testBuyAndCancellation() {
 		Buy buy1 = createBuy1();
 		store.add(buy1);
 		
@@ -52,21 +52,21 @@ public class BuyTest extends TestCase {
 		assertEquals(120.0, store.stock().count(claveles));
 		assertEquals(210.0, store.stock().count(rosas));
 		
-		BuyAnnulment buy1Annulment = createBuyAnnulment(buy1);
-		store.add(buy1Annulment);
+		BuyCancellation buy1Cancellation = createBuyCancellation(buy1);
+		store.add(buy1Cancellation);
 
 		assertEquals(100.0, store.stock().count(claveles));
 		assertEquals(200.0, store.stock().count(rosas));
 		
-		BuyAnnulment buy2Annulment = createBuyAnnulment(buy2);
-		store.add(buy2Annulment);
+		BuyCancellation buy2Cancellation = createBuyCancellation(buy2);
+		store.add(buy2Cancellation);
 
 		assertEquals(0.0, store.stock().count(claveles));
 		assertEquals(0.0, store.stock().count(rosas));
 	}
 
-	private BuyAnnulment createBuyAnnulment(Buy buy) {
-		return new BuyAnnulment(buy, new DateTime());
+	private BuyCancellation createBuyCancellation(Buy buy) {
+		return new BuyCancellation(buy, new DateTime());
 	}
 
 	private Buy createBuy1() {

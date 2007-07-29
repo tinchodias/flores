@@ -6,9 +6,9 @@ import java.util.Map;
 
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.stock.cost.CostStrategy;
 import model.stock.cost.LastPrevailsCostStrategy;
 import model.util.CollectionFactory;
@@ -57,7 +57,7 @@ public class Stock {
 		}
 	}
 
-	public void apply(BuyAnnulment annulment) {
+	public void apply(BuyCancellation annulment) {
 		costStrategy.notify(annulment);
 		Buy buy = annulment.getBuy();
 		for (Article article : buy.items().getArticles()) {
@@ -66,7 +66,7 @@ public class Stock {
 		}
 	}
 
-	public void apply(SellAnnulment annulment) {
+	public void apply(SellCancellation annulment) {
 		costStrategy.notify(annulment);
 		Sell sell = annulment.getSell();
 		for (Article article : sell.items().getArticles()) {

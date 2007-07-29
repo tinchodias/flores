@@ -1,7 +1,7 @@
 package ui.controller.action;
 
 import message.MessageId;
-import persistence.exception.MessageIdentifiedException;
+import security.ModelSecurityException;
 import security.Security;
 import ui.UI;
 import ui.view.component.LoginUI;
@@ -22,8 +22,8 @@ public class LoginAction implements Action {
 			Security.instance().login(name, password);
 			UI.instance().mainUI().setLoggedUserState();
 			login.setVisible(false);
-		} catch (MessageIdentifiedException e1) {
-			UI.instance().showInfo(e1.getMessage());
+		} catch (ModelSecurityException e) {
+			UI.instance().showInfo(e.getMessage());
 		}
 	}
 

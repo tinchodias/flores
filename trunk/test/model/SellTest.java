@@ -6,7 +6,7 @@ package model;
 import junit.framework.TestCase;
 import model.money.Pesos;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.receipt.SellItems;
 import model.stock.Article;
 
@@ -40,7 +40,7 @@ public class SellTest extends TestCase {
 		super.tearDown();
 	}
 	
-	public void testSimpleSellAndAnnulment() {
+	public void testSimpleSellAndCancellation() {
 		
 		Pesos initialDebt = store.debts().debtOf(elvira);
 		double initialStock = store.stock().count(clavel);
@@ -51,7 +51,7 @@ public class SellTest extends TestCase {
 		assertEquals(initialDebt.plus(Pesos.newFor(400.0)), store.debts().debtOf(elvira));
 		assertEquals(initialStock - 100.0, store.stock().count(clavel));
 
-		SellAnnulment annulment = StoreFixture.sellAnnulment(sell);
+		SellCancellation annulment = StoreFixture.sellCancellation(sell);
 		store.add(annulment);
 		
 		assertEquals(initialDebt, store.debts().debtOf(elvira));

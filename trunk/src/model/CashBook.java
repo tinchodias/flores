@@ -5,10 +5,10 @@ import java.util.List;
 import model.debts.ClientDebtCancellation;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Expense;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.util.CollectionFactory;
 
 import org.joda.time.ReadableDateTime;
@@ -35,11 +35,11 @@ public class CashBook {
 		addNegativeEntry(expense, expense.getDate(), expense.getCost());
 	}
 
-	public void add(SellAnnulment annulment) {
+	public void add(SellCancellation annulment) {
 		addNegativeEntry(annulment, annulment.getDate(), annulment.getSell().payment().total());
 	}
 
-	public void add(BuyAnnulment annulment) {
+	public void add(BuyCancellation annulment) {
 		addPositiveEntry(annulment, annulment.getDate(), annulment.getBuy().payment().total());
 	}
 

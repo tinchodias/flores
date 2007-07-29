@@ -33,7 +33,7 @@ public class MainApplication {
 		}
 	}
 
-	private static void initPersistence() throws MessageIdentifiedException {
+	private static void initPersistence() {
 		ModelPersistence.instance().open();
 		ModelPersistence.instance().load();
 	}

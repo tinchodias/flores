@@ -3,12 +3,12 @@ package model.receipt;
 import org.joda.time.ReadableDateTime;
 
 
-public class SellAnnulment {
+public class SellCancellation {
 
 	private final ReadableDateTime date;
 	private final Sell sell;
 
-	public SellAnnulment(Sell sell, ReadableDateTime date) {
+	public SellCancellation(Sell sell, ReadableDateTime date) {
 		this.sell = sell;
 		this.date = date;
 	}
