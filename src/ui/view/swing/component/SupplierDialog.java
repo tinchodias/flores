@@ -31,6 +31,10 @@ public class SupplierDialog extends StandardDetailDialog implements SupplierUI {
 		return nameField.getText();
 	}
 
+	public void setSupplierName(String name) {
+		nameField.setText(name);
+	}
+	
 	public AddressUI getAddressUI() {
 		return addressPanel;
 	}
