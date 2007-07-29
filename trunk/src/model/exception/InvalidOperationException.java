@@ -1,5 +1,5 @@
 package model.exception;
 
-public class InvalidOperationException extends Exception {
+public class InvalidOperationException extends RuntimeException {
 
 }

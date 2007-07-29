@@ -2,10 +2,10 @@ package ui.view.component;
 
 public interface ClientUI extends DetailUI {
 
-	public String getClientName();
+	String getClientName();
 
-	public void setClientName(String name);
+	void setClientName(String name);
 
-	public AddressUI getAddressUI();
+	AddressUI getAddressUI();
 	
 }
