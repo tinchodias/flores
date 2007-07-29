@@ -4,9 +4,9 @@ import java.util.Map;
 
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.stock.Article;
 import model.stock.Stock;
 import model.stock.StockDropOut;
@@ -42,8 +42,8 @@ public class LastPrevailsCostStrategy implements CostStrategy {
 		}
 	}
 
-	public void notify(BuyAnnulment annulment) {
-		//TODO
+	public void notify(BuyCancellation annulment) {
+		//TODO if its the last buy, it must get the previous costs.
 		throw new NotImplementedException();
 	}
 
@@ -51,8 +51,8 @@ public class LastPrevailsCostStrategy implements CostStrategy {
 		//Do nothing on Sell
 	}
 
-	public void notify(SellAnnulment annulment) {
-		//Do nothing on SellAnnulment
+	public void notify(SellCancellation annulment) {
+		//Do nothing on SellCancellation
 	}
 
 	public void notify(StockDropOut dropOut) {

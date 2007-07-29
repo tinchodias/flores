@@ -11,10 +11,10 @@ import model.debts.ClientsDebts;
 import model.price.PriceStrategy;
 import model.price.SimplePercentagePriceStrategy;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Expense;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.stock.Article;
 import model.stock.ArticleGroup;
 import model.stock.Stock;
@@ -30,8 +30,8 @@ public class Store {
 
 	private Collection<Buy> buys = CollectionFactory.newList();
 	private Collection<Sell> sells = CollectionFactory.newList();
-	private Collection<BuyAnnulment> buyAnnulments = CollectionFactory.newList();
-	private Collection<SellAnnulment> sellAnnulments = CollectionFactory.newList();
+	private Collection<BuyCancellation> buyCancellations = CollectionFactory.newList();
+	private Collection<SellCancellation> sellCancellations = CollectionFactory.newList();
 	private Collection<Article> stockArticles = CollectionFactory.newList();
 	private Collection<Article> expensesArticles = CollectionFactory.newList();
 	private Collection<Expense> expenses = CollectionFactory.newList();
@@ -125,14 +125,14 @@ public class Store {
 		cashBook.add(sell);
 	}
 
-	public void add(BuyAnnulment annulment) {
-		buyAnnulments.add(annulment);
+	public void add(BuyCancellation annulment) {
+		buyCancellations.add(annulment);
 		stock.apply(annulment);
 		cashBook.add(annulment);
 	}
 
-	public void add(SellAnnulment annulment) {
-		sellAnnulments.add(annulment);
+	public void add(SellCancellation annulment) {
+		sellCancellations.add(annulment);
 		stock.apply(annulment);
 		clientsDebts.apply(annulment);
 		cashBook.add(annulment);

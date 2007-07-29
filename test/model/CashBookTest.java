@@ -5,10 +5,10 @@ import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Expense;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.stock.Article;
 
 public class CashBookTest extends TestCase {
@@ -44,7 +44,7 @@ public class CashBookTest extends TestCase {
 		
 		assertCurrentCash(-950.0);
 
-		BuyAnnulment annulment = StoreFixture.buyAnnulment(buy);
+		BuyCancellation annulment = StoreFixture.buyCancellation(buy);
 		store.add(annulment);
 		
 		assertCurrentCash(0.0);
@@ -63,7 +63,7 @@ public class CashBookTest extends TestCase {
 		
 		assertCurrentCash(-450.0);
 	
-		SellAnnulment annulment = StoreFixture.sellAnnulment(sell);
+		SellCancellation annulment = StoreFixture.sellCancellation(sell);
 		store.add(annulment);
 
 		assertCurrentCash(-950.0);

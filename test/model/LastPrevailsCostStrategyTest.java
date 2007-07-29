@@ -13,7 +13,7 @@ import model.stock.cost.LastPrevailsCostStrategy;
 
 import org.joda.time.DateTime;
 
-//TODO Add tests for BuyAnnulment 
+//TODO Add tests for BuyCancellation 
 
 public class LastPrevailsCostStrategyTest extends TestCase {
 

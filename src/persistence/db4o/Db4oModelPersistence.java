@@ -1,5 +1,7 @@
 package persistence.db4o;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,32 +34,11 @@ public class Db4oModelPersistence extends ModelPersistence {
 		configureDb4o();
 	}
 
-	private void configureDb4o() {
-		Configuration configuration = Db4o.configure();
-		
-//		configuration.password("encrPass");
-//		configuration.encrypt(true);
-		
-		configuration.messageLevel(3);
-		configuration.exceptionsOnNotStorable(true);
-//		configuration.diagnostic().addListener(new DiagnosticToConsole());
-		
-		//For simple activation
-		configuration.activationDepth(Integer.MAX_VALUE);
-		
-		//For simple update
-		ObjectClass oc = configuration.objectClass(Model.class);
-		oc.cascadeOnUpdate(true);
-		oc.updateDepth(Integer.MAX_VALUE);
-		
-		configureJodaTime();
-	}
-
 	public void save(Model model) {
 		container.set(model);
 	}
 
-	public Model load() throws MessageIdentifiedException {
+	public Model load() {
 		ObjectSet<Model> modelSet;
 		
 		try {
@@ -101,6 +82,27 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	private void configureDb4o() {
+		Configuration configuration = Db4o.configure();
+		
+//		configuration.password("encrPass");
+//		configuration.encrypt(true);
+		
+		configuration.messageLevel(3);
+		configuration.exceptionsOnNotStorable(true);
+//		configuration.diagnostic().addListener(new DiagnosticToConsole());
+		
+		//For simple activation
+		configuration.activationDepth(Integer.MAX_VALUE);
+		
+		//For simple update
+		ObjectClass oc = configuration.objectClass(Model.class);
+		oc.cascadeOnUpdate(true);
+		oc.updateDepth(Integer.MAX_VALUE);
+		
+		configureJodaTime();
 	}
 
 	private void configureJodaTime() {
@@ -170,11 +172,21 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 	
 	public List newList() {
-		return container.ext().collections().newLinkedList();
+		//FIXME!
+		if (container!= null) {
+			return container.ext().collections().newLinkedList();
+		} else {
+			return new ArrayList();
+		}
 	}
 	
 	public Map newMap() {
-		return container.ext().collections().newHashMap(0);
+		//FIXME!
+		if (container != null) {
+			return container.ext().collections().newHashMap(0);
+		} else {
+			return new HashMap();
+		}
 	}
 
 	public TransactionManager transactionManager() {

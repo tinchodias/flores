@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import persistence.db4o.Db4oModelPersistence;
-import persistence.exception.MessageIdentifiedException;
 import transaction.TransactionManager;
 
 
@@ -25,7 +24,7 @@ public abstract class ModelPersistence {
 	
 	public abstract void save(Model model);
 
-	public abstract Model load() throws MessageIdentifiedException;
+	public abstract Model load();
 
 	public abstract Model loadedModel();
 

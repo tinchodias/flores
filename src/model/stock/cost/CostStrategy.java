@@ -2,9 +2,9 @@ package model.stock.cost;
 
 import model.money.Pesos;
 import model.receipt.Buy;
-import model.receipt.BuyAnnulment;
+import model.receipt.BuyCancellation;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.stock.Article;
 import model.stock.Stock;
 import model.stock.StockDropOut;
@@ -19,9 +19,9 @@ public interface CostStrategy {
 
 	void notify(Sell sell);
 
-	void notify(BuyAnnulment annulment);
+	void notify(BuyCancellation annulment);
 
-	void notify(SellAnnulment annulment);
+	void notify(SellCancellation annulment);
 
 	void notify(StockDropOut dropOut);
 

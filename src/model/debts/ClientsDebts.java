@@ -7,7 +7,7 @@ import model.JuridicPerson;
 import model.Store;
 import model.money.Pesos;
 import model.receipt.Sell;
-import model.receipt.SellAnnulment;
+import model.receipt.SellCancellation;
 import model.util.CollectionFactory;
 
 public class ClientsDebts {
@@ -51,7 +51,7 @@ public class ClientsDebts {
 		incrementDebt(sell.client(), sell.clientDebt());
 	}
 
-	public void apply(SellAnnulment annulment) {
+	public void apply(SellCancellation annulment) {
 		reduceDebt(annulment.getSell().client(), annulment.getSell().clientDebt());
 	}
 }
