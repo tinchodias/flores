@@ -116,7 +116,6 @@ public class Store {
 		buys.add(buy);
 		stock.apply(buy);
 		cashBook.add(buy);
-		priceStrategy.apply(buy);
 	}
 
 	public void add(Sell sell) {
@@ -130,7 +129,6 @@ public class Store {
 		buyAnnulments.add(annulment);
 		stock.apply(annulment);
 		cashBook.add(annulment);
-		priceStrategy.apply(annulment);
 	}
 
 	public void add(SellAnnulment annulment) {

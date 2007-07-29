@@ -31,10 +31,6 @@ public class BuyItems {
 		return items.get(article).getValue();
 	}
 	
-	public Double getPriceMargin(Article article) {
-		return items.get(article).getPriceMargin();
-	}
-
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);
 		for (Article article : items.keySet()) {
