@@ -24,7 +24,7 @@ public abstract class PersistenceTest extends TestCase {
 	protected abstract ModelPersistence modelPersistenceInstance();
 
 	private void saveModel() {
-		savedModel = ModelFactory.makeSimpleModel();
+		savedModel = ModelFixture.simpleModel();
 		modelPersistence.save(savedModel);
 	}
 

@@ -7,7 +7,7 @@ public class UsersTest extends TestCase {
 	private Users users;
 
 	public void setUp() throws Exception {
-		users = UsersFactory.makeSimpleUsers();
+		users = UsersFixture.simpleUsers();
 	}
 
 	public void tearDown() throws Exception {

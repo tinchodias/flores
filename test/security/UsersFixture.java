@@ -1,8 +1,8 @@
 package security;
 
-public class UsersFactory {
+public class UsersFixture {
 
-	public static Users makeSimpleUsers() {
+	public static Users simpleUsers() {
 		Users users = new Users();
 		users.add(UserFactory.makeAdminUser());
 		users.add(UserFactory.makeVendorUser());

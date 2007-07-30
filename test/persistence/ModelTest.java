@@ -11,8 +11,8 @@ public class ModelTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		model1 = ModelFactory.makeSimpleModel();
-		model2 = ModelFactory.makeSimpleModel();
+		model1 = ModelFixture.simpleModel();
+		model2 = ModelFixture.simpleModel();
 
 		//tests the model factory...
 		assertNotSame(model1, model2);

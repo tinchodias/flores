@@ -1,6 +1,6 @@
 
 import persistence.Model;
-import persistence.ModelFactory;
+import persistence.ModelFixture;
 import persistence.ModelPersistence;
 
 public class SimpleModelBuilder {
@@ -16,7 +16,7 @@ public class SimpleModelBuilder {
 	}
 
 	private Model model() {
-		return ModelFactory.makeSimpleModel();
+		return ModelFixture.simpleModel();
 	}
 	
 }
