@@ -12,6 +12,7 @@ import model.money.Payment;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
+import model.receipt.BuyItem;
 import model.receipt.BuyItems;
 import model.receipt.Expense;
 import model.receipt.Sell;
@@ -21,7 +22,10 @@ import model.stock.Article;
 import model.stock.ArticleGroup;
 
 import org.apache.commons.lang.math.RandomUtils;
+import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.ReadableDateTime;
 
 public class StoreFixture {
 
@@ -59,9 +63,7 @@ public class StoreFixture {
 		return store;
 	}
 
-	public static Store stressStore() {
-		Store store = new Store();
-
+	public static void fillStressed(Store store) {
 		System.out.println("Generating Provinces");
 		for (int i = 0; i < 30; i++) {
 			Province province = new Province("Provincia " + i);
@@ -70,13 +72,12 @@ public class StoreFixture {
 		System.out.println("Generating Null City");
 		City nullCity = new City("Ninguna", (Province) oneOf(store.provinces()));
 		store.cities().add(nullCity);
-/*
+
 		System.out.println("Generating Cities");
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 100; i++) {
 			City city = new City("Ciudad " + i, (Province) oneOf(store.provinces()));
 			store.cities().add(city);
 		}
-
 		System.out.println("Generating Final Consumer Client");
 		JuridicPerson finalConsumerClient = new JuridicPerson("Consumidor Final", new Address("Ninguna", store.cities().iterator().next()));
 		store.clients().add(finalConsumerClient);
@@ -87,8 +88,6 @@ public class StoreFixture {
 			store.clients().add(client);
 		}
 
-//		ModelPersistence.instance().transactionManager().commit();
-		
 		System.out.println("Generating Suppliers");
 		for (int i = 0; i < 50; i++) {
 			JuridicPerson supplier = new JuridicPerson("Proveedor " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
@@ -105,7 +104,6 @@ public class StoreFixture {
 			ArticleGroup group = new ArticleGroup("Marca " + i);
 			store.stockArticleGroups().add(group);
 		}
-		
 		System.out.println("Generating Stock Articles");
 		for (int i = 0; i < 800; i++) {
 			Article article = new Article(String.valueOf(1000000 + i), "Artículo " + i, String.valueOf(RandomUtils.nextInt(i + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
@@ -118,27 +116,24 @@ public class StoreFixture {
 			store.expensesArticles().add(expenseArticle);
 		}
 
-//		ModelPersistence.instance().transactionManager().commit();
-		/*
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 1, 2);
+		DateMidnight buysEnd = new DateMidnight(2006, 1, 15);
 		for (ReadableDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
 				for (int j = 0; j < 100; j++) {
-					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomPesos(20), 0.5);
+					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomPesos(20));
 					spec.add(buyItem);
 				}
 				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
 				store.add(buy);
 			}
-			ModelPersistence.instance().transactionManager().commit();
 		}
 
 		System.out.println("Generating Sells");
 		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
-		DateMidnight sellsEnd = new DateMidnight(2007, 1, 2);
+		DateMidnight sellsEnd = new DateMidnight(2007, 1, 15);
 		for (ReadableDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 100; i++) {
 				SellItems spec = new SellItems();
@@ -149,10 +144,7 @@ public class StoreFixture {
 				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (JuridicPerson) oneOf(store.vendors()));
 				store.add(sell);
 			}
-			ModelPersistence.instance().transactionManager().commit();
-		}*/
-
-		return store;
+		}
 	}
 
 	private static Pesos randomPesos(int bound) {

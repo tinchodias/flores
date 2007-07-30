@@ -3,13 +3,13 @@ package persistence.util;
 
 import junit.framework.TestCase;
 import persistence.Model;
-import persistence.ModelFactory;
+import persistence.ModelFixture;
 
 public class EqualsBuilderTest extends TestCase {
 
 	public void testEqualsModels() {
-		Model model1 = ModelFactory.makeSimpleModel();
-		Model model2 = ModelFactory.makeSimpleModel();
+		Model model1 = ModelFixture.simpleModel();
+		Model model2 = ModelFixture.simpleModel();
 		
 		assertEqualsModels(model1, model2);
 	}

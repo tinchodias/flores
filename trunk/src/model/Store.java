@@ -24,8 +24,6 @@ import org.joda.time.ReadableInterval;
 
 //TODO Rethink this class.
 
-//TODO Add validation checks to maintain consistency? 
-
 public class Store {
 
 	private Collection<Buy> buys = CollectionFactory.newList();
@@ -69,7 +67,7 @@ public class Store {
 	}
 
 	public Collection<JuridicPerson> vendors() {
-		return vendors ;
+		return vendors;
 	}
 
 	public ClientsDebts debts() {

@@ -1,7 +1,11 @@
 
+import java.io.File;
+
+import model.StoreFixture;
 import persistence.Model;
-import persistence.ModelFactory;
+import persistence.ModelFixture;
 import persistence.ModelPersistence;
+import persistence.db4o.Db4oModelPersistence;
 
 public class StressModelBuilder {
 
@@ -10,13 +14,19 @@ public class StressModelBuilder {
 	}
 
 	public void run() {
-		ModelPersistence.instance().open();
-		Model model = model();
-		ModelPersistence.instance().save(model);
-	}
+		//FIXME Deletes the old file
+		Db4oModelPersistence persistence = (Db4oModelPersistence) ModelPersistence.instance();
+		new File(persistence.getFileName()).delete();
+		
+		//Saves a model
+		persistence.open();
+		Model model = ModelFixture.simpleModelWithEmptyStore();
+		persistence.save(model);
 
-	private Model model() {
-		return ModelFactory.makeStressModel();
+		//fills the store
+		StoreFixture.fillStressed(model.store());
+		
+		System.out.println(model.store().cashBook().currentCash());
 	}
 	
 }

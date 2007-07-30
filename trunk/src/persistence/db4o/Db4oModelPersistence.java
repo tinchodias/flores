@@ -90,7 +90,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 //		configuration.password("encrPass");
 //		configuration.encrypt(true);
 		
-		configuration.messageLevel(3);
+//		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
 //		configuration.diagnostic().addListener(new DiagnosticToConsole());
 		
