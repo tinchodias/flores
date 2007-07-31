@@ -3,6 +3,8 @@ package ui.view.swing.component;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -148,6 +150,18 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		}
 	}
 
+	public List getSelections() {
+		int[] rowIndexes = resultsTable.getSelectedRows();
+		
+		List selections = new ArrayList();
+		SearchResults searchResults = (SearchResults) tableModelAdapter.getResults();
+		for (int i = 0; i < rowIndexes.length; i++) {
+			int rowIndex = rowIndexes[i];
+			selections.add(searchResults.get(rowIndex)); 
+		}
+		return selections;
+	}
+	
 	public void add(Action action) {
 		JButton button = new JButton(new ActionAdapter(action));
 		buttonPanel().add(button);

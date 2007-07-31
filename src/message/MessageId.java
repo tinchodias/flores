@@ -34,6 +34,9 @@ public enum MessageId {
 	stockDropOuts, 
 	stockDropOutDialogTitle,
 	
+	pricesDialogTitle,
+	modifyPercentage, 
+	
 	searchFiltersTitle,
 	searchPanelButtons, 
 

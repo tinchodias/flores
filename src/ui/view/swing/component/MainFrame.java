@@ -19,6 +19,7 @@ import ui.controller.initializer.search.CashBookDialogInitializer;
 import ui.controller.initializer.search.CitiesDialogInitializer;
 import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
+import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.controller.initializer.search.StockDropOutsDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
@@ -64,12 +65,14 @@ public class MainFrame extends JFrame implements MainUI {
 		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buys));
 		ActionAdapter showSellsAction = new ActionAdapter(new ShowDialogAction(new SellsDialogInitializer(), MessageId.sells));
 		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
+		ActionAdapter showPricesAction = new ActionAdapter(new ShowDialogAction(new PricePercentagesDialogInitializer(), MessageId.pricesDialogTitle));
 		ActionAdapter showArticleGroupsAction = new ActionAdapter(new ShowDialogAction(new ArticleGroupsDialogInitializer(), MessageId.articleGroups));
 		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
 
 		storeMenu.add(new JMenuItem(showBuysAction));
 		storeMenu.add(new JMenuItem(showSellsAction));
 		storeMenu.add(new JMenuItem(showStockAction));
+		storeMenu.add(new JMenuItem(showPricesAction));
 		storeMenu.add(new JMenuItem(showArticleGroupsAction));
 		storeMenu.add(new JMenuItem(showStockDropDownsAction));
 		
