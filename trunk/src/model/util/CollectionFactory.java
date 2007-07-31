@@ -7,11 +7,11 @@ import persistence.ModelPersistence;
 
 public class CollectionFactory {
 
-	public static <V> List newList() {
+	public static <V> List<V> newList() {
 		return ModelPersistence.instance().newList();
 	}
 
-	public static <K, V> Map newMap() {
+	public static <K, V> Map<K, V> newMap() {
 		return ModelPersistence.instance().newMap();
 	}
 

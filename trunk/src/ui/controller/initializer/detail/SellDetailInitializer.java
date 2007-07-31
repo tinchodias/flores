@@ -3,6 +3,7 @@ package ui.controller.initializer.detail;
 import persistence.ModelPersistence;
 import message.MessageId;
 import model.Store;
+import model.money.Pesos;
 import query.framework.results.SearchResults;
 import query.framework.results.SellItemsLazySearchResults;
 import ui.controller.action.RemoveSellItemAction;
@@ -35,12 +36,14 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 		
 		//FIXME Hack for setting the "Final Consumer".
 		
-		SellUI sellUI = ((SellUI) baseDialog);
+		SellUI sellUI = (SellUI) baseDialog;
 
 		Store store = ModelPersistence.instance().loadedModel().store();
 		if (store.clients().size() > 0) {
 			sellUI.setClient(store.clients().iterator().next());
 		}
+		
+		sellUI.setCashPay(Pesos.newFor(0.0));
 	}
 	
 }
