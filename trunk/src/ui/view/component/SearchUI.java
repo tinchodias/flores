@@ -1,25 +1,29 @@
 package ui.view.component;
 
+import java.util.List;
+
 import query.framework.criteria.Criteria;
 import query.framework.results.SearchResults;
 import ui.controller.action.Action;
 
 public interface SearchUI {
 
-	public Criteria getCriteria();
+	Criteria getCriteria();
 
-	public void setResults(SearchResults results);
+	void setResults(SearchResults results);
 
-	public SearchResults getResults();
+	SearchResults getResults();
 
-	public void setSearchAction(Action action);
+	void setSearchAction(Action action);
 
-	public Action getSearchAction();
+	Action getSearchAction();
 
-	public Object getSelection();
+	Object getSelection();
+
+	List getSelections();
 	
-	public void add(Action action);
+	void add(Action action);
 	
-	public void setDefaultAction(Action action);
+	void setDefaultAction(Action action);
 	
 }

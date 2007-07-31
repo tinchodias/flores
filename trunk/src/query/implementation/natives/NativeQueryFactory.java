@@ -32,6 +32,7 @@ import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
+import query.results.PricePercentageSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
 import query.results.SupplierSearchResultsSpecification;
@@ -68,6 +69,24 @@ public class NativeQueryFactory extends QueryFactory {
 
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new StockArticleSearchResultsSpecification();
+			}
+		};
+	}
+
+	public SearchQuery pricePercentageSearchQuery() {
+		//Note this query shares too much with stockArticleSearchQuery()
+		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
+
+			protected boolean accepts(Article object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
+			}
+
+			protected Collection objects() {
+				return store().stockArticles();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new PricePercentageSearchResultsSpecification();
 			}
 		};
 	}

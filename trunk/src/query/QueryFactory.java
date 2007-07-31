@@ -18,6 +18,8 @@ public abstract class QueryFactory {
 
 	public abstract SearchQuery stockArticleSearchQuery();
 	
+	public abstract SearchQuery pricePercentageSearchQuery();
+	
 	public abstract SearchQuery stockDropOutSearchQuery();
 
 	public abstract SearchQuery buySearchQuery();
