@@ -98,9 +98,9 @@ public class ObjectPicker3 extends Container {
 	}
 	
 	public void setSelection(Object item) {
-		selection = item;
 		field.setText(ObjectUtils.toString(item));
 		setDirtyField(false);
+		selection = item;
 		notifySelection();
 	}
 
