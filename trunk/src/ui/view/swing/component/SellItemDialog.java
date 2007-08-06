@@ -6,16 +6,18 @@ import javax.swing.JLabel;
 import message.MessageId;
 import model.money.Pesos;
 import model.stock.Article;
+import persistence.ModelPersistence;
+import query.QueryFactory;
 import ui.controller.action.Action;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.SellItemUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.actionadapter.SelectionListenerAdapter;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 
-	private ObjectPicker articlePicker;
+	private ObjectPicker3 articlePicker;
 	private JFormattedTextField countField;
 	private JFormattedTextField valueField;
 	private JLabel costLabel;
@@ -28,10 +30,14 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 	}
 
 	private void initComponents() {
-		articlePicker = new ObjectPicker();
 		countField = SwingUI.instance().decimalField();
 		valueField = SwingUI.instance().currencyField();
 		costLabel = new JLabel(" ");
+		
+		//TODO put this in the correct place
+		articlePicker = new ObjectPicker3();
+		Iterable items = ModelPersistence.instance().loadedModel().store().stockArticles();
+		articlePicker.setQuery(QueryFactory.instance().stringSearchQuery(items));
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));

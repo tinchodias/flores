@@ -27,9 +27,17 @@ abstract class StandardSearchQuery <GenericType, GenericCriteria extends Criteri
 		for (Object object : objects) {
 			if (accepts((GenericType) object)) {
 				results.add(object);
+				
+				if (mustBreakWith(results)) {
+					break;
+				}
 			}
 		}
 		return results;
+	}
+
+	protected boolean mustBreakWith(LazySearchResults results) {
+		return false;
 	}
 
 	protected GenericCriteria criteria() {
