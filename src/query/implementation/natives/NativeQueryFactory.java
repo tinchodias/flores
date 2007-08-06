@@ -25,6 +25,7 @@ import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
+import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
@@ -201,7 +202,7 @@ public class NativeQueryFactory extends QueryFactory {
 			protected boolean accepts(Object object) {
 				String criteriaString = StringUtils.lowerCase(criteria().getString());
 				String objectString = StringUtils.lowerCase(object.toString());
-				return objectString.startsWith(criteriaString);
+				return objectString.contains(criteriaString);
 			}
 
 			protected Iterable objects() {
@@ -211,6 +212,11 @@ public class NativeQueryFactory extends QueryFactory {
 			protected LazySearchResultsSpecification resultsSpecification() {
 				//TODO
 				return null;
+			}
+			
+			@Override
+			protected boolean mustBreakWith(LazySearchResults results) {
+				return results.getRowCount() >= 15;
 			}
 		};
 	}

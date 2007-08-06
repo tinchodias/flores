@@ -2,6 +2,7 @@
 import java.io.File;
 
 import model.StoreFixture;
+import model.price.SimplePercentagePriceStrategy;
 import persistence.Model;
 import persistence.ModelFixture;
 import persistence.ModelPersistence;
@@ -25,8 +26,9 @@ public class StressModelBuilder {
 
 		//fills the store
 		StoreFixture.fillStressed(model.store());
-		
-		System.out.println(model.store().cashBook().currentCash());
+
+		//extra
+		((SimplePercentagePriceStrategy) model.store().priceStrategy()).setDefaultPriceMargin(50.0);
 	}
 	
 }

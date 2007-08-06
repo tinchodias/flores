@@ -57,7 +57,7 @@ public class Article {
 	}
 	
 	public String toString() {
-		return getName() + " x " + getSize();
+		return getCode() + " - " + getName() + " x " + getSize();
 	}
 
 	public int hashCode() {
