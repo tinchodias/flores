@@ -21,15 +21,18 @@ public abstract class LazySearchResults implements SearchResults {
 	}
 
 	public String getColumnName(int columnIndex) {
-		MessageId messageIdentifier = 
-			spec.columnMessageIdentifiers().get(columnIndex);
-		return MessageRepository.instance().get(messageIdentifier);
+		MessageId messageId = spec.columnMessageIdentifiers().get(columnIndex);
+		return MessageRepository.instance().get(messageId);
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return this.spec.value(get(rowIndex), columnIndex);
 	}
 
+	public LazySearchResultsSpecification spec() {
+		return spec;
+	}
+	
 	public abstract void add(Object object);
 
 	public abstract boolean remove(Object object);
