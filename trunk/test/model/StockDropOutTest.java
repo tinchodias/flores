@@ -4,9 +4,7 @@
 package model;
 
 import junit.framework.TestCase;
-import model.JuridicPerson;
-import model.Store;
-import model.receipt.Sell;
+import model.exception.InvalidOperationException;
 import model.stock.Article;
 import model.stock.StockDropOut;
 
@@ -16,8 +14,6 @@ public class StockDropOutTest extends TestCase {
 
 	private Store store;
 	private Article clavel;
-	private JuridicPerson elvira;
-	private Sell sell;
 	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -28,8 +24,6 @@ public class StockDropOutTest extends TestCase {
 		store = StoreFixture.simpleStore();
 		
 		clavel = store.stockArticles().iterator().next();
-		
-		elvira = store.clients().iterator().next();
 	}
 
 	/* (non-Javadoc)
@@ -51,16 +45,17 @@ public class StockDropOutTest extends TestCase {
 		assertEquals(initialStock - 150.0, store.stock().count(clavel));
 	}
 
-//TODO Finish this
-//	public void testInvalidDropOut() {
-//		double initialStock = store.stock().count(clavel);
-//
-//		try {
-//			doDropOut(clavel, 3000.0);
-//			fail("Must throw an exception");
-//		} catch (InvalidOperationException e) {
-//		}
-//	}
+	public void testInvalidDropOut() {
+		double initialStock = store.stock().count(clavel);
+
+		try {
+			doDropOut(clavel, 3000.0);
+			fail("Must throw an exception");
+		} catch (InvalidOperationException e) {
+		}
+		
+		assertEquals(initialStock, store.stock().count(clavel));
+	}
 	
 	private void doDropOut(Article article, double count) {
 		StockDropOut dropOut = new StockDropOut(article, count, new DateTime());

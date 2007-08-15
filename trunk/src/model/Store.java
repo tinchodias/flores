@@ -8,11 +8,12 @@ import model.address.Province;
 import model.commission.BasicCommissionsManager;
 import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
+import model.expense.Expense;
+import model.expense.ExpenseArticle;
 import model.price.PriceStrategy;
 import model.price.SimplePercentagePriceStrategy;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
-import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.stock.Article;
@@ -31,7 +32,7 @@ public class Store {
 	private Collection<BuyCancellation> buyCancellations = CollectionFactory.newList();
 	private Collection<SellCancellation> sellCancellations = CollectionFactory.newList();
 	private Collection<Article> stockArticles = CollectionFactory.newList();
-	private Collection<Article> expensesArticles = CollectionFactory.newList();
+	private Collection<ExpenseArticle> expensesArticles = CollectionFactory.newList();
 	private Collection<Expense> expenses = CollectionFactory.newList();
 	private Collection<JuridicPerson> clients = CollectionFactory.newList(); 
 	private Collection<JuridicPerson> suppliers = CollectionFactory.newList();
@@ -54,7 +55,7 @@ public class Store {
 		return stockArticles;
 	}
 
-	public Collection<Article> expensesArticles() {
+	public Collection<ExpenseArticle> expensesArticles() {
 		return expensesArticles;
 	}
 	

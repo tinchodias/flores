@@ -3,10 +3,11 @@ package model;
 import junit.framework.TestCase;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
+import model.expense.Expense;
+import model.expense.ExpenseArticle;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
-import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.stock.Article;
@@ -17,7 +18,7 @@ public class CashBookTest extends TestCase {
 	private Article stockArticle;
 	private JuridicPerson client;
 	private JuridicPerson vendor;
-	private Article expenseArticle;
+	private ExpenseArticle expenseArticle;
 	private JuridicPerson supplier;
 
 	protected void setUp() throws Exception {
@@ -44,8 +45,8 @@ public class CashBookTest extends TestCase {
 		
 		assertCurrentCash(-950.0);
 
-		BuyCancellation annulment = StoreFixture.buyCancellation(buy);
-		store.add(annulment);
+		BuyCancellation cancellation = StoreFixture.buyCancellation(buy);
+		store.add(cancellation);
 		
 		assertCurrentCash(0.0);
 	}
@@ -63,8 +64,8 @@ public class CashBookTest extends TestCase {
 		
 		assertCurrentCash(-450.0);
 	
-		SellCancellation annulment = StoreFixture.sellCancellation(sell);
-		store.add(annulment);
+		SellCancellation cancellation = StoreFixture.sellCancellation(sell);
+		store.add(cancellation);
 
 		assertCurrentCash(-950.0);
 	}

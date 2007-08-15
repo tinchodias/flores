@@ -5,6 +5,7 @@ import java.util.Collection;
 import model.CashBookEntry;
 import model.JuridicPerson;
 import model.address.City;
+import model.expense.ExpenseArticle;
 import model.receipt.Buy;
 import model.receipt.Sell;
 import model.stock.Article;
@@ -19,6 +20,7 @@ import query.criteria.BuySearchCriteria;
 import query.criteria.CashBookEntrySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
+import query.criteria.ExpenseArticleSearchCriteria;
 import query.criteria.SellSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
@@ -32,8 +34,9 @@ import query.results.BuySearchResultsSpecification;
 import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
-import query.results.SellSearchResultsSpecification;
+import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.PricePercentageSearchResultsSpecification;
+import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
 import query.results.SupplierSearchResultsSpecification;
@@ -236,6 +239,23 @@ public class NativeQueryFactory extends QueryFactory {
 				return new CashBookEntrySearchResultsSpecification();
 			}
 			
+		};
+	}
+
+	public SearchQuery expensesArticlesSearchQuery() {
+		return new StandardSearchQuery<ExpenseArticle, ExpenseArticleSearchCriteria>() {
+
+			protected boolean accepts(ExpenseArticle object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
+			}
+			
+			protected Collection objects() {
+				return store().expensesArticles();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ExpenseArticleSearchResultsSpecification();
+			}
 		};
 	}
 }

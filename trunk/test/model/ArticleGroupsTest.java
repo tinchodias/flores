@@ -4,14 +4,11 @@
 package model;
 
 import junit.framework.TestCase;
-import model.stock.Article;
 import model.stock.ArticleGroup;
 
 public class ArticleGroupsTest extends TestCase {
 
 	private Store store;
-	private Article clavel;
-	private Article alquiler;
 	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -20,10 +17,6 @@ public class ArticleGroupsTest extends TestCase {
 		super.setUp();
 		
 		store = StoreFixture.simpleStore();
-		
-		clavel = store.stockArticles().iterator().next();
-		
-		alquiler = store.expensesArticles().iterator().next();
 	}
 
 	/* (non-Javadoc)

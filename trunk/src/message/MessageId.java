@@ -89,6 +89,11 @@ public enum MessageId {
 	
 	acceptAndCreateOther, 
 	
+	expensesArticles, 
+	expenseArticle, 
+	expenses,
+	expense,
+	
 	;
 	
 }
