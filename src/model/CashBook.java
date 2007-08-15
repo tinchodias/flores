@@ -3,10 +3,10 @@ package model;
 import java.util.List;
 
 import model.debts.ClientDebtCancellation;
+import model.expense.Expense;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
-import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.util.CollectionFactory;

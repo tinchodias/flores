@@ -7,6 +7,8 @@ import model.address.City;
 import model.address.Province;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
+import model.expense.Expense;
+import model.expense.ExpenseArticle;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
@@ -14,7 +16,6 @@ import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
 import model.receipt.BuyItems;
-import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.receipt.SellItems;
@@ -57,7 +58,7 @@ public class StoreFixture {
 		Article paqueteClavel = new Article("Clavel", floresGroup);
 		store.stockArticles().add(paqueteClavel);
 
-		Article alquiler = new Article("Alquiler del depósito");
+		ExpenseArticle alquiler = new ExpenseArticle("Alquiler del depósito");
 		store.expensesArticles().add(alquiler);
 		
 		return store;
@@ -112,7 +113,7 @@ public class StoreFixture {
 
 		System.out.println("Generating Expenses Articles");
 		for (int i = 0; i < 50; i++) {
-			Article expenseArticle = new Article("Gasto " + i);
+			ExpenseArticle expenseArticle = new ExpenseArticle("Gasto " + i);
 			store.expensesArticles().add(expenseArticle);
 		}
 
@@ -173,7 +174,7 @@ public class StoreFixture {
 	 * @param article
 	 * @return
 	 */
-	public static Expense simpleExpense(Article article) {
+	public static Expense simpleExpense(ExpenseArticle article) {
 		return new Expense(article, Pesos.newFor(300.0), new DateTime());
 	}
 

@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import model.JuridicPerson;
 import model.Store;
+import model.expense.Expense;
 import model.money.Pesos;
-import model.receipt.Expense;
 import model.receipt.Sell;
 
 import org.joda.time.ReadableInterval;

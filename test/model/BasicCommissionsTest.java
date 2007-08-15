@@ -7,10 +7,11 @@ import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.commission.CommissionSummary;
+import model.expense.Expense;
+import model.expense.ExpenseArticle;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
-import model.receipt.Expense;
 import model.receipt.Sell;
 import model.receipt.SellItems;
 import model.stock.Article;
@@ -26,7 +27,7 @@ public class BasicCommissionsTest extends TestCase {
 	private JuridicPerson elvira;
 	private Sell sell;
 	private JuridicPerson eduardo;
-	private Article alquiler;
+	private ExpenseArticle alquiler;
 	private Pesos clavelInitialCost;
 	
 	/* (non-Javadoc)

@@ -6,13 +6,13 @@ package model;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
-import model.receipt.Expense;
-import model.stock.Article;
+import model.expense.Expense;
+import model.expense.ExpenseArticle;
 
 public class ExpenseTest extends TestCase {
 
 	private Store store;
-	private Article alquiler;
+	private ExpenseArticle alquiler;
 
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()

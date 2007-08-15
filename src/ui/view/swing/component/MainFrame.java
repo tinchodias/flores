@@ -18,8 +18,9 @@ import ui.controller.initializer.search.BuysDialogInitializer;
 import ui.controller.initializer.search.CashBookDialogInitializer;
 import ui.controller.initializer.search.CitiesDialogInitializer;
 import ui.controller.initializer.search.ClientsDialogInitializer;
-import ui.controller.initializer.search.SellsDialogInitializer;
+import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.PricePercentagesDialogInitializer;
+import ui.controller.initializer.search.SellsDialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.controller.initializer.search.StockDropOutsDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
@@ -83,8 +84,12 @@ public class MainFrame extends JFrame implements MainUI {
 		cashMenu = new JMenu("Caja");
 
 		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
+		ActionAdapter showExpensesArticlesAction = new ActionAdapter(new ShowDialogAction(new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles));
+//		ActionAdapter showExpensesAction = new ActionAdapter(new ShowDialogAction(new ExpensesDialogInitializer(), MessageId.expenses));
 
 		cashMenu.add(new JMenuItem(showCashBookAction));
+		cashMenu.add(new JMenuItem(showExpensesArticlesAction));
+//		cashMenu.add(new JMenuItem(showExpensesAction));
 		
 		return cashMenu;
 	}
