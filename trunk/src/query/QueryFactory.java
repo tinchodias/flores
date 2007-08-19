@@ -37,5 +37,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery cashBookEntrySearchQuery();
 
 	public abstract SearchQuery expensesArticlesSearchQuery();
+
+	public abstract SearchQuery expensesSearchQuery();
 	
 }
