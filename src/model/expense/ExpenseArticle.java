@@ -16,4 +16,7 @@ public class ExpenseArticle {
 		this.name = name;
 	}
 
+	public String toString() {
+		return getName();
+	}
 }

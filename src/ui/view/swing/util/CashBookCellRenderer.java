@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import message.MessageId;
 import message.MessageRepository;
 import model.CashBookEntry;
+import model.expense.Expense;
 import model.receipt.Buy;
 import model.receipt.Sell;
 
@@ -43,7 +44,9 @@ public class CashBookCellRenderer extends DefaultTableCellRenderer {
 			messageId = MessageId.sell; 
 		} else if (object instanceof Buy) {
 			messageId = MessageId.buy; 
-		};
+		} else if (object instanceof Expense) {
+			messageId = MessageId.expense;
+		}
 		
 		return MessageRepository.instance().get(messageId);
 	}

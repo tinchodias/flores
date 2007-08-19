@@ -5,6 +5,7 @@ import java.util.Collection;
 import model.CashBookEntry;
 import model.JuridicPerson;
 import model.address.City;
+import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;
 import model.receipt.Sell;
@@ -21,6 +22,7 @@ import query.criteria.CashBookEntrySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.ExpenseArticleSearchCriteria;
+import query.criteria.ExpenseSearchCriteria;
 import query.criteria.SellSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
@@ -35,6 +37,7 @@ import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
+import query.results.ExpenseSearchResultsSpecification;
 import query.results.PricePercentageSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
@@ -255,6 +258,23 @@ public class NativeQueryFactory extends QueryFactory {
 
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new ExpenseArticleSearchResultsSpecification();
+			}
+		};
+	}
+	
+	public SearchQuery expensesSearchQuery() {
+		return new StandardSearchQuery<Expense, ExpenseSearchCriteria>() {
+
+			protected boolean accepts(Expense object) {
+				return criteria().getInterval().contains(object.getDate());
+			}
+
+			protected Iterable objects() {
+				return store().expenses();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ExpenseSearchResultsSpecification();
 			}
 		};
 	}
