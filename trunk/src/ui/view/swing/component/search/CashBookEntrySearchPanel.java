@@ -1,16 +1,17 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
+
 
 import org.joda.time.ReadableInterval;
 
-import query.criteria.ExpenseSearchCriteria;
+import query.criteria.CashBookEntrySearchCriteria;
 import ui.view.swing.util.IntervalPicker;
 import util.TimeUtils;
 
-public class ExpenseSearchPanel extends StandardSearchPanel implements ExpenseSearchCriteria {
+public class CashBookEntrySearchPanel extends StandardSearchPanel implements CashBookEntrySearchCriteria {
 
 	private IntervalPicker intervalPicker;
 
-	public ExpenseSearchPanel() {
+	public CashBookEntrySearchPanel() {
 		initComponents();
 	}
 

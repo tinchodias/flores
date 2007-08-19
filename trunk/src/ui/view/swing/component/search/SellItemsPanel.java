@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -8,21 +8,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import message.MessageId;
-import model.receipt.BuyItems;
-import query.framework.results.BuyItemsLazySearchResults;
+import model.receipt.SellItems;
 import query.framework.results.SearchResults;
+import query.framework.results.SellItemsLazySearchResults;
 import ui.controller.action.Action;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
 
-public class BuyItemsPanel extends StandardSearchPanel {
+public class SellItemsPanel extends StandardSearchPanel {
 
 	private JLabel totalLabel;
 	private JButton adjustTotalButton;
 	private JPanel infoPanel;
 
-	public BuyItemsPanel() {
+	public SellItemsPanel() {
 		init();
 	}
 
@@ -35,9 +35,9 @@ public class BuyItemsPanel extends StandardSearchPanel {
 	}
 
 	private void initInfoPanel() {
-		totalLabel = new JLabel("                    ");
+		totalLabel = new JLabel(" ");
 		totalLabel.setFont(totalLabel.getFont().deriveFont(20.0f));
-		
+
 		adjustTotalButton = new JButton();
 		
 		infoPanel = new JPanel();
@@ -54,9 +54,9 @@ public class BuyItemsPanel extends StandardSearchPanel {
 	public void setResults(SearchResults results) {
 		super.setResults(results);
 		
-		BuyItems buyItems = ((BuyItemsLazySearchResults) results).getBuyItems();
+		SellItems sellItems = ((SellItemsLazySearchResults) results).getSellItems();
 		
-		totalLabel.setText(buyItems.total().toString());
+		totalLabel.setText(sellItems.sellTotal().toString());
 	}
 	
 }

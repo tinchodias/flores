@@ -10,7 +10,7 @@ import ui.controller.initializer.DialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.view.component.BuyUI;
 import ui.view.component.DialogUI;
-import ui.view.swing.component.BuyItemDialog;
+import ui.view.swing.component.detail.BuyItemDialog;
 
 public class CreateBuyItemDialogInitializer implements DialogInitializer {
 

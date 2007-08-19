@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.detail;
 
 import javax.swing.JTextField;
 

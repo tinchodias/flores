@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

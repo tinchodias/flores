@@ -1,16 +1,17 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import message.MessageId;
 import query.criteria.StockArticleSearchCriteria;
 import ui.view.swing.SwingUI;
 
-public class StockArticleSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
+public class PricePercentageSearchPanel extends StandardSearchPanel implements StockArticleSearchCriteria {
 
 	private JTextField nameField;
 
-	public StockArticleSearchPanel() {
+	public PricePercentageSearchPanel() {
 		initComponents();
 	}
 
@@ -18,6 +19,9 @@ public class StockArticleSearchPanel extends StandardSearchPanel implements Stoc
 		nameField = new JTextField();
 		
 		filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		
+		//Sets multiple selection
+		resultsTable().getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 	}
 
 	public String getArticleName() {

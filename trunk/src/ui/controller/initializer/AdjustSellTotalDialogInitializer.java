@@ -4,7 +4,7 @@ import ui.controller.action.AdjustSellTotalAction;
 import ui.controller.action.CloseDialogAction;
 import ui.view.component.DialogUI;
 import ui.view.component.SellUI;
-import ui.view.swing.component.AdjustTotalDialog;
+import ui.view.swing.component.detail.AdjustTotalDialog;
 
 public class AdjustSellTotalDialogInitializer implements DialogInitializer {
 

@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.detail;
 
 import javax.swing.JTextField;
 
@@ -6,6 +6,7 @@ import message.MessageId;
 import ui.view.component.AddressUI;
 import ui.view.component.SupplierUI;
 import ui.view.swing.SwingUI;
+import ui.view.swing.component.AddressPanel;
 
 public class SupplierDialog extends StandardDetailDialog implements SupplierUI {
 

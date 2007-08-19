@@ -2,7 +2,7 @@ package ui.controller.initializer.detail;
 
 import ui.controller.initializer.search.CitiesDialogInitializer;
 import ui.view.component.DetailUI;
-import ui.view.swing.component.SupplierDialog;
+import ui.view.swing.component.detail.SupplierDialog;
 
 public class SupplierDetailInitializer extends DetailDialogInitializer {
 

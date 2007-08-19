@@ -1,16 +1,16 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import javax.swing.JTextField;
 
 import message.MessageId;
-import query.criteria.ArticleGroupSearchCriteria;
+import query.criteria.ExpenseArticleSearchCriteria;
 import ui.view.swing.SwingUI;
 
-public class ArticleGroupSearchPanel extends StandardSearchPanel implements ArticleGroupSearchCriteria {
+public class ExpenseArticleSearchPanel extends StandardSearchPanel implements ExpenseArticleSearchCriteria {
 
 	private JTextField nameField;
 
-	public ArticleGroupSearchPanel() {
+	public ExpenseArticleSearchPanel() {
 		initComponents();
 	}
 
@@ -20,7 +20,7 @@ public class ArticleGroupSearchPanel extends StandardSearchPanel implements Arti
 		filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
 	}
 
-	public String getArticleGroupName() {
+	public String getArticleName() {
 		return nameField.getText();
 	}
 
