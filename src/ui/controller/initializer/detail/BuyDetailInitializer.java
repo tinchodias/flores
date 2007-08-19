@@ -10,7 +10,7 @@ import ui.controller.initializer.AdjustBuyTotalDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
 import ui.view.component.BuyUI;
 import ui.view.component.DetailUI;
-import ui.view.swing.component.BuyDialog;
+import ui.view.swing.component.detail.BuyDialog;
 
 public class BuyDetailInitializer extends DetailDialogInitializer {
 

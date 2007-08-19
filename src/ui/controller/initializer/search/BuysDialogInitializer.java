@@ -5,9 +5,9 @@ import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.initializer.detail.BuyDetailInitializer;
 import ui.controller.populator.BuyPopulator;
-import ui.view.swing.component.BuySearchPanel;
-import ui.view.swing.component.StandardSearchDialog;
-import ui.view.swing.component.StandardSearchPanel;
+import ui.view.swing.component.search.BuySearchPanel;
+import ui.view.swing.component.search.StandardSearchDialog;
+import ui.view.swing.component.search.StandardSearchPanel;
 
 public class BuysDialogInitializer extends StandardSearchDialogInitializer {
 

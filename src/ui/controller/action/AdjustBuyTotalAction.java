@@ -4,7 +4,7 @@ import message.MessageId;
 import model.money.Pesos;
 import query.framework.results.BuyItemsLazySearchResults;
 import ui.view.component.BuyUI;
-import ui.view.swing.component.AdjustTotalDialog;
+import ui.view.swing.component.detail.AdjustTotalDialog;
 
 public class AdjustBuyTotalAction implements Action {
 

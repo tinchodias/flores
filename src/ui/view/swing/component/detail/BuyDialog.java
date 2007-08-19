@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.detail;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -13,6 +13,7 @@ import ui.controller.action.Action;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.BuyUI;
 import ui.view.swing.SwingUI;
+import ui.view.swing.component.search.BuyItemsPanel;
 import ui.view.swing.util.objectpicker.ObjectPicker;
 
 public class BuyDialog extends StandardDetailDialog implements BuyUI {

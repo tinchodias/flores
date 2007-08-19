@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import message.MessageId;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
+import ui.view.swing.component.StandardDialog;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
 public class StandardSearchDialog extends StandardDialog implements SearchDialogUI {

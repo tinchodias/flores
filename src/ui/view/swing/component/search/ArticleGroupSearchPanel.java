@@ -1,16 +1,16 @@
-package ui.view.swing.component;
+package ui.view.swing.component.search;
 
 import javax.swing.JTextField;
 
 import message.MessageId;
-import query.criteria.CitySearchCriteria;
+import query.criteria.ArticleGroupSearchCriteria;
 import ui.view.swing.SwingUI;
 
-public class CitySearchPanel extends StandardSearchPanel implements CitySearchCriteria {
+public class ArticleGroupSearchPanel extends StandardSearchPanel implements ArticleGroupSearchCriteria {
 
 	private JTextField nameField;
 
-	public CitySearchPanel() {
+	public ArticleGroupSearchPanel() {
 		initComponents();
 	}
 
@@ -20,7 +20,7 @@ public class CitySearchPanel extends StandardSearchPanel implements CitySearchCr
 		filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
 	}
 
-	public String getCityName() {
+	public String getArticleGroupName() {
 		return nameField.getText();
 	}
 

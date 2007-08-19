@@ -3,8 +3,8 @@ package ui.controller.initializer;
 import ui.controller.action.AdjustBuyTotalAction;
 import ui.controller.action.CloseDialogAction;
 import ui.view.component.DialogUI;
-import ui.view.swing.component.AdjustTotalDialog;
-import ui.view.swing.component.BuyDialog;
+import ui.view.swing.component.detail.AdjustTotalDialog;
+import ui.view.swing.component.detail.BuyDialog;
 
 public class AdjustBuyTotalDialogInitializer implements DialogInitializer {
 

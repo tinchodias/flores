@@ -1,17 +1,17 @@
-package ui.view.swing.component;
+package ui.view.swing.component.detail;
 
 import javax.swing.JTextField;
 
 import message.MessageId;
-import ui.view.component.ExpenseArticleUI;
+import ui.view.component.ArticleGroupUI;
 import ui.view.swing.SwingUI;
 
-public class ExpenseArticleDialog extends StandardDetailDialog implements ExpenseArticleUI {
+public class ArticleGroupDialog extends StandardDetailDialog implements ArticleGroupUI {
 
 	private JTextField nameField;
 
-	public ExpenseArticleDialog() {
-		super(MessageId.expenseArticle);
+	public ArticleGroupDialog() {
+		super(MessageId.articleGroup);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);
@@ -23,12 +23,11 @@ public class ExpenseArticleDialog extends StandardDetailDialog implements Expens
 		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
 	}
 
-	public String getArticleName() {
+	public String getArticleGroupName() {
 		return nameField.getText();
 	}
-
-	public void setArticleName(String name) {
+	
+	public void setArticleGroupName(String name) {
 		nameField.setText(name);
 	}
-
 }

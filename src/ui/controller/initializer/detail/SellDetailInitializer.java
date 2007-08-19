@@ -12,7 +12,7 @@ import ui.controller.initializer.AdjustSellTotalDialogInitializer;
 import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.view.component.DetailUI;
 import ui.view.component.SellUI;
-import ui.view.swing.component.SellDialog;
+import ui.view.swing.component.detail.SellDialog;
 
 public class SellDetailInitializer extends DetailDialogInitializer {
 

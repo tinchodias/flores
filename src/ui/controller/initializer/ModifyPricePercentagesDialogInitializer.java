@@ -4,7 +4,7 @@ import ui.controller.action.CloseDialogAction;
 import ui.controller.action.ModifyPricePercentagesAction;
 import ui.view.component.DialogUI;
 import ui.view.component.SearchUI;
-import ui.view.swing.component.ModifyPercentageDialog;
+import ui.view.swing.component.detail.ModifyPercentageDialog;
 
 public class ModifyPricePercentagesDialogInitializer implements DialogInitializer {
 

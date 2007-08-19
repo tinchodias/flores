@@ -1,4 +1,4 @@
-package ui.view.swing.component;
+package ui.view.swing.component.detail;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -9,6 +9,7 @@ import ui.controller.initializer.detail.mode.DetailMode;
 import ui.controller.initializer.detail.mode.DetailModeVisitor;
 import ui.view.component.DetailUI;
 import ui.view.swing.SwingUI;
+import ui.view.swing.component.StandardDialog;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
 public abstract class StandardDetailDialog extends StandardDialog implements DetailUI, DetailModeVisitor {

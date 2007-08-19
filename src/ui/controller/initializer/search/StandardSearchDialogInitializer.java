@@ -13,8 +13,8 @@ import ui.controller.initializer.detail.DetailDialogInitializer;
 import ui.controller.initializer.detail.mode.DetailMode;
 import ui.controller.populator.DetailPopulator;
 import ui.view.component.SearchDialogUI;
-import ui.view.swing.component.StandardSearchDialog;
-import ui.view.swing.component.StandardSearchPanel;
+import ui.view.swing.component.search.StandardSearchDialog;
+import ui.view.swing.component.search.StandardSearchPanel;
 
 public abstract class StandardSearchDialogInitializer implements SearchDialogInitializer {
 

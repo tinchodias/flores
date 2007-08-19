@@ -2,7 +2,7 @@ package ui.controller.initializer.detail;
 
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.view.component.DetailUI;
-import ui.view.swing.component.StockDropOutDialog;
+import ui.view.swing.component.detail.StockDropOutDialog;
 
 public class StockDropOutDetailInitializer extends DetailDialogInitializer {
 	

@@ -5,9 +5,9 @@ import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.initializer.detail.StockDropOutDetailInitializer;
 import ui.controller.populator.StockDropOutPopulator;
-import ui.view.swing.component.StandardSearchDialog;
-import ui.view.swing.component.StandardSearchPanel;
-import ui.view.swing.component.StockDropOutSearchPanel;
+import ui.view.swing.component.search.StandardSearchDialog;
+import ui.view.swing.component.search.StandardSearchPanel;
+import ui.view.swing.component.search.StockDropOutSearchPanel;
 
 public class StockDropOutsDialogInitializer extends StandardSearchDialogInitializer {
 
