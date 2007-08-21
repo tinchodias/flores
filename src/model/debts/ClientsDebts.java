@@ -51,7 +51,7 @@ public class ClientsDebts {
 		incrementDebt(sell.client(), sell.clientDebt());
 	}
 
-	public void apply(SellCancellation annulment) {
-		reduceDebt(annulment.getSell().client(), annulment.getSell().clientDebt());
+	public void apply(SellCancellation cancellation) {
+		reduceDebt(cancellation.getSell().client(), cancellation.getSell().clientDebt());
 	}
 }

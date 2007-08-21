@@ -17,7 +17,6 @@ public class ObjectPickerMenuAction extends AbstractAction {
 
 	public void actionPerformed(ActionEvent e) {
 		picker.setSelection(item);
-		picker.setPopupVisible(false);
 	}
 
 }

@@ -99,6 +99,7 @@ public class ObjectPicker3 extends Container {
 	
 	public void setSelection(Object item) {
 		field.setText(ObjectUtils.toString(item));
+		setPopupVisible(false);
 		setDirtyField(false);
 		selection = item;
 		notifySelection();

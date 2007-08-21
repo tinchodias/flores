@@ -35,12 +35,12 @@ public class CashBook {
 		addNegativeEntry(expense, expense.getDate(), expense.getCost());
 	}
 
-	public void add(SellCancellation annulment) {
-		addNegativeEntry(annulment, annulment.getDate(), annulment.getSell().payment().total());
+	public void add(SellCancellation cancellation) {
+		addNegativeEntry(cancellation, cancellation.getDate(), cancellation.getSell().payment().total());
 	}
 
-	public void add(BuyCancellation annulment) {
-		addPositiveEntry(annulment, annulment.getDate(), annulment.getBuy().payment().total());
+	public void add(BuyCancellation cancellation) {
+		addPositiveEntry(cancellation, cancellation.getDate(), cancellation.getBuy().payment().total());
 	}
 
 	public void add(Sell sell) {

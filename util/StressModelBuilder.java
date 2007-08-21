@@ -7,6 +7,7 @@ import persistence.Model;
 import persistence.ModelFixture;
 import persistence.ModelPersistence;
 import persistence.db4o.Db4oModelPersistence;
+import transaction.Block;
 
 public class StressModelBuilder {
 
@@ -21,9 +22,17 @@ public class StressModelBuilder {
 		
 		//Saves a model
 		persistence.open();
-		Model model = ModelFixture.simpleModelWithEmptyStore();
+		final Model model = ModelFixture.simpleModelWithEmptyStore();
 		persistence.save(model);
 
+		persistence.transactionManager().execute(new Block() {
+			public void executeBlock() {
+				fillModel(model);
+			}
+		});
+	}
+
+	private void fillModel(Model model) {
 		//fills the store
 		StoreFixture.fillStressed(model.store());
 

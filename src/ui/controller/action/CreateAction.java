@@ -18,9 +18,8 @@ public class CreateAction implements Action {
 
 	public void execute() {
 		ModelPersistence.instance().transactionManager().execute(new Block() {
-			public Object executeBlock() {
+			public void executeBlock() {
 				populator.createFrom(dialog);
-				return null;
 			}
 		});
 		

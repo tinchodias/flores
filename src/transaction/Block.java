@@ -1,7 +1,7 @@
 package transaction;
 
-public interface Block <T> {
+public interface Block {
 
-	T executeBlock();
+	void executeBlock();
 	
 }

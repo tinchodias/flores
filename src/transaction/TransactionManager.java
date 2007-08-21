@@ -2,7 +2,7 @@ package transaction;
 
 public interface TransactionManager {
 
-	Object execute(Block block);
+	void execute(Block block);
 	
 	void objectUpdated(Object o);
 

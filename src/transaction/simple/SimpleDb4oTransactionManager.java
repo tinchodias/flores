@@ -26,8 +26,8 @@ public class SimpleDb4oTransactionManager implements TransactionManager {
 		this.objectContainer = objectContainer;
 	}
 
-	public synchronized Object execute(Block block) {
-		return block.executeBlock();
+	public synchronized void execute(Block block) {
+		block.executeBlock();
 	}
 
 	public synchronized void objectUpdated(Object o) {

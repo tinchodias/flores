@@ -22,7 +22,7 @@ public class ModifyPricePercentagesAction implements Action {
 
 	public void execute() {
 		ModelPersistence.instance().transactionManager().execute(new Block() {
-			public Object executeBlock() {
+			public void executeBlock() {
 				Double percentage = dialog.getPercentage();
 				List<Article> selections = searchUI.getSelections();
 				SimplePercentagePriceStrategy priceStrategy = ((SimplePercentagePriceStrategy) ModelPersistence
@@ -31,7 +31,6 @@ public class ModifyPricePercentagesAction implements Action {
 				for (Article article : selections) {
 					priceStrategy.setPriceMargin(article, percentage);
 				}
-				return null;
 			}
 		});
 		dialog.setVisible(false);

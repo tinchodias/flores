@@ -5,8 +5,8 @@ public class NullTransactionManager implements TransactionManager {
 	public void commit() {
 	}
 
-	public Object execute(Block block) {
-		return block.executeBlock();
+	public void execute(Block block) {
+		block.executeBlock();
 	}
 
 	public void objectUpdated(Object o) {

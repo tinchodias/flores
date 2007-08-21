@@ -27,11 +27,11 @@ public class SellSearchResultsSpecification extends LazySearchResultsSpecificati
 		case 1:
 			return sell.client();
 		case 2:
-			return sell.payment().total();
+			return sell.paymentTotal();
 		case 3:
-			return sell.items().costTotal();
+			return sell.costTotal();
 		case 4:
-			return sell.items().sellTotal();
+			return sell.sellTotal();
 		}
 		return null;
 	}
