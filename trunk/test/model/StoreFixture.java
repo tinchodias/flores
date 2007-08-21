@@ -117,6 +117,16 @@ public class StoreFixture {
 			store.expensesArticles().add(expenseArticle);
 		}
 
+		System.out.println("Generating Expenses");
+		DateMidnight expensesStart = new DateMidnight(2006, 6, 1);
+		DateMidnight expensesEnd = new DateMidnight(2006, 6, 10);
+		for (ReadableDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
+			for (int i = 0; i < 5; i++) {
+				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomPesos(20), date);
+				store.add(expense);
+			}
+		}
+		
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
 		DateMidnight buysEnd = new DateMidnight(2006, 1, 10);
@@ -138,7 +148,7 @@ public class StoreFixture {
 		for (ReadableDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 100; i++) {
 				SellItems spec = new SellItems();
-				for (int j = 0; j < 10; j++) {
+				for (int j = 0; j < 5; j++) {
 					Article article = (Article) oneOf(store.stockArticles());
 					spec.add(article, new Double(RandomUtils.nextInt(20)), randomPesos(40), store.stock().cost(article));
 				}
@@ -252,5 +262,18 @@ public class StoreFixture {
 	 */
 	public static LostDebtDeclaration simpleLostDebtDeclaration(JuridicPerson client) {
 		return new LostDebtDeclaration(client, Pesos.newFor(40.0), new DateTime());
+	}
+
+	/**
+	 * Creates a sell with store objects.
+	 * 
+	 * @param store
+	 * @return
+	 */
+	public static Sell simpleSell(Store store) {
+		Article stockArticle = store.stockArticles().iterator().next();
+		JuridicPerson client = store.clients().iterator().next();
+		JuridicPerson vendor = store.vendors().iterator().next();
+		return StoreFixture.simpleSell(stockArticle, client, vendor, store.stock().cost(stockArticle));
 	}
 }

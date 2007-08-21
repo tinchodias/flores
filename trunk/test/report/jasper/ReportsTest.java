@@ -49,9 +49,7 @@ public class ReportsTest extends TestCase {
 		JasperReport report = JasperCompileManager.compileReport(url.openStream());
 
 		JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource);
-				JasperExportManager.exportReportToPdfFile(print, "C:\\" + reportName + ".pdf");
-//			JasperExportManager.exportReportToPdfStream(print, System.out);
-//			JasperViewer.viewReport(print);
+		JasperExportManager.exportReportToPdfFile(print, "/" + reportName + ".pdf");
 	}
 	
 }

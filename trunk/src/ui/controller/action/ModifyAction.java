@@ -18,9 +18,8 @@ public class ModifyAction implements Action {
 
 	public void execute() {
 		ModelPersistence.instance().transactionManager().execute(new Block() {
-			public Object executeBlock() {
+			public void executeBlock() {
 				populator.modifyFrom(dialog);
-				return null;
 			}
 		});
 		

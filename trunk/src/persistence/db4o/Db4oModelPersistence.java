@@ -30,7 +30,6 @@ public class Db4oModelPersistence extends ModelPersistence {
 	private TransactionManager transactionManager = new NullTransactionManager();
 	
 	public Db4oModelPersistence() {
-		super();
 		configureDb4o();
 	}
 

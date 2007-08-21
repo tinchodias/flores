@@ -22,7 +22,7 @@ public class ResultsJRDataSourceAdapter implements JRDataSource {
 		for (int i = 0; i < columnIds.size(); i++) {
 			String column = columnIds.get(i).toString();
 			if (field.getName().equals(column)) {
-				return results.getValueAt(currentRowIndex, i);
+				return results.getValueAt(currentRowIndex, i).toString(); //TODO always toString()?
 			}
 		}
 		throw new Error("Invalid column: " + field.getName());
