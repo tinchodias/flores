@@ -81,8 +81,8 @@
 						height="21"
 						key="textField-17"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Right" verticalAlignment="Bottom">
-						<font/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica" size="12" isBold="false"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$P{clientLabel} + ":  " + $P{client}]]></textFieldExpression>
 				</textField>
@@ -187,11 +187,15 @@
 			</band>
 		</pageFooter>
 		<lastPageFooter>
-			<band height="72"  isSplitAllowed="true" >
+			<band height="13"  isSplitAllowed="true" >
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="89"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="296"
-						y="1"
+						y="8"
 						width="177"
 						height="21"
 						key="textField-7"/>
@@ -204,7 +208,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="473"
-						y="1"
+						y="8"
 						width="62"
 						height="21"
 						key="textField-8"/>
@@ -217,7 +221,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="296"
-						y="22"
+						y="29"
 						width="177"
 						height="21"
 						key="textField-9"/>
@@ -230,7 +234,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="473"
-						y="22"
+						y="29"
 						width="62"
 						height="21"
 						key="textField-10"/>
@@ -243,7 +247,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="296"
-						y="43"
+						y="50"
 						width="177"
 						height="21"
 						key="textField-11"/>
@@ -256,7 +260,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="473"
-						y="43"
+						y="50"
 						width="62"
 						height="21"
 						key="textField-12"/>
@@ -275,10 +279,6 @@
 						key="line-1"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
-			</band>
-		</lastPageFooter>
-		<summary>
-			<band height="11"  isSplitAllowed="true" >
 			</band>
 		</summary>
 </jasperReport>

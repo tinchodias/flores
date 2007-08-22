@@ -1,5 +1,7 @@
 package report.jasper;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -22,6 +24,7 @@ import query.framework.results.SellItemsLazySearchResults;
 import report.ReportFactory;
 import report.ReportPrint;
 import report.ReportPrintException;
+import ui.view.swing.component.StandardDialog;
 
 public class JasperReportFactory extends ReportFactory {
 
@@ -78,7 +81,19 @@ public class JasperReportFactory extends ReportFactory {
 
 	public void show(ReportPrint print) {
 		JasperPrint jasperPrint = ((JasperReportPrint) print).getPrint();
-		JasperViewer.viewReport(jasperPrint);
+		
+		JasperViewer viewer = new JasperViewer(jasperPrint);
+
+		StandardDialog dialog = new StandardDialog(MessageId.print);
+		dialog.getContentPane().add(viewer.getContentPane(), BorderLayout.CENTER);
+		dialog.setPreferredSize(new Dimension(760, 480));
+		dialog.pack();
+		dialog.setLocationRelativeTo(null);
+		
+		viewer.setFitWidthZoomRatio();
+		dialog.setVisible(true);
+		
+		//FIXME close viewer!
 	}
 
 	public void exportPdf(ReportPrint print, String reportFileName) {

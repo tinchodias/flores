@@ -15,6 +15,7 @@ import ui.controller.populator.DetailPopulator;
 import ui.view.component.SearchDialogUI;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
+import util.ValueHolder;
 
 public abstract class StandardSearchDialogInitializer implements SearchDialogInitializer {
 
@@ -53,17 +54,17 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 
 	protected static void addShowOnSelectionAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
 		Action showAction = new ShowDialogAction(initializer);
-		addOnSelectionAction(initializer, messageId, searchDialog, showAction);
+		addOnSelectionAction(initializer.populator(), messageId, searchDialog, showAction);
 	}
 
 	protected static void addShowOnSelectionAndRefreshAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
 		Action showAndRefreshAction = showAndRefreshAction(initializer, messageId, searchDialog);
-		addOnSelectionAction(initializer, messageId, searchDialog, showAndRefreshAction);
+		addOnSelectionAction(initializer.populator(), messageId, searchDialog, showAndRefreshAction);
 	}
 
-	protected static void addOnSelectionAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog, Action onSelectionAction) {
+	protected static void addOnSelectionAction(ValueHolder valueHolder, MessageId messageId, StandardSearchDialog searchDialog, Action onSelectionAction) {
 		Action executeOnSelectionAction = 
-			new ExecuteOnSelectionAction(searchDialog.getSearchPanel(), initializer.populator(), onSelectionAction, messageId);
+			new ExecuteOnSelectionAction(searchDialog.getSearchPanel(), valueHolder, onSelectionAction, messageId);
 		searchDialog.getSearchPanel().add(executeOnSelectionAction);
 	}
 

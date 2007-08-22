@@ -61,7 +61,8 @@ public enum MessageId {
 	cashPay, 
 	total, 
 	reason, 
-	view, 
+	view,
+	print,
 	
 	city, 
 	address, 
@@ -92,7 +93,7 @@ public enum MessageId {
 	expensesArticles, 
 	expenseArticle, 
 	expenses,
-	expense,
+	expense, 
 	
 	;
 	
