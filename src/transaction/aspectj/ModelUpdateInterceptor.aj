@@ -14,7 +14,7 @@ public aspect ModelUpdateInterceptor {
 		execution(public * *.adjustTotal*(..));
 	
 	after() returning : modelUpdateMethods() {
-		System.out.println("Setting: " + thisJoinPoint.getThis());
+		System.out.println("objectUpdated: " + thisJoinPoint.getThis());
 		
 		ModelPersistence.instance().transactionManager().objectUpdated(thisJoinPoint.getThis());
 	}

@@ -2,7 +2,7 @@ package ui.controller.action;
 
 import message.MessageId;
 import model.receipt.BuyItem;
-import query.framework.results.LazySearchResults;
+import query.framework.results.BuyItemsLazySearchResults;
 import ui.view.component.BuyItemUI;
 import ui.view.component.BuyUI;
 
@@ -18,8 +18,8 @@ public class CreateBuyItemAction implements Action {
 
 	public void execute() {
 		//TODO re think this Action?
-		LazySearchResults results = 
-			(LazySearchResults) buyUI.getItemsPanel().getResults();
+		BuyItemsLazySearchResults results = 
+			(BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();
 
 		results.add(buyItem());
 
