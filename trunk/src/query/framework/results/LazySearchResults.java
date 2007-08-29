@@ -32,9 +32,5 @@ public abstract class LazySearchResults implements SearchResults {
 	public LazySearchResultsSpecification spec() {
 		return spec;
 	}
-	
-	public abstract void add(Object object);
-
-	public abstract boolean remove(Object object);
 
 }

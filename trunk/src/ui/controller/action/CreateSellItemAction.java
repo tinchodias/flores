@@ -1,11 +1,11 @@
 package ui.controller.action;
 
-import persistence.ModelPersistence;
 import message.MessageId;
 import model.Store;
 import model.money.Pesos;
 import model.receipt.SellItem;
-import query.framework.results.LazySearchResults;
+import persistence.ModelPersistence;
+import query.framework.results.SellItemsLazySearchResults;
 import ui.view.component.SellItemUI;
 import ui.view.component.SellUI;
 
@@ -20,8 +20,8 @@ public class CreateSellItemAction implements Action {
 	}
 
 	public void execute() {
-		LazySearchResults results = 
-			(LazySearchResults) sellUI.getItemsPanel().getResults();
+		SellItemsLazySearchResults results = 
+			(SellItemsLazySearchResults) sellUI.getItemsPanel().getResults();
 
 		results.add(sellItem());
 

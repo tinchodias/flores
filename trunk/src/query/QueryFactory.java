@@ -1,7 +1,7 @@
 package query;
 
 import query.framework.query.SearchQuery;
-import query.implementation.natives.NativeQueryFactory;
+import query.implementation.db4o.Db4oQueryFactory;
 
 public abstract class QueryFactory {
 
@@ -9,7 +9,7 @@ public abstract class QueryFactory {
 
 	public static QueryFactory instance() {
 		if (instance == null) {
-			instance = new NativeQueryFactory();
+			instance = new Db4oQueryFactory();
 		}
 		return instance;
 	}

@@ -1,7 +1,7 @@
 package ui.controller.action;
 
 import message.MessageId;
-import query.framework.results.LazySearchResults;
+import query.framework.results.BuyItemsLazySearchResults;
 import ui.UI;
 import ui.view.component.BuyUI;
 
@@ -18,7 +18,7 @@ public class RemoveBuyItemAction implements Action {
 		if (selection == null) {
 			UI.instance().showInfo(MessageId.invalidSelection);
 		} else {
-			LazySearchResults results = (LazySearchResults) buyUI.getItemsPanel().getResults();
+			BuyItemsLazySearchResults results = (BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();
 			results.remove(selection);
 			buyUI.getItemsPanel().setResults(results);
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import message.MessageId;
+import model.receipt.Buy;
 import persistence.Model;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
@@ -20,9 +21,18 @@ import com.db4o.config.Configuration;
 import com.db4o.config.ObjectClass;
 import com.db4o.config.ObjectField;
 import com.db4o.config.TSerializable;
-import com.db4o.ext.DatabaseFileLockedException;
+import com.db4o.diagnostic.DiagnosticToConsole;
 
 public class Db4oModelPersistence extends ModelPersistence {
+
+	private static Db4oModelPersistence instance;
+
+	public static Db4oModelPersistence instance() {
+		if (instance == null) {
+			instance = new Db4oModelPersistence();
+		}
+		return instance;
+	}
 
 	private String fileName = "model.db4o";
 	private ObjectContainer container;
@@ -41,7 +51,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 		ObjectSet<Model> modelSet;
 		
 		try {
-			modelSet = container.get(new Model(null, null));
+			modelSet = container.query(Model.class);
 		} catch (Exception e) {
 			throw new MessageIdentifiedException(MessageId.persistenceInvalidState);
 		}
@@ -55,14 +65,9 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 
 	public void open() {
-		try {
-			container = Db4o.openFile(getFileName());
-			//FIXME hardcoded!
-			transactionManager = new SimpleDb4oTransactionManager(container);
-			
-		} catch (DatabaseFileLockedException e) {
-			throw e;
-		}
+		container = Db4o.openFile(getFileName());
+		//FIXME hardcoded!
+		transactionManager = new SimpleDb4oTransactionManager(container);
 	}
 
 	public void close() {
@@ -89,9 +94,9 @@ public class Db4oModelPersistence extends ModelPersistence {
 //		configuration.password("encrPass");
 //		configuration.encrypt(true);
 		
-//		configuration.messageLevel(3);
+		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
-//		configuration.diagnostic().addListener(new DiagnosticToConsole());
+		configuration.diagnostic().addListener(new DiagnosticToConsole());
 		
 		//For simple activation
 		configuration.activationDepth(Integer.MAX_VALUE);
@@ -102,6 +107,13 @@ public class Db4oModelPersistence extends ModelPersistence {
 		oc.updateDepth(Integer.MAX_VALUE);
 		
 		configureJodaTime();
+		configureOptimization();
+	}
+
+	private void configureOptimization() {
+		Db4o.configure().objectClass(Buy.class).indexed(true);
+		Db4o.configure().objectClass(Buy.class).objectField("date").indexed(true);
+		Db4o.configure().objectClass(org.joda.time.base.BaseDateTime.class).objectField("iMillis").indexed(true);
 	}
 
 	private void configureJodaTime() {
@@ -190,5 +202,13 @@ public class Db4oModelPersistence extends ModelPersistence {
 
 	public TransactionManager transactionManager() {
 		return transactionManager;
+	}
+
+	/**
+	 * TODO remove!
+	 */
+	public ObjectContainer container() {
+		return container; 
+		
 	}
 }

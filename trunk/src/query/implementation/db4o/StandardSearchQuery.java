@@ -1,4 +1,4 @@
-package query.implementation.natives;
+package query.implementation.db4o;
 
 import model.Store;
 import persistence.Model;

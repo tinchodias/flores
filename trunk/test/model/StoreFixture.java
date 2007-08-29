@@ -27,6 +27,7 @@ import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.ReadableDateTime;
+import org.joda.time.base.BaseDateTime;
 
 public class StoreFixture {
 
@@ -129,8 +130,8 @@ public class StoreFixture {
 		
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 1, 10);
-		for (ReadableDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
+		DateMidnight buysEnd = new DateMidnight(2006, 3, 1);
+		for (BaseDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
 				for (int j = 0; j < 100; j++) {

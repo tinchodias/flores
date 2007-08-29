@@ -2,14 +2,14 @@ package query.framework.results;
 
 public interface Results {
 
-	public abstract int getColumnCount();
+	int getColumnCount();
 
-	public abstract String getColumnName(int columnIndex);
+	String getColumnName(int columnIndex);
 
-	public abstract int getRowCount();
+	int getRowCount();
 
-	public abstract Object getValueAt(int rowIndex, int columnIndex);
+	Object getValueAt(int rowIndex, int columnIndex);
 
-	public abstract Class<?> getColumnClass(int columnIndex);
+	Class<?> getColumnClass(int columnIndex);
 
 }
