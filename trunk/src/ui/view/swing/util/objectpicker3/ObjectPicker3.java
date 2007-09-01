@@ -98,8 +98,10 @@ public class ObjectPicker3 extends Container {
 	}
 	
 	public void setSelection(Object item) {
+		field.getDocument().removeDocumentListener(fieldDocumentHandler);
 		field.setText(ObjectUtils.toString(item));
-		setPopupVisible(false);
+		field.getDocument().addDocumentListener(fieldDocumentHandler);		
+//		setPopupVisible(false);
 		setDirtyField(false);
 		selection = item;
 		notifySelection();
