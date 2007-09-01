@@ -68,6 +68,14 @@ public class Db4oModelPersistence extends ModelPersistence {
 		container = Db4o.openFile(getFileName());
 		//FIXME hardcoded!
 		transactionManager = new SimpleDb4oTransactionManager(container);
+		
+//		//For NQO info
+//		((ObjectContainerBase) container).getNativeQueryHandler().addListener(
+//				new Db4oQueryExecutionListener() {
+//					public void notifyQueryExecuted(NQOptimizationInfo info) {
+//						System.err.println(info);
+//					}
+//				});
 	}
 
 	public void close() {
@@ -94,7 +102,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 //		configuration.password("encrPass");
 //		configuration.encrypt(true);
 		
-		configuration.messageLevel(3);
+//		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
 		configuration.diagnostic().addListener(new DiagnosticToConsole());
 		

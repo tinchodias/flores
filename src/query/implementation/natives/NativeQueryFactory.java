@@ -47,7 +47,7 @@ import query.results.SupplierSearchResultsSpecification;
 public class NativeQueryFactory extends QueryFactory {
 
 	public SearchQuery clientSearchQuery() {
-		return new StandardSearchQuery<JuridicPerson, ClientSearchCriteria>() {
+		return new StandardNativeSearchQuery<JuridicPerson, ClientSearchCriteria>() {
 
 			protected boolean accepts(JuridicPerson object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getClientName());
@@ -64,7 +64,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockArticleSearchQuery() {
-		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<Article, StockArticleSearchCriteria>() {
 
 			protected boolean accepts(Article object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -82,7 +82,7 @@ public class NativeQueryFactory extends QueryFactory {
 
 	public SearchQuery pricePercentageSearchQuery() {
 		//Note this query shares too much with stockArticleSearchQuery()
-		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<Article, StockArticleSearchCriteria>() {
 
 			protected boolean accepts(Article object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -99,7 +99,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockDropOutSearchQuery() {
-		return new StandardSearchQuery<StockDropOut, StockDropOutSearchCriteria>() {
+		return new StandardNativeSearchQuery<StockDropOut, StockDropOutSearchCriteria>() {
 
 			protected boolean accepts(StockDropOut object) {
 				return criteria().getInterval().contains(object.getDate());
@@ -116,7 +116,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery buySearchQuery() {
-		return new StandardSearchQuery<Buy, BuySearchCriteria>() {
+		return new StandardNativeSearchQuery<Buy, BuySearchCriteria>() {
 
 			protected boolean accepts(Buy object) {
 				return criteria().getInterval().contains(object.date());
@@ -134,7 +134,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery citySearchQuery() {
-		return new StandardSearchQuery<City, CitySearchCriteria>() {
+		return new StandardNativeSearchQuery<City, CitySearchCriteria>() {
 
 			protected boolean accepts(City object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getCityName());
@@ -152,7 +152,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery suppliersSearchQuery() {
-		return new StandardSearchQuery<JuridicPerson, SupplierSearchCriteria>() {
+		return new StandardNativeSearchQuery<JuridicPerson, SupplierSearchCriteria>() {
 
 			protected boolean accepts(JuridicPerson object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getSupplierName());
@@ -169,7 +169,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery sellSearchQuery() {
-		return new StandardSearchQuery<Sell, SellSearchCriteria>() {
+		return new StandardNativeSearchQuery<Sell, SellSearchCriteria>() {
 
 			protected boolean accepts(Sell object) {
 				return criteria().getInterval().contains(object.date());
@@ -186,7 +186,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery articleGroupSearchQuery() {
-		return new StandardSearchQuery<ArticleGroup, ArticleGroupSearchCriteria>() {
+		return new StandardNativeSearchQuery<ArticleGroup, ArticleGroupSearchCriteria>() {
 
 			protected boolean accepts(ArticleGroup object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleGroupName());
@@ -203,7 +203,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery stringSearchQuery(final Iterable items) {
-		return new StandardSearchQuery<Object, StringCriteria>() {
+		return new StandardNativeSearchQuery<Object, StringCriteria>() {
 
 			protected boolean accepts(Object object) {
 				String criteriaString = StringUtils.lowerCase(criteria().getString());
@@ -228,7 +228,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery cashBookEntrySearchQuery() {
-		return new StandardSearchQuery<CashBookEntry, CashBookEntrySearchCriteria>() {
+		return new StandardNativeSearchQuery<CashBookEntry, CashBookEntrySearchCriteria>() {
 
 			protected boolean accepts(CashBookEntry object) {
 				return criteria().getInterval().contains(object.getDate());
@@ -246,7 +246,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery expensesArticlesSearchQuery() {
-		return new StandardSearchQuery<ExpenseArticle, ExpenseArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<ExpenseArticle, ExpenseArticleSearchCriteria>() {
 
 			protected boolean accepts(ExpenseArticle object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -263,7 +263,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery expensesSearchQuery() {
-		return new StandardSearchQuery<Expense, ExpenseSearchCriteria>() {
+		return new StandardNativeSearchQuery<Expense, ExpenseSearchCriteria>() {
 
 			protected boolean accepts(Expense object) {
 				return criteria().getInterval().contains(object.getDate());

@@ -1,13 +1,13 @@
 package model.receipt;
 
-import org.joda.time.ReadableDateTime;
+import org.joda.time.base.BaseDateTime;
 
 public class BuyCancellation {
 
 	private final Buy buy;
-	private final ReadableDateTime date;
+	private final BaseDateTime date;
 
-	public BuyCancellation(Buy buy, ReadableDateTime date) {
+	public BuyCancellation(Buy buy, BaseDateTime date) {
 		this.buy = buy;
 		this.date = date;
 	}
@@ -16,7 +16,7 @@ public class BuyCancellation {
 		return buy;
 	}
 
-	public ReadableDateTime getDate() {
+	public BaseDateTime getDate() {
 		return date;
 	}
 

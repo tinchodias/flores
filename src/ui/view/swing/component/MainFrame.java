@@ -47,7 +47,8 @@ public class MainFrame extends JFrame implements MainUI {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setJMenuBar(newMenuBar());
-		setSize(800, 600);
+//		setSize(800, 600);
+		setSize(320, 200);
 		setLocationRelativeTo(null);
 		setInitialState();
 	}

@@ -26,7 +26,6 @@ import org.apache.commons.lang.math.RandomUtils;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.ReadableDateTime;
 import org.joda.time.base.BaseDateTime;
 
 public class StoreFixture {
@@ -121,7 +120,7 @@ public class StoreFixture {
 		System.out.println("Generating Expenses");
 		DateMidnight expensesStart = new DateMidnight(2006, 6, 1);
 		DateMidnight expensesEnd = new DateMidnight(2006, 6, 10);
-		for (ReadableDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
+		for (BaseDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomPesos(20), date);
 				store.add(expense);
@@ -146,7 +145,7 @@ public class StoreFixture {
 		System.out.println("Generating Sells");
 		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
 		DateMidnight sellsEnd = new DateMidnight(2007, 1, 10);
-		for (ReadableDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
+		for (BaseDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 100; i++) {
 				SellItems spec = new SellItems();
 				for (int j = 0; j < 5; j++) {

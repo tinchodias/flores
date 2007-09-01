@@ -4,12 +4,12 @@ import model.JuridicPerson;
 import model.money.Payment;
 import model.money.Pesos;
 
-import org.joda.time.ReadableDateTime;
+import org.joda.time.base.BaseDateTime;
 
 
 public class Sell {
 	private final SellItems items;
-	private final ReadableDateTime date;
+	private final BaseDateTime date;
 	private final JuridicPerson client;
 	private final Payment payment;
 	private final JuridicPerson vendor;
@@ -17,7 +17,7 @@ public class Sell {
 	private final Pesos costTotal;
 	private final Pesos paymentTotal;
 
-	public Sell(SellItems spec, ReadableDateTime date, JuridicPerson client, Payment payment, JuridicPerson vendor) {
+	public Sell(SellItems spec, BaseDateTime date, JuridicPerson client, Payment payment, JuridicPerson vendor) {
 		this.items = spec;
 		this.date = date;
 		this.client = client;
@@ -33,7 +33,7 @@ public class Sell {
 		return items;
 	}
 
-	public ReadableDateTime date() {
+	public BaseDateTime date() {
 		return date;
 	}
 

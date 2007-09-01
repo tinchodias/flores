@@ -14,9 +14,7 @@ import model.stock.ArticleGroup;
 import model.stock.StockDropOut;
 
 import org.apache.commons.lang.StringUtils;
-import org.joda.time.ReadableInterval;
 
-import persistence.db4o.Db4oModelPersistence;
 import query.QueryFactory;
 import query.criteria.ArticleGroupSearchCriteria;
 import query.criteria.BuySearchCriteria;
@@ -29,13 +27,11 @@ import query.criteria.SellSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
-import query.framework.criteria.Criteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
-import query.framework.results.Db4oObjectSetSearchResults;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
-import query.framework.results.SearchResults;
+import query.implementation.natives.StandardNativeSearchQuery;
 import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
 import query.results.CashBookEntrySearchResultsSpecification;
@@ -49,14 +45,12 @@ import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
 import query.results.SupplierSearchResultsSpecification;
 
-import com.db4o.ObjectSet;
-import com.db4o.query.Predicate;
 import com.db4o.query.Query;
 
 public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery clientSearchQuery() {
-		return new StandardSearchQuery<JuridicPerson, ClientSearchCriteria>() {
+		return new StandardNativeSearchQuery<JuridicPerson, ClientSearchCriteria>() {
 
 			protected boolean accepts(JuridicPerson object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getClientName());
@@ -73,7 +67,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockArticleSearchQuery() {
-		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<Article, StockArticleSearchCriteria>() {
 
 			protected boolean accepts(Article object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -91,7 +85,7 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery pricePercentageSearchQuery() {
 		//Note this query shares too much with stockArticleSearchQuery()
-		return new StandardSearchQuery<Article, StockArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<Article, StockArticleSearchCriteria>() {
 
 			protected boolean accepts(Article object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -108,14 +102,10 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockDropOutSearchQuery() {
-		return new StandardSearchQuery<StockDropOut, StockDropOutSearchCriteria>() {
-
-			protected boolean accepts(StockDropOut object) {
-				return criteria().getInterval().contains(object.getDate());
-			}
-
-			protected Collection objects() {
-				return store().stock().dropOuts();
+		return new StandardSodaSearchQuery<StockDropOutSearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(StockDropOut.class), criteria().getInterval());			
 			}
 
 			protected LazySearchResultsSpecification resultsSpecification() {
@@ -125,50 +115,20 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery buySearchQuery() {
-		
-		return new SearchQuery() {
-			private BuySearchCriteria criteria;
-
-			public SearchResults results() {
-
-				ObjectSet objectSet = sodaQuery(criteria.getInterval());
-//				ObjectSet objectSet = nativeQuery(criteria.getInterval());
-				
-				return new Db4oObjectSetSearchResults(new BuySearchResultsSpecification(), objectSet);
+		return new StandardSodaSearchQuery<BuySearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(Buy.class), criteria().getInterval());			
 			}
 
-			private ObjectSet nativeQuery(ReadableInterval interval) {
-				final long startMillis = interval.getStartMillis();
-				final long endMillis = interval.getEndMillis();
-				Predicate<Buy> predicate = new Predicate<Buy>() {
-					public boolean match(Buy buy) {
-//						return criteria.getInterval().contains(buy.date());
-						return 
-							startMillis <= buy.date().getMillis() &&
-							endMillis > buy.date().getMillis();
-					}
-				};
-				return Db4oModelPersistence.instance().container().query(predicate);
-			}
-
-			private ObjectSet sodaQuery(ReadableInterval interval) {
-				Query query = Db4oModelPersistence.instance().container().query();
-				query.constrain(Buy.class);
-				Query iMillisField = query.descend("date").descend("iMillis");
-				iMillisField.constrain(interval.getStartMillis()).greater();
-				iMillisField.constrain(interval.getEndMillis()).smaller();
-				iMillisField.orderAscending();
-				return query.execute();
-			}
-
-			public void setCriteria(Criteria criteria) {
-				this.criteria = (BuySearchCriteria) criteria;
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new BuySearchResultsSpecification();
 			}
 		};
 	}
 
 	public SearchQuery citySearchQuery() {
-		return new StandardSearchQuery<City, CitySearchCriteria>() {
+		return new StandardNativeSearchQuery<City, CitySearchCriteria>() {
 
 			protected boolean accepts(City object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getCityName());
@@ -186,7 +146,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery suppliersSearchQuery() {
-		return new StandardSearchQuery<JuridicPerson, SupplierSearchCriteria>() {
+		return new StandardNativeSearchQuery<JuridicPerson, SupplierSearchCriteria>() {
 
 			protected boolean accepts(JuridicPerson object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getSupplierName());
@@ -203,14 +163,10 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery sellSearchQuery() {
-		return new StandardSearchQuery<Sell, SellSearchCriteria>() {
-
-			protected boolean accepts(Sell object) {
-				return criteria().getInterval().contains(object.date());
-			}
-
-			protected Iterable objects() {
-				return store().sells();
+		return new StandardSodaSearchQuery<SellSearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(Sell.class), criteria().getInterval());			
 			}
 
 			protected LazySearchResultsSpecification resultsSpecification() {
@@ -220,7 +176,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery articleGroupSearchQuery() {
-		return new StandardSearchQuery<ArticleGroup, ArticleGroupSearchCriteria>() {
+		return new StandardNativeSearchQuery<ArticleGroup, ArticleGroupSearchCriteria>() {
 
 			protected boolean accepts(ArticleGroup object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleGroupName());
@@ -237,7 +193,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery stringSearchQuery(final Iterable items) {
-		return new StandardSearchQuery<Object, StringCriteria>() {
+		return new StandardNativeSearchQuery<Object, StringCriteria>() {
 
 			protected boolean accepts(Object object) {
 				String criteriaString = StringUtils.lowerCase(criteria().getString());
@@ -262,25 +218,20 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery cashBookEntrySearchQuery() {
-		return new StandardSearchQuery<CashBookEntry, CashBookEntrySearchCriteria>() {
-
-			protected boolean accepts(CashBookEntry object) {
-				return criteria().getInterval().contains(object.getDate());
-			}
-
-			protected Iterable objects() {
-				return store().cashBook().entries();
+		return new StandardSodaSearchQuery<CashBookEntrySearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(CashBookEntry.class), criteria().getInterval());			
 			}
 
 			protected LazySearchResultsSpecification resultsSpecification() {
 				return new CashBookEntrySearchResultsSpecification();
 			}
-			
 		};
 	}
 
 	public SearchQuery expensesArticlesSearchQuery() {
-		return new StandardSearchQuery<ExpenseArticle, ExpenseArticleSearchCriteria>() {
+		return new StandardNativeSearchQuery<ExpenseArticle, ExpenseArticleSearchCriteria>() {
 
 			protected boolean accepts(ExpenseArticle object) {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
@@ -297,14 +248,10 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery expensesSearchQuery() {
-		return new StandardSearchQuery<Expense, ExpenseSearchCriteria>() {
-
-			protected boolean accepts(Expense object) {
-				return criteria().getInterval().contains(object.getDate());
-			}
-
-			protected Iterable objects() {
-				return store().expenses();
+		return new StandardSodaSearchQuery<ExpenseSearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(Expense.class), criteria().getInterval());			
 			}
 
 			protected LazySearchResultsSpecification resultsSpecification() {
@@ -312,4 +259,5 @@ public class Db4oQueryFactory extends QueryFactory {
 			}
 		};
 	}
+	
 }

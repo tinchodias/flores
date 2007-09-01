@@ -1,4 +1,4 @@
-package query.implementation.db4o;
+package query.implementation.natives;
 
 import model.Store;
 import persistence.Model;
@@ -10,7 +10,7 @@ import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.framework.results.SearchResults;
 
-abstract class StandardSearchQuery <GenericType, GenericCriteria extends Criteria> 
+public abstract class StandardNativeSearchQuery <GenericType, GenericCriteria extends Criteria> 
 	implements SearchQuery {
 	
 	private GenericCriteria criteria;

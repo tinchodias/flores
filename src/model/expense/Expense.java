@@ -2,15 +2,15 @@ package model.expense;
 
 import model.money.Pesos;
 
-import org.joda.time.ReadableDateTime;
+import org.joda.time.base.BaseDateTime;
 
 public class Expense {
 
 	private final ExpenseArticle article;
 	private final Pesos cost;
-	private final ReadableDateTime date;
+	private final BaseDateTime date;
 
-	public Expense(ExpenseArticle article, Pesos cost, ReadableDateTime date) {
+	public Expense(ExpenseArticle article, Pesos cost, BaseDateTime date) {
 		this.article = article;
 		this.cost = cost;
 		this.date = date;
@@ -24,7 +24,7 @@ public class Expense {
 		return cost;
 	}
 
-	public ReadableDateTime getDate() {
+	public BaseDateTime getDate() {
 		return date;
 	}
 }

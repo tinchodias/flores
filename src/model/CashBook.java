@@ -11,19 +11,19 @@ import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.util.CollectionFactory;
 
-import org.joda.time.ReadableDateTime;
+import org.joda.time.base.BaseDateTime;
 
 public class CashBook {
 
 	private List entries = CollectionFactory.newList();
 	private Pesos currentCash = Pesos.newFor(0.0);
 
-	private void addPositiveEntry(Object object, ReadableDateTime date, Pesos amount) {
+	private void addPositiveEntry(Object object, BaseDateTime date, Pesos amount) {
 		entries.add(new CashBookEntry(object, date, amount));
 		currentCash = currentCash.plus(amount);
 	}
 	
-	private void addNegativeEntry(Object object, ReadableDateTime date, Pesos amount) {
+	private void addNegativeEntry(Object object, BaseDateTime date, Pesos amount) {
 		addPositiveEntry(object, date, amount.by(-1));
 	}
 	
