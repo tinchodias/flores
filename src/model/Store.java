@@ -124,17 +124,17 @@ public class Store {
 		cashBook.add(sell);
 	}
 
-	public void add(BuyCancellation annulment) {
-		buyCancellations.add(annulment);
-		stock.apply(annulment);
-		cashBook.add(annulment);
+	public void add(BuyCancellation cancellation) {
+		buyCancellations.add(cancellation);
+		stock.apply(cancellation);
+		cashBook.add(cancellation);
 	}
 
-	public void add(SellCancellation annulment) {
-		sellCancellations.add(annulment);
-		stock.apply(annulment);
-		clientsDebts.apply(annulment);
-		cashBook.add(annulment);
+	public void add(SellCancellation cancellation) {
+		sellCancellations.add(cancellation);
+		stock.apply(cancellation);
+		clientsDebts.apply(cancellation);
+		cashBook.add(cancellation);
 	}
 
 	public void add(Expense expense) {
