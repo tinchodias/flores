@@ -5,6 +5,7 @@ import java.util.Map;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
+import model.receipt.BuyItem;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.stock.Article;
@@ -35,19 +36,15 @@ public class AverageCostStrategy implements CostStrategy {
 	}
 
 	public void notify(Buy buy) {
-		for (Article article : buy.items().getArticles()) {
-			Double inputCount = buy.items().getCount(article);
-			Pesos inputCost = buy.items().getValue(article);
-			applyArticleMovement(article, inputCount, inputCost);
+		for (BuyItem item : buy.items()) {
+			applyArticleMovement(item.getArticle(), item.getCount(), item.getValue());
 		}
 	}
 
-	public void notify(BuyCancellation annulment) {
-		Buy buy = annulment.getBuy();
-		for (Article article : buy.items().getArticles()) {
-			Double inputCount = buy.items().getCount(article);
-			Pesos inputCost = buy.items().getValue(article);
-			applyArticleMovement(article, -inputCount, inputCost);
+	public void notify(BuyCancellation cancellation) {
+		Buy buy = cancellation.getBuy();
+		for (BuyItem item : buy.items()) {
+			applyArticleMovement(item.getArticle(), -item.getCount(), item.getValue());
 		}
 	}
 
@@ -55,7 +52,7 @@ public class AverageCostStrategy implements CostStrategy {
 		//Do nothing on Sell
 	}
 
-	public void notify(SellCancellation annulment) {
+	public void notify(SellCancellation cancellation) {
 		//Do nothing on SellCancellation
 	}
 

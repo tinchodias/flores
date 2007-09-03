@@ -125,9 +125,9 @@ public class ObjectPicker3 extends Container {
 		menu.setVisible(false);
 		if (results.getRowCount() > 0) {
 			menu.removeAll();
-			for (int i = 0; i < results.getRowCount(); i++) {
-				//TODO optimize
-				menu.add(new ObjectPickerMenuAction(results.get(i), this));
+			//TODO optimize
+			for (Object object : results) {
+				menu.add(new ObjectPickerMenuAction(object, this));
 			}
 			menu.show(this, 0, field.getHeight());
 			menu.getSelectionModel().setSelectedIndex(0);

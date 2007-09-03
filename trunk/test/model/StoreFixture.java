@@ -129,7 +129,7 @@ public class StoreFixture {
 		
 		System.out.println("Generating Buys");
 		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 3, 1);
+		DateMidnight buysEnd = new DateMidnight(2006, 2, 1);
 		for (BaseDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
@@ -211,7 +211,7 @@ public class StoreFixture {
 	 * Creates a buy annullment.
 	 * 
 	 * @param sell The sell to cancel.
-	 * @return The annulment of the sell. 
+	 * @return The cancellation of the sell. 
 	 */
 	public static SellCancellation sellCancellation(Sell sell) {
 		return new SellCancellation(sell, new DateTime());
@@ -235,10 +235,10 @@ public class StoreFixture {
 	}
 
 	/**
-	 * Craetes a buy annulment.
+	 * Craetes a buy cancellation.
 	 * 
 	 * @param buy The buy to cancel.
-	 * @return The annulment of the buy.
+	 * @return The cancellation of the buy.
 	 */
 	public static BuyCancellation buyCancellation(Buy buy) {
 		return new BuyCancellation(buy, new DateTime());

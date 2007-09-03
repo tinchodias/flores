@@ -1,5 +1,6 @@
 package query.framework.results;
 
+import java.util.Iterator;
 import java.util.List;
 
 import model.util.CollectionFactory;
@@ -27,6 +28,10 @@ public class DefaultLazySearchResults extends LazySearchResults {
 
 	public Object get(int index) {
 		return sources.get(index);
+	}
+
+	public Iterator iterator() {
+		return sources.iterator();
 	}
 
 }

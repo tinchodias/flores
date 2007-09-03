@@ -1,40 +1,27 @@
 package model.receipt;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.Iterator;
+import java.util.List;
 
 import model.money.Pesos;
 import model.stock.Article;
 import model.util.CollectionFactory;
 
-public class BuyItems {
+public class BuyItems implements Iterable<BuyItem> {
 
-	Map<Article, BuyItem> items = CollectionFactory.newMap();
+	private List<BuyItem> items = CollectionFactory.newList();
 	
 	public void add(Article article, Double count, Pesos value) {
-		items.put(article, new BuyItem(article, count, value));
+		items.add(new BuyItem(article, count, value));
 	}
 	
 	public void add(BuyItem item) {
-		items.put(item.getArticle(), item);
-	}
-	
-	public Collection<Article> getArticles() {
-		return items.keySet();
-	}
-	
-	public Double getCount(Article article) {
-		return items.get(article).getCount();
-	}
-
-	public Pesos getValue(Article article) {
-		return items.get(article).getValue();
+		items.add(item);
 	}
 	
 	public Pesos total() {
 		Pesos total = Pesos.newFor(0.0);
-		for (Article article : items.keySet()) {
-			BuyItem item = items.get(article);
+		for (BuyItem item : items) {
 			total = total.plus(item.getValue().by(item.getCount()));
 		}
 		return total;
@@ -43,25 +30,26 @@ public class BuyItems {
 	public void adjustTotal(Pesos adjustedTotal) {
 		Pesos adjustCoefficient = adjustedTotal.dividedBy(total());
 		
-		for (Article article : items.keySet()) {
-			BuyItem item = items.get(article);
+		for (BuyItem item : items) {
 			Pesos adjustedValue = item.getValue().by(adjustCoefficient);
 			item.setValue(adjustedValue);
 		}
 	}
 
 	public Object get(int index) {
-		Article article = (Article) items.keySet().toArray()[index];
-		return items.get(article);
+		return items.get(index);
 	}
 
 	public boolean remove(Object object) {
-		BuyItem buyItem = (BuyItem) object;
-		return items.remove(buyItem.getArticle()) != null;
+		return items.remove(object);
 	}
 
 	public int size() {
 		return items.size();
+	}
+
+	public Iterator iterator() {
+		return items.iterator();
 	}
 
 }

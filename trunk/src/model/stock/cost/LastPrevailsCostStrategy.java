@@ -5,6 +5,7 @@ import java.util.Map;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
+import model.receipt.BuyItem;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.stock.Article;
@@ -36,13 +37,12 @@ public class LastPrevailsCostStrategy implements CostStrategy {
 	}
 
 	public void notify(Buy buy) {
-		for (Article article : buy.items().getArticles()) {
-			Pesos inputCost = buy.items().getValue(article);
-			costs.put(article, inputCost);
+		for (BuyItem item : buy.items()) {
+			costs.put(item.getArticle(), item.getValue());
 		}
 	}
 
-	public void notify(BuyCancellation annulment) {
+	public void notify(BuyCancellation cancellation) {
 		//TODO if its the last buy, it must get the previous costs.
 		throw new NotImplementedException();
 	}
@@ -51,7 +51,7 @@ public class LastPrevailsCostStrategy implements CostStrategy {
 		//Do nothing on Sell
 	}
 
-	public void notify(SellCancellation annulment) {
+	public void notify(SellCancellation cancellation) {
 		//Do nothing on SellCancellation
 	}
 

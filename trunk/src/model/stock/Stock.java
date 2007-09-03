@@ -7,8 +7,10 @@ import java.util.Map;
 import model.money.Pesos;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
+import model.receipt.BuyItem;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
+import model.receipt.SellItem;
 import model.stock.cost.CostStrategy;
 import model.stock.cost.LastPrevailsCostStrategy;
 import model.util.CollectionFactory;
@@ -43,35 +45,31 @@ public class Stock {
 
 	public void apply(Buy buy) {
 		costStrategy.notify(buy);
-		for (Article article : buy.items().getArticles()) {
-			Double boughtCount = buy.items().getCount(article);
-			addToStock(article, boughtCount);
+		for (BuyItem item : buy.items()) {
+			addToStock(item.getArticle(), item.getCount());
 		}
 	}
 
 	public void apply(Sell sell) {
 		costStrategy.notify(sell);
-		for (Article article : sell.items().getArticles()) {
-			Double soldCount = sell.items().getCount(article);
-			removeFromStock(article, soldCount);
+		for (SellItem item : sell.items()) {
+			removeFromStock(item.getArticle(), item.getCount());
 		}
 	}
 
-	public void apply(BuyCancellation annulment) {
-		costStrategy.notify(annulment);
-		Buy buy = annulment.getBuy();
-		for (Article article : buy.items().getArticles()) {
-			Double boughtCount = buy.items().getCount(article);
-			removeFromStock(article, boughtCount);
+	public void apply(BuyCancellation cancellation) {
+		costStrategy.notify(cancellation);
+		Buy buy = cancellation.getBuy();
+		for (BuyItem item : buy.items()) {
+			removeFromStock(item.getArticle(), item.getCount());
 		}
 	}
 
-	public void apply(SellCancellation annulment) {
-		costStrategy.notify(annulment);
-		Sell sell = annulment.getSell();
-		for (Article article : sell.items().getArticles()) {
-			Double soldCount = sell.items().getCount(article);
-			addToStock(article, soldCount);
+	public void apply(SellCancellation cancellation) {
+		costStrategy.notify(cancellation);
+		Sell sell = cancellation.getSell();
+		for (SellItem item : sell.items()) {
+			addToStock(item.getArticle(), item.getCount());
 		}
 	}
 
