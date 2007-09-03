@@ -4,7 +4,6 @@ import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.initializer.detail.SupplierDetailInitializer;
-import ui.controller.populator.SupplierPopulator;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
 import ui.view.swing.component.search.SuppliersSearchPanel;
@@ -12,8 +11,8 @@ import ui.view.swing.component.search.SuppliersSearchPanel;
 public class SuppliersDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		addShowCreatingAction(new SupplierDetailInitializer(), new SupplierPopulator(), searchDialog);
-		addShowModifyingAction(new SupplierDetailInitializer(), new SupplierPopulator(), searchDialog);
+		addShowCreatingAction(new SupplierDetailInitializer(), searchDialog);
+		addShowModifyingAction(new SupplierDetailInitializer(), searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

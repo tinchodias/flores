@@ -4,19 +4,20 @@ import persistence.ModelPersistence;
 import ui.view.component.ArticleGroupUI;
 import model.stock.ArticleGroup;
 
-public class ArticleGroupPopulator extends DetailPopulator<ArticleGroup, ArticleGroupUI> {
+public class ArticleGroupPopulator implements DetailPopulator<ArticleGroup, ArticleGroupUI> {
 
-	public void createFrom(ArticleGroupUI ui) {
+	public ArticleGroup createFrom(ArticleGroupUI ui) {
 		ArticleGroup group = new ArticleGroup(ui.getArticleGroupName());
 		
 		ModelPersistence.instance().loadedModel().store().stockArticleGroups().add(group);
+		return group;
 	}
 
-	public void modifyFrom(ArticleGroupUI ui) {
-		getValue().setName(ui.getArticleGroupName());
+	public void modifyFrom(ArticleGroupUI ui, ArticleGroup object) {
+		object.setName(ui.getArticleGroupName());
 	}
 
-	public void showIn(ArticleGroupUI ui) {
-		ui.setArticleGroupName(getValue().getName());
+	public void showIn(ArticleGroupUI ui, ArticleGroup object) {
+		ui.setArticleGroupName(object.getName());
 	}
 }

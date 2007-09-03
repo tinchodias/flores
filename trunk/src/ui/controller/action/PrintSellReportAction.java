@@ -6,25 +6,21 @@ import report.ReportFactory;
 import report.ReportPrint;
 import util.ValueHolder;
 
-public class PrintSellReportAction implements Action, ValueHolder {
+public class PrintSellReportAction implements Action {
 
-	private Sell sell;
+	private final ValueHolder holder;
+
+	public PrintSellReportAction(ValueHolder selectionValueHolder) {
+		this.holder = selectionValueHolder;
+	}
 
 	public void execute() {
-		ReportPrint print = ReportFactory.instance().sellReport(sell);
+		ReportPrint print = ReportFactory.instance().sellReport((Sell) holder.getValue());
 		ReportFactory.instance().show(print);
 	}
 
 	public MessageId messageId() {
 		return MessageId.print;
-	}
-
-	public Object getValue() {
-		return sell;
-	}
-
-	public void setValue(Object value) {
-		sell = (Sell) value;
 	}
 
 }

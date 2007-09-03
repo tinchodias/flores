@@ -42,7 +42,7 @@ public abstract class StandardSodaSearchQuery<GenericCriteria extends Criteria> 
 		Query iMillisField = query.descend("date").descend("iMillis");
 		iMillisField.constrain(interval.getStartMillis()).greater().or(iMillisField.constrain(interval.getStartMillis()).equal());
 		iMillisField.constrain(interval.getEndMillis()).smaller();
-		iMillisField.orderAscending();
+		iMillisField.orderDescending();
 		return query;
 	}
 

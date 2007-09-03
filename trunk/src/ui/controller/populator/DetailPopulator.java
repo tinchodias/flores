@@ -1,23 +1,12 @@
 package ui.controller.populator;
 
-import util.ValueHolder;
 
-public abstract class DetailPopulator <T, DetailType> implements ValueHolder<T> {
+public interface DetailPopulator <T, DetailType> {
 
-	private T value;
-
-	public T getValue() {
-		return value;
-	}
+	T createFrom(DetailType ui);
 	
-	public void setValue(T value) {
-		this.value = value;
-	}
-
-	public abstract void createFrom(DetailType ui);
+	void modifyFrom(DetailType ui, T object);
 	
-	public abstract void modifyFrom(DetailType ui);
-	
-	public abstract void showIn(DetailType ui);
+	void showIn(DetailType ui, T object);
 	
 }

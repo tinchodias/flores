@@ -15,22 +15,23 @@ import query.framework.results.SellItemsLazySearchResults;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.view.component.SellUI;
 
-public class SellPopulator extends DetailPopulator<Sell, SellUI> {
+public class SellPopulator implements DetailPopulator<Sell, SellUI> {
 
-	public void createFrom(SellUI ui) {
+	public Sell createFrom(SellUI ui) {
 		Sell sell = sell(ui);
 		Store store = ModelPersistence.instance().loadedModel().store();
 		store.add(sell);
+		return sell;
 	}
 
-	public void modifyFrom(SellUI ui) {
+	public void modifyFrom(SellUI ui, Sell object) {
 		throw new NotImplementedException();
 	}
 
-	public void showIn(SellUI ui) {
-		ui.setCashPay(getValue().payment().total());
-		ui.setClient(getValue().client());
-		ui.getItemsPanel().setResults(new SellItemsLazySearchResults(getValue().items()));
+	public void showIn(SellUI ui, Sell object) {
+		ui.setCashPay(object.payment().total());
+		ui.setClient(object.client());
+		ui.getItemsPanel().setResults(new SellItemsLazySearchResults(object.items()));
 	}
 
 
@@ -57,6 +58,5 @@ public class SellPopulator extends DetailPopulator<Sell, SellUI> {
 		
 		return payment;
 	}
-	
 	
 }

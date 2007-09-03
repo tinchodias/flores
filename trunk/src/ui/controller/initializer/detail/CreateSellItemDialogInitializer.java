@@ -31,7 +31,7 @@ public class CreateSellItemDialogInitializer implements DialogInitializer {
 		
 		Action createSellItemAction = new CreateSellItemAction(dialog, sellUI);
 		Action showAction = new ShowDialogAction(this);
-		Action action = new CompositeAction(createSellItemAction, showAction, MessageId.acceptAndCreateOther);
+		Action action = new CompositeAction(createSellItemAction, showAction, MessageId.acceptAndContinue);
 		dialog.setAcceptAction(action);
 		
 		dialog.setCancelAction(new CloseDialogAction(dialog));

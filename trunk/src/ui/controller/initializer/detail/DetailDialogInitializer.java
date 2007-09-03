@@ -8,12 +8,18 @@ import ui.controller.initializer.detail.mode.DetailMode;
 import ui.controller.initializer.detail.mode.DetailModeVisitor;
 import ui.controller.populator.DetailPopulator;
 import ui.view.component.DetailUI;
+import util.ValueHolder;
 
 public abstract class DetailDialogInitializer implements DialogInitializer, DetailModeVisitor {
 
 	private DetailMode mode;
 	private DetailPopulator populator;
 	private DetailUI baseDialog;
+	private ValueHolder holder;
+
+	public DetailDialogInitializer(DetailPopulator populator) {
+		this.populator = populator;
+	}
 
 	public DetailPopulator populator() {
 		return populator;
@@ -27,8 +33,12 @@ public abstract class DetailDialogInitializer implements DialogInitializer, Deta
 		this.mode = mode;
 	}
 
-	public void populator(DetailPopulator populator) {
-		this.populator = populator;
+	public void objectHolder(ValueHolder holder) {
+		this.holder = holder;
+	}
+
+	public ValueHolder objectHolder() {
+		return holder;
 	}
 	
 	public DetailUI dialog() {
@@ -44,16 +54,16 @@ public abstract class DetailDialogInitializer implements DialogInitializer, Deta
 	protected abstract DetailUI baseDialog();
 
 	protected void initCreatingMode(DetailUI baseDialog) {
-		baseDialog.setAcceptAction(new CreateAction(baseDialog, populator));
+		baseDialog.setAcceptAction(new CreateAction(baseDialog, populator()));
 	}
 	
 	protected void initModifyingMode(DetailUI baseDialog) {
-		populator.showIn(baseDialog);
-		baseDialog.setAcceptAction(new ModifyAction(baseDialog, populator));
+		populator.showIn(baseDialog, objectHolder().getValue());
+		baseDialog.setAcceptAction(new ModifyAction(baseDialog, populator(), objectHolder()));
 	}
 	
 	protected void initViewingMode(DetailUI baseDialog) {
-		populator().showIn(baseDialog);
+		populator().showIn(baseDialog, objectHolder().getValue());
 	}
 	
 	public void setViewingMode() {
@@ -67,5 +77,5 @@ public abstract class DetailDialogInitializer implements DialogInitializer, Deta
 	public void setModifyingMode() {
 		initModifyingMode(baseDialog);
 	}
-	
+
 }

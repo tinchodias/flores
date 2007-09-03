@@ -5,28 +5,29 @@ import model.stock.Article;
 import persistence.ModelPersistence;
 import ui.view.component.ArticleUI;
 
-public class ArticlePopulator extends DetailPopulator<Article, ArticleUI>{
+public class ArticlePopulator implements DetailPopulator<Article, ArticleUI>{
 
-	public void createFrom(ArticleUI ui) {
+	public Article createFrom(ArticleUI ui) {
 		Article article = new Article(ui.getCode(), ui.getArticleName(), 
 				ui.getArticleSize(), ui.getArticleGroup());
 		
 		Store store = ModelPersistence.instance().loadedModel().store();
 		store.stockArticles().add(article);
+		return article;
 	}
 
-	public void modifyFrom(ArticleUI ui) {
-		getValue().setCode(ui.getCode());
-		getValue().setName(ui.getArticleName());
-		getValue().setSize(ui.getArticleSize());
-		getValue().setGroup(ui.getArticleGroup());
+	public void modifyFrom(ArticleUI ui, Article object) {
+		object.setCode(ui.getCode());
+		object.setName(ui.getArticleName());
+		object.setSize(ui.getArticleSize());
+		object.setGroup(ui.getArticleGroup());
 	}
 
-	public void showIn(ArticleUI ui) {
-		ui.setCode(getValue().getCode());
-		ui.setArticleName(getValue().getName());
-		ui.setArticleSize(getValue().getSize());
-		ui.setArticleGroup(getValue().getGroup());
+	public void showIn(ArticleUI ui, Article object) {
+		ui.setCode(object.getCode());
+		ui.setArticleName(object.getName());
+		ui.setArticleSize(object.getSize());
+		ui.setArticleGroup(object.getGroup());
 	}
 
 }

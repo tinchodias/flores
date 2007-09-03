@@ -4,7 +4,6 @@ import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.initializer.detail.ArticleGroupDetailInitializer;
-import ui.controller.populator.ArticleGroupPopulator;
 import ui.view.swing.component.search.ArticleGroupSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
@@ -12,8 +11,8 @@ import ui.view.swing.component.search.StandardSearchPanel;
 public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		addShowCreatingAction(new ArticleGroupDetailInitializer(), new ArticleGroupPopulator(), searchDialog);
-		addShowModifyingAction(new ArticleGroupDetailInitializer(), new ArticleGroupPopulator(), searchDialog);
+		addShowCreatingAction(new ArticleGroupDetailInitializer(), searchDialog);
+		addShowModifyingAction(new ArticleGroupDetailInitializer(), searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {
