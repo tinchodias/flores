@@ -4,7 +4,6 @@ import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.initializer.detail.ClientDetailInitializer;
-import ui.controller.populator.ClientPopulator;
 import ui.view.swing.component.search.ClientSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
@@ -12,8 +11,8 @@ import ui.view.swing.component.search.StandardSearchPanel;
 public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		addShowCreatingAction(new ClientDetailInitializer(), new ClientPopulator(), searchDialog);
-		addShowModifyingAction(new ClientDetailInitializer(), new ClientPopulator(), searchDialog);
+		addShowCreatingAction(new ClientDetailInitializer(), searchDialog);
+		addShowModifyingAction(new ClientDetailInitializer(), searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

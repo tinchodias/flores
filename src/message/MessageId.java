@@ -64,6 +64,9 @@ public enum MessageId {
 	view,
 	print,
 	
+	acceptAndContinue, 
+	acceptAndPrint, 
+	
 	city, 
 	address, 
 	cities, 
@@ -87,8 +90,6 @@ public enum MessageId {
 	
 	cashBook, 
 	currentCash, 
-	
-	acceptAndCreateOther, 
 	
 	expensesArticles, 
 	expenseArticle, 

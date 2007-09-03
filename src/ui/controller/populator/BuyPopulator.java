@@ -14,22 +14,23 @@ import query.framework.results.BuyItemsLazySearchResults;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.view.component.BuyUI;
 
-public class BuyPopulator extends DetailPopulator<Buy, BuyUI> {
+public class BuyPopulator implements DetailPopulator<Buy, BuyUI> {
 
-	public void createFrom(BuyUI ui) {
+	public Buy createFrom(BuyUI ui) {
 		Buy buy = buy(ui);
 		Store store = ModelPersistence.instance().loadedModel().store();
 		store.add(buy);
+		return buy;
 	}
 
-	public void modifyFrom(BuyUI ui) {
+	public void modifyFrom(BuyUI ui, Buy object) {
 		throw new NotImplementedException();
 	}
 
-	public void showIn(BuyUI ui) {
-		ui.setCashPay(getValue().payment().total());
-		ui.setSupplier(getValue().supplier());
-		ui.getItemsPanel().setResults(new BuyItemsLazySearchResults(getValue().items()));
+	public void showIn(BuyUI ui, Buy object) {
+		ui.setCashPay(object.payment().total());
+		ui.setSupplier(object.supplier());
+		ui.getItemsPanel().setResults(new BuyItemsLazySearchResults(object.items()));
 	}
 
 	private Buy buy(BuyUI ui) {

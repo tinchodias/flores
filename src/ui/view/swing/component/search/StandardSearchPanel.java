@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.border.Border;
 
 import message.MessageId;
@@ -181,8 +182,9 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 //		}
 		resultsTable.addMouseListener(new ClickAdapter(action, 2));
 
-		//FIXME ENTER selects the next row!
-//		resultsTable.addKeyListener(new KeyTypedAdapter(action, KeyEvent.VK_ENTER));
+		String actionKey = "searchPanelDefaultAction";
+		resultsTable.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), actionKey);
+		resultsTable.getActionMap().put(actionKey, new ActionAdapter(action));
 	}
 
 	public Action getSearchAction() {

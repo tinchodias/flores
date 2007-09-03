@@ -18,6 +18,7 @@ public class KeyTypedAdapter extends KeyAdapter {
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == key) {
 			action.execute();
+			e.consume();
 		}
 	}
 

@@ -8,12 +8,17 @@ import ui.controller.action.RemoveBuyItemAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.AdjustBuyTotalDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
+import ui.controller.populator.BuyPopulator;
 import ui.view.component.BuyUI;
 import ui.view.component.DetailUI;
 import ui.view.swing.component.detail.BuyDialog;
 
 public class BuyDetailInitializer extends DetailDialogInitializer {
 
+	public BuyDetailInitializer() {
+		super(new BuyPopulator());
+	}
+	
 	protected DetailUI baseDialog() {
 		BuyDialog buyDialog = new BuyDialog();
 

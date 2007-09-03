@@ -5,11 +5,13 @@ import message.MessageId;
 import transaction.Block;
 import ui.controller.populator.DetailPopulator;
 import ui.view.component.DetailUI;
+import util.ValueHolder;
 
-public class CreateAction implements Action {
+public class CreateAction implements Action, ValueHolder {
 
 	private final DetailUI dialog;
 	private final DetailPopulator populator;
+	private Object lastCreated;
 
 	public CreateAction(DetailUI dialog, DetailPopulator populator) {
 		this.dialog = dialog;
@@ -19,7 +21,7 @@ public class CreateAction implements Action {
 	public void execute() {
 		ModelPersistence.instance().transactionManager().execute(new Block() {
 			public void executeBlock() {
-				populator.createFrom(dialog);
+				lastCreated = populator.createFrom(dialog);
 			}
 		});
 		
@@ -28,6 +30,11 @@ public class CreateAction implements Action {
 
 	public MessageId messageId() {
 		return MessageId.accept;
+	}
+
+	public Object getValue() {
+		//TODO rethink this...
+		return lastCreated;
 	}
 
 }

@@ -1,30 +1,29 @@
 package ui.controller.populator;
 
 import model.JuridicPerson;
-import model.Store;
+import model.address.Address;
 import persistence.ModelPersistence;
 import ui.view.component.SupplierUI;
 
-public class SupplierPopulator extends DetailPopulator<JuridicPerson, SupplierUI> {
+public class SupplierPopulator implements DetailPopulator<JuridicPerson, SupplierUI> {
 
-	public void createFrom(SupplierUI ui) {
+	public JuridicPerson createFrom(SupplierUI ui) {
 		String name = ui.getSupplierName();
-		JuridicPerson supplier = new JuridicPerson(name);
-		//TODO ugly
-		new AddressPopulator(supplier).createFrom(ui.getAddressUI());
+		Address address = new AddressPopulator().createFrom(ui.getAddressUI());
+		JuridicPerson supplier = new JuridicPerson(name, address);
 
-		Store store = ModelPersistence.instance().loadedModel().store();
-		store.suppliers().add(supplier);
+		ModelPersistence.instance().loadedModel().store().suppliers().add(supplier);
+		return supplier;
 	}
 
-	public void modifyFrom(SupplierUI ui) {
-		getValue().setName(ui.getSupplierName());
-		new AddressPopulator(getValue()).modifyFrom(ui.getAddressUI());
+	public void modifyFrom(SupplierUI ui, JuridicPerson object) {
+		object.setName(ui.getSupplierName());
+		new AddressPopulator().modifyFrom(ui.getAddressUI(), object.getAddress());
 	}
 
-	public void showIn(SupplierUI ui) {
-		ui.setSupplierName(getValue().getName());
-		new AddressPopulator(getValue()).showIn(ui.getAddressUI());
+	public void showIn(SupplierUI ui, JuridicPerson object) {
+		ui.setSupplierName(object.getName());
+		new AddressPopulator().showIn(ui.getAddressUI(), object.getAddress());
 	}
 	
 }

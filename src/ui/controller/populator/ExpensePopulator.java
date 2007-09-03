@@ -10,20 +10,21 @@ import ui.view.component.ExpenseUI;
 
 import com.db4o.foundation.NotSupportedException;
 
-public class ExpensePopulator extends DetailPopulator<Expense, ExpenseUI>{
+public class ExpensePopulator implements DetailPopulator<Expense, ExpenseUI>{
 
-	public void createFrom(ExpenseUI ui) {
+	public Expense createFrom(ExpenseUI ui) {
 		Expense expense = new Expense(ui.getExpenseArticle(), ui.getCost(), new DateTime());
 		
 		Store store = ModelPersistence.instance().loadedModel().store();
 		store.add(expense);
+		return expense;
 	}
 
-	public void modifyFrom(ExpenseUI ui) {
+	public void modifyFrom(ExpenseUI ui, Expense object) {
 		throw new NotSupportedException();
 	}
 
-	public void showIn(ExpenseUI ui) {
+	public void showIn(ExpenseUI ui, Expense object) {
 		throw new NotSupportedException();
 	}
 
