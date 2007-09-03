@@ -61,8 +61,8 @@ public class ObjectPicker2 extends Container {
 	public void setResults(SearchResults results) {
 		//TODO optimize!
 		DefaultComboBoxModel model = new DefaultComboBoxModel();
-		for (int i = 0; i < results.getRowCount(); i++) {
-			model.addElement(results.get(i));
+		for (Object object : results) {
+			model.addElement(object);
 		}
 		combo.setModel(model);
 		combo.setPopupVisible(results.getRowCount() > 0);

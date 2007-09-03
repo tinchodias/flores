@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import model.address.City;
 import model.address.Province;
@@ -20,8 +19,6 @@ import model.stock.Article;
 import model.stock.ArticleGroup;
 import model.stock.Stock;
 import model.util.CollectionFactory;
-
-import org.joda.time.ReadableInterval;
 
 //TODO Rethink this class.
 
@@ -140,16 +137,6 @@ public class Store {
 	public void add(Expense expense) {
 		expenses.add(expense);
 		cashBook.add(expense);
-	}
-
-	public Collection<Sell> sellsAt(JuridicPerson vendor, ReadableInterval lapse) {
-		Collection<Sell> selection = new HashSet<Sell>();
-		for (Sell sell : sells) {
-			if (lapse.contains(sell.date()) && sell.vendor().equals(vendor)) {
-				selection.add(sell);
-			}
-		}
-		return selection;
 	}
 
 }

@@ -1,5 +1,7 @@
 package query.framework.results;
 
+import java.util.Iterator;
+
 import com.db4o.ObjectSet;
 
 public class Db4oObjectSetSearchResults extends LazySearchResults {
@@ -17,6 +19,10 @@ public class Db4oObjectSetSearchResults extends LazySearchResults {
 
 	public int getRowCount() {
 		return objectSet.size();
+	}
+
+	public Iterator iterator() {
+		return objectSet.iterator();
 	}
 
 }

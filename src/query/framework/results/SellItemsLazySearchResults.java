@@ -1,5 +1,7 @@
 package query.framework.results;
 
+import java.util.Iterator;
+
 import model.receipt.SellItem;
 import model.receipt.SellItems;
 import query.results.SellItemResultsSpecification;
@@ -36,6 +38,10 @@ public class SellItemsLazySearchResults extends LazySearchResults {
 
 	public SellItems getSellItems() {
 		return sellItems;
+	}
+
+	public Iterator iterator() {
+		return sellItems.iterator();
 	}
 
 }

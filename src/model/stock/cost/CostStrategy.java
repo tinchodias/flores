@@ -19,9 +19,9 @@ public interface CostStrategy {
 
 	void notify(Sell sell);
 
-	void notify(BuyCancellation annulment);
+	void notify(BuyCancellation cancellation);
 
-	void notify(SellCancellation annulment);
+	void notify(SellCancellation cancellation);
 
 	void notify(StockDropOut dropOut);
 

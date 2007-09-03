@@ -51,8 +51,8 @@ public class SellTest extends TestCase {
 		assertEquals(initialDebt.plus(Pesos.newFor(400.0)), store.debts().debtOf(elvira));
 		assertEquals(initialStock - 100.0, store.stock().count(clavel));
 
-		SellCancellation annulment = StoreFixture.sellCancellation(sell);
-		store.add(annulment);
+		SellCancellation cancellation = StoreFixture.sellCancellation(sell);
+		store.add(cancellation);
 		
 		assertEquals(initialDebt, store.debts().debtOf(elvira));
 		assertEquals(initialStock, store.stock().count(clavel));
