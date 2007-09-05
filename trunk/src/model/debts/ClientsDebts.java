@@ -12,7 +12,7 @@ import model.util.CollectionFactory;
 
 public class ClientsDebts {
 
-	private Map<JuridicPerson, Pesos> debts = CollectionFactory.<JuridicPerson, Pesos>newMap();
+	private Map<JuridicPerson, Pesos> debts = CollectionFactory.<JuridicPerson, Pesos>newIdentityMap();
 	private Collection<LostDebtDeclaration> declarations = CollectionFactory.<LostDebtDeclaration>newList();
 	private Collection<ClientDebtCancellation> cancellations = CollectionFactory.<ClientDebtCancellation>newList();
 	private final Store store;

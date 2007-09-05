@@ -29,6 +29,9 @@ public abstract class ModelPersistence {
 	//TODO
 	public abstract Map newMap();
 
+	//TODO
+	public abstract Map newIdentityMap();
+	
 	public abstract TransactionManager transactionManager();
 	
 }

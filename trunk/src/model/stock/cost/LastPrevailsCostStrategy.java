@@ -16,7 +16,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LastPrevailsCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = CollectionFactory.newMap();
+	private Map<Article, Pesos> costs = CollectionFactory.newIdentityMap();
 	private Stock stock;
 	
 	public LastPrevailsCostStrategy(Stock stock) {

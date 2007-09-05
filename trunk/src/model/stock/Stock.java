@@ -17,7 +17,7 @@ import model.util.CollectionFactory;
 
 public class Stock {
 
-	private Map<Article, Double> stockArticles = CollectionFactory.<Article, Double>newMap();
+	private Map<Article, Double> stockArticles = CollectionFactory.<Article, Double>newIdentityMap();
 	private CostStrategy costStrategy;
 	private Collection<StockDropOut> dropOuts = CollectionFactory.<StockDropOut>newList();
 	
