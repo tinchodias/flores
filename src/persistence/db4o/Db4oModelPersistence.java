@@ -208,6 +208,15 @@ public class Db4oModelPersistence extends ModelPersistence {
 		}
 	}
 
+	public Map newIdentityMap() {
+		//FIXME!
+		if (container != null) {
+			return container.ext().collections().newIdentityHashMap(0);
+		} else {
+			return new HashMap();
+		}
+	}
+
 	public TransactionManager transactionManager() {
 		return transactionManager;
 	}

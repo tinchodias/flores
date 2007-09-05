@@ -1,8 +1,8 @@
 package model;
 
+import message.MessageId;
 import model.address.Address;
-
-import org.apache.commons.lang.StringUtils;
+import validation.ModelValidation;
 
 public class JuridicPerson {
 
@@ -10,15 +10,13 @@ public class JuridicPerson {
 	private Address address;
 
 	public JuridicPerson(String name, Address address) {
-		//TODO!
-		if (StringUtils.isBlank(name)) {
-			throw new RuntimeException("Nombre incorrecto");
-		}
-		
-		this.name = name;
-		this.address = address;
+		setName(name);
+		setAddress(address);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public JuridicPerson(String name) {
 		this(name, null);
 		//TODO Remove this constructor, or remove the null...
@@ -28,8 +26,9 @@ public class JuridicPerson {
 		return name;
 	}
 
-	public void setName(String nombre) {
-		this.name = nombre;
+	public void setName(String name) {
+		ModelValidation.instance().assertNotBlank(name, MessageId.clientName);
+		this.name = name;
 	}
 
 	public Address getAddress() {
@@ -37,26 +36,12 @@ public class JuridicPerson {
 	}
 	
 	public void setAddress(Address address) {
+		ModelValidation.instance().assertNotNull(address, MessageId.address);
 		this.address = address;
 	}
 	
 	public String toString() {
 		return getName();
 	}
-
-	public int hashCode() {
-		//FIXME
-		return toString().hashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		//FIXME
-		if (obj != null && obj instanceof JuridicPerson) {
-			JuridicPerson a = (JuridicPerson) obj;
-			return this.toString().equals(a.toString());
-		}
-		return false;
-	}
-	
 	
 }

@@ -10,7 +10,7 @@ import model.util.CollectionFactory;
 public class SimplePercentagePriceStrategy implements PriceStrategy {
 
 	private final Store store;
-	private Map<Article, Double> percentages = CollectionFactory.<Article, Double>newMap();
+	private Map<Article, Double> percentages = CollectionFactory.<Article, Double>newIdentityMap();
 	private Double defaultPriceMargin = 0.0;
 
 	public SimplePercentagePriceStrategy(Store store) {

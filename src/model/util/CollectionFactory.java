@@ -15,4 +15,8 @@ public class CollectionFactory {
 		return ModelPersistence.instance().newMap();
 	}
 
+	public static <K, V> Map<K, V> newIdentityMap() {
+		return ModelPersistence.instance().newIdentityMap();
+	}
+	
 }

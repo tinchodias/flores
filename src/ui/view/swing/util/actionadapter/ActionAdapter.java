@@ -9,6 +9,7 @@ import message.IconRepository;
 import message.MessageRepository;
 import ui.UI;
 import ui.controller.action.Action;
+import validation.ModelValidationError;
 
 public class ActionAdapter extends AbstractAction {
 
@@ -27,8 +28,10 @@ public class ActionAdapter extends AbstractAction {
 		//TODO better descriptions for exceptions
 		try {
 			action.execute();
-		} catch (Exception ex) {
+		} catch (ModelValidationError ex) {
 			UI.instance().showInfo(ex.getMessage());
+		} catch (Exception ex) {
+			UI.instance().showError(ex.getMessage());
 			ex.printStackTrace();
 		}
 	}

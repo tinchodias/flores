@@ -15,7 +15,7 @@ import model.util.CollectionFactory;
 
 public class AverageCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = CollectionFactory.newMap();
+	private Map<Article, Pesos> costs = CollectionFactory.newIdentityMap();
 	private Stock stock;
 	
 	public AverageCostStrategy(Stock stock) {

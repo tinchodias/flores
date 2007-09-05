@@ -1,5 +1,8 @@
 package query.framework.results;
 
+import java.util.Collections;
+import java.util.Iterator;
+
 
 
 public class NullSearchResults implements SearchResults {
@@ -40,4 +43,8 @@ public class NullSearchResults implements SearchResults {
 		return null;
 	}
 
+	public Iterator iterator() {
+		return Collections.EMPTY_LIST.iterator();
+	}
+	
 }

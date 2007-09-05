@@ -60,17 +60,4 @@ public class Article {
 		return getCode() + " - " + getName() + " x " + getSize();
 	}
 
-	public int hashCode() {
-		//FIXME
-		return toString().hashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		//FIXME
-		if (obj != null && obj instanceof Article) {
-			Article a = (Article) obj;
-			return this.toString().equals(a.toString());
-		}
-		return false;
-	}
 }
