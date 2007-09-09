@@ -9,7 +9,7 @@ import model.receipt.Sell;
 import org.joda.time.ReadableInterval;
 
 import query.QueryFactory;
-import query.criteria.SellSearchCriteria;
+import query.criteria.IntervalSearchCriteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.SearchResults;
 
@@ -26,7 +26,7 @@ public class BasicCommissionsManager implements CommisionsManager {
 	public CommissionSummary commissionAt(JuridicPerson vendor, final ReadableInterval lapse) {
 		//		Collection<Sell> sells = store.sellsAt(vendor, lapse);
 		SearchQuery sellSearchQuery = QueryFactory.instance().sellSearchQuery();
-		sellSearchQuery.setCriteria(new SellSearchCriteria() {
+		sellSearchQuery.setCriteria(new IntervalSearchCriteria() {
 			
 			public ReadableInterval getInterval() {
 				return lapse;

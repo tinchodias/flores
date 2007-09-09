@@ -63,6 +63,7 @@ public enum MessageId {
 	reason, 
 	view,
 	print,
+	note, 
 	
 	acceptAndContinue, 
 	acceptAndPrint, 
@@ -95,6 +96,9 @@ public enum MessageId {
 	expenseArticle, 
 	expenses,
 	expense, 
+	
+	cashExtractions, 
+	cashExtraction, 
 	
 	;
 	
