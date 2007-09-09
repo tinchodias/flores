@@ -41,5 +41,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery expensesSearchQuery();
 
 	public abstract SearchQuery cashExtractionsSearchQuery();
+
+	public abstract SearchQuery clientDebtCancellationsSearchQuery();
 	
 }

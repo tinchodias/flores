@@ -6,6 +6,7 @@ import model.JuridicPerson;
 import model.address.City;
 import model.cashBook.CashBookEntry;
 import model.cashBook.CashExtraction;
+import model.debts.ClientDebtCancellation;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;
@@ -34,6 +35,7 @@ import query.results.BuySearchResultsSpecification;
 import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CashExtractionSearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
+import query.results.ClientDebtCancellationSearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
@@ -228,6 +230,10 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery cashExtractionsSearchQuery() {
 		return standardSodaIntervalQuery(CashExtraction.class, new CashExtractionSearchResultsSpecification());
+	}
+
+	public SearchQuery clientDebtCancellationsSearchQuery() {
+		return standardSodaIntervalQuery(ClientDebtCancellation.class, new ClientDebtCancellationSearchResultsSpecification());
 	}
 	
 }

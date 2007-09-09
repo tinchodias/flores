@@ -100,6 +100,9 @@ public enum MessageId {
 	cashExtractions, 
 	cashExtraction, 
 	
+	clientDebtCancellations, 
+	clientDebtCancellation, 
+	
 	;
 	
 }
