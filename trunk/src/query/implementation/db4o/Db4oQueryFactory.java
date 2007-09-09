@@ -5,6 +5,7 @@ import java.util.Collection;
 import model.JuridicPerson;
 import model.address.City;
 import model.cashBook.CashBookEntry;
+import model.cashBook.CashExtraction;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;
@@ -17,15 +18,11 @@ import org.apache.commons.lang.StringUtils;
 
 import query.QueryFactory;
 import query.criteria.ArticleGroupSearchCriteria;
-import query.criteria.BuySearchCriteria;
-import query.criteria.CashBookEntrySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.ExpenseArticleSearchCriteria;
-import query.criteria.ExpenseSearchCriteria;
-import query.criteria.SellSearchCriteria;
+import query.criteria.IntervalSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
-import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
@@ -35,6 +32,7 @@ import query.implementation.natives.StandardNativeSearchQuery;
 import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
 import query.results.CashBookEntrySearchResultsSpecification;
+import query.results.CashExtractionSearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
@@ -49,6 +47,19 @@ import com.db4o.query.Query;
 
 public class Db4oQueryFactory extends QueryFactory {
 
+	private static SearchQuery standardSodaIntervalQuery(final Class clazz, final LazySearchResultsSpecification spec) {
+		return new StandardSodaSearchQuery<IntervalSearchCriteria>() {
+			
+			protected Query query() {
+				return constrainInterval(queryFor(clazz), criteria().getInterval());			
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return spec;
+			}
+		};
+	}
+	
 	public SearchQuery clientSearchQuery() {
 		return new StandardNativeSearchQuery<JuridicPerson, ClientSearchCriteria>() {
 
@@ -102,29 +113,11 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockDropOutSearchQuery() {
-		return new StandardSodaSearchQuery<StockDropOutSearchCriteria>() {
-			
-			protected Query query() {
-				return constrainInterval(queryFor(StockDropOut.class), criteria().getInterval());			
-			}
-
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new StockDropOutSearchResultsSpecification();
-			}
-		};
+		return standardSodaIntervalQuery(StockDropOut.class, new StockDropOutSearchResultsSpecification());
 	}
 
 	public SearchQuery buySearchQuery() {
-		return new StandardSodaSearchQuery<BuySearchCriteria>() {
-			
-			protected Query query() {
-				return constrainInterval(queryFor(Buy.class), criteria().getInterval());			
-			}
-
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new BuySearchResultsSpecification();
-			}
-		};
+		return standardSodaIntervalQuery(Buy.class, new BuySearchResultsSpecification());
 	}
 
 	public SearchQuery citySearchQuery() {
@@ -163,16 +156,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery sellSearchQuery() {
-		return new StandardSodaSearchQuery<SellSearchCriteria>() {
-			
-			protected Query query() {
-				return constrainInterval(queryFor(Sell.class), criteria().getInterval());			
-			}
-
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new SellSearchResultsSpecification();
-			}
-		};
+		return standardSodaIntervalQuery(Sell.class, new SellSearchResultsSpecification());
 	}
 	
 	public SearchQuery articleGroupSearchQuery() {
@@ -218,16 +202,7 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery cashBookEntrySearchQuery() {
-		return new StandardSodaSearchQuery<CashBookEntrySearchCriteria>() {
-			
-			protected Query query() {
-				return constrainInterval(queryFor(CashBookEntry.class), criteria().getInterval());			
-			}
-
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new CashBookEntrySearchResultsSpecification();
-			}
-		};
+		return standardSodaIntervalQuery(CashBookEntry.class, new CashBookEntrySearchResultsSpecification());
 	}
 
 	public SearchQuery expensesArticlesSearchQuery() {
@@ -248,16 +223,11 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery expensesSearchQuery() {
-		return new StandardSodaSearchQuery<ExpenseSearchCriteria>() {
-			
-			protected Query query() {
-				return constrainInterval(queryFor(Expense.class), criteria().getInterval());			
-			}
+		return standardSodaIntervalQuery(Expense.class, new ExpenseSearchResultsSpecification());
+	}
 
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new ExpenseSearchResultsSpecification();
-			}
-		};
+	public SearchQuery cashExtractionsSearchQuery() {
+		return standardSodaIntervalQuery(CashExtraction.class, new CashExtractionSearchResultsSpecification());
 	}
 	
 }

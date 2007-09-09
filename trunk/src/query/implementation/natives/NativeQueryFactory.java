@@ -13,19 +13,16 @@ import model.stock.Article;
 import model.stock.ArticleGroup;
 import model.stock.StockDropOut;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.StringUtils;
 
 import query.QueryFactory;
 import query.criteria.ArticleGroupSearchCriteria;
-import query.criteria.BuySearchCriteria;
-import query.criteria.CashBookEntrySearchCriteria;
 import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.ExpenseArticleSearchCriteria;
-import query.criteria.ExpenseSearchCriteria;
-import query.criteria.SellSearchCriteria;
+import query.criteria.IntervalSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
-import query.criteria.StockDropOutSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
@@ -99,7 +96,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery stockDropOutSearchQuery() {
-		return new StandardNativeSearchQuery<StockDropOut, StockDropOutSearchCriteria>() {
+		return new StandardNativeSearchQuery<StockDropOut, IntervalSearchCriteria>() {
 
 			protected boolean accepts(StockDropOut object) {
 				return criteria().getInterval().contains(object.getDate());
@@ -116,7 +113,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery buySearchQuery() {
-		return new StandardNativeSearchQuery<Buy, BuySearchCriteria>() {
+		return new StandardNativeSearchQuery<Buy, IntervalSearchCriteria>() {
 
 			protected boolean accepts(Buy object) {
 				return criteria().getInterval().contains(object.date());
@@ -169,7 +166,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery sellSearchQuery() {
-		return new StandardNativeSearchQuery<Sell, SellSearchCriteria>() {
+		return new StandardNativeSearchQuery<Sell, IntervalSearchCriteria>() {
 
 			protected boolean accepts(Sell object) {
 				return criteria().getInterval().contains(object.date());
@@ -228,7 +225,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery cashBookEntrySearchQuery() {
-		return new StandardNativeSearchQuery<CashBookEntry, CashBookEntrySearchCriteria>() {
+		return new StandardNativeSearchQuery<CashBookEntry, IntervalSearchCriteria>() {
 
 			protected boolean accepts(CashBookEntry object) {
 				return criteria().getInterval().contains(object.getDate());
@@ -263,7 +260,7 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery expensesSearchQuery() {
-		return new StandardNativeSearchQuery<Expense, ExpenseSearchCriteria>() {
+		return new StandardNativeSearchQuery<Expense, IntervalSearchCriteria>() {
 
 			protected boolean accepts(Expense object) {
 				return criteria().getInterval().contains(object.getDate());
@@ -278,4 +275,9 @@ public class NativeQueryFactory extends QueryFactory {
 			}
 		};
 	}
+	
+	public SearchQuery cashExtractionsSearchQuery() {
+		throw new NotImplementedException();
+	}
+	
 }

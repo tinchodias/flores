@@ -16,6 +16,7 @@ import ui.controller.initializer.LoginDialogInitializer;
 import ui.controller.initializer.search.ArticleGroupsDialogInitializer;
 import ui.controller.initializer.search.BuysDialogInitializer;
 import ui.controller.initializer.search.CashBookDialogInitializer;
+import ui.controller.initializer.search.CashExtractionsDialogInitializer;
 import ui.controller.initializer.search.CitiesDialogInitializer;
 import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
@@ -81,6 +82,7 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(cashMenu, new CashBookDialogInitializer(), MessageId.cashBook);
 		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles);
 		addJMenuItem(cashMenu, new ExpensesDialogInitializer(), MessageId.expenses);
+		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer(), MessageId.cashExtractions);
 		
 		return cashMenu;
 	}

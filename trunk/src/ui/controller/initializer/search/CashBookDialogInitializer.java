@@ -4,7 +4,7 @@ import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.action.ShowCurrentCashAction;
-import ui.view.swing.component.search.CashBookEntrySearchPanel;
+import ui.view.swing.component.search.IntervalSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
 
@@ -15,7 +15,7 @@ public class CashBookDialogInitializer extends StandardSearchDialogInitializer {
 	}
 
 	protected StandardSearchPanel searchPanel() {
-		return new CashBookEntrySearchPanel();
+		return new IntervalSearchPanel();
 	}
 
 	protected SearchQuery searchQuery() {

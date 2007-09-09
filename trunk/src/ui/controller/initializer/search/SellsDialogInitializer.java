@@ -5,7 +5,7 @@ import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.action.PrintSellReportAction;
 import ui.controller.initializer.detail.SellDetailInitializer;
-import ui.view.swing.component.search.SellSearchPanel;
+import ui.view.swing.component.search.IntervalSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
 
@@ -20,7 +20,7 @@ public class SellsDialogInitializer extends StandardSearchDialogInitializer {
 	}
 
 	protected StandardSearchPanel searchPanel() {
-		return new SellSearchPanel();
+		return new IntervalSearchPanel();
 	}
 
 	protected SearchQuery searchQuery() {
