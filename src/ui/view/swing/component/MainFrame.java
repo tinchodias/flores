@@ -98,9 +98,8 @@ public class MainFrame extends JFrame implements MainUI {
 
 	private JMenu newSystemMenu() {
 		systemMenu = new JMenu("Sesión");
-
-		ActionAdapter loginAction = new ActionAdapter(new ShowDialogAction(new LoginDialogInitializer(), MessageId.loginDialogTitle));
-		systemMenu.add(new JMenuItem(loginAction));
+		
+		addJMenuItem(systemMenu, new LoginDialogInitializer(), MessageId.loginDialogTitle);
 		
 		return systemMenu;
 	}
