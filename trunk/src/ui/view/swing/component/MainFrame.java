@@ -18,6 +18,7 @@ import ui.controller.initializer.search.BuysDialogInitializer;
 import ui.controller.initializer.search.CashBookDialogInitializer;
 import ui.controller.initializer.search.CashExtractionsDialogInitializer;
 import ui.controller.initializer.search.CitiesDialogInitializer;
+import ui.controller.initializer.search.ClientDebtCancellationsDialogInitializer;
 import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.ExpensesDialogInitializer;
@@ -93,6 +94,7 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(personsMenu, new ClientsDialogInitializer(), MessageId.clients);
 		addJMenuItem(personsMenu, new SuppliersDialogInitializer(), MessageId.suppliers);
 		addJMenuItem(personsMenu, new CitiesDialogInitializer(), MessageId.cities);
+		addJMenuItem(personsMenu, new ClientDebtCancellationsDialogInitializer(), MessageId.clientDebtCancellations);
 		
 		return personsMenu;
 	}

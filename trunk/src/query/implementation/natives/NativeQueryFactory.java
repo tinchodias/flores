@@ -279,5 +279,9 @@ public class NativeQueryFactory extends QueryFactory {
 	public SearchQuery cashExtractionsSearchQuery() {
 		throw new NotImplementedException();
 	}
+
+	public SearchQuery clientDebtCancellationsSearchQuery() {
+		throw new NotImplementedException();
+	}
 	
 }
