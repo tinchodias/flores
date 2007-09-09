@@ -2,7 +2,7 @@ package query.results;
 
 
 import message.MessageId;
-import model.CashBookEntry;
+import model.cashBook.CashBookEntry;
 import model.money.Pesos;
 
 import org.joda.time.ReadableInstant;

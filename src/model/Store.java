@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import model.address.City;
 import model.address.Province;
+import model.cashBook.CashBook;
 import model.commission.BasicCommissionsManager;
 import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
@@ -111,32 +112,32 @@ public class Store {
 	public void add(Buy buy) {
 		buys.add(buy);
 		stock.apply(buy);
-		cashBook.add(buy);
+		cashBook.apply(buy);
 	}
 
 	public void add(Sell sell) {
 		sells.add(sell);
 		stock.apply(sell);
 		clientsDebts.apply(sell);
-		cashBook.add(sell);
+		cashBook.apply(sell);
 	}
 
 	public void add(BuyCancellation cancellation) {
 		buyCancellations.add(cancellation);
 		stock.apply(cancellation);
-		cashBook.add(cancellation);
+		cashBook.apply(cancellation);
 	}
 
 	public void add(SellCancellation cancellation) {
 		sellCancellations.add(cancellation);
 		stock.apply(cancellation);
 		clientsDebts.apply(cancellation);
-		cashBook.add(cancellation);
+		cashBook.apply(cancellation);
 	}
 
 	public void add(Expense expense) {
 		expenses.add(expense);
-		cashBook.add(expense);
+		cashBook.apply(expense);
 	}
 
 }

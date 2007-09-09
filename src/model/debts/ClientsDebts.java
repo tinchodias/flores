@@ -44,7 +44,7 @@ public class ClientsDebts {
 	public void add(ClientDebtCancellation cancellation) {
 		cancellations.add(cancellation);
 		reduceDebt(cancellation.getClient(), cancellation.getAmount());
-		store.cashBook().add(cancellation);
+		store.cashBook().apply(cancellation);
 	}
 
 	public void apply(Sell sell) {

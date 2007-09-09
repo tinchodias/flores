@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import message.MessageId;
 import message.MessageRepository;
-import model.CashBookEntry;
+import model.cashBook.CashBookEntry;
 import model.expense.Expense;
 import model.receipt.Buy;
 import model.receipt.Sell;

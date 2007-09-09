@@ -2,9 +2,9 @@ package query.implementation.db4o;
 
 import java.util.Collection;
 
-import model.CashBookEntry;
 import model.JuridicPerson;
 import model.address.City;
+import model.cashBook.CashBookEntry;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;

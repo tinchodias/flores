@@ -26,7 +26,7 @@ import javax.swing.text.NumberFormatter;
 
 import message.MessageId;
 import message.MessageRepository;
-import model.CashBookEntry;
+import model.cashBook.CashBookEntry;
 import model.money.Pesos;
 
 import org.apache.commons.lang.math.NumberUtils;
