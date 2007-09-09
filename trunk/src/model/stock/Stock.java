@@ -11,8 +11,8 @@ import model.receipt.BuyItem;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.receipt.SellItem;
+import model.stock.cost.AverageCostStrategy;
 import model.stock.cost.CostStrategy;
-import model.stock.cost.LastPrevailsCostStrategy;
 import model.util.CollectionFactory;
 
 public class Stock {
@@ -22,8 +22,8 @@ public class Stock {
 	private Collection<StockDropOut> dropOuts = CollectionFactory.<StockDropOut>newList();
 	
 	public Stock() {
-//		costStrategy = new AverageCostStrategy(this);
-		costStrategy = new LastPrevailsCostStrategy(this);
+		costStrategy = new AverageCostStrategy(this);
+//		costStrategy = new LastPrevailsCostStrategy(this);
 	}
 	
 	public Double count(Article article) {

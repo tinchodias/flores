@@ -12,6 +12,7 @@ import message.IconRepository;
 import message.MessageId;
 import message.MessageRepository;
 import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.DialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
 import ui.controller.initializer.search.ArticleGroupsDialogInitializer;
 import ui.controller.initializer.search.BuysDialogInitializer;
@@ -65,19 +66,12 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newStoreMenu() {
 		storeMenu = new JMenu("Stock");
 
-		ActionAdapter showStockAction = new ActionAdapter(new ShowDialogAction(new StockDialogInitializer(), MessageId.stockDialogTitle));
-		ActionAdapter showPricesAction = new ActionAdapter(new ShowDialogAction(new PricePercentagesDialogInitializer(), MessageId.pricesDialogTitle));
-		ActionAdapter showArticleGroupsAction = new ActionAdapter(new ShowDialogAction(new ArticleGroupsDialogInitializer(), MessageId.articleGroups));
-		ActionAdapter showBuysAction = new ActionAdapter(new ShowDialogAction(new BuysDialogInitializer(), MessageId.buys));
-		ActionAdapter showSellsAction = new ActionAdapter(new ShowDialogAction(new SellsDialogInitializer(), MessageId.sells));
-		ActionAdapter showStockDropDownsAction = new ActionAdapter(new ShowDialogAction(new StockDropOutsDialogInitializer(), MessageId.stockDropOuts));
-
-		storeMenu.add(new JMenuItem(showBuysAction));
-		storeMenu.add(new JMenuItem(showSellsAction));
-		storeMenu.add(new JMenuItem(showStockAction));
-		storeMenu.add(new JMenuItem(showPricesAction));
-		storeMenu.add(new JMenuItem(showArticleGroupsAction));
-		storeMenu.add(new JMenuItem(showStockDropDownsAction));
+		addJMenuItem(storeMenu, new BuysDialogInitializer(), MessageId.buys);
+		addJMenuItem(storeMenu, new SellsDialogInitializer(), MessageId.sells);
+		addJMenuItem(storeMenu, new StockDialogInitializer(), MessageId.stockDialogTitle);
+		addJMenuItem(storeMenu, new PricePercentagesDialogInitializer(), MessageId.pricesDialogTitle);
+		addJMenuItem(storeMenu, new ArticleGroupsDialogInitializer(), MessageId.articleGroups);
+		addJMenuItem(storeMenu, new StockDropOutsDialogInitializer(), MessageId.stockDropOuts);
 		
 		return storeMenu;
 	}
@@ -85,13 +79,9 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newCashMenu() {
 		cashMenu = new JMenu("Caja");
 
-		ActionAdapter showCashBookAction = new ActionAdapter(new ShowDialogAction(new CashBookDialogInitializer(), MessageId.cashBook));
-		ActionAdapter showExpensesArticlesAction = new ActionAdapter(new ShowDialogAction(new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles));
-		ActionAdapter showExpensesAction = new ActionAdapter(new ShowDialogAction(new ExpensesDialogInitializer(), MessageId.expenses));
-
-		cashMenu.add(new JMenuItem(showCashBookAction));
-		cashMenu.add(new JMenuItem(showExpensesArticlesAction));
-		cashMenu.add(new JMenuItem(showExpensesAction));
+		addJMenuItem(cashMenu, new CashBookDialogInitializer(), MessageId.cashBook);
+		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles);
+		addJMenuItem(cashMenu, new ExpensesDialogInitializer(), MessageId.expenses);
 		
 		return cashMenu;
 	}
@@ -99,13 +89,9 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newPersonsMenu() {
 		personsMenu = new JMenu("Personas");
 
-		ActionAdapter showClientsAction = new ActionAdapter(new ShowDialogAction(new ClientsDialogInitializer(), MessageId.clients));
-		ActionAdapter showSuppliersAction = new ActionAdapter(new ShowDialogAction(new SuppliersDialogInitializer(), MessageId.suppliers));
-		ActionAdapter showCitiesAction = new ActionAdapter(new ShowDialogAction(new CitiesDialogInitializer(), MessageId.cities));
-
-		personsMenu.add(new JMenuItem(showClientsAction));
-		personsMenu.add(new JMenuItem(showSuppliersAction));
-		personsMenu.add(new JMenuItem(showCitiesAction));
+		addJMenuItem(personsMenu, new ClientsDialogInitializer(), MessageId.clients);
+		addJMenuItem(personsMenu, new SuppliersDialogInitializer(), MessageId.suppliers);
+		addJMenuItem(personsMenu, new CitiesDialogInitializer(), MessageId.cities);
 		
 		return personsMenu;
 	}
@@ -119,6 +105,10 @@ public class MainFrame extends JFrame implements MainUI {
 		return systemMenu;
 	}
 	
+	private static void addJMenuItem(JMenu menu, DialogInitializer initializer, MessageId messageId) {
+		menu.add(new JMenuItem(new ActionAdapter(new ShowDialogAction(initializer, messageId))));
+	}
+
 	public void setInitialState() {
 		systemMenu.setEnabled(true);
 		personsMenu.setEnabled(false);

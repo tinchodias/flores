@@ -1,4 +1,4 @@
-package model;
+package model.cashBook;
 
 import model.money.Pesos;
 

@@ -1,6 +1,7 @@
 package model;
 
 import junit.framework.TestCase;
+import model.cashBook.CashExtraction;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
@@ -11,6 +12,8 @@ import model.receipt.BuyCancellation;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.stock.Article;
+
+import org.joda.time.DateTime;
 
 public class CashBookTest extends TestCase {
 
@@ -106,6 +109,20 @@ public class CashBookTest extends TestCase {
 		store.add(expense);
 		
 		assertCurrentCash(-300.0);
+	}
+
+	public void testSimpleCashExtraction() {
+		assertCurrentCash(0.0);
+
+		ClientDebtCancellation debtCancellation = StoreFixture.simpleClientDebtCancellation(client);
+		store.debts().add(debtCancellation);
+		
+		assertCurrentCash(40.0);
+		
+		Pesos amount = Pesos.newFor(30.0);
+		store.cashBook().add(new CashExtraction(new DateTime(), amount, ""));
+		
+		assertCurrentCash(10.0);
 	}
 	
 	private void assertCurrentCash(double value) {

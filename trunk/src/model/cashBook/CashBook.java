@@ -1,4 +1,4 @@
-package model;
+package model.cashBook;
 
 import java.util.List;
 
@@ -27,27 +27,27 @@ public class CashBook {
 		addPositiveEntry(object, date, amount.by(-1));
 	}
 	
-	public void add(ClientDebtCancellation cancellation) {
+	public void apply(ClientDebtCancellation cancellation) {
 		addPositiveEntry(cancellation, cancellation.getDate(), cancellation.getAmount());
 	}
 
-	public void add(Expense expense) {
+	public void apply(Expense expense) {
 		addNegativeEntry(expense, expense.getDate(), expense.getCost());
 	}
 
-	public void add(SellCancellation cancellation) {
+	public void apply(SellCancellation cancellation) {
 		addNegativeEntry(cancellation, cancellation.getDate(), cancellation.getSell().payment().total());
 	}
 
-	public void add(BuyCancellation cancellation) {
+	public void apply(BuyCancellation cancellation) {
 		addPositiveEntry(cancellation, cancellation.getDate(), cancellation.getBuy().payment().total());
 	}
 
-	public void add(Sell sell) {
+	public void apply(Sell sell) {
 		addPositiveEntry(sell, sell.date(), sell.payment().total());
 	}
 
-	public void add(Buy buy) {
+	public void apply(Buy buy) {
 		addNegativeEntry(buy, buy.date(), buy.payment().total());
 	}
 
@@ -58,4 +58,9 @@ public class CashBook {
 	public Pesos currentCash() {
 		return currentCash;
 	}
+
+	public void add(CashExtraction cashExtraction) {
+		addNegativeEntry(cashExtraction, cashExtraction.getDate(), cashExtraction.getAmount());
+	}
+	
 }
