@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 import message.IconRepository;
 import message.MessageId;
@@ -105,7 +104,7 @@ public class MainFrame extends JFrame implements MainUI {
 	}
 	
 	private static void addJMenuItem(JMenu menu, DialogInitializer initializer, MessageId messageId) {
-		menu.add(new JMenuItem(new ActionAdapter(new ShowDialogAction(initializer, messageId))));
+		menu.add(new ActionAdapter(new ShowDialogAction(initializer, messageId)));
 	}
 
 	public void setInitialState() {
