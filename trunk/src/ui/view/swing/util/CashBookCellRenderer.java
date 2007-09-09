@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import message.MessageId;
 import message.MessageRepository;
 import model.cashBook.CashBookEntry;
+import model.cashBook.CashExtraction;
+import model.debts.ClientDebtCancellation;
 import model.expense.Expense;
 import model.receipt.Buy;
 import model.receipt.Sell;
@@ -46,6 +48,10 @@ public class CashBookCellRenderer extends DefaultTableCellRenderer {
 			messageId = MessageId.buy; 
 		} else if (object instanceof Expense) {
 			messageId = MessageId.expense;
+		} else if (object instanceof ClientDebtCancellation) {
+			messageId = MessageId.clientDebtCancellation;
+		} else if (object instanceof CashExtraction) {
+			messageId = MessageId.cashExtraction;
 		}
 		
 		return MessageRepository.instance().get(messageId);
