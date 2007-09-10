@@ -1,6 +1,5 @@
 package model.commission;
 
-import model.Store;
 import model.Vendor;
 import model.expense.Expense;
 import model.money.Pesos;
@@ -15,11 +14,9 @@ import query.framework.results.SearchResults;
 
 public class BasicCommissionsManager implements CommisionsManager {
 	
-	private final Store store;
 	private double commisionAlpha;
 
-	public BasicCommissionsManager(Store store) {
-		this.store = store;
+	public BasicCommissionsManager() {
 		this.commisionAlpha = 0.5;
 	}
 
@@ -27,18 +24,23 @@ public class BasicCommissionsManager implements CommisionsManager {
 		
 		//FIXME it's ignoring the vendor!
 		
-		SearchQuery sellSearchQuery = QueryFactory.instance().sellSearchQuery();
-		sellSearchQuery.setCriteria(new IntervalSearchCriteria() {
-			
+		IntervalSearchCriteria criteria = new IntervalSearchCriteria() {
 			public ReadableInterval getInterval() {
 				return interval;
 			}
-		});
+		};
+
+		SearchQuery sellSearchQuery = QueryFactory.instance().sellSearchQuery();
+		sellSearchQuery.setCriteria(criteria);
 		SearchResults sells = sellSearchQuery.results();
+
+		SearchQuery expensesSearchQuery = QueryFactory.instance().expensesSearchQuery();
+		expensesSearchQuery.setCriteria(criteria);
+		SearchResults expenses = expensesSearchQuery.results();
 		
 		Pesos sellTotal = sellTotal(sells);
 		Pesos costTotal = costTotal(sells);
-		Pesos expensesTotal = expensesTotal(); 
+		Pesos expensesTotal = expensesTotal(expenses); 
 		
 		Pesos commission = commission(sellTotal, costTotal, expensesTotal);
 		
@@ -49,9 +51,9 @@ public class BasicCommissionsManager implements CommisionsManager {
 		return sellTotal.minus(costTotal.plus(expensesTotal)).by(commisionAlpha);
 	}
 
-	private Pesos expensesTotal() {
+	private Pesos expensesTotal(Iterable<Expense> expenses) {
 		Pesos total = Pesos.newFor(0.0);
-		for (Expense expense : store.expenses()) {
+		for (Expense expense : expenses) {
 			total = total.plus(expense.getCost());
 		}
 		return total;

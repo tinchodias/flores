@@ -41,7 +41,7 @@ public class Store {
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts(this);
-	private CommisionsManager commissions = new BasicCommissionsManager(this);
+	private CommisionsManager commissions = new BasicCommissionsManager();
 	private CashBook cashBook = new CashBook();
 	private PriceStrategy priceStrategy = new SimplePercentagePriceStrategy(this);
 	
