@@ -1,7 +1,7 @@
 package model.commission;
 
-import model.JuridicPerson;
 import model.Store;
+import model.Vendor;
 import model.expense.Expense;
 import model.money.Pesos;
 import model.receipt.Sell;
@@ -23,13 +23,15 @@ public class BasicCommissionsManager implements CommisionsManager {
 		this.commisionAlpha = 0.5;
 	}
 
-	public CommissionSummary commissionAt(JuridicPerson vendor, final ReadableInterval lapse) {
-		//		Collection<Sell> sells = store.sellsAt(vendor, lapse);
+	public CommissionSummary commissionAt(Vendor vendor, final ReadableInterval interval) {
+		
+		//FIXME it's ignoring the vendor!
+		
 		SearchQuery sellSearchQuery = QueryFactory.instance().sellSearchQuery();
 		sellSearchQuery.setCriteria(new IntervalSearchCriteria() {
 			
 			public ReadableInterval getInterval() {
-				return lapse;
+				return interval;
 			}
 		});
 		SearchResults sells = sellSearchQuery.results();
@@ -38,12 +40,12 @@ public class BasicCommissionsManager implements CommisionsManager {
 		Pesos costTotal = costTotal(sells);
 		Pesos expensesTotal = expensesTotal(); 
 		
-		Pesos commision = commision(sellTotal, costTotal, expensesTotal);
+		Pesos commission = commission(sellTotal, costTotal, expensesTotal);
 		
-		return new CommissionSummary(vendor, lapse, sellTotal, costTotal, expensesTotal, commision);
+		return new CommissionSummary(vendor, interval, sellTotal, costTotal, expensesTotal, commission);
 	}
 
-	private Pesos commision(Pesos sellTotal, Pesos costTotal, Pesos expensesTotal) {
+	private Pesos commission(Pesos sellTotal, Pesos costTotal, Pesos expensesTotal) {
 		return sellTotal.minus(costTotal.plus(expensesTotal)).by(commisionAlpha);
 	}
 

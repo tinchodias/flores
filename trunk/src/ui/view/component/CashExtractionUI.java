@@ -9,4 +9,8 @@ public interface CashExtractionUI extends DetailUI {
 
 	String getNote();
 	
+	void setAmount(Pesos amount);
+
+	void setNote(String note);
+	
 }

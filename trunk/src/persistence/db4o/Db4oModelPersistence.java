@@ -7,6 +7,7 @@ import java.util.Map;
 
 import message.MessageId;
 import model.receipt.Buy;
+import model.receipt.Sell;
 import persistence.Model;
 import persistence.ModelPersistence;
 import persistence.exception.MessageIdentifiedException;
@@ -119,8 +120,8 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 
 	private void configureOptimization() {
-		Db4o.configure().objectClass(Buy.class).indexed(true);
 		Db4o.configure().objectClass(Buy.class).objectField("date").indexed(true);
+		Db4o.configure().objectClass(Sell.class).objectField("date").indexed(true);
 		Db4o.configure().objectClass(org.joda.time.base.BaseDateTime.class).objectField("iMillis").indexed(true);
 	}
 

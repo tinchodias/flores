@@ -1,22 +1,22 @@
 package model.commission;
 
-import model.JuridicPerson;
+import model.Vendor;
 import model.money.Pesos;
 
 import org.joda.time.ReadableInterval;
 
 public class CommissionSummary {
 
-	private final JuridicPerson vendor;
-	private final ReadableInterval lapse;
+	private final Vendor vendor;
+	private final ReadableInterval interval;
 	private final Pesos sellTotal;
 	private final Pesos costTotal;
 	private final Pesos expensesTotal;
 	private final Pesos total;
 	
-	public CommissionSummary(JuridicPerson vendor, ReadableInterval lapse, Pesos sellTotal, Pesos costTotal, Pesos expensesTotal, Pesos total) {
+	public CommissionSummary(Vendor vendor, ReadableInterval interval, Pesos sellTotal, Pesos costTotal, Pesos expensesTotal, Pesos total) {
 		this.vendor = vendor;
-		this.lapse = lapse;
+		this.interval = interval;
 		this.sellTotal = sellTotal;
 		this.costTotal = costTotal;
 		this.expensesTotal = expensesTotal;
@@ -31,8 +31,8 @@ public class CommissionSummary {
 		return expensesTotal;
 	}
 
-	public ReadableInterval getLapse() {
-		return lapse;
+	public ReadableInterval getInterval() {
+		return interval;
 	}
 
 	public Pesos getSellTotal() {
@@ -43,7 +43,7 @@ public class CommissionSummary {
 		return total;
 	}
 
-	public JuridicPerson getVendor() {
+	public Vendor getVendor() {
 		return vendor;
 	}
 }

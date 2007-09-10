@@ -1,7 +1,7 @@
 package ui.controller.populator;
 
-import model.JuridicPerson;
 import model.Store;
+import model.Vendor;
 import model.money.Cash;
 import model.money.Payment;
 import model.money.Pesos;
@@ -12,6 +12,8 @@ import org.joda.time.DateTime;
 
 import persistence.ModelPersistence;
 import query.framework.results.SellItemsLazySearchResults;
+import security.Security;
+import security.VendorProfile;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ui.view.component.SellUI;
 
@@ -39,9 +41,8 @@ public class SellPopulator implements DetailPopulator<Sell, SellUI> {
 		return new Sell(sellItems(ui), new DateTime(), ui.getClient(), payment(ui), vendor());
 	}
 
-	private JuridicPerson vendor() {
-		//TODO get current vendor!!
-		return null;
+	private Vendor vendor() {
+		return ((VendorProfile) Security.instance().loggedUser().getProfile()).getVendor();
 	}
 
 	private SellItems sellItems(SellUI ui) {

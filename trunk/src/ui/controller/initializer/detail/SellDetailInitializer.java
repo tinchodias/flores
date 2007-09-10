@@ -18,7 +18,6 @@ import ui.controller.populator.SellPopulator;
 import ui.view.component.DetailUI;
 import ui.view.component.SellUI;
 import ui.view.swing.component.detail.SellDialog;
-import util.ValueHolder;
 
 public class SellDetailInitializer extends DetailDialogInitializer {
 
@@ -42,18 +41,12 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 
 	@Override
 	protected void initCreatingMode(DetailUI baseDialog) {
-		final CreateAction createAction = new CreateAction(baseDialog, populator());
-		Action printAction = new PrintSellReportAction(new ValueHolder() {
-
-			public Object getValue() {
-				return createAction.getValue();
-			}
-			
-		});
+		CreateAction createAction = new CreateAction(baseDialog, populator());
+		Action printAction = new PrintSellReportAction(createAction);
 		CompositeAction createThenPrintAction = new CompositeAction(createAction, printAction, MessageId.acceptAndPrint);
 		baseDialog.setAcceptAction(createThenPrintAction);
 		
-		//FIXME Hack for setting the "Final Consumer".
+		//Sets the first client
 		SellUI sellUI = (SellUI) baseDialog;
 		Store store = ModelPersistence.instance().loadedModel().store();
 		if (store.clients().size() > 0) {

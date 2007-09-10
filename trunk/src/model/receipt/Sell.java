@@ -1,6 +1,7 @@
 package model.receipt;
 
 import model.JuridicPerson;
+import model.Vendor;
 import model.money.Payment;
 import model.money.Pesos;
 
@@ -12,12 +13,12 @@ public class Sell {
 	private final BaseDateTime date;
 	private final JuridicPerson client;
 	private final Payment payment;
-	private final JuridicPerson vendor;
+	private final Vendor vendor;
 	private final Pesos sellTotal;
 	private final Pesos costTotal;
 	private final Pesos paymentTotal;
 
-	public Sell(SellItems spec, BaseDateTime date, JuridicPerson client, Payment payment, JuridicPerson vendor) {
+	public Sell(SellItems spec, BaseDateTime date, JuridicPerson client, Payment payment, Vendor vendor) {
 		this.items = spec;
 		this.date = date;
 		this.client = client;
@@ -49,7 +50,7 @@ public class Sell {
 		return items.sellTotal().minus(this.payment().total());
 	}
 
-	public JuridicPerson vendor() {
+	public Vendor vendor() {
 		return vendor;
 	}
 

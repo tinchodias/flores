@@ -10,7 +10,10 @@ import javax.swing.JMenuBar;
 import message.IconRepository;
 import message.MessageId;
 import message.MessageRepository;
+import ui.controller.action.Action;
+import ui.controller.action.ShowCurrentCashAction;
 import ui.controller.action.ShowDialogAction;
+import ui.controller.initializer.CommissionCalculationDialogInitializer;
 import ui.controller.initializer.DialogInitializer;
 import ui.controller.initializer.LoginDialogInitializer;
 import ui.controller.initializer.search.ArticleGroupsDialogInitializer;
@@ -80,10 +83,12 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newCashMenu() {
 		cashMenu = new JMenu("Caja");
 
+		addJMenuItem(cashMenu, new ShowCurrentCashAction());
 		addJMenuItem(cashMenu, new CashBookDialogInitializer(), MessageId.cashBook);
 		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles);
 		addJMenuItem(cashMenu, new ExpensesDialogInitializer(), MessageId.expenses);
 		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer(), MessageId.cashExtractions);
+		addJMenuItem(cashMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
 		
 		return cashMenu;
 	}
@@ -108,7 +113,11 @@ public class MainFrame extends JFrame implements MainUI {
 	}
 	
 	private static void addJMenuItem(JMenu menu, DialogInitializer initializer, MessageId messageId) {
-		menu.add(new ActionAdapter(new ShowDialogAction(initializer, messageId)));
+		addJMenuItem(menu, new ShowDialogAction(initializer, messageId));
+	}
+
+	private static void addJMenuItem(JMenu menu, Action action) {
+		menu.add(new ActionAdapter(action));
 	}
 
 	public void setInitialState() {

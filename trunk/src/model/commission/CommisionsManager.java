@@ -1,12 +1,11 @@
 package model.commission;
 
-import model.JuridicPerson;
+import model.Vendor;
 
 import org.joda.time.ReadableInterval;
 
 public interface CommisionsManager {
 
-	public abstract CommissionSummary commissionAt(JuridicPerson vendor,
-			ReadableInterval interval);
+	public abstract CommissionSummary commissionAt(Vendor vendor, ReadableInterval interval);
 
 }

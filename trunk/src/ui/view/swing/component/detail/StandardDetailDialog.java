@@ -62,6 +62,7 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	
 	public void setViewingMode() {
 		SwingUI.instance().setEnableRecursively(this, false);
+		okButton.setEnabled(true);
 		cancelButton.setEnabled(true);
 	}
 

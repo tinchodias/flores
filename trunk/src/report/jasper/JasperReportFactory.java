@@ -10,6 +10,7 @@ import java.util.Map;
 import message.MessageId;
 import message.MessageRepository;
 import message.SimplePropertiesIconRepository;
+import model.money.Pesos;
 import model.receipt.Sell;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -19,6 +20,11 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+
+import org.joda.time.ReadableDateTime;
+import org.joda.time.format.DateTimeFormat;
+
+import persistence.ModelPersistence;
 import query.framework.results.LazySearchResults;
 import query.framework.results.SellItemsLazySearchResults;
 import report.ReportFactory;
@@ -42,22 +48,27 @@ public class JasperReportFactory extends ReportFactory {
 		addLabel(parameters, MessageId.total);
 		addString(parameters, MessageId.total, sell.sellTotal());
 		addString(parameters, MessageId.paymentTotal, sell.paymentTotal());
-		addString(parameters, MessageId.clientDebt, sell.clientDebt()); //TODO show total debt?
+		Pesos debt = ModelPersistence.instance().loadedModel().store().debts().debtOf(sell.client());
+		addString(parameters, MessageId.clientDebt, debt); //TODO show a snapshot?
 		addString(parameters, MessageId.date, sell.date());
 		addString(parameters, MessageId.client, sell.client());
 		
 		return jasperReportPrintFor("Sell", results, parameters);
 	}
 
-	private void addString(Map parameters, MessageId messageId, Object object) {
+	private static void addString(Map parameters, MessageId messageId, ReadableDateTime date) {
+		parameters.put(messageId.toString(), DateTimeFormat.shortDateTime().print(date));
+	}
+
+	private static void addString(Map parameters, MessageId messageId, Object object) {
 		parameters.put(messageId.toString(), object.toString());
 	}
 
-	private void addLabel(Map parameters, MessageId messageId) {
+	private static void addLabel(Map parameters, MessageId messageId) {
 		parameters.put(messageId.toString() + "Label", MessageRepository.instance().get(messageId));
 	}
 
-	private ReportPrint jasperReportPrintFor(String reportName, LazySearchResults results, HashMap parameters) {
+	private static ReportPrint jasperReportPrintFor(String reportName, LazySearchResults results, HashMap parameters) {
 		JasperPrint print;
 		try {
 			JasperReport report = reportFor(reportName);
@@ -70,11 +81,11 @@ public class JasperReportFactory extends ReportFactory {
 		return new JasperReportPrint(print);
 	}
 
-	private JasperPrint printFor(HashMap parameters, JRDataSource dataSource, JasperReport report) throws JRException {
+	private static JasperPrint printFor(HashMap parameters, JRDataSource dataSource, JasperReport report) throws JRException {
 		return JasperFillManager.fillReport(report, parameters, dataSource);
 	}
 
-	private JasperReport reportFor(String reportName) throws JRException, IOException {
+	private static JasperReport reportFor(String reportName) throws JRException, IOException {
 		URL url = SimplePropertiesIconRepository.class.getResource("/jasper/" + reportName + ".jrxml");
 		return JasperCompileManager.compileReport(url.openStream());
 	}

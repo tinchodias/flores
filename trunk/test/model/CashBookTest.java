@@ -20,7 +20,7 @@ public class CashBookTest extends TestCase {
 	private Store store;
 	private Article stockArticle;
 	private JuridicPerson client;
-	private JuridicPerson vendor;
+	private Vendor vendor;
 	private ExpenseArticle expenseArticle;
 	private JuridicPerson supplier;
 
