@@ -1,7 +1,7 @@
 package persistence;
 
 import security.User;
-import security.UserFactory;
+import security.UserFixture;
 import junit.framework.TestCase;
 
 public class ModelTest extends TestCase {
@@ -32,7 +32,7 @@ public class ModelTest extends TestCase {
 	}
 
 	private void applyChange(Model model) {
-		User admin = model.users().get(UserFactory.adminUserName());
+		User admin = model.users().get(UserFixture.adminUserName());
 		model.users().remove(admin);
 	}
 

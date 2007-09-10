@@ -23,7 +23,8 @@ public class CashExtractionPopulator implements DetailPopulator<CashExtraction, 
 	}
 
 	public void showIn(CashExtractionUI ui, CashExtraction object) {
-		throw new NotSupportedException();
+		ui.setAmount(object.getAmount());
+		ui.setNote(object.getNote());
 	}
 
 }

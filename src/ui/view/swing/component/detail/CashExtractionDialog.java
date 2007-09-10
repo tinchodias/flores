@@ -35,5 +35,13 @@ public class CashExtractionDialog extends StandardDetailDialog implements CashEx
 	public String getNote() {
 		return noteField.getText();
 	}
+
+	public void setAmount(Pesos amount) {
+		amountField.setValue(amount.value());
+	}
+
+	public void setNote(String note) {
+		noteField.setText(note);
+	}
 	
 }

@@ -49,7 +49,7 @@ public class StoreFixture {
 		JuridicPerson marquez = new JuridicPerson("Marquez", new Address("Rosales 356 PB", metán));
 		store.suppliers().add(marquez);
 		
-		JuridicPerson eduardo = new JuridicPerson("Eduardo", new Address("Moreno 4519", metán));
+		Vendor eduardo = new Vendor("Eduardo");
 		store.vendors().add(eduardo);
 
 		ArticleGroup floresGroup = new ArticleGroup("Flores");
@@ -96,7 +96,7 @@ public class StoreFixture {
 		}
 		System.out.println("Generating Vendors");
 		for (int i = 0; i < 10; i++) {
-			JuridicPerson vendor = new JuridicPerson("Vendedor " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
+			Vendor vendor = new Vendor("Vendedor " + i);
 			store.vendors().add(vendor);
 		}
 		
@@ -152,7 +152,7 @@ public class StoreFixture {
 					Article article = (Article) oneOf(store.stockArticles());
 					spec.add(article, new Double(RandomUtils.nextInt(20)), randomPesos(40), store.stock().cost(article));
 				}
-				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (JuridicPerson) oneOf(store.vendors()));
+				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (Vendor) oneOf(store.vendors()));
 				store.add(sell);
 			}
 		}
@@ -197,7 +197,7 @@ public class StoreFixture {
 	 * @param cost 
 	 * @return 
 	 */
-	public static Sell simpleSell(Article article, JuridicPerson client, JuridicPerson vendor, Pesos cost) {
+	public static Sell simpleSell(Article article, JuridicPerson client, Vendor vendor, Pesos cost) {
 		SellItems spec = new SellItems();
 		spec.add(article, 100.0, Pesos.newFor(9.0), cost);
 		
@@ -208,7 +208,7 @@ public class StoreFixture {
 	}
 
 	/**
-	 * Creates a buy annullment.
+	 * Creates a buy cancellation.
 	 * 
 	 * @param sell The sell to cancel.
 	 * @return The cancellation of the sell. 
@@ -273,7 +273,7 @@ public class StoreFixture {
 	public static Sell simpleSell(Store store) {
 		Article stockArticle = store.stockArticles().iterator().next();
 		JuridicPerson client = store.clients().iterator().next();
-		JuridicPerson vendor = store.vendors().iterator().next();
+		Vendor vendor = store.vendors().iterator().next();
 		return StoreFixture.simpleSell(stockArticle, client, vendor, store.stock().cost(stockArticle));
 	}
 }

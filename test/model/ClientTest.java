@@ -4,19 +4,14 @@
 package model;
 
 import junit.framework.TestCase;
-import model.JuridicPerson;
-import model.Store;
 import model.stock.Article;
 
 public class ClientTest extends TestCase {
 
 	private Store store;
 	private Article clavel;
-	private JuridicPerson eduardo;
+	private Vendor eduardo;
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		
@@ -25,15 +20,8 @@ public class ClientTest extends TestCase {
 		clavel = new Article("Paquete de Clavel");
 		store.stockArticles().add(clavel);
 
-		eduardo = new JuridicPerson("Eduardo");
+		eduardo = new Vendor("Eduardo");
 		store.vendors().add(eduardo);
-	}
-
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
 	}
 
 	public void testAddClients() {

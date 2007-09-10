@@ -34,7 +34,7 @@ public class Store {
 	private Collection<Expense> expenses = CollectionFactory.newList();
 	private Collection<JuridicPerson> clients = CollectionFactory.newList(); 
 	private Collection<JuridicPerson> suppliers = CollectionFactory.newList();
-	private Collection<JuridicPerson> vendors = CollectionFactory.newList();
+	private Collection<Vendor> vendors = CollectionFactory.newList();
 	private Collection<ArticleGroup> stockArticleGroups = CollectionFactory.newList();
 	private Collection<Province> provinces = CollectionFactory.newList();
 	private Collection<City> cities = CollectionFactory.newList();
@@ -65,7 +65,7 @@ public class Store {
 		return suppliers;
 	}
 
-	public Collection<JuridicPerson> vendors() {
+	public Collection<Vendor> vendors() {
 		return vendors;
 	}
 

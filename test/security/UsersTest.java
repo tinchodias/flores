@@ -14,25 +14,25 @@ public class UsersTest extends TestCase {
 	}
 
 	public void testAdminLogin() {
-		checkValidLogin(UserFactory.adminUserName(), UserFactory.adminPassword());
+		checkValidLogin(UserFixture.adminUserName(), UserFixture.adminPassword());
 	}
 	
 	public void testInvalidLoginAfterRemove() {
-		User vendorUser = users.get(UserFactory.vendorUserName());
+		User vendorUser = users.get(UserFixture.vendorUserName());
 		users.remove(vendorUser);
-		checkInvalidLogin(UserFactory.vendorUserName(), UserFactory.vendorPassword());
+		checkInvalidLogin(UserFixture.vendorUserName(), UserFixture.vendorPassword());
 	}
 	
 	public void testVendorLogin() {
-		checkValidLogin(UserFactory.vendorUserName(), UserFactory.vendorPassword());
+		checkValidLogin(UserFixture.vendorUserName(), UserFixture.vendorPassword());
 	}
 	
 	public void testInvalidNameLogin() {
-		checkInvalidLogin(UserFactory.adminUserName() + "Invalid", UserFactory.adminPassword());
+		checkInvalidLogin(UserFixture.adminUserName() + "Invalid", UserFixture.adminPassword());
 	}
 
 	public void testInvalidPasswordLogin() {
-		checkInvalidLogin(UserFactory.adminUserName(), UserFactory.adminPassword() + "0");
+		checkInvalidLogin(UserFixture.adminUserName(), UserFixture.adminPassword() + "0");
 	}
 
 	private void checkValidLogin(String name, String password) {

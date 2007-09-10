@@ -64,6 +64,7 @@ public enum MessageId {
 	view,
 	print,
 	note, 
+	calculate, 
 	
 	acceptAndContinue, 
 	acceptAndPrint, 
@@ -102,6 +103,10 @@ public enum MessageId {
 	
 	clientDebtCancellations, 
 	clientDebtCancellation, 
+	
+	commissionCalculation, 
+	commissionSummary, 
+	createCommissionCashExtraction, 
 	
 	;
 	

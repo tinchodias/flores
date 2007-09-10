@@ -26,13 +26,10 @@ public class BasicCommissionsTest extends TestCase {
 	private Article clavel;
 	private JuridicPerson elvira;
 	private Sell sell;
-	private JuridicPerson eduardo;
+	private Vendor eduardo;
 	private ExpenseArticle alquiler;
 	private Pesos clavelInitialCost;
 	
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		
@@ -49,9 +46,6 @@ public class BasicCommissionsTest extends TestCase {
 		alquiler = store.expensesArticles().iterator().next();
 	}
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}

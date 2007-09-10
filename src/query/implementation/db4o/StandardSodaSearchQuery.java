@@ -37,8 +37,16 @@ public abstract class StandardSodaSearchQuery<GenericCriteria extends Criteria> 
 		return query;
 	}
 
-	protected static final Query constrainInterval(Query query,
-			ReadableInterval interval) {
+	/**
+	 * Adds an interval constraint to the query. Orders descending.  
+	 * 
+	 * Note: Assumes that the object constrained has a "date" field, instance of a subclass of BaseDateTime.
+	 *  
+	 * @param query
+	 * @param interval
+	 * @return The query with the constraint applied.
+	 */
+	protected static final Query constrainInterval(Query query, ReadableInterval interval) {
 		Query iMillisField = query.descend("date").descend("iMillis");
 		iMillisField.constrain(interval.getStartMillis()).greater().or(iMillisField.constrain(interval.getStartMillis()).equal());
 		iMillisField.constrain(interval.getEndMillis()).smaller();
