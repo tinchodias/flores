@@ -19,8 +19,8 @@ public class ClientsDebts {
 
 	public ClientsDebts(Store store) {
 		this.store = store;
-	}
 
+	}
 	public Pesos debtOf(JuridicPerson client) {
 		Pesos debt = debts.get(client);
 		return debt != null ? debt : Pesos.newFor(0.0);

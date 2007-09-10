@@ -22,6 +22,8 @@ public class Db4oObjectSetSearchResults extends LazySearchResults {
 	}
 
 	public Iterator iterator() {
+		//TODO it's ok? 
+		objectSet.reset();
 		return objectSet.iterator();
 	}
 
