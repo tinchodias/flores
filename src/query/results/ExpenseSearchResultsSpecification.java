@@ -3,7 +3,7 @@ package query.results;
 
 import message.MessageId;
 import model.expense.Expense;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.ReadableInstant;
 
@@ -14,7 +14,7 @@ public class ExpenseSearchResultsSpecification extends LazySearchResultsSpecific
 	public ExpenseSearchResultsSpecification() {
 		add(MessageId.date, ReadableInstant.class);
 		add(MessageId.expenseArticle);
-		add(MessageId.cashPay, Pesos.class);
+		add(MessageId.cashPay, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

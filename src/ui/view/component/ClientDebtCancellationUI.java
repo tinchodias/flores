@@ -2,12 +2,12 @@ package ui.view.component;
 
 import ui.controller.initializer.search.SearchDialogInitializer;
 import model.JuridicPerson;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 
 public interface ClientDebtCancellationUI extends DetailUI {
 
-	Pesos getAmount();
+	MoneyAmount getAmount();
 
 	JuridicPerson getClient();
 	

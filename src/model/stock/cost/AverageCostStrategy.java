@@ -2,7 +2,7 @@ package model.stock.cost;
 
 import java.util.Map;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -15,16 +15,16 @@ import model.util.CollectionFactory;
 
 public class AverageCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = CollectionFactory.newIdentityMap();
+	private Map<Article, MoneyAmount> costs = CollectionFactory.newIdentityMap();
 	private Stock stock;
 	
 	public AverageCostStrategy(Stock stock) {
 		this.stock = stock;
 	}
 
-	public Pesos cost(Article article) {
-		Pesos pesos = costs.get(article);
-		return pesos != null ? pesos : Pesos.newFor(0.0);
+	public MoneyAmount cost(Article article) {
+		MoneyAmount moneyAmount = costs.get(article);
+		return moneyAmount != null ? moneyAmount : MoneyAmount.newFor(0.0);
 	}
 
 	public Stock getStock() {
@@ -60,14 +60,14 @@ public class AverageCostStrategy implements CostStrategy {
 		//Do nothing on StockDropOut
 	}
 
-	private void applyArticleMovement(Article article, Double inputCount, Pesos inputCost) {
-		Pesos actualCost = stock.cost(article);
+	private void applyArticleMovement(Article article, Double inputCount, MoneyAmount inputCost) {
+		MoneyAmount actualCost = stock.cost(article);
 		Double actualCount = stock.count(article);
 		
 		Double newCostValue = 
 			(actualCount * actualCost.value() + inputCount * inputCost.value()) 
 			/ (actualCount + inputCount);
 		
-		costs.put(article, Pesos.newFor(newCostValue));
+		costs.put(article, MoneyAmount.newFor(newCostValue));
 	}
 }

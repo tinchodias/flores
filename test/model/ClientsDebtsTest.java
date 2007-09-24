@@ -6,7 +6,7 @@ package model;
 import junit.framework.TestCase;
 import model.money.Cash;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 import model.receipt.SellItems;
 import model.stock.Article;
@@ -35,21 +35,21 @@ public class ClientsDebtsTest extends TestCase {
 	public void testSimpleDebt() {
 		doSell();
 		
-		assertEquals(Pesos.newFor(100.0), store.debts().debtOf(elvira));
+		assertEquals(MoneyAmount.newFor(100.0), store.debts().debtOf(elvira));
 
 		store.debts().add(StoreFixture.simpleClientDebtCancellation(elvira));
-		assertEquals(Pesos.newFor(60.0), store.debts().debtOf(elvira));
+		assertEquals(MoneyAmount.newFor(60.0), store.debts().debtOf(elvira));
 		
 		store.debts().add(StoreFixture.simpleLostDebtDeclaration(elvira));
-		assertEquals(Pesos.newFor(20.0), store.debts().debtOf(elvira));
+		assertEquals(MoneyAmount.newFor(20.0), store.debts().debtOf(elvira));
 	}
 
 	private void doSell() {
 		SellItems spec = new SellItems();
-		spec.add(clavel, 10.0, Pesos.newFor(50.0), store.stock().cost(clavel));
+		spec.add(clavel, 10.0, MoneyAmount.newFor(50.0), store.stock().cost(clavel));
 		
 		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(400.0)));
+		payment.add(new Cash(MoneyAmount.newFor(400.0)));
 		
 		Sell sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
 		store.add(sell);

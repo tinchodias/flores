@@ -1,25 +1,25 @@
 package ui.view.component;
 
 import model.Vendor;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.ReadableInterval;
 
 public interface CommissionSummaryUI {
 
-	void setCostTotal(Pesos value);
+	void setCostTotal(MoneyAmount value);
 
-	void setExpensesTotal(Pesos value);
+	void setExpensesTotal(MoneyAmount value);
 
 	void setInterval(ReadableInterval interval);
 
-	void setSellTotal(Pesos value);
+	void setSellTotal(MoneyAmount value);
 
-	void setTotal(Pesos value);
+	void setTotal(MoneyAmount value);
 
 	void setVendor(Vendor vendor);
 	
-	Pesos getTotal();
+	MoneyAmount getTotal();
 	
 	ReadableInterval getInterval();
 	

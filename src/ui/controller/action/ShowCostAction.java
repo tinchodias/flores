@@ -3,7 +3,7 @@ package ui.controller.action;
 import persistence.ModelPersistence;
 import message.MessageId;
 import model.Store;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.view.component.SellItemUI;
 
 public class ShowCostAction implements Action {
@@ -16,7 +16,7 @@ public class ShowCostAction implements Action {
 
 	public void execute() {
 		Store store = ModelPersistence.instance().loadedModel().store();
-		Pesos cost = store.stock().cost(sellItemUI.getArticle());
+		MoneyAmount cost = store.stock().cost(sellItemUI.getArticle());
 		sellItemUI.setCost(cost.toString());
 	}
 

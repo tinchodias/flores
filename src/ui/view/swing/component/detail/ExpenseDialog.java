@@ -4,7 +4,7 @@ import javax.swing.JFormattedTextField;
 
 import message.MessageId;
 import model.expense.ExpenseArticle;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.ExpenseUI;
 import ui.view.swing.SwingUI;
@@ -30,8 +30,8 @@ public class ExpenseDialog extends StandardDetailDialog implements ExpenseUI {
 		centerPanel().add(SwingUI.instance().label(costField, MessageId.cashPay));
 	}
 
-	public Pesos getCost() {
-		return SwingUI.instance().pesosFrom(costField);
+	public MoneyAmount getCost() {
+		return SwingUI.instance().moneyAmountFrom(costField);
 	}
 
 	public ExpenseArticle getExpenseArticle() {

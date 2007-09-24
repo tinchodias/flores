@@ -2,13 +2,13 @@ package model.money;
 
 public class Check implements PayMode {
 
-	private final Pesos value;
+	private final MoneyAmount value;
 
-	public Check(Pesos value, String serialNumber) {
+	public Check(MoneyAmount value, String serialNumber) {
 		this.value = value;
 	}
 
-	public Pesos getValue() {
+	public MoneyAmount getValue() {
 		return value;
 	}
 	

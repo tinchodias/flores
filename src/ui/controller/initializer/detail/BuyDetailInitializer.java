@@ -1,7 +1,7 @@
 package ui.controller.initializer.detail;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import query.framework.results.BuyItemsLazySearchResults;
 import query.framework.results.SearchResults;
 import ui.controller.action.RemoveBuyItemAction;
@@ -39,6 +39,6 @@ public class BuyDetailInitializer extends DetailDialogInitializer {
 
 		BuyUI buyUI = (BuyUI) baseDialog;
 
-		buyUI.setCashPay(Pesos.newFor(0.0));
+		buyUI.setCashPay(MoneyAmount.newFor(0.0));
 	}
 }

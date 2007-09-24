@@ -4,7 +4,7 @@ import javax.swing.JFormattedTextField;
 
 import message.MessageId;
 import model.Vendor;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.ReadableInterval;
 
@@ -38,11 +38,11 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 		centerPanel().add(SwingUI.instance().label(commissionTotalField, MessageId.total));
 	}
 
-	public void setCostTotal(Pesos value) {
+	public void setCostTotal(MoneyAmount value) {
 		costTotalField.setValue(value.value());
 	}
 
-	public void setExpensesTotal(Pesos value) {
+	public void setExpensesTotal(MoneyAmount value) {
 		expensesTotalField.setValue(value.value());
 	}
 
@@ -51,11 +51,11 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 		this.interval = interval;
 	}
 
-	public void setSellTotal(Pesos value) {
+	public void setSellTotal(MoneyAmount value) {
 		sellTotalField.setValue(value.value());
 	}
 
-	public void setTotal(Pesos value) {
+	public void setTotal(MoneyAmount value) {
 		commissionTotalField.setValue(value.value());
 	}
 
@@ -63,8 +63,8 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 		//TODO implement!
 	}
 
-	public Pesos getTotal() {
-		return SwingUI.instance().pesosFrom(commissionTotalField);
+	public MoneyAmount getTotal() {
+		return SwingUI.instance().moneyAmountFrom(commissionTotalField);
 	}
 
 	public ReadableInterval getInterval() {

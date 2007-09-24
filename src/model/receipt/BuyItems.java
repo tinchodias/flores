@@ -3,7 +3,7 @@ package model.receipt;
 import java.util.Iterator;
 import java.util.List;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import model.util.CollectionFactory;
 
@@ -11,7 +11,7 @@ public class BuyItems implements Iterable<BuyItem> {
 
 	private List<BuyItem> items = CollectionFactory.newList();
 	
-	public void add(Article article, Double count, Pesos value) {
+	public void add(Article article, Double count, MoneyAmount value) {
 		items.add(new BuyItem(article, count, value));
 	}
 	
@@ -19,19 +19,19 @@ public class BuyItems implements Iterable<BuyItem> {
 		items.add(item);
 	}
 	
-	public Pesos total() {
-		Pesos total = Pesos.newFor(0.0);
+	public MoneyAmount total() {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (BuyItem item : items) {
 			total = total.plus(item.getValue().by(item.getCount()));
 		}
 		return total;
 	}
 
-	public void adjustTotal(Pesos adjustedTotal) {
-		Pesos adjustCoefficient = adjustedTotal.dividedBy(total());
+	public void adjustTotal(MoneyAmount adjustedTotal) {
+		MoneyAmount adjustCoefficient = adjustedTotal.dividedBy(total());
 		
 		for (BuyItem item : items) {
-			Pesos adjustedValue = item.getValue().by(adjustCoefficient);
+			MoneyAmount adjustedValue = item.getValue().by(adjustCoefficient);
 			item.setValue(adjustedValue);
 		}
 	}

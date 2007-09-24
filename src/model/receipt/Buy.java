@@ -2,7 +2,7 @@ package model.receipt;
 
 import model.JuridicPerson;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
 
@@ -12,8 +12,8 @@ public class Buy {
 	private final BaseDateTime date;
 	private final JuridicPerson supplier;
 	private final Payment payment;
-	private final Pesos buyTotal;
-	private final Pesos paymentTotal;
+	private final MoneyAmount buyTotal;
+	private final MoneyAmount paymentTotal;
 
 	public Buy(BuyItems spec, BaseDateTime date, JuridicPerson supplier, Payment payment) {
 		this.items = spec;
@@ -41,11 +41,11 @@ public class Buy {
 		return supplier;
 	}
 
-	public Pesos buyTotal() {
+	public MoneyAmount buyTotal() {
 		return buyTotal;
 	}
 	
-	public Pesos paymentTotal() {
+	public MoneyAmount paymentTotal() {
 		return paymentTotal;
 	}
 	

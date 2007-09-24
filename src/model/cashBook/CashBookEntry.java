@@ -1,6 +1,6 @@
 package model.cashBook;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
 
@@ -8,15 +8,15 @@ public class CashBookEntry {
 
 	private final Object object;
 	private final BaseDateTime date;
-	private final Pesos amount;
+	private final MoneyAmount amount;
 
-	public CashBookEntry(Object object, BaseDateTime date, Pesos amount) {
+	public CashBookEntry(Object object, BaseDateTime date, MoneyAmount amount) {
 		this.object = object;
 		this.date = date;
 		this.amount = amount;
 	}
 
-	public Pesos getAmount() {
+	public MoneyAmount getAmount() {
 		return amount;
 	}
 	

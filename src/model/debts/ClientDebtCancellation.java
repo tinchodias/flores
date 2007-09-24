@@ -1,23 +1,23 @@
 package model.debts;
 
 import model.JuridicPerson;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
 
 public class ClientDebtCancellation {
 
 	private final JuridicPerson client;
-	private final Pesos amount;
+	private final MoneyAmount amount;
 	private final BaseDateTime date;
 
-	public ClientDebtCancellation(JuridicPerson client, Pesos amount, BaseDateTime date) {
+	public ClientDebtCancellation(JuridicPerson client, MoneyAmount amount, BaseDateTime date) {
 		this.client = client;
 		this.amount = amount;
 		this.date = date;
 	}
 
-	public Pesos getAmount() {
+	public MoneyAmount getAmount() {
 		return amount;
 	}
 

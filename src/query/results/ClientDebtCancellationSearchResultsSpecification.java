@@ -3,7 +3,7 @@ package query.results;
 
 import message.MessageId;
 import model.debts.ClientDebtCancellation;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.ReadableInstant;
 
@@ -14,7 +14,7 @@ public class ClientDebtCancellationSearchResultsSpecification extends LazySearch
 	public ClientDebtCancellationSearchResultsSpecification() {
 		add(MessageId.date, ReadableInstant.class);
 		add(MessageId.client);
-		add(MessageId.amount, Pesos.class);
+		add(MessageId.amount, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

@@ -1,15 +1,15 @@
 package ui.view.component;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 
 public interface CashExtractionUI extends DetailUI {
 
-	Pesos getAmount();
+	MoneyAmount getAmount();
 
 	String getNote();
 	
-	void setAmount(Pesos amount);
+	void setAmount(MoneyAmount amount);
 
 	void setNote(String note);
 	

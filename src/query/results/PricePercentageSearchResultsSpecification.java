@@ -2,7 +2,7 @@ package query.results;
 
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.price.SimplePercentagePriceStrategy;
 import model.stock.Article;
 import persistence.ModelPersistence;
@@ -13,9 +13,9 @@ public class PricePercentageSearchResultsSpecification extends LazySearchResults
 	public PricePercentageSearchResultsSpecification() {
 		add(MessageId.name);
 		add(MessageId.articleGroup);
-		add(MessageId.articleCost, Pesos.class);
+		add(MessageId.articleCost, MoneyAmount.class);
 		add(MessageId.priceMargin, Double.class);
-		add(MessageId.unitPrice, Pesos.class);
+		add(MessageId.unitPrice, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

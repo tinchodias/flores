@@ -61,10 +61,10 @@ public class ClientTest extends TestCase {
 //	
 //	private void doSellTo(JuridicPerson client) {
 //		SellItems spec = new SellItems();
-//		spec.add(clavel, 100.0, Pesos.newFor(5.0), store.stock().cost(clavel));
+//		spec.add(clavel, 100.0, MoneyAmount.newFor(5.0), store.stock().cost(clavel));
 //
 //		Payment payment = new Payment();
-//		payment.add(new Cash(Pesos.newFor(450.0)));
+//		payment.add(new Cash(MoneyAmount.newFor(450.0)));
 //		
 //		Sell sell = new Sell(spec, new DateTime(), client, payment, eduardo);
 //		store.add(sell);

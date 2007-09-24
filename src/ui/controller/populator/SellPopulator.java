@@ -4,7 +4,7 @@ import model.Store;
 import model.Vendor;
 import model.money.Cash;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 import model.receipt.SellItems;
 
@@ -52,7 +52,7 @@ public class SellPopulator implements DetailPopulator<Sell, SellUI> {
 	}
 
 	private Payment payment(SellUI ui) {
-		Pesos cashPay = ui.getCashPay();
+		MoneyAmount cashPay = ui.getCashPay();
 
 		Payment payment = new Payment();
 		payment.add(new Cash(cashPay));

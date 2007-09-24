@@ -27,7 +27,7 @@ import javax.swing.text.NumberFormatter;
 import message.MessageId;
 import message.MessageRepository;
 import model.cashBook.CashBookEntry;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.joda.time.ReadableInstant;
@@ -36,7 +36,7 @@ import ui.UI;
 import ui.view.swing.component.MainFrame;
 import ui.view.swing.util.CashBookCellRenderer;
 import ui.view.swing.util.LabeledPanel;
-import ui.view.swing.util.PesosTableCellRenderer;
+import ui.view.swing.util.MoneyAmountTableCellRenderer;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
 
 public class SwingUI extends UI {
@@ -91,7 +91,7 @@ public class SwingUI extends UI {
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setDefaultRenderer(Pesos.class, PesosTableCellRenderer.instance());
+		table.setDefaultRenderer(MoneyAmount.class, MoneyAmountTableCellRenderer.instance());
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
 		table.setDefaultRenderer(CashBookEntry.class, CashBookCellRenderer.instance());
 		return table;
@@ -108,7 +108,7 @@ public class SwingUI extends UI {
 	}
 	
 	public JFormattedTextField currencyField() {
-		AbstractFormatter displayFormatter = new NumberFormatter(Pesos.format());
+		AbstractFormatter displayFormatter = new NumberFormatter(MoneyAmount.format());
 		AbstractFormatter editFormatter = new NumberFormatter(NumberFormat.getNumberInstance(Locale.ENGLISH));
 		AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory(displayFormatter, displayFormatter, editFormatter);
 
@@ -121,8 +121,8 @@ public class SwingUI extends UI {
 		return (MainFrame) super.mainUI();
 	}
 
-	public Pesos pesosFrom(JFormattedTextField field) {
-		return Pesos.newFor(NumberUtils.toDouble(String.valueOf(field.getValue())));
+	public MoneyAmount moneyAmountFrom(JFormattedTextField field) {
+		return MoneyAmount.newFor(NumberUtils.toDouble(String.valueOf(field.getValue())));
 	}
 
 	public Double doubleFrom(JFormattedTextField field) {

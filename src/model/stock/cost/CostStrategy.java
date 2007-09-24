@@ -1,6 +1,6 @@
 package model.stock.cost;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.Sell;
@@ -11,7 +11,7 @@ import model.stock.StockDropOut;
 
 public interface CostStrategy {
 
-	Pesos cost(Article article);
+	MoneyAmount cost(Article article);
 
 	void setStock(Stock stock);
 

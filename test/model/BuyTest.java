@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 import model.JuridicPerson;
 import model.Store;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItems;
@@ -71,26 +71,26 @@ public class BuyTest extends TestCase {
 
 	private Buy createBuy1() {
 		BuyItems spec = new BuyItems();
-		spec.add(claveles, 20.0, Pesos.newFor(20.0));
-		spec.add(rosas, 10.0, Pesos.newFor(15.0));
+		spec.add(claveles, 20.0, MoneyAmount.newFor(20.0));
+		spec.add(rosas, 10.0, MoneyAmount.newFor(15.0));
 
 		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 	
 	private Buy createBuy2() {
 		BuyItems spec = new BuyItems();
-		spec.add(claveles, 100.0, Pesos.newFor(20.0));
-		spec.add(rosas, 200.0, Pesos.newFor(15.0));
+		spec.add(claveles, 100.0, MoneyAmount.newFor(20.0));
+		spec.add(rosas, 200.0, MoneyAmount.newFor(15.0));
 
 		return new Buy(spec, new DateTime(), marquez, new Payment());
 	}
 	
 	public void testAdjustBuyTotal() {
 		BuyItems buyItems = new BuyItems();
-		buyItems.add(claveles, 20.0, Pesos.newFor(20.0));
-		buyItems.add(rosas, 10.0, Pesos.newFor(15.0));
+		buyItems.add(claveles, 20.0, MoneyAmount.newFor(20.0));
+		buyItems.add(rosas, 10.0, MoneyAmount.newFor(15.0));
 
-		Pesos adjustedTotal = Pesos.newFor(30.0);
+		MoneyAmount adjustedTotal = MoneyAmount.newFor(30.0);
 		buyItems.adjustTotal(adjustedTotal);
 		
 		assertEquals(adjustedTotal, buyItems.total());

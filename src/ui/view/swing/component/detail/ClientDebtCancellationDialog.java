@@ -4,7 +4,7 @@ import javax.swing.JFormattedTextField;
 
 import message.MessageId;
 import model.JuridicPerson;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.ClientDebtCancellationUI;
 import ui.view.swing.SwingUI;
@@ -30,8 +30,8 @@ public class ClientDebtCancellationDialog extends StandardDetailDialog implement
 		centerPanel().add(SwingUI.instance().label(amountField, MessageId.amount));
 	}
 
-	public Pesos getAmount() {
-		return SwingUI.instance().pesosFrom(amountField);
+	public MoneyAmount getAmount() {
+		return SwingUI.instance().moneyAmountFrom(amountField);
 	}
 
 	public JuridicPerson getClient() {

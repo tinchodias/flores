@@ -4,7 +4,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.view.component.CashExtractionUI;
 import ui.view.swing.SwingUI;
 
@@ -28,15 +28,15 @@ public class CashExtractionDialog extends StandardDetailDialog implements CashEx
 		centerPanel().add(SwingUI.instance().label(noteField, MessageId.note));
 	}
 
-	public Pesos getAmount() {
-		return SwingUI.instance().pesosFrom(amountField);
+	public MoneyAmount getAmount() {
+		return SwingUI.instance().moneyAmountFrom(amountField);
 	}
 
 	public String getNote() {
 		return noteField.getText();
 	}
 
-	public void setAmount(Pesos amount) {
+	public void setAmount(MoneyAmount amount) {
 		amountField.setValue(amount.value());
 	}
 
