@@ -12,7 +12,7 @@ public class StockArticleSearchResultsSpecification extends LazySearchResultsSpe
 		add(MessageId.article);
 		add(MessageId.articleGroup);
 		add(MessageId.count, Double.class);
-//		add(MessageId.articleCost, Pesos.class);
+//		add(MessageId.articleCost, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

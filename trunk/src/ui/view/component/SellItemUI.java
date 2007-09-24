@@ -1,6 +1,6 @@
 package ui.view.component;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import ui.controller.action.Action;
 import ui.controller.initializer.search.SearchDialogInitializer;
@@ -11,7 +11,7 @@ public interface SellItemUI extends DetailUI {
 	
 	double getCount();
 	
-	Pesos getValue();
+	MoneyAmount getValue();
 	
 	void setCount(double count);
 	

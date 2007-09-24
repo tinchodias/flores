@@ -6,7 +6,7 @@ import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.Sell;
@@ -119,13 +119,13 @@ public class CashBookTest extends TestCase {
 		
 		assertCurrentCash(40.0);
 		
-		Pesos amount = Pesos.newFor(30.0);
+		MoneyAmount amount = MoneyAmount.newFor(30.0);
 		store.cashBook().add(new CashExtraction(new DateTime(), amount, ""));
 		
 		assertCurrentCash(10.0);
 	}
 	
 	private void assertCurrentCash(double value) {
-		assertEquals(Pesos.newFor(value), store.cashBook().currentCash());		
+		assertEquals(MoneyAmount.newFor(value), store.cashBook().currentCash());		
 	}
 }

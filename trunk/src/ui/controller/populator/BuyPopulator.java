@@ -3,7 +3,7 @@ package ui.controller.populator;
 import model.Store;
 import model.money.Cash;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyItems;
 
@@ -44,7 +44,7 @@ public class BuyPopulator implements DetailPopulator<Buy, BuyUI> {
 	}
 
 	private Payment payment(BuyUI ui) {
-		Pesos cashPay = ui.getCashPay();
+		MoneyAmount cashPay = ui.getCashPay();
 
 		Payment payment = new Payment();
 		payment.add(new Cash(cashPay));

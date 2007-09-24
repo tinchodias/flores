@@ -9,8 +9,8 @@ public class Payment implements Collection<PayMode> {
 
 	Collection<PayMode> pays = CollectionFactory.newList();
 	
-	public Pesos total() {
-		Pesos total = Pesos.newFor(0.0);
+	public MoneyAmount total() {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (PayMode pay : pays) {
 			total = total.plus(pay.getValue());
 		}

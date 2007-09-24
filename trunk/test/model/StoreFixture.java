@@ -11,7 +11,7 @@ import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.money.Cash;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -122,7 +122,7 @@ public class StoreFixture {
 		DateMidnight expensesEnd = new DateMidnight(2006, 6, 10);
 		for (BaseDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
 			for (int i = 0; i < 5; i++) {
-				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomPesos(20), date);
+				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomMoneyAmount(20), date);
 				store.add(expense);
 			}
 		}
@@ -134,7 +134,7 @@ public class StoreFixture {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
 				for (int j = 0; j < 100; j++) {
-					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomPesos(20));
+					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomMoneyAmount(20));
 					spec.add(buyItem);
 				}
 				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
@@ -150,7 +150,7 @@ public class StoreFixture {
 				SellItems spec = new SellItems();
 				for (int j = 0; j < 5; j++) {
 					Article article = (Article) oneOf(store.stockArticles());
-					spec.add(article, new Double(RandomUtils.nextInt(20)), randomPesos(40), store.stock().cost(article));
+					spec.add(article, new Double(RandomUtils.nextInt(20)), randomMoneyAmount(40), store.stock().cost(article));
 				}
 				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (Vendor) oneOf(store.vendors()));
 				store.add(sell);
@@ -158,17 +158,17 @@ public class StoreFixture {
 		}
 	}
 
-	private static Pesos randomPesos(int bound) {
-		return Pesos.newFor(new Double(RandomUtils.nextInt(bound)));
+	private static MoneyAmount randomMoneyAmount(int bound) {
+		return MoneyAmount.newFor(new Double(RandomUtils.nextInt(bound)));
 	}
 	
-	private static Pesos randomPesos(Pesos pesos) {
-		return randomPesos(pesos.value().intValue());
+	private static MoneyAmount randomMoneyAmount(MoneyAmount moneyAmount) {
+		return randomMoneyAmount(moneyAmount.value().intValue());
 	}
 
-	private static Payment randomPayment(Pesos pesos) {
+	private static Payment randomPayment(MoneyAmount moneyAmount) {
 		Payment payment = new Payment();
-		payment.add(new Cash(randomPesos(pesos)));
+		payment.add(new Cash(randomMoneyAmount(moneyAmount)));
 		return payment;
 	}
 
@@ -185,7 +185,7 @@ public class StoreFixture {
 	 * @return
 	 */
 	public static Expense simpleExpense(ExpenseArticle article) {
-		return new Expense(article, Pesos.newFor(300.0), new DateTime());
+		return new Expense(article, MoneyAmount.newFor(300.0), new DateTime());
 	}
 
 	/**
@@ -197,12 +197,12 @@ public class StoreFixture {
 	 * @param cost 
 	 * @return 
 	 */
-	public static Sell simpleSell(Article article, JuridicPerson client, Vendor vendor, Pesos cost) {
+	public static Sell simpleSell(Article article, JuridicPerson client, Vendor vendor, MoneyAmount cost) {
 		SellItems spec = new SellItems();
-		spec.add(article, 100.0, Pesos.newFor(9.0), cost);
+		spec.add(article, 100.0, MoneyAmount.newFor(9.0), cost);
 		
 		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(500.0)));
+		payment.add(new Cash(MoneyAmount.newFor(500.0)));
 		
 		return new Sell(spec, new DateTime(), client, payment, vendor);
 	}
@@ -226,10 +226,10 @@ public class StoreFixture {
 	 */
 	public static Buy simpleBuy(Article stockArticle, JuridicPerson supplier) {
 		BuyItems spec = new BuyItems();
-		spec.add(stockArticle, 2000.0, Pesos.newFor(20.0));
+		spec.add(stockArticle, 2000.0, MoneyAmount.newFor(20.0));
 
 		Payment payment = new Payment();
-		payment.add(new Cash(Pesos.newFor(950.0)));
+		payment.add(new Cash(MoneyAmount.newFor(950.0)));
 
 		return new Buy(spec, new DateTime(), supplier, payment);
 	}
@@ -251,7 +251,7 @@ public class StoreFixture {
 	 * @return
 	 */
 	public static ClientDebtCancellation simpleClientDebtCancellation(JuridicPerson client) {
-		return new ClientDebtCancellation(client, Pesos.newFor(40.0), new DateTime());
+		return new ClientDebtCancellation(client, MoneyAmount.newFor(40.0), new DateTime());
 	}
 
 	/**
@@ -261,7 +261,7 @@ public class StoreFixture {
 	 * @return
 	 */
 	public static LostDebtDeclaration simpleLostDebtDeclaration(JuridicPerson client) {
-		return new LostDebtDeclaration(client, Pesos.newFor(40.0), new DateTime());
+		return new LostDebtDeclaration(client, MoneyAmount.newFor(40.0), new DateTime());
 	}
 
 	/**

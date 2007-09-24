@@ -3,7 +3,7 @@ package model.price;
 import java.util.Map;
 
 import model.Store;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import model.util.CollectionFactory;
 
@@ -17,8 +17,8 @@ public class SimplePercentagePriceStrategy implements PriceStrategy {
 		this.store = store;
 	}
 
-	public Pesos priceFor(Article article) {
-		Pesos cost = store.stock().cost(article);
+	public MoneyAmount priceFor(Article article) {
+		MoneyAmount cost = store.stock().cost(article);
 		Double margin = getPriceMargin(article);
 		return cost.by(1 + margin / 100.0);
 	}

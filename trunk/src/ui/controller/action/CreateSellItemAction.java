@@ -2,7 +2,7 @@ package ui.controller.action;
 
 import message.MessageId;
 import model.Store;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.SellItem;
 import persistence.ModelPersistence;
 import query.framework.results.SellItemsLazySearchResults;
@@ -34,7 +34,7 @@ public class CreateSellItemAction implements Action {
 		return new SellItem(sellItemUI.getArticle(), sellItemUI.getCount(), sellItemUI.getValue(), itemCost());
 	}
 
-	private Pesos itemCost() {
+	private MoneyAmount itemCost() {
 		//TODO look this
 		Store store = ModelPersistence.instance().loadedModel().store();
 		return store.stock().cost(sellItemUI.getArticle());

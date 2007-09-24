@@ -2,7 +2,7 @@ package model.commission;
 
 import model.Vendor;
 import model.expense.Expense;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 
 import org.joda.time.ReadableInterval;
@@ -38,37 +38,37 @@ public class BasicCommissionsManager implements CommisionsManager {
 		expensesSearchQuery.setCriteria(criteria);
 		SearchResults expenses = expensesSearchQuery.results();
 		
-		Pesos sellTotal = sellTotal(sells);
-		Pesos costTotal = costTotal(sells);
-		Pesos expensesTotal = expensesTotal(expenses); 
+		MoneyAmount sellTotal = sellTotal(sells);
+		MoneyAmount costTotal = costTotal(sells);
+		MoneyAmount expensesTotal = expensesTotal(expenses); 
 		
-		Pesos commission = commission(sellTotal, costTotal, expensesTotal);
+		MoneyAmount commission = commission(sellTotal, costTotal, expensesTotal);
 		
 		return new CommissionSummary(vendor, interval, sellTotal, costTotal, expensesTotal, commission);
 	}
 
-	private Pesos commission(Pesos sellTotal, Pesos costTotal, Pesos expensesTotal) {
+	private MoneyAmount commission(MoneyAmount sellTotal, MoneyAmount costTotal, MoneyAmount expensesTotal) {
 		return sellTotal.minus(costTotal.plus(expensesTotal)).by(commisionAlpha);
 	}
 
-	private Pesos expensesTotal(Iterable<Expense> expenses) {
-		Pesos total = Pesos.newFor(0.0);
+	private MoneyAmount expensesTotal(Iterable<Expense> expenses) {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (Expense expense : expenses) {
 			total = total.plus(expense.getCost());
 		}
 		return total;
 	}
 
-	private Pesos sellTotal(Iterable<Sell> sells) {
-		Pesos total = Pesos.newFor(0.0);
+	private MoneyAmount sellTotal(Iterable<Sell> sells) {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (Sell sell : sells) {
 			total = total.plus(sell.sellTotal());
 		}
 		return total;
 	}
 
-	private Pesos costTotal(Iterable<Sell> sells) {
-		Pesos total = Pesos.newFor(0.0);
+	private MoneyAmount costTotal(Iterable<Sell> sells) {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (Sell sell : sells) {
 			total = total.plus(sell.costTotal());
 		}

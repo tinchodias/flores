@@ -1,14 +1,14 @@
 package model.receipt;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 
 public class BuyItem {
 	private double count;
-	private Pesos value;
+	private MoneyAmount value;
 	private final Article article;
 
-	public BuyItem(Article article, double count, Pesos value) {
+	public BuyItem(Article article, double count, MoneyAmount value) {
 		this.article = article;
 		this.count = count;
 		this.value = value;
@@ -18,7 +18,7 @@ public class BuyItem {
 		return count;
 	}
 
-	public Pesos getValue() {
+	public MoneyAmount getValue() {
 		return value;
 	}
 
@@ -26,7 +26,7 @@ public class BuyItem {
 		return article;
 	}
 
-	public void setValue(Pesos value) {
+	public void setValue(MoneyAmount value) {
 		this.value = value;
 	}
 	

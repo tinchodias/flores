@@ -3,7 +3,7 @@ package ui.view.swing.component.detail;
 import javax.swing.JFormattedTextField;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.view.component.AdjustTotalUI;
 import ui.view.swing.SwingUI;
 
@@ -24,8 +24,8 @@ public class AdjustTotalDialog extends StandardDetailDialog implements AdjustTot
 		centerPanel().add(SwingUI.instance().label(adjustedTotal, MessageId.adjustedTotal));
 	}
 
-	public Pesos getAdjustedTotal() {
-		return SwingUI.instance().pesosFrom(adjustedTotal);
+	public MoneyAmount getAdjustedTotal() {
+		return SwingUI.instance().moneyAmountFrom(adjustedTotal);
 	}
 
 }

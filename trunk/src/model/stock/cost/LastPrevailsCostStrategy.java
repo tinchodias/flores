@@ -2,7 +2,7 @@ package model.stock.cost;
 
 import java.util.Map;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -16,16 +16,16 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LastPrevailsCostStrategy implements CostStrategy {
 
-	private Map<Article, Pesos> costs = CollectionFactory.newIdentityMap();
+	private Map<Article, MoneyAmount> costs = CollectionFactory.newIdentityMap();
 	private Stock stock;
 	
 	public LastPrevailsCostStrategy(Stock stock) {
 		this.stock = stock;
 	}
 
-	public Pesos cost(Article article) {
-		Pesos pesos = costs.get(article);
-		return pesos != null ? pesos : Pesos.newFor(0.0);
+	public MoneyAmount cost(Article article) {
+		MoneyAmount moneyAmount = costs.get(article);
+		return moneyAmount != null ? moneyAmount : MoneyAmount.newFor(0.0);
 	}
 
 	public Stock getStock() {

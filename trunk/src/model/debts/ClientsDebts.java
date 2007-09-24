@@ -5,14 +5,14 @@ import java.util.Map;
 
 import model.JuridicPerson;
 import model.Store;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.util.CollectionFactory;
 
 public class ClientsDebts {
 
-	private Map<JuridicPerson, Pesos> debts = CollectionFactory.<JuridicPerson, Pesos>newIdentityMap();
+	private Map<JuridicPerson, MoneyAmount> debts = CollectionFactory.<JuridicPerson, MoneyAmount>newIdentityMap();
 	private Collection<LostDebtDeclaration> declarations = CollectionFactory.<LostDebtDeclaration>newList();
 	private Collection<ClientDebtCancellation> cancellations = CollectionFactory.<ClientDebtCancellation>newList();
 	private final Store store;
@@ -21,18 +21,18 @@ public class ClientsDebts {
 		this.store = store;
 
 	}
-	public Pesos debtOf(JuridicPerson client) {
-		Pesos debt = debts.get(client);
-		return debt != null ? debt : Pesos.newFor(0.0);
+	public MoneyAmount debtOf(JuridicPerson client) {
+		MoneyAmount debt = debts.get(client);
+		return debt != null ? debt : MoneyAmount.newFor(0.0);
 	}
 	
-	private void incrementDebt(JuridicPerson client, Pesos amount) {
-		Pesos newDebt = Pesos.newFor(this.debtOf(client).value() + amount.value());
+	private void incrementDebt(JuridicPerson client, MoneyAmount amount) {
+		MoneyAmount newDebt = MoneyAmount.newFor(this.debtOf(client).value() + amount.value());
 		debts.put(client, newDebt);
 	}
 	
-	private void reduceDebt(JuridicPerson client, Pesos amount) {
-		Pesos newDebt = Pesos.newFor(this.debtOf(client).value() - amount.value());
+	private void reduceDebt(JuridicPerson client, MoneyAmount amount) {
+		MoneyAmount newDebt = MoneyAmount.newFor(this.debtOf(client).value() - amount.value());
 		debts.put(client, newDebt);
 	}
 

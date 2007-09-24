@@ -4,7 +4,7 @@
 package model;
 
 import junit.framework.TestCase;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 import model.receipt.SellCancellation;
 import model.receipt.SellItems;
@@ -32,13 +32,13 @@ public class SellTest extends TestCase {
 
 	public void testSimpleSellAndCancellation() {
 		
-		Pesos initialDebt = store.debts().debtOf(elvira);
+		MoneyAmount initialDebt = store.debts().debtOf(elvira);
 		double initialStock = store.stock().count(clavel);
 		
 		sell = StoreFixture.simpleSell(clavel, elvira, eduardo, store.stock().cost(clavel));
 		store.add(sell);
 
-		assertEquals(initialDebt.plus(Pesos.newFor(400.0)), store.debts().debtOf(elvira));
+		assertEquals(initialDebt.plus(MoneyAmount.newFor(400.0)), store.debts().debtOf(elvira));
 		assertEquals(initialStock - 100.0, store.stock().count(clavel));
 
 		SellCancellation cancellation = StoreFixture.sellCancellation(sell);
@@ -50,9 +50,9 @@ public class SellTest extends TestCase {
 	
 	public void testAdjustSellTotal() {
 		SellItems sellItems = new SellItems();
-		sellItems.add(clavel, 20.0, Pesos.newFor(20.0), Pesos.newFor(10.0));
+		sellItems.add(clavel, 20.0, MoneyAmount.newFor(20.0), MoneyAmount.newFor(10.0));
 
-		Pesos adjustedTotal = Pesos.newFor(6.5);
+		MoneyAmount adjustedTotal = MoneyAmount.newFor(6.5);
 		sellItems.adjustTotal(adjustedTotal);
 		
 		assertEquals(adjustedTotal, sellItems.sellTotal());

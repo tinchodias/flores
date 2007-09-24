@@ -4,7 +4,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import persistence.ModelPersistence;
 import query.QueryFactory;
@@ -57,8 +57,8 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		return SwingUI.instance().doubleFrom(countField);
 	}
 
-	public Pesos getValue() {
-		return SwingUI.instance().pesosFrom(valueField);
+	public MoneyAmount getValue() {
+		return SwingUI.instance().moneyAmountFrom(valueField);
 	}
 
 	public void addOnArticleSelectionAction(Action action) {

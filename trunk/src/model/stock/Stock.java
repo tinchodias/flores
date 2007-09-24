@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -31,7 +31,7 @@ public class Stock {
 		return count != null ? count : 0.0;
 	}
 
-	public Pesos cost(Article article) {
+	public MoneyAmount cost(Article article) {
 		return costStrategy.cost(article);
 	}
 

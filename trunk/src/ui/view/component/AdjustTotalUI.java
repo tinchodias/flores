@@ -1,9 +1,9 @@
 package ui.view.component;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 public interface AdjustTotalUI extends DetailUI {
 
-	public Pesos getAdjustedTotal();
+	public MoneyAmount getAdjustedTotal();
 	
 }

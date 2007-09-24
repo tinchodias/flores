@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.debts.ClientDebtCancellation;
 import model.expense.Expense;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.Sell;
@@ -16,14 +16,14 @@ import org.joda.time.base.BaseDateTime;
 public class CashBook {
 
 	private List entries = CollectionFactory.newList();
-	private Pesos currentCash = Pesos.newFor(0.0);
+	private MoneyAmount currentCash = MoneyAmount.newFor(0.0);
 
-	private void addPositiveEntry(Object object, BaseDateTime date, Pesos amount) {
+	private void addPositiveEntry(Object object, BaseDateTime date, MoneyAmount amount) {
 		entries.add(new CashBookEntry(object, date, amount));
 		currentCash = currentCash.plus(amount);
 	}
 	
-	private void addNegativeEntry(Object object, BaseDateTime date, Pesos amount) {
+	private void addNegativeEntry(Object object, BaseDateTime date, MoneyAmount amount) {
 		addPositiveEntry(object, date, amount.by(-1));
 	}
 	
@@ -55,7 +55,7 @@ public class CashBook {
 		return entries;
 	}
 
-	public Pesos currentCash() {
+	public MoneyAmount currentCash() {
 		return currentCash;
 	}
 

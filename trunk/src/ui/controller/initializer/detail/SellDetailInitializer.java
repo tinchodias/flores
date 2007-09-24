@@ -2,7 +2,7 @@ package ui.controller.initializer.detail;
 
 import message.MessageId;
 import model.Store;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import persistence.ModelPersistence;
 import query.framework.results.SearchResults;
 import query.framework.results.SellItemsLazySearchResults;
@@ -53,7 +53,7 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 			sellUI.setClient(store.clients().iterator().next());
 		}
 		
-		sellUI.setCashPay(Pesos.newFor(0.0));
+		sellUI.setCashPay(MoneyAmount.newFor(0.0));
 	}
 	
 }

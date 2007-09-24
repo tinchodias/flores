@@ -10,7 +10,7 @@ import java.util.Map;
 import message.MessageId;
 import message.MessageRepository;
 import message.SimplePropertiesIconRepository;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -48,7 +48,7 @@ public class JasperReportFactory extends ReportFactory {
 		addLabel(parameters, MessageId.total);
 		addString(parameters, MessageId.total, sell.sellTotal());
 		addString(parameters, MessageId.paymentTotal, sell.paymentTotal());
-		Pesos debt = ModelPersistence.instance().loadedModel().store().debts().debtOf(sell.client());
+		MoneyAmount debt = ModelPersistence.instance().loadedModel().store().debts().debtOf(sell.client());
 		addString(parameters, MessageId.clientDebt, debt); //TODO show a snapshot?
 		addString(parameters, MessageId.date, sell.date());
 		addString(parameters, MessageId.client, sell.client());

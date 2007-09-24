@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import message.MessageId;
 import model.JuridicPerson;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import ui.controller.action.Action;
 import ui.controller.initializer.search.SearchDialogInitializer;
 import ui.view.component.SellUI;
@@ -67,11 +67,11 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 		clientPicker.setSelection(client);
 	}
 	
-	public Pesos getCashPay() {
-		return SwingUI.instance().pesosFrom(cashField);
+	public MoneyAmount getCashPay() {
+		return SwingUI.instance().moneyAmountFrom(cashField);
 	}
 
-	public void setCashPay(Pesos value) {
+	public void setCashPay(MoneyAmount value) {
 		cashField.setValue(value.value());
 	}
 	

@@ -1,7 +1,7 @@
 package ui.controller.action;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import query.framework.results.BuyItemsLazySearchResults;
 import ui.view.component.BuyUI;
 import ui.view.swing.component.detail.AdjustTotalDialog;
@@ -17,7 +17,7 @@ public class AdjustBuyTotalAction implements Action {
 	}
 
 	public void execute() {
-		Pesos adjustedTotal = adjustDialog.getAdjustedTotal();
+		MoneyAmount adjustedTotal = adjustDialog.getAdjustedTotal();
 		
 		BuyItemsLazySearchResults buyItemsResults = 
 			(BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();

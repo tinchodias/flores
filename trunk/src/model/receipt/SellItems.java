@@ -3,7 +3,7 @@ package model.receipt;
 import java.util.Iterator;
 import java.util.List;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import model.util.CollectionFactory;
 
@@ -11,7 +11,7 @@ public class SellItems implements Iterable<SellItem> {
 
 	List<SellItem> items = CollectionFactory.newList();
 	
-	public void add(Article article, Double count, Pesos sellValue, Pesos costValue) {
+	public void add(Article article, Double count, MoneyAmount sellValue, MoneyAmount costValue) {
 		items.add(new SellItem(article, count, sellValue, costValue));
 	}
 	
@@ -19,16 +19,16 @@ public class SellItems implements Iterable<SellItem> {
 		items.add(item);
 	}
 	
-	public Pesos sellTotal() {
-		Pesos total = Pesos.newFor(0.0);
+	public MoneyAmount sellTotal() {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (SellItem item : items) {
 			total = total.plus(item.getSellValue().by(item.getCount()));
 		}
 		return total;
 	}
 
-	public Pesos costTotal() {
-		Pesos total = Pesos.newFor(0.0);
+	public MoneyAmount costTotal() {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (SellItem item : items) {
 			total = total.plus(item.getCostValue().by(item.getCount()));
 		}
@@ -47,11 +47,11 @@ public class SellItems implements Iterable<SellItem> {
 		return items.size();
 	}
 
-	public void adjustTotal(Pesos adjustedTotal) {
-		Pesos adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
+	public void adjustTotal(MoneyAmount adjustedTotal) {
+		MoneyAmount adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
 		
 		for (SellItem item : items) {
-			Pesos adjustedValue = item.getSellValue().by(adjustCoefficient);
+			MoneyAmount adjustedValue = item.getSellValue().by(adjustCoefficient);
 			item.setSellValue(adjustedValue);
 		}
 	}

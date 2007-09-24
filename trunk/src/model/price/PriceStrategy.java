@@ -1,10 +1,10 @@
 package model.price;
 
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 
 public interface PriceStrategy {
 
-	Pesos priceFor(Article article);
+	MoneyAmount priceFor(Article article);
 
 }

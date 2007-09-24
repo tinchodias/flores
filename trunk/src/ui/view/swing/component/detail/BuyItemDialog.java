@@ -3,7 +3,7 @@ package ui.view.swing.component.detail;
 import javax.swing.JFormattedTextField;
 
 import message.MessageId;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import persistence.ModelPersistence;
 import query.QueryFactory;
@@ -51,8 +51,8 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 		return SwingUI.instance().doubleFrom(countField);
 	}
 
-	public Pesos getValue() {
-		return SwingUI.instance().pesosFrom(valueField);
+	public MoneyAmount getValue() {
+		return SwingUI.instance().moneyAmountFrom(valueField);
 	}
 
 }

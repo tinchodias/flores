@@ -3,7 +3,7 @@ package model.receipt;
 import model.JuridicPerson;
 import model.Vendor;
 import model.money.Payment;
-import model.money.Pesos;
+import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
 
@@ -14,9 +14,9 @@ public class Sell {
 	private final JuridicPerson client;
 	private final Payment payment;
 	private final Vendor vendor;
-	private final Pesos sellTotal;
-	private final Pesos costTotal;
-	private final Pesos paymentTotal;
+	private final MoneyAmount sellTotal;
+	private final MoneyAmount costTotal;
+	private final MoneyAmount paymentTotal;
 
 	public Sell(SellItems spec, BaseDateTime date, JuridicPerson client, Payment payment, Vendor vendor) {
 		this.items = spec;
@@ -46,7 +46,7 @@ public class Sell {
 		return payment;
 	}
 
-	public Pesos clientDebt() {
+	public MoneyAmount clientDebt() {
 		return items.sellTotal().minus(this.payment().total());
 	}
 
@@ -54,15 +54,15 @@ public class Sell {
 		return vendor;
 	}
 
-	public Pesos sellTotal() {
+	public MoneyAmount sellTotal() {
 		return sellTotal;
 	}
 
-	public Pesos costTotal() {
+	public MoneyAmount costTotal() {
 		return costTotal;
 	}
 
-	public Pesos paymentTotal() {
+	public MoneyAmount paymentTotal() {
 		return paymentTotal;
 	}
 }
