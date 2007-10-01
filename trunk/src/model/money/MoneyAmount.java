@@ -2,6 +2,9 @@ package model.money;
 
 import java.text.NumberFormat;
 
+import message.MessageId;
+import validation.ModelValidation;
+
 public class MoneyAmount {
 
 	private static NumberFormat format;
@@ -12,6 +15,7 @@ public class MoneyAmount {
 	}
 	
 	private MoneyAmount(Double value) {
+		ModelValidation.instance().assertNotNull(value, MessageId.moneyAmount);
 		this.value = value;
 	}
 

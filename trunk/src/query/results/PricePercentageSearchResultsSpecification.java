@@ -13,7 +13,7 @@ public class PricePercentageSearchResultsSpecification extends LazySearchResults
 	public PricePercentageSearchResultsSpecification() {
 		add(MessageId.name);
 		add(MessageId.articleGroup);
-		add(MessageId.articleCost, MoneyAmount.class);
+		add(MessageId.unitCost, MoneyAmount.class);
 		add(MessageId.priceMargin, Double.class);
 		add(MessageId.unitPrice, MoneyAmount.class);
 	}

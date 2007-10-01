@@ -15,17 +15,32 @@ public class ModelValidation {
 		return instance;
 	}
 
-	public void assertNotBlank(String field, MessageId fieldMessageId) {
-		if (StringUtils.isBlank(field)) {
-			throw new ModelValidationError(fieldMessageId + " no puede ser vacío.");
+	private void assertTrue(boolean value, MessageId errorMessageId, MessageId fieldMessageId) {
+		if (!value) {
+			throw new ModelValidationError(errorMessageId, fieldMessageId);
 		}
+	}
+
+	public void assertNotBlank(String field, MessageId fieldMessageId) {
+		assertTrue(StringUtils.isNotBlank(field), MessageId.assertNotBlank, fieldMessageId);
 	}
 
 	public void assertNotNull(Object field, MessageId fieldMessageId) {
-		if (field == null) {
-			throw new ModelValidationError(fieldMessageId + "debe tener algo.");
-		}
+		assertTrue(field != null, MessageId.assertNotNull, fieldMessageId);
 	}
 
+	public void assertPositive(Double value, MessageId fieldMessageId) {
+		assertTrue(value != null && value > 0.0, MessageId.assertPositive, fieldMessageId);
+	}
+
+	public void assertNotNegative(Double value, MessageId fieldMessageId) {
+		assertTrue(value != null && value >= 0.0, MessageId.assertNotNegative, fieldMessageId);
+	}
+
+	public void assertNotNegative(Double value, MessageId errorMessageId, String[] arguments) {
+		if (value == null || value < 0.0) {
+			throw new ModelValidationError(errorMessageId, arguments);
+		}
+	}
 	
 }

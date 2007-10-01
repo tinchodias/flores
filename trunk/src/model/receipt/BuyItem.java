@@ -1,7 +1,9 @@
 package model.receipt;
 
+import message.MessageId;
 import model.money.MoneyAmount;
 import model.stock.Article;
+import validation.ModelValidation;
 
 public class BuyItem {
 	private double count;
@@ -9,9 +11,13 @@ public class BuyItem {
 	private final Article article;
 
 	public BuyItem(Article article, double count, MoneyAmount value) {
+		ModelValidation.instance().assertNotNull(article, MessageId.article);
 		this.article = article;
+
+		ModelValidation.instance().assertPositive(count, MessageId.count);
 		this.count = count;
-		this.value = value;
+		
+		this.setValue(value);
 	}
 
 	public double getCount() {
@@ -27,6 +33,7 @@ public class BuyItem {
 	}
 
 	public void setValue(MoneyAmount value) {
+		ModelValidation.instance().assertNotNegative(value.value(), MessageId.unitCost);
 		this.value = value;
 	}
 	

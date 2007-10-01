@@ -1,36 +1,48 @@
 package message;
 
 public enum MessageId {
+	//Main
 	mainTitle, 
 
+	//Persistence
 	persistenceInvalidModel, 
 	persistenceInvalidState,
 
+	//Security
 	securityInvalidLogin, 
 
+	//Login
 	loginDialogTitle, 
 	userName, 
 	userPassword, 
-	
+
+	//Client
 	clients, 
 	client, 
 	clientName, 
 	clientDebt, 
 
+	//Stock
 	stockDialogTitle, 
 	article, 
-	articleCost,
-	articleGroup, 
+	unitCost,
 	code, 
-	size, 
+	size,
+	insufficientStock, 
+	
+	//ArticleGroup
+	articleGroups, 
+	articleGroup, 
 
+	//Buy
 	buys, 
 	supplier, 
 	paymentTotal, 
 	buy,
 	buyItem, 
 	priceMargin, 
-	
+
+	//Stock Drop Out
 	stockDropOuts, 
 	stockDropOutDialogTitle,
 	
@@ -41,7 +53,8 @@ public enum MessageId {
 	searchPanelButtons, 
 
 	objectPickerButton, 
-	
+
+	//Generic
 	invalidSelection, 
 	modify, 
 	create,
@@ -65,16 +78,18 @@ public enum MessageId {
 	print,
 	note, 
 	calculate, 
-	
 	acceptAndContinue, 
 	acceptAndPrint, 
-	
+	moneyAmount, 
+
+	//Address
 	city, 
 	address, 
 	cities, 
 	province, 
 	mainAddress, 
 	
+	//Supplier
 	suppliers, 
 	supplierName, 
 	supplierDialogTitle, 
@@ -82,31 +97,41 @@ public enum MessageId {
 	adjustTotal, 
 	adjustedTotal, 
 	
+	//Sell
 	sells, 
 	sell, 
 	costTotal, 
 	sellTotal, 
 	sellItem, 
 	
-	articleGroups, 
-	
+	//CashBook
 	cashBook, 
 	currentCash, 
 	
+	//Expenses
 	expensesArticles, 
 	expenseArticle, 
 	expenses,
 	expense, 
 	
+	//Cash Extractions
 	cashExtractions, 
 	cashExtraction, 
 	
+	//Client Debt Cancellations
 	clientDebtCancellations, 
 	clientDebtCancellation, 
-	
+
+	//Commissions
 	commissionCalculation, 
 	commissionSummary, 
 	createCommissionCashExtraction, 
+	
+	//ModelValidation
+	assertNotBlank, 
+	assertNotNull, 
+	assertPositive, 
+	assertNotNegative, 
 	
 	;
 	

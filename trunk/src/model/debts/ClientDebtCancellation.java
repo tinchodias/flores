@@ -1,9 +1,12 @@
 package model.debts;
 
+import message.MessageId;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
+
+import validation.ModelValidation;
 
 public class ClientDebtCancellation {
 
@@ -12,8 +15,12 @@ public class ClientDebtCancellation {
 	private final BaseDateTime date;
 
 	public ClientDebtCancellation(JuridicPerson client, MoneyAmount amount, BaseDateTime date) {
+		ModelValidation.instance().assertNotNull(client, MessageId.client);
 		this.client = client;
+		
+		ModelValidation.instance().assertPositive(amount.value(), MessageId.moneyAmount);
 		this.amount = amount;
+		
 		this.date = date;
 	}
 

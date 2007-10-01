@@ -1,8 +1,11 @@
 package model.cashBook;
 
+import message.MessageId;
 import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
+
+import validation.ModelValidation;
 
 public class CashExtraction {
 
@@ -12,7 +15,11 @@ public class CashExtraction {
 
 	public CashExtraction(BaseDateTime date, MoneyAmount amount, String note) {
 		this.date = date;
+
+		ModelValidation.instance().assertPositive(amount.value(), MessageId.moneyAmount);
 		this.amount = amount;
+
+		ModelValidation.instance().assertNotNull(note, MessageId.note);
 		this.note = note;
 	}
 
