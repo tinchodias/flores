@@ -1,11 +1,14 @@
 package model.stock;
 
+import message.MessageId;
+import validation.ModelValidation;
+
 public class ArticleGroup {
 
 	private String name;
 
 	public ArticleGroup(String name) {
-		this.name = name;
+		this.setName(name);
 	}
 
 	public String getName() {
@@ -13,6 +16,7 @@ public class ArticleGroup {
 	}
 
 	public void setName(String name) {
+		ModelValidation.instance().assertNotNull(name, MessageId.name);
 		this.name = name;
 	}
 	

@@ -1,8 +1,11 @@
 package model.expense;
 
+import message.MessageId;
 import model.money.MoneyAmount;
 
 import org.joda.time.base.BaseDateTime;
+
+import validation.ModelValidation;
 
 public class Expense {
 
@@ -11,6 +14,7 @@ public class Expense {
 	private final BaseDateTime date;
 
 	public Expense(ExpenseArticle article, MoneyAmount cost, BaseDateTime date) {
+		ModelValidation.instance().assertNotNull(article, MessageId.article);
 		this.article = article;
 		this.cost = cost;
 		this.date = date;

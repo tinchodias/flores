@@ -3,6 +3,8 @@ package message;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
+
 public class SimplePropertiesMessageRepository extends MessageRepository {
 
 	private static final String PROPERTIES_FILE_NAME = "messages.properties";
@@ -18,13 +20,18 @@ public class SimplePropertiesMessageRepository extends MessageRepository {
 	}
 
 	public String get(MessageId messageId) {
-		String property = properties.getProperty(messageId.toString());
-		
-		if (property == null) {
+		return get(messageId, new String[]{});
+	}
+
+	public String get(MessageId messageId, String[] arguments) {
+		String message = properties.getProperty(messageId.toString());
+		if (message == null) {
 			throw new Error("Message not found: " + messageId);
 		}
-		
-		return property;
+		for (int i = 0; i < arguments.length; i++) {
+			message = StringUtils.replaceOnce(message, "%", arguments[i]);
+		}
+		return message;
 	}
 
 }

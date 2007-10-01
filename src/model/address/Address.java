@@ -1,5 +1,8 @@
 package model.address;
 
+import message.MessageId;
+import validation.ModelValidation;
+
 public class Address {
 
 	private String address;
@@ -7,7 +10,7 @@ public class Address {
 	
 	public Address(String address, City city) {
 		this.address = address;
-		this.city = city;
+		this.setCity(city);
 	}
 
 	public String getAddress() {
@@ -23,6 +26,7 @@ public class Address {
 	}
 	
 	public void setCity(City city) {
+		ModelValidation.instance().assertNotNull(city, MessageId.city);
 		this.city = city;
 	}
 	

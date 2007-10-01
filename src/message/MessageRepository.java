@@ -14,5 +14,7 @@ public abstract class MessageRepository {
 	}
 
 	public abstract String get(MessageId messageId);
+
+	public abstract String get(MessageId messageId, String[] arguments);
 	
 }

@@ -42,7 +42,7 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitPrice));
-		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.articleCost));
+		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.unitCost));
 	}
 	
 	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {

@@ -1,6 +1,10 @@
 package model.receipt;
 
+import message.MessageId;
+
 import org.joda.time.base.BaseDateTime;
+
+import validation.ModelValidation;
 
 public class BuyCancellation {
 
@@ -8,6 +12,7 @@ public class BuyCancellation {
 	private final BaseDateTime date;
 
 	public BuyCancellation(Buy buy, BaseDateTime date) {
+		ModelValidation.instance().assertNotNull(buy, MessageId.buy);
 		this.buy = buy;
 		this.date = date;
 	}

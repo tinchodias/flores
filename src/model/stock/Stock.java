@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import validation.ModelValidation;
+
+import message.MessageId;
 import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
@@ -75,6 +78,10 @@ public class Stock {
 
 	private void addToStock(Article article, Double count) {
 		Double actualCount = this.count(article);
+		ModelValidation.instance().assertNotNegative(
+				actualCount + count, 
+				MessageId.insufficientStock, 
+				new String[] {article.toString()});
 		stockArticles.put(article, actualCount + count);
 	}
 
