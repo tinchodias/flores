@@ -6,10 +6,8 @@ import javax.swing.JLabel;
 import message.MessageId;
 import model.money.MoneyAmount;
 import model.stock.Article;
-import persistence.ModelPersistence;
-import query.QueryFactory;
 import ui.controller.action.Action;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.SellItemUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.actionadapter.SelectionListenerAdapter;
@@ -21,6 +19,7 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 	private JFormattedTextField countField;
 	private JFormattedTextField valueField;
 	private JLabel costLabel;
+	private JLabel stockCountLabel;
 
 	public SellItemDialog() {
 		super(MessageId.sellItem);
@@ -30,25 +29,19 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 	}
 
 	private void initComponents() {
+		articlePicker = new ObjectPicker3();
 		countField = SwingUI.instance().decimalField();
 		valueField = SwingUI.instance().currencyField();
 		costLabel = new JLabel(" ");
-		
-		//TODO put this in the correct place
-		articlePicker = new ObjectPicker3();
-		Iterable items = ModelPersistence.instance().loadedModel().store().stockArticles();
-		articlePicker.setQuery(QueryFactory.instance().stringSearchQuery(items));
+		stockCountLabel = new JLabel(" ");
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitPrice));
+		centerPanel().add(SwingUI.instance().label(stockCountLabel, MessageId.stockCount));
 		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.unitCost));
 	}
 	
-	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {
-		articlePicker.setSearchInitializer(initializer);		
-	}
-
 	public Article getArticle() {
 		return (Article) articlePicker.getSelection();
 	}
@@ -65,10 +58,6 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		articlePicker.addSelectionListener(new SelectionListenerAdapter(action));
 	}
 
-	public void setCost(String cost) {
-		costLabel.setText(cost);
-	}
-	
 	public void setValue(double value) {
 		valueField.setValue(value);
 	}
@@ -77,4 +66,16 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		countField.setValue(count);
 	}
 
+	public void setArticleManager(UIModelManager manager) {
+		articlePicker.setUIModelManager(manager);
+	}
+
+	public void setCost(String cost) {
+		costLabel.setText(cost);
+	}
+	
+	public void setStockCount(String count) {
+		stockCountLabel.setText(count);
+	}
+	
 }

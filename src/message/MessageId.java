@@ -29,6 +29,7 @@ public enum MessageId {
 	code, 
 	size,
 	insufficientStock, 
+	stockCount, 
 	
 	//ArticleGroup
 	articleGroups, 
@@ -81,6 +82,7 @@ public enum MessageId {
 	acceptAndContinue, 
 	acceptAndPrint, 
 	moneyAmount, 
+	itemCount, 
 
 	//Address
 	city, 

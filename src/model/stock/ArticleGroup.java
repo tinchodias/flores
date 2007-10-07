@@ -16,7 +16,7 @@ public class ArticleGroup {
 	}
 
 	public void setName(String name) {
-		ModelValidation.instance().assertNotNull(name, MessageId.name);
+		ModelValidation.instance().assertNotBlank(name, MessageId.name);
 		this.name = name;
 	}
 	

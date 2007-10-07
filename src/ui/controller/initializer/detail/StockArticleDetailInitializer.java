@@ -1,6 +1,6 @@
 package ui.controller.initializer.detail;
 
-import ui.controller.initializer.search.ArticleGroupsDialogInitializer;
+import ui.controller.manager.ArticleGroupManager;
 import ui.controller.populator.ArticlePopulator;
 import ui.view.component.DetailUI;
 import ui.view.swing.component.detail.ArticleDialog;
@@ -13,9 +13,7 @@ public class StockArticleDetailInitializer extends DetailDialogInitializer {
 	
 	protected DetailUI baseDialog() {
 		ArticleDialog dialog = new ArticleDialog();
-		
-		dialog.setArticleGroupSearchInitializer(new ArticleGroupsDialogInitializer());
-		
+		dialog.setArticleGroupManager(new ArticleGroupManager());
 		return dialog;
 	}
 	

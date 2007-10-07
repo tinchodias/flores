@@ -1,6 +1,6 @@
 package ui.view.component;
 
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
 
@@ -11,6 +11,6 @@ public interface ClientDebtCancellationUI extends DetailUI {
 
 	JuridicPerson getClient();
 	
-	void setClientSearchInitializer(SearchDialogInitializer initializer);
+	void setClientManager(UIModelManager manager);
 	
 }

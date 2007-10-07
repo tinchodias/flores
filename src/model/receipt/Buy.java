@@ -1,10 +1,13 @@
 package model.receipt;
 
+import message.MessageId;
 import model.JuridicPerson;
-import model.money.Payment;
 import model.money.MoneyAmount;
+import model.money.Payment;
 
 import org.joda.time.base.BaseDateTime;
+
+import validation.ModelValidation;
 
 public class Buy {
 
@@ -16,8 +19,10 @@ public class Buy {
 	private final MoneyAmount paymentTotal;
 
 	public Buy(BuyItems spec, BaseDateTime date, JuridicPerson supplier, Payment payment) {
+		ModelValidation.instance().assertPositive((double) spec.size(), MessageId.itemCount);
 		this.items = spec;
 		this.date = date;
+		ModelValidation.instance().assertNotNull(supplier, MessageId.supplier);
 		this.supplier = supplier;
 		this.payment = payment;
 		

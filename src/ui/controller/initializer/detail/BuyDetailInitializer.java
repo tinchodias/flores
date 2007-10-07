@@ -7,7 +7,7 @@ import query.framework.results.SearchResults;
 import ui.controller.action.RemoveBuyItemAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.AdjustBuyTotalDialogInitializer;
-import ui.controller.initializer.search.SuppliersDialogInitializer;
+import ui.controller.manager.SupplierManager;
 import ui.controller.populator.BuyPopulator;
 import ui.view.component.BuyUI;
 import ui.view.component.DetailUI;
@@ -27,7 +27,7 @@ public class BuyDetailInitializer extends DetailDialogInitializer {
 		
 		buyDialog.getItemsPanel().add(new ShowDialogAction(new CreateBuyItemDialogInitializer(buyDialog), MessageId.create));
 		buyDialog.getItemsPanel().add(new RemoveBuyItemAction(buyDialog));
-		buyDialog.setSupplierSearchInitializer(new SuppliersDialogInitializer());
+		buyDialog.setSupplierManager(new SupplierManager());
 		buyDialog.setAdjustTotalAction(new ShowDialogAction(new AdjustBuyTotalDialogInitializer(buyDialog), MessageId.adjustTotal));
 		
 		return buyDialog;

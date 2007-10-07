@@ -134,7 +134,7 @@ public class StoreFixture {
 			for (int i = 0; i < 5; i++) {
 				BuyItems spec = new BuyItems();
 				for (int j = 0; j < 100; j++) {
-					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(RandomUtils.nextInt(2000)), randomMoneyAmount(20));
+					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(1 + RandomUtils.nextInt(2000)), randomMoneyAmount(20));
 					spec.add(buyItem);
 				}
 				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
@@ -150,7 +150,7 @@ public class StoreFixture {
 				SellItems spec = new SellItems();
 				for (int j = 0; j < 5; j++) {
 					Article article = (Article) oneOf(store.stockArticles());
-					spec.add(article, new Double(RandomUtils.nextInt(20)), randomMoneyAmount(40), store.stock().cost(article));
+					spec.add(article, new Double(1 + RandomUtils.nextInt(20)), randomMoneyAmount(40), store.stock().cost(article));
 				}
 				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (Vendor) oneOf(store.vendors()));
 				store.add(sell);

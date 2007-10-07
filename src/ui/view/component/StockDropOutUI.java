@@ -1,14 +1,14 @@
 package ui.view.component;
 
-import ui.controller.initializer.search.SearchDialogInitializer;
 import model.stock.Article;
+import ui.controller.manager.UIModelManager;
 
 public interface StockDropOutUI extends DetailUI {
 
-	public double getCount();
+	double getCount();
 
-	public Article getArticle();
+	Article getArticle();
 
-	public void setArticleSearchInitializer(SearchDialogInitializer initializer);
+	void setArticleManager(UIModelManager manager);
 	
 }

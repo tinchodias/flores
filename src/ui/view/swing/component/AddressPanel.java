@@ -6,15 +6,15 @@ import javax.swing.JTextField;
 
 import message.MessageId;
 import model.address.City;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.AddressUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class AddressPanel extends JPanel implements AddressUI {
 
 	private JTextField addressField;
-	private ObjectPicker cityPicker;
+	private ObjectPicker3 cityPicker;
 
 	public AddressPanel() {
 		initComponents();
@@ -22,7 +22,7 @@ public class AddressPanel extends JPanel implements AddressUI {
 
 	private void initComponents() {
 		addressField = new JTextField();
-		cityPicker = new ObjectPicker();
+		cityPicker = new ObjectPicker3();
 
 //		setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -48,7 +48,7 @@ public class AddressPanel extends JPanel implements AddressUI {
 		cityPicker.setSelection(city);
 	}
 	
-	public void setCitySearchInitializer(SearchDialogInitializer initializer) {
-		cityPicker.setSearchInitializer(initializer);
+	public void setCityManager(UIModelManager manager) {
+		cityPicker.setUIModelManager(manager);
 	}
 }

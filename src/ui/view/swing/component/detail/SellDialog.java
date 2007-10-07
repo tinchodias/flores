@@ -10,15 +10,15 @@ import message.MessageId;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
 import ui.controller.action.Action;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.SellUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.component.search.SellItemsPanel;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SellDialog extends StandardDetailDialog implements SellUI {
 
-	private ObjectPicker clientPicker;
+	private ObjectPicker3 clientPicker;
 	private SellItemsPanel itemsPanel;
 	private JPanel northPanel;
 	private JFormattedTextField cashField;
@@ -41,7 +41,7 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 	}
 
 	private void initNorthPanel() {
-		clientPicker = new ObjectPicker();
+		clientPicker = new ObjectPicker3();
 		cashField = SwingUI.instance().currencyField();
 		
 		northPanel = new JPanel();
@@ -53,10 +53,6 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 
 	public SellItemsPanel getItemsPanel() {
 		return itemsPanel;
-	}
-
-	public void setClientSearchInitializer(SearchDialogInitializer initializer) {
-		clientPicker.setSearchInitializer(initializer);
 	}
 
 	public JuridicPerson getClient() {
@@ -79,4 +75,8 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 		itemsPanel.setAdjustTotalAction(action);
 	}
 
+	public void setClientManager(UIModelManager manager) {
+		clientPicker.setUIModelManager(manager);
+	}
+	
 }

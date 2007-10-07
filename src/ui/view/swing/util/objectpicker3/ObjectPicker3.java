@@ -19,6 +19,7 @@ import query.framework.query.SearchQuery;
 import query.framework.results.SearchResults;
 import ui.controller.action.objectpicker3.ShowObjectPickerDialog;
 import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 import ui.view.swing.util.objectpicker.SelectionListener;
 
@@ -85,6 +86,11 @@ public class ObjectPicker3 extends Container {
 		fieldNaturalBackgroudColor = field.getBackground();
 	}
 
+	public void setUIModelManager(UIModelManager manager) {
+		setSearchInitializer(manager.searchInitializer());
+		setQuery(manager.stringSearchQuery());
+	}
+	
 	public void setSearchInitializer(SearchDialogInitializer initializer) {
 		button.setAction(new ActionAdapter(new ShowObjectPickerDialog(initializer, this)));
 	}

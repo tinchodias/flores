@@ -1,6 +1,6 @@
 package ui.view.component;
 
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import model.stock.ArticleGroup;
 
 public interface ArticleUI extends DetailUI {
@@ -22,6 +22,6 @@ public interface ArticleUI extends DetailUI {
 	void setArticleGroup(ArticleGroup articleGroup);
 
 	
-	void setArticleGroupSearchInitializer(SearchDialogInitializer initializer);
+	void setArticleGroupManager(UIModelManager manager);
 	
 }

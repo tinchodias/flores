@@ -9,7 +9,7 @@ public class Address {
 	private City city;
 	
 	public Address(String address, City city) {
-		this.address = address;
+		this.setAddress(address);
 		this.setCity(city);
 	}
 
@@ -18,6 +18,7 @@ public class Address {
 	}
 	
 	public void setAddress(String address) {
+		ModelValidation.instance().assertNotBlank(address, MessageId.address);
 		this.address = address;
 	}
 	

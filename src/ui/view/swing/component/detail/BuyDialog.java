@@ -10,15 +10,15 @@ import message.MessageId;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
 import ui.controller.action.Action;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.BuyUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.component.search.BuyItemsPanel;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class BuyDialog extends StandardDetailDialog implements BuyUI {
 
-	private ObjectPicker supplierPicker;
+	private ObjectPicker3 supplierPicker;
 	private BuyItemsPanel itemsPanel;
 	private JPanel northPanel;
 	private JFormattedTextField cashField;
@@ -41,7 +41,7 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 	}
 
 	private void initNorthPanel() {
-		supplierPicker = new ObjectPicker();
+		supplierPicker = new ObjectPicker3();
 		cashField = SwingUI.instance().currencyField();
 		
 		northPanel = new JPanel();
@@ -53,10 +53,6 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 
 	public BuyItemsPanel getItemsPanel() {
 		return itemsPanel;
-	}
-
-	public void setSupplierSearchInitializer(SearchDialogInitializer initializer) {
-		supplierPicker.setSearchInitializer(initializer);
 	}
 
 	public JuridicPerson getSupplier() {
@@ -77,6 +73,10 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 	
 	public void setAdjustTotalAction(Action action) {
 		itemsPanel.setAdjustTotalAction(action);
+	}
+
+	public void setSupplierManager(UIModelManager manager) {
+		supplierPicker.setUIModelManager(manager);
 	}
 
 }

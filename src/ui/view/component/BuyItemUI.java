@@ -2,16 +2,16 @@ package ui.view.component;
 
 import model.money.MoneyAmount;
 import model.stock.Article;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 
 public interface BuyItemUI extends DetailUI {
 
-	public Article getArticle();
+	Article getArticle();
 	
-	public double getCount();
+	double getCount();
 	
-	public MoneyAmount getValue();
+	MoneyAmount getValue();
 	
-	public void setArticleSearchInitializer(SearchDialogInitializer initializer);
+	void setArticleManager(UIModelManager manager);
 
 }

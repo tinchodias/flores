@@ -5,9 +5,7 @@ import javax.swing.JFormattedTextField;
 import message.MessageId;
 import model.money.MoneyAmount;
 import model.stock.Article;
-import persistence.ModelPersistence;
-import query.QueryFactory;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.BuyItemUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.objectpicker3.ObjectPicker3;
@@ -28,19 +26,11 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 	private void initComponents() {
 		countField = SwingUI.instance().decimalField();
 		valueField = SwingUI.instance().currencyField();
-		
-		//TODO put this in the correct place
 		articlePicker = new ObjectPicker3();
-		Iterable items = ModelPersistence.instance().loadedModel().store().stockArticles();
-		articlePicker.setQuery(QueryFactory.instance().stringSearchQuery(items));
 		
 		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
 		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitCost));
-	}
-	
-	public void setArticleSearchInitializer(SearchDialogInitializer initializer) {
-		articlePicker.setSearchInitializer(initializer);		
 	}
 
 	public Article getArticle() {
@@ -53,6 +43,10 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 
 	public MoneyAmount getValue() {
 		return SwingUI.instance().moneyAmountFrom(valueField);
+	}
+
+	public void setArticleManager(UIModelManager manager) {
+		articlePicker.setUIModelManager(manager);
 	}
 
 }
