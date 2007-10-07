@@ -1,5 +1,8 @@
 package model.stock;
 
+import message.MessageId;
+import validation.ModelValidation;
+
 
 public class Article {
 
@@ -37,6 +40,7 @@ public class Article {
 	}
 
 	public void setGroup(ArticleGroup group) {
+		ModelValidation.instance().assertNotNull(group, MessageId.articleGroup);
 		this.group = group;
 	}
 
@@ -45,6 +49,7 @@ public class Article {
 	}
 
 	public void setName(String name) {
+		ModelValidation.instance().assertNotBlank(name, MessageId.name);
 		this.name = name;
 	}
 

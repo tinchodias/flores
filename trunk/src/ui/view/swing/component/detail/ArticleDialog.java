@@ -4,17 +4,17 @@ import javax.swing.JTextField;
 
 import message.MessageId;
 import model.stock.ArticleGroup;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.ArticleUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 
 	private JTextField codeField;
 	private JTextField nameField;
 	private JTextField sizeField;
-	private ObjectPicker groupPicker;
+	private ObjectPicker3 groupPicker;
 
 	public ArticleDialog() {
 		super(MessageId.article);
@@ -27,7 +27,7 @@ public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 		codeField = new JTextField();
 		nameField = new JTextField();
 		sizeField = new JTextField();
-		groupPicker = new ObjectPicker();
+		groupPicker = new ObjectPicker3();
 		
 		centerPanel().add(SwingUI.instance().label(codeField, MessageId.code));
 		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
@@ -43,8 +43,8 @@ public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 		return nameField.getText();
 	}
 
-	public void setArticleGroupSearchInitializer(SearchDialogInitializer initializer) {
-		groupPicker.setSearchInitializer(initializer);
+	public void setArticleGroupManager(UIModelManager manager) {
+		groupPicker.setUIModelManager(manager);
 	}
 
 	public String getCode() {

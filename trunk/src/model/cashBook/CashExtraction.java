@@ -19,7 +19,7 @@ public class CashExtraction {
 		ModelValidation.instance().assertPositive(amount.value(), MessageId.moneyAmount);
 		this.amount = amount;
 
-		ModelValidation.instance().assertNotNull(note, MessageId.note);
+		ModelValidation.instance().assertNotBlank(note, MessageId.note);
 		this.note = note;
 	}
 

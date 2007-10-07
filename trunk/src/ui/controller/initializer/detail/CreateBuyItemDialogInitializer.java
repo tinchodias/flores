@@ -7,7 +7,7 @@ import ui.controller.action.CompositeAction;
 import ui.controller.action.CreateBuyItemAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.DialogInitializer;
-import ui.controller.initializer.search.StockDialogInitializer;
+import ui.controller.manager.StockManager;
 import ui.view.component.BuyUI;
 import ui.view.component.DialogUI;
 import ui.view.swing.component.detail.BuyItemDialog;
@@ -23,7 +23,7 @@ public class CreateBuyItemDialogInitializer implements DialogInitializer {
 	public DialogUI dialog() {
 		BuyItemDialog dialog = new BuyItemDialog();
 		
-		dialog.setArticleSearchInitializer(new StockDialogInitializer());
+		dialog.setArticleManager(new StockManager());
 
 		Action createBuyItemAction = new CreateBuyItemAction(dialog, buyUI);
 		Action showAction = new ShowDialogAction(this);

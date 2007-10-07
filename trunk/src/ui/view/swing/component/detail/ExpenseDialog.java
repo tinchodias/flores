@@ -5,14 +5,14 @@ import javax.swing.JFormattedTextField;
 import message.MessageId;
 import model.expense.ExpenseArticle;
 import model.money.MoneyAmount;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.ExpenseUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class ExpenseDialog extends StandardDetailDialog implements ExpenseUI {
 
-	private ObjectPicker expenseArticlePicker;
+	private ObjectPicker3 expenseArticlePicker;
 	private JFormattedTextField costField;
 
 	public ExpenseDialog() {
@@ -23,7 +23,7 @@ public class ExpenseDialog extends StandardDetailDialog implements ExpenseUI {
 	}
 
 	private void initComponents() {
-		expenseArticlePicker = new ObjectPicker();
+		expenseArticlePicker = new ObjectPicker3();
 		costField = SwingUI.instance().currencyField();
 		
 		centerPanel().add(SwingUI.instance().label(expenseArticlePicker, MessageId.expenseArticle));
@@ -38,8 +38,8 @@ public class ExpenseDialog extends StandardDetailDialog implements ExpenseUI {
 		return (ExpenseArticle) expenseArticlePicker.getSelection();
 	}
 
-	public void setExpenseArticleSearchInitializer(SearchDialogInitializer initializer) {
-		expenseArticlePicker.setSearchInitializer(initializer);
+	public void setExpenseArticleManager(UIModelManager manager) {
+		expenseArticlePicker.setUIModelManager(manager);
 	}
 	
 }

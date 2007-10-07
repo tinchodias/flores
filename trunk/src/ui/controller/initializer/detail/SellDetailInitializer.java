@@ -13,7 +13,7 @@ import ui.controller.action.PrintSellReportAction;
 import ui.controller.action.RemoveSellItemAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.AdjustSellTotalDialogInitializer;
-import ui.controller.initializer.search.ClientsDialogInitializer;
+import ui.controller.manager.ClientManager;
 import ui.controller.populator.SellPopulator;
 import ui.view.component.DetailUI;
 import ui.view.component.SellUI;
@@ -33,7 +33,7 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 		
 		sellDialog.getItemsPanel().add(new ShowDialogAction(new CreateSellItemDialogInitializer(sellDialog), MessageId.create));
 		sellDialog.getItemsPanel().add(new RemoveSellItemAction(sellDialog));
-		sellDialog.setClientSearchInitializer(new ClientsDialogInitializer());
+		sellDialog.setClientManager(new ClientManager());
 		sellDialog.setAdjustTotalAction(new ShowDialogAction(new AdjustSellTotalDialogInitializer(sellDialog), MessageId.adjustTotal));
 		
 		return sellDialog;

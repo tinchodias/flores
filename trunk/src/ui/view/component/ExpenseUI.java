@@ -1,8 +1,8 @@
 package ui.view.component;
 
-import ui.controller.initializer.search.SearchDialogInitializer;
 import model.expense.ExpenseArticle;
 import model.money.MoneyAmount;
+import ui.controller.manager.UIModelManager;
 
 
 public interface ExpenseUI extends DetailUI {
@@ -11,6 +11,6 @@ public interface ExpenseUI extends DetailUI {
 
 	MoneyAmount getCost();
 	
-	void setExpenseArticleSearchInitializer(SearchDialogInitializer initializer);
+	void setExpenseArticleManager(UIModelManager manager);
 	
 }

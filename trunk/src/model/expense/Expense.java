@@ -14,7 +14,8 @@ public class Expense {
 	private final BaseDateTime date;
 
 	public Expense(ExpenseArticle article, MoneyAmount cost, BaseDateTime date) {
-		ModelValidation.instance().assertNotNull(article, MessageId.article);
+		ModelValidation.instance().assertNotNull(article, MessageId.expenseArticle);
+		ModelValidation.instance().assertPositive(cost.value(), MessageId.cashPay);
 		this.article = article;
 		this.cost = cost;
 		this.date = date;

@@ -3,7 +3,7 @@ package ui.view.component;
 import model.money.MoneyAmount;
 import model.stock.Article;
 import ui.controller.action.Action;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 
 public interface SellItemUI extends DetailUI {
 
@@ -17,10 +17,12 @@ public interface SellItemUI extends DetailUI {
 	
 	void setValue(double value);
 	
-	void setArticleSearchInitializer(SearchDialogInitializer initializer);
+	void setArticleManager(UIModelManager manager);
 
 	void addOnArticleSelectionAction(Action action);
 	
 	void setCost(String cost);
+	
+	void setStockCount(String count);
 	
 }

@@ -1,7 +1,7 @@
 package ui.view.component;
 
-import ui.controller.initializer.search.SearchDialogInitializer;
 import model.address.City;
+import ui.controller.manager.UIModelManager;
 
 public interface AddressUI {
 
@@ -13,6 +13,6 @@ public interface AddressUI {
 	
 	public void setCity(City city);
 	
-	public void setCitySearchInitializer(SearchDialogInitializer initializer);
+	public void setCityManager(UIModelManager manager);
 	
 }

@@ -5,15 +5,15 @@ import javax.swing.JFormattedTextField;
 import message.MessageId;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
-import ui.controller.initializer.search.SearchDialogInitializer;
+import ui.controller.manager.UIModelManager;
 import ui.view.component.ClientDebtCancellationUI;
 import ui.view.swing.SwingUI;
-import ui.view.swing.util.objectpicker.ObjectPicker;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class ClientDebtCancellationDialog extends StandardDetailDialog implements ClientDebtCancellationUI {
 
 	private JFormattedTextField amountField;
-	private ObjectPicker clientPicker;
+	private ObjectPicker3 clientPicker;
 
 	public ClientDebtCancellationDialog() {
 		super(MessageId.clientDebtCancellation);
@@ -24,7 +24,7 @@ public class ClientDebtCancellationDialog extends StandardDetailDialog implement
 
 	private void initComponents() {
 		amountField = SwingUI.instance().currencyField();
-		clientPicker = new ObjectPicker();
+		clientPicker = new ObjectPicker3();
 		
 		centerPanel().add(SwingUI.instance().label(clientPicker, MessageId.client));
 		centerPanel().add(SwingUI.instance().label(amountField, MessageId.amount));
@@ -38,8 +38,8 @@ public class ClientDebtCancellationDialog extends StandardDetailDialog implement
 		return (JuridicPerson) clientPicker.getSelection();
 	}
 
-	public void setClientSearchInitializer(SearchDialogInitializer initializer) {
-		clientPicker.setSearchInitializer(initializer);
+	public void setClientManager(UIModelManager manager) {
+		clientPicker.setUIModelManager(manager);
 	}
 	
 }
