@@ -39,12 +39,14 @@ public class ClientsDebts {
 	public void add(LostDebtDeclaration declaration) {
 		declarations.add(declaration);
 		reduceDebt(declaration.getClient(), declaration.getAmount());
+		store.clientMovements().apply(declaration);
 	}
 
 	public void add(ClientDebtCancellation cancellation) {
 		cancellations.add(cancellation);
 		reduceDebt(cancellation.getClient(), cancellation.getAmount());
 		store.cashBook().apply(cancellation);
+		store.clientMovements().apply(cancellation);
 	}
 
 	public void apply(Sell sell) {

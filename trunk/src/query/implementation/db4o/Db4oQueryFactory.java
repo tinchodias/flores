@@ -6,6 +6,7 @@ import model.JuridicPerson;
 import model.address.City;
 import model.cashBook.CashBookEntry;
 import model.cashBook.CashExtraction;
+import model.clientMovements.ClientMovement;
 import model.debts.ClientDebtCancellation;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
@@ -25,6 +26,7 @@ import query.criteria.ExpenseArticleSearchCriteria;
 import query.criteria.IntervalSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
+import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResults;
@@ -36,6 +38,7 @@ import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CashExtractionSearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
 import query.results.ClientDebtCancellationSearchResultsSpecification;
+import query.results.ClientMovementSearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
@@ -234,6 +237,22 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery clientDebtCancellationsSearchQuery() {
 		return standardSodaIntervalQuery(ClientDebtCancellation.class, new ClientDebtCancellationSearchResultsSpecification());
+	}
+	
+	public SearchQuery clientMovementsQuery() {
+		return new StandardSodaSearchQuery<ClientMovementSearchCriteria>() {
+			
+			protected Query query() {
+				Query query = queryFor(ClientMovement.class);
+				constrainInterval(query, criteria().getInterval());
+				constrainEquals(query, "client", criteria().getClient());
+				return query;
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ClientMovementSearchResultsSpecification();
+			}
+		};
 	}
 	
 }

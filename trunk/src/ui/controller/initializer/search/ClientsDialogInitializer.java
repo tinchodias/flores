@@ -3,6 +3,7 @@ package ui.controller.initializer.search;
 import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
+import ui.controller.initializer.DialogInitializer;
 import ui.controller.initializer.detail.ClientDetailInitializer;
 import ui.view.swing.component.search.ClientSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
@@ -13,6 +14,10 @@ public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 	protected void addActions(StandardSearchDialog searchDialog) {
 		addShowCreatingAction(new ClientDetailInitializer(), searchDialog);
 		addShowModifyingAction(new ClientDetailInitializer(), searchDialog);
+		
+		DialogInitializer movementsDialogInitializer = new ClientMovementsDialogInitializer(
+				new SingleSelectionValueHolder(searchDialog.getSearchPanel()));
+		addShowOnSelectionAction(movementsDialogInitializer, MessageId.clientMovements, searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {

@@ -105,6 +105,7 @@ public enum MessageId {
 	costTotal, 
 	sellTotal, 
 	sellItem, 
+	sellToString, 
 	
 	//CashBook
 	cashBook, 
@@ -123,7 +124,11 @@ public enum MessageId {
 	//Client Debt Cancellations
 	clientDebtCancellations, 
 	clientDebtCancellation, 
-
+	clientDebtCancellationToString,
+	
+	//Lost Debt Declarations
+	lostDebtDeclarationToString,
+	
 	//Commissions
 	commissionCalculation, 
 	commissionSummary, 
@@ -134,6 +139,10 @@ public enum MessageId {
 	assertNotNull, 
 	assertPositive, 
 	assertNotNegative, 
+	
+	//Client Movements
+	clientMovements, 
+	clientMovement, 
 	
 	;
 	

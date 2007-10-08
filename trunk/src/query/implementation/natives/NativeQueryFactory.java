@@ -283,5 +283,9 @@ public class NativeQueryFactory extends QueryFactory {
 	public SearchQuery clientDebtCancellationsSearchQuery() {
 		throw new NotImplementedException();
 	}
+
+	public SearchQuery clientMovementsQuery() {
+		throw new NotImplementedException();
+	}
 	
 }

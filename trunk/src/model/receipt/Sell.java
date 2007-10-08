@@ -1,6 +1,7 @@
 package model.receipt;
 
 import message.MessageId;
+import message.MessageRepository;
 import model.JuridicPerson;
 import model.Vendor;
 import model.money.MoneyAmount;
@@ -69,5 +70,11 @@ public class Sell {
 
 	public MoneyAmount paymentTotal() {
 		return paymentTotal;
+	}
+	
+	@Override
+	public String toString() {
+		return MessageRepository.instance().get(MessageId.sellToString, 
+				new String[] {client().toString(), sellTotal().toString(), paymentTotal().toString()});
 	}
 }
