@@ -82,7 +82,8 @@ public enum MessageId {
 	acceptAndContinue, 
 	acceptAndPrint, 
 	moneyAmount, 
-	itemCount, 
+	itemCount,
+	interval,
 
 	//Address
 	city, 
@@ -127,6 +128,8 @@ public enum MessageId {
 	clientDebtCancellationToString,
 	
 	//Lost Debt Declarations
+	lostDebtDeclarations,
+	lostDebtDeclaration,
 	lostDebtDeclarationToString,
 	
 	//Commissions

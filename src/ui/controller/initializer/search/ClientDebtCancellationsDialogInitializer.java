@@ -22,7 +22,7 @@ public class ClientDebtCancellationsDialogInitializer extends StandardSearchDial
 		return QueryFactory.instance().clientDebtCancellationsSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.clientDebtCancellations;
 	}
 

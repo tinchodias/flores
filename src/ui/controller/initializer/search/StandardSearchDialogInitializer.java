@@ -33,7 +33,7 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 
 	protected abstract SearchQuery searchQuery();
 
-	protected abstract MessageId titleMessageId();
+	public abstract MessageId titleMessageId();
 
 	protected abstract void addActions(StandardSearchDialog searchDialog);
 

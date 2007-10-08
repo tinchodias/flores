@@ -22,7 +22,7 @@ public class PricePercentagesDialogInitializer extends StandardSearchDialogIniti
 		return QueryFactory.instance().pricePercentageSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.pricesDialogTitle;
 	}
 

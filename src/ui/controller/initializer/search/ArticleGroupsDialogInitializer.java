@@ -23,7 +23,7 @@ public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitiali
 		return QueryFactory.instance().articleGroupSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.articleGroup;
 	}
 

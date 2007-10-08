@@ -25,15 +25,17 @@ import ui.controller.initializer.search.ClientDebtCancellationsDialogInitializer
 import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.ExpensesDialogInitializer;
+import ui.controller.initializer.search.LostDebtDeclarationsDialogInitializer;
 import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
+import ui.controller.initializer.search.StandardSearchDialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.controller.initializer.search.StockDropOutsDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
 import ui.view.component.MainUI;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
-//TODO Remove Action instanciations from here.
+//TODO Remove Action instantiations from here.
 
 public class MainFrame extends JFrame implements MainUI {
 
@@ -70,12 +72,12 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newStoreMenu() {
 		storeMenu = new JMenu("Stock");
 
-		addJMenuItem(storeMenu, new BuysDialogInitializer(), MessageId.buys);
-		addJMenuItem(storeMenu, new SellsDialogInitializer(), MessageId.sells);
-		addJMenuItem(storeMenu, new StockDialogInitializer(), MessageId.stockDialogTitle);
-		addJMenuItem(storeMenu, new PricePercentagesDialogInitializer(), MessageId.pricesDialogTitle);
-		addJMenuItem(storeMenu, new ArticleGroupsDialogInitializer(), MessageId.articleGroups);
-		addJMenuItem(storeMenu, new StockDropOutsDialogInitializer(), MessageId.stockDropOuts);
+		addJMenuItem(storeMenu, new BuysDialogInitializer());
+		addJMenuItem(storeMenu, new SellsDialogInitializer());
+		addJMenuItem(storeMenu, new StockDialogInitializer());
+		addJMenuItem(storeMenu, new PricePercentagesDialogInitializer());
+		addJMenuItem(storeMenu, new ArticleGroupsDialogInitializer());
+		addJMenuItem(storeMenu, new StockDropOutsDialogInitializer());
 		
 		return storeMenu;
 	}
@@ -84,10 +86,10 @@ public class MainFrame extends JFrame implements MainUI {
 		cashMenu = new JMenu("Caja");
 
 		addJMenuItem(cashMenu, new ShowCurrentCashAction());
-		addJMenuItem(cashMenu, new CashBookDialogInitializer(), MessageId.cashBook);
-		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer(), MessageId.expensesArticles);
-		addJMenuItem(cashMenu, new ExpensesDialogInitializer(), MessageId.expenses);
-		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer(), MessageId.cashExtractions);
+		addJMenuItem(cashMenu, new CashBookDialogInitializer());
+		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer());
+		addJMenuItem(cashMenu, new ExpensesDialogInitializer());
+		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer());
 		addJMenuItem(cashMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
 		
 		return cashMenu;
@@ -96,10 +98,11 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newPersonsMenu() {
 		personsMenu = new JMenu("Personas");
 
-		addJMenuItem(personsMenu, new ClientsDialogInitializer(), MessageId.clients);
-		addJMenuItem(personsMenu, new SuppliersDialogInitializer(), MessageId.suppliers);
-		addJMenuItem(personsMenu, new CitiesDialogInitializer(), MessageId.cities);
-		addJMenuItem(personsMenu, new ClientDebtCancellationsDialogInitializer(), MessageId.clientDebtCancellations);
+		addJMenuItem(personsMenu, new ClientsDialogInitializer());
+		addJMenuItem(personsMenu, new SuppliersDialogInitializer());
+		addJMenuItem(personsMenu, new CitiesDialogInitializer());
+		addJMenuItem(personsMenu, new ClientDebtCancellationsDialogInitializer());
+		addJMenuItem(personsMenu, new LostDebtDeclarationsDialogInitializer());
 		
 		return personsMenu;
 	}
@@ -116,6 +119,10 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(menu, new ShowDialogAction(initializer, messageId));
 	}
 
+	private static void addJMenuItem(JMenu menu, StandardSearchDialogInitializer initializer) {
+		addJMenuItem(menu, new ShowDialogAction(initializer, initializer.titleMessageId()));
+	}
+	
 	private static void addJMenuItem(JMenu menu, Action action) {
 		menu.add(new ActionAdapter(action));
 	}

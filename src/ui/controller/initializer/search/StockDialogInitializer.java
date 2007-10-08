@@ -23,7 +23,7 @@ public class StockDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().stockArticleSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.stockDialogTitle;
 	}
 

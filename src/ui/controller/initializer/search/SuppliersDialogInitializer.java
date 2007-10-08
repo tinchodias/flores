@@ -23,7 +23,7 @@ public class SuppliersDialogInitializer extends StandardSearchDialogInitializer 
 		return QueryFactory.instance().suppliersSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.suppliers;
 	}
 

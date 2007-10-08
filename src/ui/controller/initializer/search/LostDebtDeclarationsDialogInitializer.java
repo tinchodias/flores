@@ -3,15 +3,15 @@ package ui.controller.initializer.search;
 import message.MessageId;
 import query.QueryFactory;
 import query.framework.query.SearchQuery;
-import ui.controller.initializer.detail.CashExtractionDetailInitializer;
+import ui.controller.initializer.detail.LostDebtDeclarationDetailInitializer;
 import ui.view.swing.component.search.IntervalSearchPanel;
 import ui.view.swing.component.search.StandardSearchDialog;
 import ui.view.swing.component.search.StandardSearchPanel;
 
-public class CashExtractionsDialogInitializer extends StandardSearchDialogInitializer {
+public class LostDebtDeclarationsDialogInitializer extends StandardSearchDialogInitializer {
 
 	protected void addActions(StandardSearchDialog searchDialog) {
-		addShowCreatingAction(new CashExtractionDetailInitializer(), searchDialog);
+		addShowCreatingAction(new LostDebtDeclarationDetailInitializer(), searchDialog);
 	}
 
 	protected StandardSearchPanel searchPanel() {
@@ -19,11 +19,11 @@ public class CashExtractionsDialogInitializer extends StandardSearchDialogInitia
 	}
 
 	protected SearchQuery searchQuery() {
-		return QueryFactory.instance().cashExtractionsSearchQuery();
+		return QueryFactory.instance().lostDebtDeclarationsSearchQuery();
 	}
 
 	public MessageId titleMessageId() {
-		return MessageId.cashExtractions;
+		return MessageId.lostDebtDeclarations;
 	}
 
 }

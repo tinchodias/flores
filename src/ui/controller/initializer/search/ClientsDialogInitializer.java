@@ -28,7 +28,7 @@ public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().clientSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.clients;
 	}
 

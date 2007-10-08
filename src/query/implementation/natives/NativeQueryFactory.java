@@ -284,6 +284,10 @@ public class NativeQueryFactory extends QueryFactory {
 		throw new NotImplementedException();
 	}
 
+	public SearchQuery lostDebtDeclarationsSearchQuery() {
+		throw new NotImplementedException();
+	}
+	
 	public SearchQuery clientMovementsQuery() {
 		throw new NotImplementedException();
 	}

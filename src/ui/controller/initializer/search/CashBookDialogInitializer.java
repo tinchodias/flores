@@ -22,7 +22,7 @@ public class CashBookDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().cashBookEntrySearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.cashBook;
 	}
 

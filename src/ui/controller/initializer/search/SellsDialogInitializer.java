@@ -27,7 +27,7 @@ public class SellsDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().sellSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.sells;
 	}
 

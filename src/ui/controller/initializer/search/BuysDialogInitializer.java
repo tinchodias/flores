@@ -23,7 +23,7 @@ public class BuysDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().buySearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.buys;
 	}
 
