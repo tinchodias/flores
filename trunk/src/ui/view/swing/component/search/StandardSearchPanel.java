@@ -29,6 +29,7 @@ import ui.view.swing.util.actionadapter.ClickAdapter;
 
 public abstract class StandardSearchPanel extends JPanel implements SearchUI, Criteria {
 
+	private static final Dimension BUTTON_SIZE = new Dimension(125, 32);
 	private JPanel buttonPanel;
 	private JPanel centerPanel;
 	private JPanel resultsPanel;
@@ -62,7 +63,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 32)));
+		buttonPanel.setLayout(new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, BUTTON_SIZE));
 	}
 
 	private void initCenterPanel() {

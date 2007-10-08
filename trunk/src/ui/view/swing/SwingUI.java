@@ -44,6 +44,7 @@ import ui.UI;
 import ui.view.swing.component.MainFrame;
 import ui.view.swing.util.CashBookCellRenderer;
 import ui.view.swing.util.DateTimePicker;
+import ui.view.swing.util.IntervalPicker;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.MoneyAmountTableCellRenderer;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
@@ -85,20 +86,23 @@ public class SwingUI extends UI {
 		return labeledPanel;
 	}
 	
+	//TODO horrible!
 	public JComponent decorated(final JComponent component) {
+		if (component instanceof IntervalPicker) {
+			return component; //Does nothing
+		}
 		FocusListener listener = focusEffectListenerFor(component);
 		
-		//TODO horrible!
 		if (component instanceof ObjectPicker3) {
 			ObjectPicker3 picker = (ObjectPicker3) component;
 			picker.getField().addFocusListener(listener);
 			picker.getButton().addFocusListener(listener);
-		} else if (component instanceof JScrollPane) {
-			((JScrollPane) component).getViewport().getView().addFocusListener(listener);
 		} else if (component instanceof DateTimePicker) {
 			((DateTimePicker) component).getSpinner().getEditor().addFocusListener(listener);
 			((DateTimePicker) component).getSpinner().addFocusListener(listener);
 			((DateTimePicker) component).addFocusListener(listener);
+		} else if (component instanceof JScrollPane) {
+			((JScrollPane) component).getViewport().getView().addFocusListener(listener);
 		} else {
 			component.addFocusListener(listener);
 		}

@@ -28,7 +28,7 @@ public class ClientMovementsDialogInitializer extends StandardSearchDialogInitia
 		return QueryFactory.instance().clientMovementsQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.clientMovements;
 	}
 

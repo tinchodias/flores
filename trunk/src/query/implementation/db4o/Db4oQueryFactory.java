@@ -8,6 +8,7 @@ import model.cashBook.CashBookEntry;
 import model.cashBook.CashExtraction;
 import model.clientMovements.ClientMovement;
 import model.debts.ClientDebtCancellation;
+import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;
@@ -42,6 +43,7 @@ import query.results.ClientMovementSearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
+import query.results.LostDebtDeclarationSearchResultsSpecification;
 import query.results.PricePercentageSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
@@ -237,6 +239,10 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery clientDebtCancellationsSearchQuery() {
 		return standardSodaIntervalQuery(ClientDebtCancellation.class, new ClientDebtCancellationSearchResultsSpecification());
+	}
+
+	public SearchQuery lostDebtDeclarationsSearchQuery() {
+		return standardSodaIntervalQuery(LostDebtDeclaration.class, new LostDebtDeclarationSearchResultsSpecification());
 	}
 	
 	public SearchQuery clientMovementsQuery() {

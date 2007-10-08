@@ -23,7 +23,7 @@ public class ExpensesArticlesDialogInitializer extends StandardSearchDialogIniti
 		return QueryFactory.instance().expensesArticlesSearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.expensesArticles;
 	}
 

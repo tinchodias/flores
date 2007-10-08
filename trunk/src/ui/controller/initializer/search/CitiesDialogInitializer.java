@@ -20,7 +20,7 @@ public class CitiesDialogInitializer extends StandardSearchDialogInitializer {
 		return QueryFactory.instance().citySearchQuery();
 	}
 
-	protected MessageId titleMessageId() {
+	public MessageId titleMessageId() {
 		return MessageId.cities;
 	}
 

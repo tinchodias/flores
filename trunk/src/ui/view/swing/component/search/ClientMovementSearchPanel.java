@@ -5,6 +5,7 @@ import model.JuridicPerson;
 import org.joda.time.ReadableInterval;
 
 import query.framework.criteria.ClientMovementSearchCriteria;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.IntervalPicker;
 import util.TimeUtils;
 import util.ValueHolder;
@@ -23,7 +24,7 @@ public class ClientMovementSearchPanel extends StandardSearchPanel implements Cl
 		intervalPicker = new IntervalPicker();
 		intervalPicker.setInterval(TimeUtils.recentYearsInterval(2));
 		
-		filtersPanel().add(intervalPicker);		
+		filtersPanel().add(SwingUI.instance().decorated(intervalPicker));		
 	}
 
 	public ReadableInterval getInterval() {
