@@ -25,8 +25,8 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 		articlePicker = new ObjectPicker3();
 		countField = SwingUI.instance().decimalField();
 		
-		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
-		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
+		centerPanel().add(SwingUI.instance().decorated(articlePicker, MessageId.article));
+		centerPanel().add(SwingUI.instance().decorated(countField, MessageId.count));
 	}
 
 	public double getCount() {

@@ -17,7 +17,7 @@ public class ClientSearchPanel extends StandardSearchPanel implements ClientSear
 	private void initComponents() {
 		clientNameField = new JTextField();
 		
-		this.filtersPanel().add(SwingUI.instance().label(clientNameField, MessageId.clientName));
+		this.filtersPanel().add(SwingUI.instance().decorated(clientNameField, MessageId.clientName));
 	}
 
 	public String getClientName() {

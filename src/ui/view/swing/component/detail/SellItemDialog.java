@@ -35,11 +35,11 @@ public class SellItemDialog extends StandardDetailDialog implements SellItemUI {
 		costLabel = new JLabel(" ");
 		stockCountLabel = new JLabel(" ");
 		
-		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
-		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
-		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitPrice));
-		centerPanel().add(SwingUI.instance().label(stockCountLabel, MessageId.stockCount));
-		centerPanel().add(SwingUI.instance().label(costLabel, MessageId.unitCost));
+		centerPanel().add(SwingUI.instance().decorated(articlePicker, MessageId.article));
+		centerPanel().add(SwingUI.instance().decorated(countField, MessageId.count));
+		centerPanel().add(SwingUI.instance().decorated(valueField, MessageId.unitPrice));
+		centerPanel().add(SwingUI.instance().decorated(stockCountLabel, MessageId.stockCount));
+		centerPanel().add(SwingUI.instance().decorated(costLabel, MessageId.unitCost));
 	}
 	
 	public Article getArticle() {

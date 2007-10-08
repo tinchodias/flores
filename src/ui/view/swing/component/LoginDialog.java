@@ -29,13 +29,13 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 		nameField = new JTextField("admin");
 		passwordField = new JPasswordField("123");
 		loginButton = new JButton();
-		
+
 		getRootPane().setDefaultButton(loginButton);
 
 		centerPanel().setLayout(new BoxLayout(centerPanel(), BoxLayout.PAGE_AXIS));
-		centerPanel().add(SwingUI.instance().label(nameField, MessageId.userName));
-		centerPanel().add(SwingUI.instance().label(passwordField, MessageId.userPassword));
-		buttonPanel().add(loginButton);
+		centerPanel().add(SwingUI.instance().decorated(nameField, MessageId.userName));
+		centerPanel().add(SwingUI.instance().decorated(passwordField, MessageId.userPassword));
+		buttonPanel().add(SwingUI.instance().decorated(loginButton));
 	}
 
 	public String getUserName() {

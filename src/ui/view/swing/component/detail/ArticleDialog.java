@@ -29,10 +29,10 @@ public class ArticleDialog extends StandardDetailDialog implements ArticleUI {
 		sizeField = new JTextField();
 		groupPicker = new ObjectPicker3();
 		
-		centerPanel().add(SwingUI.instance().label(codeField, MessageId.code));
-		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
-		centerPanel().add(SwingUI.instance().label(sizeField, MessageId.size));
-		centerPanel().add(SwingUI.instance().label(groupPicker, MessageId.articleGroup));
+		centerPanel().add(SwingUI.instance().decorated(codeField, MessageId.code));
+		centerPanel().add(SwingUI.instance().decorated(nameField, MessageId.name));
+		centerPanel().add(SwingUI.instance().decorated(sizeField, MessageId.size));
+		centerPanel().add(SwingUI.instance().decorated(groupPicker, MessageId.articleGroup));
 	}
 
 	public ArticleGroup getArticleGroup() {

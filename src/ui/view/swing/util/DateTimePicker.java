@@ -1,15 +1,15 @@
 package ui.view.swing.util;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 
+import javax.swing.JComponent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
 import org.joda.time.DateTime;
 import org.joda.time.ReadableDateTime;
 
-public class DateTimePicker extends Container {
+public class DateTimePicker extends JComponent {
 
 	private JSpinner spinner;
 
@@ -54,6 +54,10 @@ public class DateTimePicker extends Container {
 	
 	public ReadableDateTime getDateTime() {
 		return new DateTime(spinner.getValue());
+	}
+
+	public JSpinner getSpinner() {
+		return spinner;
 	}
 	
 }

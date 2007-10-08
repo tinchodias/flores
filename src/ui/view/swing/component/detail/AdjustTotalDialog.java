@@ -21,7 +21,7 @@ public class AdjustTotalDialog extends StandardDetailDialog implements AdjustTot
 	private void init() {
 		adjustedTotal = SwingUI.instance().currencyField();
 		
-		centerPanel().add(SwingUI.instance().label(adjustedTotal, MessageId.adjustedTotal));
+		centerPanel().add(SwingUI.instance().decorated(adjustedTotal, MessageId.adjustedTotal));
 	}
 
 	public MoneyAmount getAdjustedTotal() {

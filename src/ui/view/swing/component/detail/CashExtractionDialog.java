@@ -24,8 +24,8 @@ public class CashExtractionDialog extends StandardDetailDialog implements CashEx
 		amountField = SwingUI.instance().currencyField();
 		noteField = new JTextField();
 		
-		centerPanel().add(SwingUI.instance().label(amountField, MessageId.amount));
-		centerPanel().add(SwingUI.instance().label(noteField, MessageId.note));
+		centerPanel().add(SwingUI.instance().decorated(amountField, MessageId.amount));
+		centerPanel().add(SwingUI.instance().decorated(noteField, MessageId.note));
 	}
 
 	public MoneyAmount getAmount() {

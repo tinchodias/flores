@@ -62,7 +62,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 
 	private void initButtonPanel() {
 		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 25)));
+		buttonPanel.setLayout(new FixedBoxLayout(buttonPanel, BoxLayout.PAGE_AXIS, new Dimension(120, 32)));
 	}
 
 	private void initCenterPanel() {
@@ -92,7 +92,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		filtersButtonsPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		filtersButtonsPanel.setVisible(false);
 		
-		filtersButtonsPanel.add(searchButton);
+		filtersButtonsPanel.add(SwingUI.instance().decorated(searchButton));
 		
 	}
 
@@ -108,7 +108,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		resultsPanel.setLayout(new BorderLayout());
 		tableModelAdapter = new TableModelAdapter();
 		resultsTable = SwingUI.instance().table(tableModelAdapter);
-		resultsPanel.add(new JScrollPane(resultsTable));
+		resultsPanel.add(SwingUI.instance().decorated(new JScrollPane(resultsTable)));
 	}
 
 	protected JPanel buttonPanel() {
@@ -165,21 +165,13 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	
 	public void add(Action action) {
 		JButton button = new JButton(new ActionAdapter(action));
-		buttonPanel().add(button);
+		buttonPanel().add(SwingUI.instance().decorated(button));
 		
 		// Makes visible the east panel (initially hidden)
 		eastPanel.setVisible(true);
 	}
 	
 	public void setDefaultAction(Action action) {
-//		for (int i = 0; i < buttonPanel().getComponentCount(); i++) {
-//			JButton button = (JButton) buttonPanel().getComponent(i);
-//
-//			ActionAdapter actionAdapter = (ActionAdapter) button.getAction();
-//			if (actionAdapter.getAction().equals(action)) {
-//				getRootPane().setDefaultButton(button);
-//			}
-//		}
 		resultsTable.addMouseListener(new ClickAdapter(action, 2));
 
 		String actionKey = "searchPanelDefaultAction";

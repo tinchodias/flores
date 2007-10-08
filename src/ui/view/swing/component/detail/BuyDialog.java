@@ -47,8 +47,8 @@ public class BuyDialog extends StandardDetailDialog implements BuyUI {
 		northPanel = new JPanel();
 		northPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		northPanel.add(SwingUI.instance().label(supplierPicker, MessageId.supplier));
-		northPanel.add(SwingUI.instance().label(cashField, MessageId.cashPay));
+		northPanel.add(SwingUI.instance().decorated(supplierPicker, MessageId.supplier));
+		northPanel.add(SwingUI.instance().decorated(cashField, MessageId.cashPay));
 	}
 
 	public BuyItemsPanel getItemsPanel() {
