@@ -5,6 +5,7 @@ import java.util.Collection;
 import model.address.City;
 import model.address.Province;
 import model.cashBook.CashBook;
+import model.clientMovements.ClientMovements;
 import model.commission.BasicCommissionsManager;
 import model.commission.CommisionsManager;
 import model.debts.ClientsDebts;
@@ -41,6 +42,7 @@ public class Store {
 
 	private Stock stock = new Stock();
 	private ClientsDebts clientsDebts = new ClientsDebts(this);
+	private ClientMovements clientMovements = new ClientMovements(); 
 	private CommisionsManager commissions = new BasicCommissionsManager();
 	private CashBook cashBook = new CashBook();
 	private PriceStrategy priceStrategy = new SimplePercentagePriceStrategy(this);
@@ -85,6 +87,10 @@ public class Store {
 		return priceStrategy;
 	}
 
+	public ClientMovements clientMovements() {
+		return clientMovements;
+	}
+	
 	public Iterable<Expense> expenses() {
 		return expenses;
 	}
@@ -120,6 +126,7 @@ public class Store {
 		stock.apply(sell);
 		clientsDebts.apply(sell);
 		cashBook.apply(sell);
+		clientMovements.apply(sell);
 	}
 
 	public void add(BuyCancellation cancellation) {
@@ -133,6 +140,7 @@ public class Store {
 		stock.apply(cancellation);
 		clientsDebts.apply(cancellation);
 		cashBook.apply(cancellation);
+		clientMovements.apply(cancellation);
 	}
 
 	public void add(Expense expense) {

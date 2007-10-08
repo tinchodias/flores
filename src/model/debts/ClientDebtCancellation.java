@@ -1,6 +1,7 @@
 package model.debts;
 
 import message.MessageId;
+import message.MessageRepository;
 import model.JuridicPerson;
 import model.money.MoneyAmount;
 
@@ -36,4 +37,10 @@ public class ClientDebtCancellation {
 		return date;
 	}
 
+	@Override
+	public String toString() {
+		return MessageRepository.instance().get(MessageId.clientDebtCancellationToString, 
+				new String[] {getClient().toString(), getAmount().toString()});
+	}
+	
 }

@@ -50,7 +50,7 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 		searchDialog.getSearchPanel().add(showAndRefreshAction);
 	}
 
-	protected static void addShowOnSelectionAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
+	protected static void addShowOnSelectionAction(DialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
 		Action showAction = new ShowDialogAction(initializer);
 		addOnSelectionAction(messageId, searchDialog, showAction);
 	}

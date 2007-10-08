@@ -159,7 +159,7 @@ public class StoreFixture {
 	}
 
 	private static MoneyAmount randomMoneyAmount(int bound) {
-		return MoneyAmount.newFor(new Double(RandomUtils.nextInt(bound)));
+		return MoneyAmount.newFor(1.0 + RandomUtils.nextInt(bound));
 	}
 	
 	private static MoneyAmount randomMoneyAmount(MoneyAmount moneyAmount) {

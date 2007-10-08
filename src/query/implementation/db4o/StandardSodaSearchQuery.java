@@ -1,5 +1,7 @@
 package query.implementation.db4o;
 
+import model.JuridicPerson;
+
 import org.joda.time.ReadableInterval;
 
 import persistence.db4o.Db4oModelPersistence;
@@ -54,6 +56,12 @@ public abstract class StandardSodaSearchQuery<GenericCriteria extends Criteria> 
 		return query;
 	}
 
+	protected static final Query constrainEquals(Query query, String fieldName, Object anObject) {
+		Query aField = query.descend(fieldName);
+		aField.constrain(anObject).equal();
+		return query;
+	}
+	
 	// protected ObjectSet nativeQuery(final ReadableInterval interval) {
 	// Predicate<Buy> predicate = new Predicate<Buy>() {
 	// public boolean match(Buy buy) {

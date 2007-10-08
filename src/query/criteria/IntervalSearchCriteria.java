@@ -6,6 +6,6 @@ import query.framework.criteria.Criteria;
 
 public interface IntervalSearchCriteria extends Criteria {
 	
-	public ReadableInterval getInterval();
+	ReadableInterval getInterval();
 
 }
