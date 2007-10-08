@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import message.MessageId;
 import ui.controller.action.Action;
 import ui.view.component.SearchDialogUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.component.StandardDialog;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 
@@ -30,7 +31,7 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 		
 		this.centerPanel().setLayout(new BorderLayout());
 		this.centerPanel().add(searchPanel, BorderLayout.CENTER);
-		this.buttonPanel().add(closeButton);
+		this.buttonPanel().add(SwingUI.instance().decorated(closeButton));
 	}
 
 	public void setCloseAction(Action action) {

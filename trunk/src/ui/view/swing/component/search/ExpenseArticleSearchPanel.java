@@ -17,7 +17,7 @@ public class ExpenseArticleSearchPanel extends StandardSearchPanel implements Ex
 	private void initComponents() {
 		nameField = new JTextField();
 		
-		filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		filtersPanel().add(SwingUI.instance().decorated(nameField, MessageId.name));
 	}
 
 	public String getArticleName() {

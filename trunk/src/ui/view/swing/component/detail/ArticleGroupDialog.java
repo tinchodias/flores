@@ -20,7 +20,7 @@ public class ArticleGroupDialog extends StandardDetailDialog implements ArticleG
 	private void initComponents() {
 		nameField = new JTextField();
 		
-		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		centerPanel().add(SwingUI.instance().decorated(nameField, MessageId.name));
 	}
 
 	public String getArticleGroupName() {

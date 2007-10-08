@@ -26,8 +26,8 @@ public class ClientDebtCancellationDialog extends StandardDetailDialog implement
 		amountField = SwingUI.instance().currencyField();
 		clientPicker = new ObjectPicker3();
 		
-		centerPanel().add(SwingUI.instance().label(clientPicker, MessageId.client));
-		centerPanel().add(SwingUI.instance().label(amountField, MessageId.amount));
+		centerPanel().add(SwingUI.instance().decorated(clientPicker, MessageId.client));
+		centerPanel().add(SwingUI.instance().decorated(amountField, MessageId.amount));
 	}
 
 	public MoneyAmount getAmount() {

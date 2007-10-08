@@ -8,6 +8,7 @@ import org.joda.time.ReadableInterval;
 
 import ui.controller.action.Action;
 import ui.view.component.CommissionCalculationUI;
+import ui.view.swing.SwingUI;
 import ui.view.swing.util.IntervalPicker;
 import ui.view.swing.util.actionadapter.ActionAdapter;
 import util.TimeUtils;
@@ -32,8 +33,8 @@ public class CommissionCalculationDialog extends StandardDialog implements Commi
 		acceptButton = new JButton();
 		getRootPane().setDefaultButton(acceptButton);
 
-		centerPanel().add(intervalPicker);
-		buttonPanel().add(acceptButton);
+		centerPanel().add(SwingUI.instance().decorated(intervalPicker));
+		buttonPanel().add(SwingUI.instance().decorated(acceptButton));
 	}
 
 	public ReadableInterval getInterval() {

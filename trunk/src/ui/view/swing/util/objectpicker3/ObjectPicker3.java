@@ -2,7 +2,6 @@ package ui.view.swing.util.objectpicker3;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
@@ -24,7 +24,7 @@ import ui.view.swing.util.actionadapter.ActionAdapter;
 import ui.view.swing.util.objectpicker.SelectionListener;
 
 
-public class ObjectPicker3 extends Container {
+public class ObjectPicker3 extends JComponent {
 
 	private JTextField field;
 	private SearchQuery query;
@@ -82,7 +82,6 @@ public class ObjectPicker3 extends Container {
 		add(field, BorderLayout.CENTER);
 		add(button, BorderLayout.EAST);
 
-		
 		fieldNaturalBackgroudColor = field.getBackground();
 	}
 
@@ -164,6 +163,14 @@ public class ObjectPicker3 extends Container {
 		} else {
 			field.setBackground(fieldNaturalBackgroudColor);
 		}
+	}
+
+	public JTextField getField() {
+		return field;
+	}
+
+	public JButton getButton() {
+		return button;
 	}
 	
 }

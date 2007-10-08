@@ -47,8 +47,8 @@ public class SellDialog extends StandardDetailDialog implements SellUI {
 		northPanel = new JPanel();
 		northPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		northPanel.add(SwingUI.instance().label(clientPicker, MessageId.client));
-		northPanel.add(SwingUI.instance().label(cashField, MessageId.cashPay));
+		northPanel.add(SwingUI.instance().decorated(clientPicker, MessageId.client));
+		northPanel.add(SwingUI.instance().decorated(cashField, MessageId.cashPay));
 	}
 
 	public SellItemsPanel getItemsPanel() {

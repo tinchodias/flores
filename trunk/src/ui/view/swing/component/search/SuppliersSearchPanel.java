@@ -17,7 +17,7 @@ public class SuppliersSearchPanel extends StandardSearchPanel implements Supplie
 	private void initComponents() {
 		nameField = new JTextField();
 		
-		this.filtersPanel().add(SwingUI.instance().label(nameField, MessageId.supplierName));
+		this.filtersPanel().add(SwingUI.instance().decorated(nameField, MessageId.supplierName));
 	}
 
 	public String getSupplierName() {

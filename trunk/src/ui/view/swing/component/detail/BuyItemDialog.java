@@ -28,9 +28,9 @@ public class BuyItemDialog extends StandardDetailDialog implements BuyItemUI {
 		valueField = SwingUI.instance().currencyField();
 		articlePicker = new ObjectPicker3();
 		
-		centerPanel().add(SwingUI.instance().label(articlePicker, MessageId.article));
-		centerPanel().add(SwingUI.instance().label(countField, MessageId.count));
-		centerPanel().add(SwingUI.instance().label(valueField, MessageId.unitCost));
+		centerPanel().add(SwingUI.instance().decorated(articlePicker, MessageId.article));
+		centerPanel().add(SwingUI.instance().decorated(countField, MessageId.count));
+		centerPanel().add(SwingUI.instance().decorated(valueField, MessageId.unitCost));
 	}
 
 	public Article getArticle() {

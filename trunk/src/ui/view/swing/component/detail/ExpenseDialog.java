@@ -26,8 +26,8 @@ public class ExpenseDialog extends StandardDetailDialog implements ExpenseUI {
 		expenseArticlePicker = new ObjectPicker3();
 		costField = SwingUI.instance().currencyField();
 		
-		centerPanel().add(SwingUI.instance().label(expenseArticlePicker, MessageId.expenseArticle));
-		centerPanel().add(SwingUI.instance().label(costField, MessageId.cashPay));
+		centerPanel().add(SwingUI.instance().decorated(expenseArticlePicker, MessageId.expenseArticle));
+		centerPanel().add(SwingUI.instance().decorated(costField, MessageId.cashPay));
 	}
 
 	public MoneyAmount getCost() {

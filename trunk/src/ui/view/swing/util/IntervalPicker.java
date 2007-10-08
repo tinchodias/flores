@@ -1,7 +1,8 @@
 package ui.view.swing.util;
 
-import java.awt.Container;
 import java.awt.FlowLayout;
+
+import javax.swing.JComponent;
 
 import message.MessageId;
 
@@ -10,7 +11,7 @@ import org.joda.time.ReadableInterval;
 
 import ui.view.swing.SwingUI;
 
-public class IntervalPicker extends Container {
+public class IntervalPicker extends JComponent {
 
 	private static final String DEFAULT_FORMAT = "dd/MM/yy";
 	private DateTimePicker fromDate;
@@ -22,8 +23,8 @@ public class IntervalPicker extends Container {
 		fromDate = new DateTimePicker();
 		toDate = new DateTimePicker();
 		
-		add(SwingUI.instance().label(fromDate, MessageId.fromDate));
-		add(SwingUI.instance().label(toDate, MessageId.toDate));
+		add(SwingUI.instance().decorated(fromDate, MessageId.fromDate));
+		add(SwingUI.instance().decorated(toDate, MessageId.toDate));
 		
 		setFormat(DEFAULT_FORMAT);
 	}

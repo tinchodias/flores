@@ -37,8 +37,8 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 
 		getRootPane().setDefaultButton(okButton);
 		
-		buttonPanel().add(okButton);
-		buttonPanel().add(cancelButton);
+		buttonPanel().add(SwingUI.instance().decorated(okButton));
+		buttonPanel().add(SwingUI.instance().decorated(cancelButton));
 	}
 
 	public void setAcceptAction(Action action) {

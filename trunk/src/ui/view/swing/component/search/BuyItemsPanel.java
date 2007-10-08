@@ -35,7 +35,7 @@ public class BuyItemsPanel extends StandardSearchPanel {
 	}
 
 	private void initInfoPanel() {
-		totalLabel = new JLabel("                    ");
+		totalLabel = new JLabel(" ");
 		totalLabel.setFont(totalLabel.getFont().deriveFont(20.0f));
 		
 		adjustTotalButton = new JButton();
@@ -43,8 +43,8 @@ public class BuyItemsPanel extends StandardSearchPanel {
 		infoPanel = new JPanel();
 		infoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		infoPanel.add(SwingUI.instance().label(totalLabel, MessageId.total));
-		infoPanel.add(adjustTotalButton);
+		infoPanel.add(SwingUI.instance().decorated(totalLabel, MessageId.total));
+		infoPanel.add(SwingUI.instance().decorated(adjustTotalButton));
 	}
 
 	public void setAdjustTotalAction(Action action) {

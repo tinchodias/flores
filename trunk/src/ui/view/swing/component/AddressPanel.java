@@ -24,12 +24,9 @@ public class AddressPanel extends JPanel implements AddressUI {
 		addressField = new JTextField();
 		cityPicker = new ObjectPicker3();
 
-//		setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-//		Border titledBorder = BorderFactory.createTitledBorder("Domicilio Principal");
-//		setBorder(titledBorder);
-		add(SwingUI.instance().label(addressField, MessageId.address));
-		add(SwingUI.instance().label(cityPicker, MessageId.city));
+		add(SwingUI.instance().decorated(addressField, MessageId.address));
+		add(SwingUI.instance().decorated(cityPicker, MessageId.city));
 	}
 
 	public String getAddress() {

@@ -20,7 +20,7 @@ public class ExpenseArticleDialog extends StandardDetailDialog implements Expens
 	private void initComponents() {
 		nameField = new JTextField();
 		
-		centerPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		centerPanel().add(SwingUI.instance().decorated(nameField, MessageId.name));
 	}
 
 	public String getArticleName() {

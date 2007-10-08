@@ -32,10 +32,10 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 		expensesTotalField = SwingUI.instance().currencyField();
 		commissionTotalField = SwingUI.instance().currencyField();
 		
-		centerPanel().add(SwingUI.instance().label(sellTotalField, MessageId.sellTotal));
-		centerPanel().add(SwingUI.instance().label(costTotalField, MessageId.costTotal));
-		centerPanel().add(SwingUI.instance().label(expensesTotalField, MessageId.expenses));
-		centerPanel().add(SwingUI.instance().label(commissionTotalField, MessageId.total));
+		centerPanel().add(SwingUI.instance().decorated(sellTotalField, MessageId.sellTotal));
+		centerPanel().add(SwingUI.instance().decorated(costTotalField, MessageId.costTotal));
+		centerPanel().add(SwingUI.instance().decorated(expensesTotalField, MessageId.expenses));
+		centerPanel().add(SwingUI.instance().decorated(commissionTotalField, MessageId.total));
 	}
 
 	public void setCostTotal(MoneyAmount value) {

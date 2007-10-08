@@ -18,7 +18,7 @@ public class PricePercentageSearchPanel extends StandardSearchPanel implements S
 	private void initComponents() {
 		nameField = new JTextField();
 		
-		filtersPanel().add(SwingUI.instance().label(nameField, MessageId.name));
+		filtersPanel().add(SwingUI.instance().decorated(nameField, MessageId.name));
 		
 		//Sets multiple selection
 		resultsTable().getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);

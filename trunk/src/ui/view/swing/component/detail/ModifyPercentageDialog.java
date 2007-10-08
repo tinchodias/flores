@@ -20,7 +20,7 @@ public class ModifyPercentageDialog extends StandardDetailDialog implements Modi
 	private void init() {
 		percentageField = SwingUI.instance().decimalField();
 		
-		centerPanel().add(SwingUI.instance().label(percentageField, MessageId.priceMargin));
+		centerPanel().add(SwingUI.instance().decorated(percentageField, MessageId.priceMargin));
 	}
 
 	public Double getPercentage() {

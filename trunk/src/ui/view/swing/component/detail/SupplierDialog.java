@@ -24,7 +24,7 @@ public class SupplierDialog extends StandardDetailDialog implements SupplierUI {
 		nameField = new JTextField();
 		addressPanel = new AddressPanel();
 		
-		centerPanel().add(SwingUI.instance().label(nameField, MessageId.supplierName));
+		centerPanel().add(SwingUI.instance().decorated(nameField, MessageId.supplierName));
 		centerPanel().add(SwingUI.instance().titledBorderPanel(addressPanel, MessageId.mainAddress));
 	}
 

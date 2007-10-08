@@ -5,16 +5,24 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.JFormattedTextField.AbstractFormatter;
@@ -35,12 +43,15 @@ import org.joda.time.ReadableInstant;
 import ui.UI;
 import ui.view.swing.component.MainFrame;
 import ui.view.swing.util.CashBookCellRenderer;
+import ui.view.swing.util.DateTimePicker;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.MoneyAmountTableCellRenderer;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
+import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SwingUI extends UI {
 
+	private static final int FOCUS_BORDER_THICKNESS = 4;
 	private static SwingUI instance;
 
 	public static SwingUI instance() {
@@ -62,8 +73,8 @@ public class SwingUI extends UI {
 		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
 	}
 
-	public JPanel label(Component component, MessageId messageId) {
-		LabeledPanel labeledPanel = new LabeledPanel(component, MessageRepository.instance().get(messageId) + ":");
+	public JPanel decorated(JComponent component, MessageId messageId) {
+		LabeledPanel labeledPanel = new LabeledPanel(decorated(component), MessageRepository.instance().get(messageId) + ":");
 
 		//TODO hardcoded width
 		Dimension size = labeledPanel.getPreferredSize();
@@ -72,6 +83,45 @@ public class SwingUI extends UI {
 		labeledPanel.setMinimumSize(size);
 		
 		return labeledPanel;
+	}
+	
+	public JComponent decorated(final JComponent component) {
+		FocusListener listener = focusEffectListenerFor(component);
+		
+		//TODO horrible!
+		if (component instanceof ObjectPicker3) {
+			ObjectPicker3 picker = (ObjectPicker3) component;
+			picker.getField().addFocusListener(listener);
+			picker.getButton().addFocusListener(listener);
+		} else if (component instanceof JScrollPane) {
+			((JScrollPane) component).getViewport().getView().addFocusListener(listener);
+		} else if (component instanceof DateTimePicker) {
+			((DateTimePicker) component).getSpinner().getEditor().addFocusListener(listener);
+			((DateTimePicker) component).getSpinner().addFocusListener(listener);
+			((DateTimePicker) component).addFocusListener(listener);
+		} else {
+			component.addFocusListener(listener);
+		}
+		return component;
+	}
+	
+	private FocusListener focusEffectListenerFor(final JComponent component) {
+		Border originalBorder = component.getBorder();
+		Border focusedInnerBorder = BorderFactory.createLineBorder(Color.ORANGE, FOCUS_BORDER_THICKNESS);
+//		Border notFocusedInnerBorder = BorderFactory.createEmptyBorder(FOCUS_BORDER_THICKNESS, FOCUS_BORDER_THICKNESS, FOCUS_BORDER_THICKNESS, FOCUS_BORDER_THICKNESS);
+		Border notFocusedInnerBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY, FOCUS_BORDER_THICKNESS);
+		final Border focusedBorder = BorderFactory.createCompoundBorder(focusedInnerBorder, originalBorder);
+		final Border notFocusedBorder = BorderFactory.createCompoundBorder(notFocusedInnerBorder, originalBorder);
+		FocusListener listener = new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				component.setBorder(focusedBorder);
+			}
+			public void focusLost(FocusEvent e) {
+				component.setBorder(notFocusedBorder);				
+			}
+		};
+		component.setBorder(notFocusedBorder);
+		return listener;
 	}
 
 	public JPanel titledBorderPanel(Component component, MessageId messageId) {
@@ -86,14 +136,33 @@ public class SwingUI extends UI {
 	}
 
 	public JTable table(TableModel tableModel) {
-		JTable table = new JTable(tableModel);
+		final JTable table = new JTable(tableModel);
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		// Custom renderer instances
 		table.setDefaultRenderer(MoneyAmount.class, MoneyAmountTableCellRenderer.instance());
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
 		table.setDefaultRenderer(CashBookEntry.class, CashBookCellRenderer.instance());
+		
+		// Custom transfer focus actions
+		Action transferFocusAction = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		    	table.transferFocus();
+		    }
+		};
+		Action transferFocusBackwardAction = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		    	table.transferFocusBackward();
+		    }
+		};
+		table.getActionMap().put("transferFocus", transferFocusAction);
+		table.getActionMap().put("transferFocusBackward", transferFocusBackwardAction);
+		table.getInputMap().put(KeyStroke.getKeyStroke("TAB"), "transferFocus");
+		table.getInputMap().put(KeyStroke.getKeyStroke("shift TAB"), "transferFocusBackward");
+		
 		return table;
 	}
 
