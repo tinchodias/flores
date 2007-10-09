@@ -11,18 +11,14 @@ import org.joda.time.ReadableDateTime;
 
 public class DateTimePicker extends JComponent {
 
+	public static final String DEFAULT_FORMAT = "dd/MM/yy";
 	private JSpinner spinner;
 
 	/**
-	 * Constructs a date picker.
+	 * Constructs a date picker with default format.
 	 */
 	public DateTimePicker() {
-		setLayout(new BorderLayout());
-		
-		spinner = new JSpinner(new SpinnerDateModel());
-		add(spinner);
-
-		setDefaultFormat();
+		this(DEFAULT_FORMAT);
 	}
 
 	/**
@@ -30,7 +26,11 @@ public class DateTimePicker extends JComponent {
 	 * @param simpleDateFormat Pattern as used in <code>SimpleDateFormat</code>.
 	 */
 	public DateTimePicker(String simpleDateFormat) {
-		this();
+		setLayout(new BorderLayout());
+		
+		spinner = new JSpinner(new SpinnerDateModel());
+		add(spinner);
+		
 		setFormat(simpleDateFormat);
 	}
 
@@ -41,6 +41,7 @@ public class DateTimePicker extends JComponent {
 
 	/**
 	 * Establishes the format.
+	 * Note: It creates a new editor.
 	 * @param simpleDateFormat Pattern as used in <code>SimpleDateFormat</code>.
 	 */
 	public void setFormat(String simpleDateFormat) {
@@ -56,8 +57,8 @@ public class DateTimePicker extends JComponent {
 		return new DateTime(spinner.getValue());
 	}
 
-	public JSpinner getSpinner() {
-		return spinner;
+	public JSpinner.DateEditor getEditor() {
+		return (JSpinner.DateEditor) spinner.getEditor();
 	}
 	
 }

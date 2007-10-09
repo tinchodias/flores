@@ -52,7 +52,7 @@ import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SwingUI extends UI {
 
-	private static final int FOCUS_BORDER_THICKNESS = 4;
+	private static final int FOCUS_BORDER_THICKNESS = 3;
 	private static SwingUI instance;
 
 	public static SwingUI instance() {
@@ -98,9 +98,7 @@ public class SwingUI extends UI {
 			picker.getField().addFocusListener(listener);
 			picker.getButton().addFocusListener(listener);
 		} else if (component instanceof DateTimePicker) {
-			((DateTimePicker) component).getSpinner().getEditor().addFocusListener(listener);
-			((DateTimePicker) component).getSpinner().addFocusListener(listener);
-			((DateTimePicker) component).addFocusListener(listener);
+			((DateTimePicker) component).getEditor().getTextField().addFocusListener(listener);
 		} else if (component instanceof JScrollPane) {
 			((JScrollPane) component).getViewport().getView().addFocusListener(listener);
 		} else {
@@ -121,7 +119,7 @@ public class SwingUI extends UI {
 				component.setBorder(focusedBorder);
 			}
 			public void focusLost(FocusEvent e) {
-				component.setBorder(notFocusedBorder);				
+				component.setBorder(notFocusedBorder);
 			}
 		};
 		component.setBorder(notFocusedBorder);
