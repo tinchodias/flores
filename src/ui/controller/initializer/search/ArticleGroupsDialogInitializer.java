@@ -24,7 +24,7 @@ public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitiali
 	}
 
 	public MessageId titleMessageId() {
-		return MessageId.articleGroup;
+		return MessageId.articleGroups;
 	}
 
 }
