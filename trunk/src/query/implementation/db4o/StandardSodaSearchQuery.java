@@ -1,7 +1,5 @@
 package query.implementation.db4o;
 
-import model.JuridicPerson;
-
 import org.joda.time.ReadableInterval;
 
 import persistence.db4o.Db4oModelPersistence;

@@ -1,5 +1,7 @@
 package model;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
 import junit.framework.TestCase;
 import model.money.MoneyAmount;
 import model.price.SimplePercentagePriceStrategy;
@@ -14,10 +16,10 @@ public class SimplePercentagePriceStrategyTest extends TestCase {
 	private JuridicPerson supplier;
 
 	protected void setUp() throws Exception {
-		store = StoreFixture.simpleStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		article = store.stockArticles().iterator().next();
 		supplier = store.suppliers().iterator().next();
-		
 		priceStrategy = new SimplePercentagePriceStrategy(store);
 	}
 

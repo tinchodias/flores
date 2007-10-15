@@ -3,6 +3,8 @@
  */
 package model;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
 import junit.framework.TestCase;
 import model.stock.ArticleGroup;
 
@@ -10,20 +12,9 @@ public class ArticleGroupsTest extends TestCase {
 
 	private Store store;
 	
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.simpleStore();
-	}
-
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 	}
 
 	public void testAddArticleGroup() {
@@ -33,6 +24,4 @@ public class ArticleGroupsTest extends TestCase {
 		assertTrue(store.stockArticleGroups().contains(floreriaGroup));
 	}
 
-	//TODO Agregar más tests! Definir cuántos grupos puede tener cada artículo. 
-	
 }

@@ -13,6 +13,10 @@ public abstract class QueryFactory {
 		}
 		return instance;
 	}
+	
+	public static void instance(QueryFactory queryFactory) {
+		instance = queryFactory;
+	}
 
 	public abstract SearchQuery clientSearchQuery();
 

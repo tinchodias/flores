@@ -14,6 +14,8 @@ import model.stock.Article;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInterval;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
 import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.query.SearchQuery;
 import util.TimeUtils;
@@ -26,11 +28,13 @@ public class ClientMovementsQueryTest extends TestCase {
 	private Vendor vendor;
 
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.simpleStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		
 		stockArticle = store.stockArticles().iterator().next();
+
+		JuridicPerson supplier = store.suppliers().iterator().next();
+		store.add(StoreFixture.simpleBuy(stockArticle, supplier));
 		
 		client = store.clients().iterator().next();
 		

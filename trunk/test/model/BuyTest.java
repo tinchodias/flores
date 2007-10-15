@@ -15,6 +15,9 @@ import model.stock.Article;
 
 import org.joda.time.DateTime;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
+
 public class BuyTest extends TestCase {
 
 	private Store store;
@@ -22,15 +25,11 @@ public class BuyTest extends TestCase {
 	private Article claveles;
 	private JuridicPerson marquez;
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.emptyStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 
-		marquez = new JuridicPerson("Marquez");
+		marquez = store.suppliers().iterator().next();
 		store.clients().add(marquez);
 		
 		rosas = new Article("Paquete de Rosa x 40");

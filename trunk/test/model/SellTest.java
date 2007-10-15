@@ -3,6 +3,8 @@
  */
 package model;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
 import junit.framework.TestCase;
 import model.money.MoneyAmount;
 import model.receipt.Sell;
@@ -19,11 +21,13 @@ public class SellTest extends TestCase {
 	private Vendor eduardo;
 	
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.simpleStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		
 		clavel = store.stockArticles().iterator().next();
+
+		JuridicPerson supplier = store.suppliers().iterator().next();
+		store.add(StoreFixture.simpleBuy(clavel, supplier));
 		
 		elvira = store.clients().iterator().next();
 		
@@ -31,7 +35,6 @@ public class SellTest extends TestCase {
 	}
 
 	public void testSimpleSellAndCancellation() {
-		
 		MoneyAmount initialDebt = store.debts().debtOf(elvira);
 		double initialStock = store.stock().count(clavel);
 		

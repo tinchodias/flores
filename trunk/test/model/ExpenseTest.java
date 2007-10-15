@@ -5,6 +5,9 @@ package model;
 
 import java.util.Iterator;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
+
 import junit.framework.TestCase;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
@@ -12,21 +15,17 @@ import model.expense.ExpenseArticle;
 public class ExpenseTest extends TestCase {
 
 	private Store store;
-	private ExpenseArticle alquiler;
+	private ExpenseArticle anExpenseArticle;
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
-		super.setUp();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		
-		store = StoreFixture.simpleStore();
-		
-		alquiler = store.expensesArticles().iterator().next();
+		anExpenseArticle = store.expensesArticles().iterator().next();
 	}
 
 	public void testSimpleExpenseAdd() {
-		Expense expense = StoreFixture.simpleExpense(alquiler);
+		Expense expense = StoreFixture.simpleExpense(anExpenseArticle);
 
 		store.add(expense);
 		

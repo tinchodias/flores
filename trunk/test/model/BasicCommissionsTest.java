@@ -18,6 +18,9 @@ import model.stock.Article;
 
 import org.joda.time.DateTime;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
+
 import util.TimeUtils;
 
 public class BasicCommissionsTest extends TestCase {
@@ -25,17 +28,18 @@ public class BasicCommissionsTest extends TestCase {
 	private Store store;
 	private Article clavel;
 	private JuridicPerson elvira;
-	private Sell sell;
 	private Vendor eduardo;
 	private ExpenseArticle alquiler;
 	private MoneyAmount clavelInitialCost;
 	
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.simpleStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		
 		clavel = store.stockArticles().iterator().next();
+
+		JuridicPerson aSupplier = store.suppliers().iterator().next();
+		store.add(StoreFixture.simpleBuy(clavel, aSupplier));
 		
 		clavelInitialCost = store.stock().cost(clavel);
 
@@ -46,10 +50,6 @@ public class BasicCommissionsTest extends TestCase {
 		alquiler = store.expensesArticles().iterator().next();
 	}
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-	
 	public void testComplete() {
 		initialAsserts();
 		
@@ -96,15 +96,13 @@ public class BasicCommissionsTest extends TestCase {
 		Payment payment = new Payment();
 		payment.add(new Cash(MoneyAmount.newFor(500.0)));
 		
-		sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
-		store.add(sell);
+		store.add(new Sell(spec, new DateTime(), elvira, payment, eduardo));
 	}
 	
 	/**
 	 * An expense of $200 is registered.
 	 */
 	private void doExpense() {
-		Expense expense = new Expense(alquiler, MoneyAmount.newFor(200.0), new DateTime());
-		store.add(expense);
+		store.add(new Expense(alquiler, MoneyAmount.newFor(200.0), new DateTime()));
 	}
 }

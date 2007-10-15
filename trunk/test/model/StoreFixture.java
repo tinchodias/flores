@@ -85,36 +85,30 @@ public class StoreFixture {
 		
 		System.out.println("Generating Clients");
 		for (int i = 0; i < 50; i++) {
-			JuridicPerson client = new JuridicPerson("Cliente " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
-			store.clients().add(client);
+			store.clients().add(simpleClient(store));
 		}
 
 		System.out.println("Generating Suppliers");
 		for (int i = 0; i < 50; i++) {
-			JuridicPerson supplier = new JuridicPerson("Proveedor " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
-			store.suppliers().add(supplier);
+			store.suppliers().add(simpleSupplier(store));
 		}
 		System.out.println("Generating Vendors");
 		for (int i = 0; i < 10; i++) {
-			Vendor vendor = new Vendor("Vendedor " + i);
-			store.vendors().add(vendor);
+			store.vendors().add(new Vendor("Vendedor " + i));
 		}
 		
 		System.out.println("Generating Stock Article Groups");
 		for (int i = 0; i < 100; i++) {
-			ArticleGroup group = new ArticleGroup("Marca " + i);
-			store.stockArticleGroups().add(group);
+			store.stockArticleGroups().add(new ArticleGroup("Marca " + i));
 		}
 		System.out.println("Generating Stock Articles");
 		for (int i = 0; i < 800; i++) {
-			Article article = new Article(String.valueOf(1000000 + i), "Artículo " + i, String.valueOf(RandomUtils.nextInt(i + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
-			store.stockArticles().add(article);
+			store.stockArticles().add(simpleArticle(store));
 		}
 
 		System.out.println("Generating Expenses Articles");
 		for (int i = 0; i < 50; i++) {
-			ExpenseArticle expenseArticle = new ExpenseArticle("Gasto " + i);
-			store.expensesArticles().add(expenseArticle);
+			store.expensesArticles().add(new ExpenseArticle("Gasto " + i));
 		}
 
 		System.out.println("Generating Expenses");
@@ -156,6 +150,21 @@ public class StoreFixture {
 				store.add(sell);
 			}
 		}
+	}
+
+	public static Article simpleArticle(Store store) {
+		int anIndex = RandomUtils.nextInt();
+		return new Article(String.valueOf(1000000 + anIndex), "Artículo " + anIndex, String.valueOf(RandomUtils.nextInt(anIndex + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
+	}
+
+	public static JuridicPerson simpleSupplier(Store store) {
+		int anIndex = RandomUtils.nextInt();
+		return new JuridicPerson("Proveedor " + anIndex, new Address("Domicilio " + anIndex, (City) oneOf(store.cities())));
+	}
+
+	public static JuridicPerson simpleClient(Store store) {
+		int anIndex = RandomUtils.nextInt();
+		return new JuridicPerson("Cliente " + anIndex , new Address("Domicilio " + anIndex, (City) oneOf(store.cities())));
 	}
 
 	private static MoneyAmount randomMoneyAmount(int bound) {
