@@ -15,6 +15,9 @@ import model.stock.Article;
 
 import org.joda.time.DateTime;
 
+import persistence.ModelPersistence;
+import persistence.util.ModelPersistenceFixture;
+
 public class CashBookTest extends TestCase {
 
 	private Store store;
@@ -25,9 +28,8 @@ public class CashBookTest extends TestCase {
 	private JuridicPerson supplier;
 
 	protected void setUp() throws Exception {
-		super.setUp();
-		
-		store = StoreFixture.simpleStore();
+		ModelPersistenceFixture.mockWithSimpleModel();
+		store = ModelPersistence.instance().loadedModel().store();
 		
 		stockArticle = store.stockArticles().iterator().next();
 		
@@ -120,7 +122,7 @@ public class CashBookTest extends TestCase {
 		assertCurrentCash(40.0);
 		
 		MoneyAmount amount = MoneyAmount.newFor(30.0);
-		store.cashBook().add(new CashExtraction(new DateTime(), amount, ""));
+		store.cashBook().add(new CashExtraction(new DateTime(), amount, "aTestExtraction"));
 		
 		assertCurrentCash(10.0);
 	}
