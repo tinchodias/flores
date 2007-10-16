@@ -5,7 +5,6 @@ import model.cashBook.CashExtraction;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
-import model.expense.ExpenseArticle;
 import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
@@ -24,7 +23,6 @@ public class CashBookTest extends TestCase {
 	private Article stockArticle;
 	private JuridicPerson client;
 	private Vendor vendor;
-	private ExpenseArticle expenseArticle;
 	private JuridicPerson supplier;
 
 	protected void setUp() throws Exception {
@@ -38,8 +36,6 @@ public class CashBookTest extends TestCase {
 		supplier = store.suppliers().iterator().next();
 		
 		vendor = store.vendors().iterator().next();
-		
-		expenseArticle = store.expensesArticles().iterator().next();
 	}
 	
 	public void testCashBookCase1() {
@@ -107,7 +103,7 @@ public class CashBookTest extends TestCase {
 	public void testCashBookCase4() {
 		assertCurrentCash(0.0);
 		
-		Expense expense = StoreFixture.simpleExpense(expenseArticle);
+		Expense expense = StoreFixture.simpleExpense(store);
 		store.add(expense);
 		
 		assertCurrentCash(-300.0);

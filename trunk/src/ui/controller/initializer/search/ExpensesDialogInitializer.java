@@ -18,7 +18,7 @@ public class ExpensesDialogInitializer extends StandardSearchDialogInitializer {
 		return new IntervalSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().expensesSearchQuery();
 	}
 

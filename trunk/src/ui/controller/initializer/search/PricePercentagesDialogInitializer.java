@@ -18,7 +18,7 @@ public class PricePercentagesDialogInitializer extends StandardSearchDialogIniti
 		return new PricePercentageSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().pricePercentageSearchQuery();
 	}
 

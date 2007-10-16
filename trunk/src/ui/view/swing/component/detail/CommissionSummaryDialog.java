@@ -18,6 +18,7 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 	private JFormattedTextField sellTotalField;
 	private JFormattedTextField commissionTotalField;
 	private ReadableInterval interval;
+	private JFormattedTextField otherLossesTotalField;
 
 	public CommissionSummaryDialog() {
 		super(MessageId.commissionSummary);
@@ -31,10 +32,12 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 		costTotalField = SwingUI.instance().currencyField();
 		expensesTotalField = SwingUI.instance().currencyField();
 		commissionTotalField = SwingUI.instance().currencyField();
+		otherLossesTotalField = SwingUI.instance().currencyField();
 		
 		centerPanel().add(SwingUI.instance().decorated(sellTotalField, MessageId.sellTotal));
 		centerPanel().add(SwingUI.instance().decorated(costTotalField, MessageId.costTotal));
 		centerPanel().add(SwingUI.instance().decorated(expensesTotalField, MessageId.expenses));
+		centerPanel().add(SwingUI.instance().decorated(otherLossesTotalField, MessageId.otherLosses));
 		centerPanel().add(SwingUI.instance().decorated(commissionTotalField, MessageId.total));
 	}
 
@@ -69,6 +72,10 @@ public class CommissionSummaryDialog extends StandardDetailDialog implements Com
 
 	public ReadableInterval getInterval() {
 		return interval;
+	}
+
+	public void setOtherLossesTotal(MoneyAmount value) {
+		otherLossesTotalField.setValue(value.value());
 	}
 
 }

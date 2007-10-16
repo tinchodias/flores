@@ -19,7 +19,7 @@ public class StockDialogInitializer extends StandardSearchDialogInitializer {
 		return new StockArticleSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().stockArticleSearchQuery();
 	}
 

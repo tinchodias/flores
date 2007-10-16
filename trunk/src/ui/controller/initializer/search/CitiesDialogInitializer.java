@@ -16,7 +16,7 @@ public class CitiesDialogInitializer extends StandardSearchDialogInitializer {
 		return new CitySearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().citySearchQuery();
 	}
 

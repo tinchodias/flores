@@ -26,6 +26,7 @@ import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.ExpensesDialogInitializer;
 import ui.controller.initializer.search.LostDebtDeclarationsDialogInitializer;
+import ui.controller.initializer.search.OperationsSummaryDialogInitializer;
 import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
 import ui.controller.initializer.search.StandardSearchDialogInitializer;
@@ -43,6 +44,7 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu personsMenu;
 	private JMenu storeMenu;
 	private JMenu cashMenu;
+	private JMenu reportsMenu;
 
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
@@ -66,6 +68,7 @@ public class MainFrame extends JFrame implements MainUI {
 		menuBar.add(newPersonsMenu());
 		menuBar.add(newStoreMenu());
 		menuBar.add(newCashMenu());
+		menuBar.add(newReportsMenu());
 		return menuBar;
 	}
 
@@ -115,6 +118,14 @@ public class MainFrame extends JFrame implements MainUI {
 		return systemMenu;
 	}
 	
+	private JMenu newReportsMenu() {
+		reportsMenu = new JMenu("Informes");
+		
+		addJMenuItem(reportsMenu, new OperationsSummaryDialogInitializer());
+		
+		return reportsMenu;
+	}
+	
 	private static void addJMenuItem(JMenu menu, DialogInitializer initializer, MessageId messageId) {
 		addJMenuItem(menu, new ShowDialogAction(initializer, messageId));
 	}
@@ -132,6 +143,7 @@ public class MainFrame extends JFrame implements MainUI {
 		personsMenu.setEnabled(false);
 		storeMenu.setEnabled(false);
 		cashMenu.setEnabled(false);
+		reportsMenu.setEnabled(false);
 	}
 	
 	public void setLoggedUserState() {
@@ -139,6 +151,7 @@ public class MainFrame extends JFrame implements MainUI {
 		personsMenu.setEnabled(true);
 		storeMenu.setEnabled(true);
 		cashMenu.setEnabled(true);
+		reportsMenu.setEnabled(true);
 	}
 
 }

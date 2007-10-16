@@ -1,9 +1,11 @@
 package model.commission;
 
 import model.Vendor;
+import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.money.MoneyAmount;
 import model.receipt.Sell;
+import model.stock.StockDropOut;
 
 import org.joda.time.ReadableInterval;
 
@@ -14,10 +16,16 @@ import query.framework.results.SearchResults;
 
 public class BasicCommissionsManager implements CommisionsManager {
 	
-	private double commisionAlpha;
+	private static final double DEFAULT_COMMISSION_MULTIPLIER = 0.5;
+	private double commisionMultiplier = DEFAULT_COMMISSION_MULTIPLIER;
 
-	public BasicCommissionsManager() {
-		this.commisionAlpha = 0.5;
+
+	public double getCommisionMultiplier() {
+		return commisionMultiplier;
+	}
+
+	public void setCommisionMultiplier(double commisionMultiplier) {
+		this.commisionMultiplier = commisionMultiplier;
 	}
 
 	public CommissionSummary commissionAt(Vendor vendor, final ReadableInterval interval) {
@@ -33,25 +41,45 @@ public class BasicCommissionsManager implements CommisionsManager {
 		SearchQuery sellSearchQuery = QueryFactory.instance().sellSearchQuery();
 		sellSearchQuery.setCriteria(criteria);
 		SearchResults sells = sellSearchQuery.results();
-
-		SearchQuery expensesSearchQuery = QueryFactory.instance().expensesSearchQuery();
-		expensesSearchQuery.setCriteria(criteria);
-		SearchResults expenses = expensesSearchQuery.results();
-		
 		MoneyAmount sellTotal = sellTotal(sells);
 		MoneyAmount costTotal = costTotal(sells);
-		MoneyAmount expensesTotal = expensesTotal(expenses); 
+
+		SearchQuery expenseSearchQuery = QueryFactory.instance().expensesSearchQuery();
+		expenseSearchQuery.setCriteria(criteria);
+		MoneyAmount expensesTotal = expenseTotal(expenseSearchQuery.results()); 
+
+		SearchQuery lostDebtDeclarationSearchQuery = QueryFactory.instance().lostDebtDeclarationsSearchQuery();
+		lostDebtDeclarationSearchQuery.setCriteria(criteria);
+		MoneyAmount lostDebtDeclarationsTotal = lostDebtDeclarationTotal(lostDebtDeclarationSearchQuery.results()); 
+
+		SearchQuery stockDropOutSearchQuery = QueryFactory.instance().stockDropOutSearchQuery();
+		stockDropOutSearchQuery.setCriteria(criteria);
+		MoneyAmount stockDropOutTotal = stockDropOutTotal(stockDropOutSearchQuery.results()); 
+
+		MoneyAmount otherLosses = lostDebtDeclarationsTotal.plus(stockDropOutTotal);
 		
-		MoneyAmount commission = commission(sellTotal, costTotal, expensesTotal);
+		MoneyAmount commissionTotal = commission(sellTotal, costTotal.plus(expensesTotal).plus(otherLosses));
 		
-		return new CommissionSummary(vendor, interval, sellTotal, costTotal, expensesTotal, commission);
+		return new CommissionSummary(vendor, interval, sellTotal, costTotal, expensesTotal, otherLosses, commissionTotal);
 	}
 
-	private MoneyAmount commission(MoneyAmount sellTotal, MoneyAmount costTotal, MoneyAmount expensesTotal) {
-		return sellTotal.minus(costTotal.plus(expensesTotal)).by(commisionAlpha);
+	private MoneyAmount stockDropOutTotal(Iterable<StockDropOut> dropOuts) {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
+		for (StockDropOut dropOut : dropOuts) {
+			total = total.plus(dropOut.getUnitCost().by(dropOut.getCount()));
+		}
+		return total;
+	}
+	
+	private MoneyAmount lostDebtDeclarationTotal(Iterable<LostDebtDeclaration> declarations) {
+		MoneyAmount total = MoneyAmount.newFor(0.0);
+		for (LostDebtDeclaration declaration : declarations) {
+			total = total.plus(declaration.getAmount());
+		}
+		return total;
 	}
 
-	private MoneyAmount expensesTotal(Iterable<Expense> expenses) {
+	private MoneyAmount expenseTotal(Iterable<Expense> expenses) {
 		MoneyAmount total = MoneyAmount.newFor(0.0);
 		for (Expense expense : expenses) {
 			total = total.plus(expense.getCost());
@@ -74,4 +102,9 @@ public class BasicCommissionsManager implements CommisionsManager {
 		}
 		return total;
 	}
+
+	private MoneyAmount commission(MoneyAmount gains, MoneyAmount losses) {
+		return gains.minus(losses).by(commisionMultiplier);
+	}
+
 }

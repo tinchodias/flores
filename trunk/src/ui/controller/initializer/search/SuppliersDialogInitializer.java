@@ -19,7 +19,7 @@ public class SuppliersDialogInitializer extends StandardSearchDialogInitializer 
 		return new SuppliersSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().suppliersSearchQuery();
 	}
 

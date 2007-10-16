@@ -4,6 +4,7 @@
 package model;
 
 import junit.framework.TestCase;
+import model.money.MoneyAmount;
 import model.stock.Article;
 import model.stock.StockDropOut;
 
@@ -53,7 +54,7 @@ public class StockDropOutTest extends TestCase {
 	}
 	
 	private void doDropOut(Article article, double count) {
-		StockDropOut dropOut = new StockDropOut(article, count, new DateTime());
+		StockDropOut dropOut = new StockDropOut(article, count, new DateTime(), "aTestDropOut", MoneyAmount.newFor(0.0));
 		store.stock().add(dropOut);
 	}
 }

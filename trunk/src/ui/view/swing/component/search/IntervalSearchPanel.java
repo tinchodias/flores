@@ -3,11 +3,12 @@ package ui.view.swing.component.search;
 import org.joda.time.ReadableInterval;
 
 import query.criteria.IntervalSearchCriteria;
+import ui.view.component.IntervalSearchUI;
 import ui.view.swing.SwingUI;
 import ui.view.swing.util.IntervalPicker;
 import util.TimeUtils;
 
-public class IntervalSearchPanel extends StandardSearchPanel implements IntervalSearchCriteria {
+public class IntervalSearchPanel extends StandardSearchPanel implements IntervalSearchUI, IntervalSearchCriteria {
 
 	private IntervalPicker intervalPicker;
 
@@ -24,6 +25,10 @@ public class IntervalSearchPanel extends StandardSearchPanel implements Interval
 
 	public ReadableInterval getInterval() {
 		return intervalPicker.getInterval();
+	}
+
+	public void setInterval(ReadableInterval interval) {
+		intervalPicker.setInterval(interval);
 	}
 
 }

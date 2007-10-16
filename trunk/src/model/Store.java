@@ -79,6 +79,10 @@ public class Store {
 		return commissions;
 	}
 	
+	public void commissions(CommisionsManager commissions) {
+		this.commissions = commissions;
+	}
+
 	public CashBook cashBook() {
 		return cashBook;
 	}
