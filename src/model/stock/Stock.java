@@ -1,10 +1,7 @@
 package model.stock;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
-
-import validation.ModelValidation;
 
 import message.MessageId;
 import model.money.MoneyAmount;
@@ -17,6 +14,7 @@ import model.receipt.SellItem;
 import model.stock.cost.AverageCostStrategy;
 import model.stock.cost.CostStrategy;
 import model.util.CollectionFactory;
+import validation.ModelValidation;
 
 public class Stock {
 
@@ -96,8 +94,8 @@ public class Stock {
 		removeFromStock(dropOut.getArticle(), dropOut.getCount());
 	}
 
-	public Collection<StockDropOut> dropOuts() {
-		return Collections.unmodifiableCollection(dropOuts);
+	public Iterable<StockDropOut> dropOuts() {
+		return dropOuts;
 	}
 
 }

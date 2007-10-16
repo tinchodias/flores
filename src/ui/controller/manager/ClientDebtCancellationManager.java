@@ -1,0 +1,12 @@
+package ui.controller.manager;
+
+import ui.controller.initializer.search.ClientDebtCancellationsDialogInitializer;
+
+
+public class ClientDebtCancellationManager extends StandardUIModelManager {
+
+	public ClientDebtCancellationManager() {
+		super(new ClientDebtCancellationsDialogInitializer(), store().debts().cancellations());
+	}
+	
+}

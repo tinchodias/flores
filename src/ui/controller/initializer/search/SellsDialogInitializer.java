@@ -16,14 +16,14 @@ public class SellsDialogInitializer extends StandardSearchDialogInitializer {
 		addShowViewingAction(new SellDetailInitializer(), searchDialog);
 		
 		PrintSellReportAction printAction = new PrintSellReportAction(new SingleSelectionValueHolder(searchDialog.getSearchPanel()));
-		addOnSelectionAction(MessageId.print, searchDialog, printAction);
+		addOnSelectionAction(searchDialog, printAction);
 	}
 
 	protected StandardSearchPanel searchPanel() {
 		return new IntervalSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().sellSearchQuery();
 	}
 

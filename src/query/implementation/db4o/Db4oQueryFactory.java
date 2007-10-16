@@ -29,6 +29,7 @@ import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.criteria.StringCriteria;
+import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
@@ -259,6 +260,10 @@ public class Db4oQueryFactory extends QueryFactory {
 				return new ClientMovementSearchResultsSpecification();
 			}
 		};
+	}
+
+	public SearchQuery operationSummarySearchQuery() {
+		return new OperationSummarySearchQuery();
 	}
 	
 }

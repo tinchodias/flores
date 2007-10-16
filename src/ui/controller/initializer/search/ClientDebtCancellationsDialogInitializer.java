@@ -18,7 +18,7 @@ public class ClientDebtCancellationsDialogInitializer extends StandardSearchDial
 		return new IntervalSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().clientDebtCancellationsSearchQuery();
 	}
 

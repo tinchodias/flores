@@ -18,7 +18,7 @@ public class CashExtractionsDialogInitializer extends StandardSearchDialogInitia
 		return new IntervalSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().cashExtractionsSearchQuery();
 	}
 

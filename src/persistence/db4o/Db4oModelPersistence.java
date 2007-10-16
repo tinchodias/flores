@@ -22,7 +22,6 @@ import com.db4o.config.Configuration;
 import com.db4o.config.ObjectClass;
 import com.db4o.config.ObjectField;
 import com.db4o.config.TSerializable;
-import com.db4o.diagnostic.DiagnosticToConsole;
 
 public class Db4oModelPersistence extends ModelPersistence {
 
@@ -105,7 +104,7 @@ public class Db4oModelPersistence extends ModelPersistence {
 		
 //		configuration.messageLevel(3);
 		configuration.exceptionsOnNotStorable(true);
-		configuration.diagnostic().addListener(new DiagnosticToConsole());
+//		configuration.diagnostic().addListener(new DiagnosticToConsole());
 		
 		//For simple activation
 		configuration.activationDepth(Integer.MAX_VALUE);

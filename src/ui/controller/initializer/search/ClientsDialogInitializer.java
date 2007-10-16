@@ -24,7 +24,7 @@ public class ClientsDialogInitializer extends StandardSearchDialogInitializer {
 		return new ClientSearchPanel();
 	}
 
-	protected SearchQuery searchQuery() {
+	public SearchQuery searchQuery() {
 		return QueryFactory.instance().clientSearchQuery();
 	}
 

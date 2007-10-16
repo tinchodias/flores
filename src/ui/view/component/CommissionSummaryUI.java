@@ -9,6 +9,8 @@ public interface CommissionSummaryUI {
 
 	void setCostTotal(MoneyAmount value);
 
+	void setOtherLossesTotal(MoneyAmount value);
+	
 	void setExpensesTotal(MoneyAmount value);
 
 	void setInterval(ReadableInterval interval);

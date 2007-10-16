@@ -31,7 +31,7 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 		return searchDialog;
 	}
 
-	protected abstract SearchQuery searchQuery();
+	public abstract SearchQuery searchQuery();
 
 	public abstract MessageId titleMessageId();
 
@@ -51,19 +51,17 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 	}
 
 	protected static void addShowOnSelectionAction(DialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
-		Action showAction = new ShowDialogAction(initializer);
-		addOnSelectionAction(messageId, searchDialog, showAction);
+		Action showAction = new ShowDialogAction(initializer, messageId);
+		addOnSelectionAction(searchDialog, showAction);
 	}
 
 	protected static void addShowOnSelectionAndRefreshAction(DetailDialogInitializer initializer, MessageId messageId, StandardSearchDialog searchDialog) {
 		Action showAndRefreshAction = showAndRefreshAction(initializer, messageId, searchDialog);
-		addOnSelectionAction(messageId, searchDialog, showAndRefreshAction);
+		addOnSelectionAction(searchDialog, showAndRefreshAction);
 	}
 
-	protected static void addOnSelectionAction(MessageId messageId, StandardSearchDialog searchDialog, Action onSelectionAction) {
-		Action executeOnSelectionAction = 
-			new ExecuteOnSelectionAction(searchDialog.getSearchPanel(), onSelectionAction, messageId);
-		searchDialog.getSearchPanel().add(executeOnSelectionAction);
+	protected static void addOnSelectionAction(StandardSearchDialog searchDialog, Action onSelectionAction) {
+		searchDialog.getSearchPanel().add(new ExecuteOnSelectionAction(searchDialog.getSearchPanel(), onSelectionAction));
 	}
 
 	protected static void addShowCreatingAction(DetailDialogInitializer initializer, StandardSearchDialog searchDialog) {

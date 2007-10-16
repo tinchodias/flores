@@ -84,6 +84,7 @@ public enum MessageId {
 	moneyAmount, 
 	itemCount,
 	interval,
+	info,
 
 	//Address
 	city, 
@@ -135,7 +136,8 @@ public enum MessageId {
 	//Commissions
 	commissionCalculation, 
 	commissionSummary, 
-	createCommissionCashExtraction, 
+	createCommissionCashExtraction,
+	otherLosses,
 	
 	//ModelValidation
 	assertNotBlank, 
@@ -146,6 +148,16 @@ public enum MessageId {
 	//Client Movements
 	clientMovements, 
 	clientMovement, 
+	
+	//Operations Summary
+	operationsSummary, 
+	sellsSummary, 
+	buysSummary, 
+	expensesSummary, 
+	clientDebtCancellationsSummary, 
+	lostDebtDeclarationsSummary, 
+	cashExtractionsSummary, 
+	stockDropOutsSummary,   
 	
 	;
 	

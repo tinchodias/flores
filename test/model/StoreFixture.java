@@ -10,8 +10,8 @@ import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.money.Cash;
-import model.money.Payment;
 import model.money.MoneyAmount;
+import model.money.Payment;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -21,6 +21,7 @@ import model.receipt.SellCancellation;
 import model.receipt.SellItems;
 import model.stock.Article;
 import model.stock.ArticleGroup;
+import model.stock.StockDropOut;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.joda.time.DateMidnight;
@@ -190,11 +191,12 @@ public class StoreFixture {
 	/**
 	 * An expense of $300.
 	 * 
-	 * @param article
+	 * @param store
 	 * @return
 	 */
-	public static Expense simpleExpense(ExpenseArticle article) {
-		return new Expense(article, MoneyAmount.newFor(300.0), new DateTime());
+	public static Expense simpleExpense(Store store) {
+		ExpenseArticle expenseArticle = store.expensesArticles().iterator().next();
+		return new Expense(expenseArticle, MoneyAmount.newFor(300.0), new DateTime());
 	}
 
 	/**
@@ -284,5 +286,17 @@ public class StoreFixture {
 		JuridicPerson client = store.clients().iterator().next();
 		Vendor vendor = store.vendors().iterator().next();
 		return StoreFixture.simpleSell(stockArticle, client, vendor, store.stock().cost(stockArticle));
+	}
+
+	/**
+	 * Creates a stock drop out of 5 articles.
+	 * 
+	 * @param store
+	 * @return
+	 */
+	public static StockDropOut simpleStockDropOut(Store store) {
+		Article article = store.stockArticles().iterator().next();
+		MoneyAmount cost = store.stock().cost(article);
+		return new StockDropOut(article, 5, new DateTime(), "-", cost);
 	}
 }
