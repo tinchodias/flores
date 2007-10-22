@@ -1,7 +1,7 @@
 package ui.controller.initializer.search;
 
 import message.MessageId;
-import query.framework.query.OperationSummarySearchQuery;
+import query.QueryFactory;
 import query.framework.query.SearchQuery;
 import ui.controller.action.Action;
 import ui.controller.action.ExecuteOnSelectionAction;
@@ -25,7 +25,7 @@ public class OperationsSummaryDialogInitializer extends StandardSearchDialogInit
 	}
 
 	public SearchQuery searchQuery() {
-		return new OperationSummarySearchQuery();
+		return QueryFactory.instance().operationSummarySearchQuery();
 	}
 
 	public MessageId titleMessageId() {

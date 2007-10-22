@@ -30,6 +30,7 @@ import ui.controller.initializer.search.OperationsSummaryDialogInitializer;
 import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
 import ui.controller.initializer.search.StandardSearchDialogInitializer;
+import ui.controller.initializer.search.StockAnalysisDialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.controller.initializer.search.StockDropOutsDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
@@ -122,6 +123,7 @@ public class MainFrame extends JFrame implements MainUI {
 		reportsMenu = new JMenu("Informes");
 		
 		addJMenuItem(reportsMenu, new OperationsSummaryDialogInitializer());
+		addJMenuItem(reportsMenu, new StockAnalysisDialogInitializer());
 		
 		return reportsMenu;
 	}

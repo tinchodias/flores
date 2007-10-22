@@ -36,9 +36,11 @@ import message.MessageId;
 import message.MessageRepository;
 import model.cashBook.CashBookEntry;
 import model.money.MoneyAmount;
+import model.util.Percentage;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.joda.time.ReadableInstant;
+import org.joda.time.base.BaseDateTime;
 
 import ui.UI;
 import ui.view.swing.component.MainFrame;
@@ -46,8 +48,8 @@ import ui.view.swing.util.CashBookCellRenderer;
 import ui.view.swing.util.DateTimePicker;
 import ui.view.swing.util.IntervalPicker;
 import ui.view.swing.util.LabeledPanel;
-import ui.view.swing.util.MoneyAmountTableCellRenderer;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
+import ui.view.swing.util.RightAlignTableCellRenderer;
 import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SwingUI extends UI {
@@ -145,8 +147,10 @@ public class SwingUI extends UI {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		// Custom renderer instances
-		table.setDefaultRenderer(MoneyAmount.class, MoneyAmountTableCellRenderer.instance());
+		table.setDefaultRenderer(MoneyAmount.class, RightAlignTableCellRenderer.instance());
+		table.setDefaultRenderer(Percentage.class, RightAlignTableCellRenderer.instance());
 		table.setDefaultRenderer(ReadableInstant.class, ReadableInstantTableCellRenderer.instance());
+		table.setDefaultRenderer(BaseDateTime.class, ReadableInstantTableCellRenderer.instance());
 		table.setDefaultRenderer(CashBookEntry.class, CashBookCellRenderer.instance());
 		
 		// Custom transfer focus actions
@@ -200,6 +204,10 @@ public class SwingUI extends UI {
 		return NumberUtils.toDouble(String.valueOf(field.getValue()));
 	}
 
+	public Percentage percentageFrom(JFormattedTextField field) {
+		return Percentage.newFor(doubleFrom(field) / 100);
+	}
+	
 	public void setEnableRecursively(Container container, boolean enable) {
 		for (int i = 0; i < container.getComponentCount(); i++) {
 			Component component = container.getComponent(i);

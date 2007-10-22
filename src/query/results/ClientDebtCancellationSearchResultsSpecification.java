@@ -3,18 +3,14 @@ package query.results;
 
 import message.MessageId;
 import model.debts.ClientDebtCancellation;
-import model.money.MoneyAmount;
-
-import org.joda.time.ReadableInstant;
-
 import query.framework.results.LazySearchResultsSpecification;
 
 public class ClientDebtCancellationSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public ClientDebtCancellationSearchResultsSpecification() {
-		add(MessageId.date, ReadableInstant.class);
+		add(MessageId.date);
 		add(MessageId.client);
-		add(MessageId.amount, MoneyAmount.class);
+		add(MessageId.amount);
 	}
 	
 	public Object value(Object object, int columnIndex) {

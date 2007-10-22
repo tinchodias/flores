@@ -64,15 +64,15 @@ public class BasicCommissionsManager implements CommisionsManager {
 	}
 
 	private MoneyAmount stockDropOutTotal(Iterable<StockDropOut> dropOuts) {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (StockDropOut dropOut : dropOuts) {
-			total = total.plus(dropOut.getUnitCost().by(dropOut.getCount()));
+			total = total.plus(dropOut.getTotalCost());
 		}
 		return total;
 	}
 	
 	private MoneyAmount lostDebtDeclarationTotal(Iterable<LostDebtDeclaration> declarations) {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (LostDebtDeclaration declaration : declarations) {
 			total = total.plus(declaration.getAmount());
 		}
@@ -80,7 +80,7 @@ public class BasicCommissionsManager implements CommisionsManager {
 	}
 
 	private MoneyAmount expenseTotal(Iterable<Expense> expenses) {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Expense expense : expenses) {
 			total = total.plus(expense.getCost());
 		}
@@ -88,7 +88,7 @@ public class BasicCommissionsManager implements CommisionsManager {
 	}
 
 	private MoneyAmount sellTotal(Iterable<Sell> sells) {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Sell sell : sells) {
 			total = total.plus(sell.sellTotal());
 		}
@@ -96,7 +96,7 @@ public class BasicCommissionsManager implements CommisionsManager {
 	}
 
 	private MoneyAmount costTotal(Iterable<Sell> sells) {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Sell sell : sells) {
 			total = total.plus(sell.costTotal());
 		}

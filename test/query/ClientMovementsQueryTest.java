@@ -26,6 +26,7 @@ public class ClientMovementsQueryTest extends TestCase {
 	private Article stockArticle;
 	private JuridicPerson client;
 	private Vendor vendor;
+	private SearchQuery query;
 
 	protected void setUp() throws Exception {
 		ModelPersistenceFixture.mockWithSimpleModel();
@@ -39,6 +40,8 @@ public class ClientMovementsQueryTest extends TestCase {
 		client = store.clients().iterator().next();
 		
 		vendor = store.vendors().iterator().next();
+
+		query = QueryFactory.instance().clientMovementsQuery();
 	}
 	
 	public void testOneClient() {
@@ -54,7 +57,6 @@ public class ClientMovementsQueryTest extends TestCase {
 		LostDebtDeclaration lostDebtDeclaration = StoreFixture.simpleLostDebtDeclaration(client);
 		store.debts().add(lostDebtDeclaration);
 		
-		SearchQuery query = QueryFactory.instance().clientMovementsQuery();
 		query.setCriteria(new ClientMovementSearchCriteria() {
 			public JuridicPerson getClient() {
 				return client;

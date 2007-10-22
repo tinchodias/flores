@@ -31,7 +31,7 @@ public class ClientsDebts {
 	
 	public MoneyAmount debtOf(JuridicPerson client) {
 		MoneyAmount debt = debts.get(client);
-		return debt != null ? debt : MoneyAmount.newFor(0.0);
+		return debt != null ? debt : MoneyAmount.zero();
 	}
 	
 	private void incrementDebt(JuridicPerson client, MoneyAmount amount) {

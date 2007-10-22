@@ -18,7 +18,7 @@ import util.TimeUtils;
 
 public class BasicCommissionsTest extends TestCase {
 
-	private static final MoneyAmount ZERO_AMOUNT = MoneyAmount.newFor(0.0);
+	private static final MoneyAmount ZERO_AMOUNT = MoneyAmount.zero();
 	private Store store;
 	private Vendor aVendor;
 	private BasicCommissionsManager commissions;
@@ -61,7 +61,7 @@ public class BasicCommissionsTest extends TestCase {
 		
 		StockDropOut aStockDropOut = StoreFixture.simpleStockDropOut(store);
 		store.stock().add(aStockDropOut);
-		losses = losses.plus(aStockDropOut.getUnitCost().by(aStockDropOut.getCount()));
+		losses = losses.plus(aStockDropOut.getTotalCost());
 		assertValidSummaryTotal(gains, losses);
 	}
 	

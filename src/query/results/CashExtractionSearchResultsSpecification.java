@@ -3,15 +3,12 @@ package query.results;
 
 import message.MessageId;
 import model.cashBook.CashExtraction;
-
-import org.joda.time.ReadableInstant;
-
 import query.framework.results.LazySearchResultsSpecification;
 
 public class CashExtractionSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public CashExtractionSearchResultsSpecification() {
-		add(MessageId.date, ReadableInstant.class);
+		add(MessageId.date);
 		add(MessageId.amount);
 		add(MessageId.note);
 	}

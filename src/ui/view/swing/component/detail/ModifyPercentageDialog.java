@@ -3,6 +3,7 @@ package ui.view.swing.component.detail;
 import javax.swing.JFormattedTextField;
 
 import message.MessageId;
+import model.util.Percentage;
 import ui.view.component.ModifyPercentageUI;
 import ui.view.swing.SwingUI;
 
@@ -23,8 +24,8 @@ public class ModifyPercentageDialog extends StandardDetailDialog implements Modi
 		centerPanel().add(SwingUI.instance().decorated(percentageField, MessageId.priceMargin));
 	}
 
-	public Double getPercentage() {
-		return SwingUI.instance().doubleFrom(percentageField);
+	public Percentage getPercentage() {
+		return SwingUI.instance().percentageFrom(percentageField);
 	}
 
 }

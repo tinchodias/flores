@@ -26,6 +26,7 @@ import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
+import query.framework.query.StockAnalysisSearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.ArticleGroupSearchResultsSpecification;
@@ -308,6 +309,10 @@ public class NativeQueryFactory extends QueryFactory {
 
 	public SearchQuery operationSummarySearchQuery() {
 		return new OperationSummarySearchQuery();
+	}
+	
+	public SearchQuery stockAnalysisSearchQuery() {
+		return new StockAnalysisSearchQuery();
 	}
 	
 }

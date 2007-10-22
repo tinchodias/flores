@@ -12,4 +12,6 @@ public interface UIModelManager {
 
 	MessageId pluralNameMessageId();
 
+	MessageId singularNameMessageId();
+
 }
