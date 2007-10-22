@@ -54,7 +54,7 @@ public class StockDropOutTest extends TestCase {
 	}
 	
 	private void doDropOut(Article article, double count) {
-		StockDropOut dropOut = new StockDropOut(article, count, new DateTime(), "aTestDropOut", MoneyAmount.newFor(0.0));
+		StockDropOut dropOut = new StockDropOut(article, count, new DateTime(), "aTestDropOut", MoneyAmount.zero());
 		store.stock().add(dropOut);
 	}
 }

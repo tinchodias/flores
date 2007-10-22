@@ -40,21 +40,21 @@ public class AverageCostStrategyTest extends TestCase {
 	}
 
 	public void testSimpleValuation() {
-		assertEquals(MoneyAmount.newFor(0.0), store.stock().cost(paqueteRosa));
-		assertEquals(MoneyAmount.newFor(0.0), store.stock().cost(paqueteClavel));
+		assertEquals(MoneyAmount.zero(), store.stock().cost(paqueteRosa));
+		assertEquals(MoneyAmount.zero(), store.stock().cost(paqueteClavel));
 
 		Buy buy = makeBuy(paqueteRosa, 21.0, MoneyAmount.newFor(15.0));
 		
 		store.add(buy);
 		
 		assertEquals(MoneyAmount.newFor(15.0), store.stock().cost(paqueteRosa));
-		assertEquals(MoneyAmount.newFor(0.0), store.stock().cost(paqueteClavel));
+		assertEquals(MoneyAmount.zero(), store.stock().cost(paqueteClavel));
 
 		Buy buy2 = makeBuy(paqueteRosa, 17.0, MoneyAmount.newFor(17.5));
 		store.add(buy2);
 		
 		assertEquals(calculeAverageCost(21.0, 15.0, 17.0, 17.5), store.stock().cost(paqueteRosa));
-		assertEquals(MoneyAmount.newFor(0.0), store.stock().cost(paqueteClavel));
+		assertEquals(MoneyAmount.zero(), store.stock().cost(paqueteClavel));
 	}
 
 	private MoneyAmount calculeAverageCost(double oldCount, double oldCost, double inputCount, double inputCost) {

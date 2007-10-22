@@ -45,7 +45,7 @@ public enum MessageId {
 
 	//Stock Drop Out
 	stockDropOuts, 
-	stockDropOutDialogTitle,
+	stockDropOut,
 	
 	pricesDialogTitle,
 	modifyPercentage, 
@@ -157,7 +157,15 @@ public enum MessageId {
 	clientDebtCancellationsSummary, 
 	lostDebtDeclarationsSummary, 
 	cashExtractionsSummary, 
-	stockDropOutsSummary,   
+	stockDropOutsSummary, 
+
+	//Stock Analysis
+	stockAnalysis,   
+	sellCount, 
+	gainTotal, 
+	gainAverage, 
+	marginAverage, 
+	dropOutsTotal, 
 	
 	;
 	

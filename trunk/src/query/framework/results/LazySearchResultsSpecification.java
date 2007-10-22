@@ -9,25 +9,15 @@ import message.MessageId;
 public abstract class LazySearchResultsSpecification {
 
 	private List<MessageId> columnMessageIdentifiers = new ArrayList<MessageId>();
-	private List<Class<?>> columnClasses = new ArrayList<Class<?>>();
 
 	public abstract Object value(Object object, int columnIndex);
-
-	public List<Class<?>> columnClasses() {
-		return columnClasses;
-	}
 
 	public List<MessageId> columnMessageIdentifiers() {
 		return columnMessageIdentifiers;
 	}
 
-	public void add(MessageId messageIdentifier, Class<?> columnClass) {
-		columnMessageIdentifiers.add(messageIdentifier);
-		columnClasses.add(columnClass);
-	}
-
 	public void add(MessageId messageIdentifier) {
-		this.add(messageIdentifier, Object.class);
+		columnMessageIdentifiers.add(messageIdentifier);
 	}
 
 }

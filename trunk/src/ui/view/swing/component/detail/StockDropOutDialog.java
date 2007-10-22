@@ -17,7 +17,7 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 	private JTextField noteField;
 
 	public StockDropOutDialog() {
-		super(MessageId.stockDropOutDialogTitle);
+		super(MessageId.stockDropOut);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);

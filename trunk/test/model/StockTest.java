@@ -28,7 +28,7 @@ public class StockTest extends TestCase {
 
 	public void testStockNotNegative() {
 		try {
-			Sell anInvalidSell = StoreFixture.simpleSell(anArticle, aClient, aVendor, MoneyAmount.newFor(0.0));
+			Sell anInvalidSell = StoreFixture.simpleSell(anArticle, aClient, aVendor, MoneyAmount.zero());
 			store.stock().apply(anInvalidSell);
 			fail("May not sell if there isn't enough stock");
 		} catch (ModelValidationError e) {

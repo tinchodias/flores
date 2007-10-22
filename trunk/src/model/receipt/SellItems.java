@@ -20,7 +20,7 @@ public class SellItems implements Iterable<SellItem> {
 	}
 	
 	public MoneyAmount sellTotal() {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (SellItem item : items) {
 			total = total.plus(item.getSellValue().by(item.getCount()));
 		}
@@ -28,7 +28,7 @@ public class SellItems implements Iterable<SellItem> {
 	}
 
 	public MoneyAmount costTotal() {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (SellItem item : items) {
 			total = total.plus(item.getCostValue().by(item.getCount()));
 		}
@@ -48,7 +48,7 @@ public class SellItems implements Iterable<SellItem> {
 	}
 
 	public void adjustTotal(MoneyAmount adjustedTotal) {
-		MoneyAmount adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
+		double adjustCoefficient = adjustedTotal.dividedBy(sellTotal());
 		
 		for (SellItem item : items) {
 			MoneyAmount adjustedValue = item.getSellValue().by(adjustCoefficient);

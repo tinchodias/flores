@@ -3,18 +3,14 @@ package query.results;
 
 import message.MessageId;
 import model.expense.Expense;
-import model.money.MoneyAmount;
-
-import org.joda.time.ReadableInstant;
-
 import query.framework.results.LazySearchResultsSpecification;
 
 public class ExpenseSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public ExpenseSearchResultsSpecification() {
-		add(MessageId.date, ReadableInstant.class);
+		add(MessageId.date);
 		add(MessageId.expenseArticle);
-		add(MessageId.cashPay, MoneyAmount.class);
+		add(MessageId.cashPay);
 	}
 	
 	public Object value(Object object, int columnIndex) {

@@ -11,6 +11,7 @@ import model.operationSummary.OperationSummary;
 import model.receipt.Buy;
 import model.receipt.Sell;
 import model.stock.StockDropOut;
+import model.util.Percentage;
 import query.QueryFactory;
 import query.criteria.IntervalSearchCriteria;
 import query.framework.criteria.Criteria;
@@ -40,10 +41,10 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount lossTotal = MoneyAmount.newFor(0.0);
+		MoneyAmount lossTotal = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			StockDropOut stockDropOut = (StockDropOut) object;
-			lossTotal = lossTotal.plus(stockDropOut.getUnitCost().by(stockDropOut.getCount()));
+			lossTotal = lossTotal.plus(stockDropOut.getTotalCost());
 		}
 		String info = MessageRepository.instance().get(MessageId.stockDropOutsSummary, new Object[] {count, lossTotal});
 		
@@ -56,7 +57,7 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			CashExtraction cashExtraction = (CashExtraction) object;
 			total = total.plus(cashExtraction.getAmount());
@@ -72,7 +73,7 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			LostDebtDeclaration lostDebtDeclaration = (LostDebtDeclaration) object;
 			total = total.plus(lostDebtDeclaration.getAmount());
@@ -88,7 +89,7 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			ClientDebtCancellation clientDebtCancellation = (ClientDebtCancellation) object;
 			total = total.plus(clientDebtCancellation.getAmount());
@@ -104,7 +105,7 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount costTotal = MoneyAmount.newFor(0.0);
+		MoneyAmount costTotal = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			Expense expense = (Expense) object;
 			costTotal = costTotal.plus(expense.getCost());
@@ -120,8 +121,8 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount buyTotal = MoneyAmount.newFor(0.0);
-		MoneyAmount paymentTotal = MoneyAmount.newFor(0.0);
+		MoneyAmount buyTotal = MoneyAmount.zero();
+		MoneyAmount paymentTotal = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			Buy buy = (Buy) object;
 			buyTotal = buyTotal.plus(buy.buyTotal());
@@ -139,18 +140,20 @@ public class OperationSummarySearchQuery implements SearchQuery {
 		SearchResults searchResults = query.results();
 		
 		int count = searchResults.getRowCount();
-		MoneyAmount sellTotal = MoneyAmount.newFor(0.0);
-		MoneyAmount costTotal = MoneyAmount.newFor(0.0);
-		MoneyAmount paymentTotal = MoneyAmount.newFor(0.0);
+		MoneyAmount sellTotal = MoneyAmount.zero();
+		MoneyAmount costTotal = MoneyAmount.zero();
+		MoneyAmount paymentTotal = MoneyAmount.zero();
 		for (Object object : searchResults) {
 			Sell sell = (Sell) object;
 			sellTotal = sellTotal.plus(sell.sellTotal());
 			costTotal = costTotal.plus(sell.costTotal());
 			paymentTotal = paymentTotal.plus(sell.paymentTotal());
 		}
-		Double averagePricePercentage = (sellTotal.value() / costTotal.value()) * 100;
+		Object averagePricePercentage = (costTotal.value() == 0) ? "-" : 
+			Percentage.newFor(sellTotal.dividedBy(costTotal) - 1);
+
 		String info = MessageRepository.instance().get(MessageId.sellsSummary, 
-				new Object[] {count, sellTotal, paymentTotal, averagePricePercentage.intValue()});
+				new Object[] {count, sellTotal, paymentTotal, averagePricePercentage});
 		
 		return new OperationSummary(Sell.class, info);
 	}

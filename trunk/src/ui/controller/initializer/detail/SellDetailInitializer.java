@@ -53,7 +53,7 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 			sellUI.setClient(store.clients().iterator().next());
 		}
 		
-		sellUI.setCashPay(MoneyAmount.newFor(0.0));
+		sellUI.setCashPay(MoneyAmount.zero());
 	}
 	
 }

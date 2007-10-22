@@ -53,5 +53,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery lostDebtDeclarationsSearchQuery();
 	
 	public abstract SearchQuery operationSummarySearchQuery();
+
+	public abstract SearchQuery stockAnalysisSearchQuery();
 	
 }

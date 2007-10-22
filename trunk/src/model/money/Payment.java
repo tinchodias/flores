@@ -10,7 +10,7 @@ public class Payment implements Collection<PayMode> {
 	Collection<PayMode> pays = CollectionFactory.newList();
 	
 	public MoneyAmount total() {
-		MoneyAmount total = MoneyAmount.newFor(0.0);
+		MoneyAmount total = MoneyAmount.zero();
 		for (PayMode pay : pays) {
 			total = total.plus(pay.getValue());
 		}

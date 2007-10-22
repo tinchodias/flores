@@ -31,6 +31,7 @@ import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
+import query.framework.query.StockAnalysisSearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.implementation.natives.StandardNativeSearchQuery;
@@ -264,6 +265,10 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery operationSummarySearchQuery() {
 		return new OperationSummarySearchQuery();
+	}
+
+	public SearchQuery stockAnalysisSearchQuery() {
+		return new StockAnalysisSearchQuery();
 	}
 	
 }

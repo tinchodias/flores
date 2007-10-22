@@ -3,14 +3,10 @@ package ui.view.swing.util;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import message.MessageId;
 import message.MessageRepository;
 import model.cashBook.CashBookEntry;
-import model.cashBook.CashExtraction;
-import model.debts.ClientDebtCancellation;
-import model.expense.Expense;
-import model.receipt.Buy;
-import model.receipt.Sell;
+import ui.controller.manager.ManagerFactory;
+import ui.controller.manager.UIModelManager;
 
 public class CashBookCellRenderer extends DefaultTableCellRenderer {
 
@@ -32,28 +28,13 @@ public class CashBookCellRenderer extends DefaultTableCellRenderer {
 		String text = "";
 		
 		if (value != null) {
-			text = reasonFor((CashBookEntry) value);
+			text = textFor((CashBookEntry) value);
 		}
 		setText(text);
 	}
 
-	//TODO !!!
-	private String reasonFor(CashBookEntry entry) {
-		MessageId messageId = null;
-		Object object = entry.getObject();
-		
-		if (object instanceof Sell) {
-			messageId = MessageId.sell; 
-		} else if (object instanceof Buy) {
-			messageId = MessageId.buy; 
-		} else if (object instanceof Expense) {
-			messageId = MessageId.expense;
-		} else if (object instanceof ClientDebtCancellation) {
-			messageId = MessageId.clientDebtCancellation;
-		} else if (object instanceof CashExtraction) {
-			messageId = MessageId.cashExtraction;
-		}
-		
-		return MessageRepository.instance().get(messageId);
+	private String textFor(CashBookEntry entry) {
+		UIModelManager manager = ManagerFactory.instance().get(entry.getObject().getClass());
+		return MessageRepository.instance().get(manager.singularNameMessageId());
 	}
 }

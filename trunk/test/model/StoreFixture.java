@@ -200,17 +200,17 @@ public class StoreFixture {
 	}
 
 	/**
-	 * The client buys 100 claveles at $9 each, paying $500.
+	 * The client buys 100 units of anArticle at $9 each, paying $500.
 	 *  
-	 * @param article 
+	 * @param anArticle 
 	 * @param client 
 	 * @param vendor 
 	 * @param cost 
 	 * @return 
 	 */
-	public static Sell simpleSell(Article article, JuridicPerson client, Vendor vendor, MoneyAmount cost) {
+	public static Sell simpleSell(Article anArticle, JuridicPerson client, Vendor vendor, MoneyAmount cost) {
 		SellItems spec = new SellItems();
-		spec.add(article, 100.0, MoneyAmount.newFor(9.0), cost);
+		spec.add(anArticle, 100.0, MoneyAmount.newFor(9.0), cost);
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(MoneyAmount.newFor(500.0)));

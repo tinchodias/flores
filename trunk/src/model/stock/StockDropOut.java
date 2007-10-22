@@ -50,4 +50,7 @@ public class StockDropOut {
 		return unitCost;
 	}
 
+	public MoneyAmount getTotalCost() {
+		return getUnitCost().by(getCount());
+	}
 }
