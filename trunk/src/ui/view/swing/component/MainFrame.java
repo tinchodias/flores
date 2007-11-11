@@ -89,12 +89,9 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newCashMenu() {
 		cashMenu = new JMenu("Caja");
 
-		addJMenuItem(cashMenu, new ShowCurrentCashAction());
-		addJMenuItem(cashMenu, new CashBookDialogInitializer());
 		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer());
 		addJMenuItem(cashMenu, new ExpensesDialogInitializer());
 		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer());
-		addJMenuItem(cashMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
 		
 		return cashMenu;
 	}
@@ -122,6 +119,9 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu newReportsMenu() {
 		reportsMenu = new JMenu("Informes");
 		
+		addJMenuItem(reportsMenu, new CashBookDialogInitializer());
+		addJMenuItem(reportsMenu, new ShowCurrentCashAction());
+		addJMenuItem(reportsMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
 		addJMenuItem(reportsMenu, new OperationsSummaryDialogInitializer());
 		addJMenuItem(reportsMenu, new StockAnalysisDialogInitializer());
 		
