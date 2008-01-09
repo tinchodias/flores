@@ -16,8 +16,7 @@ import org.joda.time.base.BaseDateTime;
 public class CashBook {
 
 	private List entries = CollectionFactory.newList();
-	private MoneyAmount currentCash = MoneyAmount.zero();
-	private List extractions = CollectionFactory.newList();
+	private MoneyAmount currentCash = MoneyAmount.newFor(0.0);
 
 	private void addPositiveEntry(Object object, BaseDateTime date, MoneyAmount amount) {
 		entries.add(new CashBookEntry(object, date, amount));
@@ -25,7 +24,7 @@ public class CashBook {
 	}
 	
 	private void addNegativeEntry(Object object, BaseDateTime date, MoneyAmount amount) {
-		addPositiveEntry(object, date, amount.by(-1.0));
+		addPositiveEntry(object, date, amount.by(-1));
 	}
 	
 	public void apply(ClientDebtCancellation cancellation) {
@@ -60,13 +59,8 @@ public class CashBook {
 		return currentCash;
 	}
 
-	public void add(CashExtraction extraction) {
-		extractions.add(extraction);
-		addNegativeEntry(extraction, extraction.getDate(), extraction.getAmount());
-	}
-	
-	public Iterable<CashExtraction> extractions() {
-		return extractions;
+	public void add(CashExtraction cashExtraction) {
+		addNegativeEntry(cashExtraction, cashExtraction.getDate(), cashExtraction.getAmount());
 	}
 	
 }

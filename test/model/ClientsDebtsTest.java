@@ -4,44 +4,55 @@
 package model;
 
 import junit.framework.TestCase;
-import model.debts.ClientDebtCancellation;
-import model.debts.LostDebtDeclaration;
+import model.money.Cash;
+import model.money.Payment;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
+import model.receipt.SellItems;
 import model.stock.Article;
-import persistence.ModelPersistence;
-import persistence.util.ModelPersistenceFixture;
+
+import org.joda.time.DateTime;
 
 public class ClientsDebtsTest extends TestCase {
 
 	private Store store;
+	private Article clavel;
 	private JuridicPerson elvira;
+	private Vendor eduardo;
 	
 	protected void setUp() throws Exception {
-		ModelPersistenceFixture.mockWithSimpleModel();
-		store = ModelPersistence.instance().loadedModel().store();
-
-		Article anArticle = store.stockArticles().iterator().next();
-		JuridicPerson aSupplier = store.suppliers().iterator().next();
-		store.add(StoreFixture.simpleBuy(anArticle, aSupplier));
+		super.setUp();
+		
+		store = StoreFixture.simpleStore();
+		
+		clavel = store.stockArticles().iterator().next();
 		
 		elvira = store.clients().iterator().next();
+		
+		eduardo = store.vendors().iterator().next();
 	}
 
 	public void testSimpleDebt() {
-		Sell aSell = StoreFixture.simpleSell(store);
-		store.add(aSell);
+		doSell();
 		
-		assertEquals(aSell.clientDebt(), store.debts().debtOf(elvira));
+		assertEquals(MoneyAmount.newFor(100.0), store.debts().debtOf(elvira));
 
-		ClientDebtCancellation debtCancellation = StoreFixture.simpleClientDebtCancellation(elvira);
-		store.debts().add(debtCancellation);
+		store.debts().add(StoreFixture.simpleClientDebtCancellation(elvira));
+		assertEquals(MoneyAmount.newFor(60.0), store.debts().debtOf(elvira));
 		
-		assertEquals(aSell.clientDebt().minus(debtCancellation.getAmount()), store.debts().debtOf(elvira));
-		
-		LostDebtDeclaration lostDebtDeclaration = StoreFixture.simpleLostDebtDeclaration(elvira);
-		store.debts().add(lostDebtDeclaration);
-		
-		assertEquals(aSell.clientDebt().minus(debtCancellation.getAmount()).minus(lostDebtDeclaration.getAmount()), store.debts().debtOf(elvira));
+		store.debts().add(StoreFixture.simpleLostDebtDeclaration(elvira));
+		assertEquals(MoneyAmount.newFor(20.0), store.debts().debtOf(elvira));
 	}
 
+	private void doSell() {
+		SellItems spec = new SellItems();
+		spec.add(clavel, 10.0, MoneyAmount.newFor(50.0), store.stock().cost(clavel));
+		
+		Payment payment = new Payment();
+		payment.add(new Cash(MoneyAmount.newFor(400.0)));
+		
+		Sell sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
+		store.add(sell);
+	}
+	
 }

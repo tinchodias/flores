@@ -24,7 +24,7 @@ public class ClientMovementsDialogInitializer extends StandardSearchDialogInitia
 		return new ClientMovementSearchPanel(clientHolder);
 	}
 
-	public SearchQuery searchQuery() {
+	protected SearchQuery searchQuery() {
 		return QueryFactory.instance().clientMovementsQuery();
 	}
 

@@ -10,8 +10,8 @@ import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.money.Cash;
-import model.money.MoneyAmount;
 import model.money.Payment;
+import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
 import model.receipt.BuyItem;
@@ -21,7 +21,6 @@ import model.receipt.SellCancellation;
 import model.receipt.SellItems;
 import model.stock.Article;
 import model.stock.ArticleGroup;
-import model.stock.StockDropOut;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.joda.time.DateMidnight;
@@ -84,88 +83,79 @@ public class StoreFixture {
 		JuridicPerson finalConsumerClient = new JuridicPerson("Consumidor Final", new Address("Ninguna", store.cities().iterator().next()));
 		store.clients().add(finalConsumerClient);
 		
-		System.out.println("Generating Clients");
-		for (int i = 0; i < 50; i++) {
-			store.clients().add(simpleClient(store));
-		}
-
-		System.out.println("Generating Suppliers");
-		for (int i = 0; i < 50; i++) {
-			store.suppliers().add(simpleSupplier(store));
-		}
-		System.out.println("Generating Vendors");
-		for (int i = 0; i < 10; i++) {
-			store.vendors().add(new Vendor("Vendedor " + i));
-		}
-		
-		System.out.println("Generating Stock Article Groups");
-		for (int i = 0; i < 100; i++) {
-			store.stockArticleGroups().add(new ArticleGroup("Marca " + i));
-		}
-		System.out.println("Generating Stock Articles");
-		for (int i = 0; i < 800; i++) {
-			store.stockArticles().add(simpleArticle(store));
-		}
-
-		System.out.println("Generating Expenses Articles");
-		for (int i = 0; i < 50; i++) {
-			store.expensesArticles().add(new ExpenseArticle("Gasto " + i));
-		}
-
-		System.out.println("Generating Expenses");
-		DateMidnight expensesStart = new DateMidnight(2006, 6, 1);
-		DateMidnight expensesEnd = new DateMidnight(2006, 6, 10);
-		for (BaseDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
-			for (int i = 0; i < 5; i++) {
-				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomMoneyAmount(20), date);
-				store.add(expense);
-			}
-		}
-		
-		System.out.println("Generating Buys");
-		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
-		DateMidnight buysEnd = new DateMidnight(2006, 2, 1);
-		for (BaseDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
-			for (int i = 0; i < 5; i++) {
-				BuyItems spec = new BuyItems();
-				for (int j = 0; j < 100; j++) {
-					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(1 + RandomUtils.nextInt(2000)), randomMoneyAmount(20));
-					spec.add(buyItem);
-				}
-				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
-				store.add(buy);
-			}
-		}
-
-		System.out.println("Generating Sells");
-		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
-		DateMidnight sellsEnd = new DateMidnight(2007, 1, 10);
-		for (BaseDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
-			for (int i = 0; i < 100; i++) {
-				SellItems spec = new SellItems();
-				for (int j = 0; j < 5; j++) {
-					Article article = (Article) oneOf(store.stockArticles());
-					spec.add(article, new Double(1 + RandomUtils.nextInt(20)), randomMoneyAmount(40), store.stock().cost(article));
-				}
-				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (Vendor) oneOf(store.vendors()));
-				store.add(sell);
-			}
-		}
-	}
-
-	public static Article simpleArticle(Store store) {
-		int anIndex = RandomUtils.nextInt();
-		return new Article(String.valueOf(1000000 + anIndex), "Artículo " + anIndex, String.valueOf(RandomUtils.nextInt(anIndex + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
-	}
-
-	public static JuridicPerson simpleSupplier(Store store) {
-		int anIndex = RandomUtils.nextInt();
-		return new JuridicPerson("Proveedor " + anIndex, new Address("Domicilio " + anIndex, (City) oneOf(store.cities())));
-	}
-
-	public static JuridicPerson simpleClient(Store store) {
-		int anIndex = RandomUtils.nextInt();
-		return new JuridicPerson("Cliente " + anIndex , new Address("Domicilio " + anIndex, (City) oneOf(store.cities())));
+//		System.out.println("Generating Clients");
+//		for (int i = 0; i < 50; i++) {
+//			JuridicPerson client = new JuridicPerson("Cliente " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
+//			store.clients().add(client);
+//		}
+//
+//		System.out.println("Generating Suppliers");
+//		for (int i = 0; i < 50; i++) {
+//			JuridicPerson supplier = new JuridicPerson("Proveedor " + i, new Address("Domicilio " + i, (City) oneOf(store.cities())));
+//			store.suppliers().add(supplier);
+//		}
+//		System.out.println("Generating Vendors");
+//		for (int i = 0; i < 10; i++) {
+//			Vendor vendor = new Vendor("Vendedor " + i);
+//			store.vendors().add(vendor);
+//		}
+//		
+//		System.out.println("Generating Stock Article Groups");
+//		for (int i = 0; i < 100; i++) {
+//			ArticleGroup group = new ArticleGroup("Marca " + i);
+//			store.stockArticleGroups().add(group);
+//		}
+//		System.out.println("Generating Stock Articles");
+//		for (int i = 0; i < 800; i++) {
+//			Article article = new Article(String.valueOf(1000000 + i), "Artículo " + i, String.valueOf(RandomUtils.nextInt(i + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
+//			store.stockArticles().add(article);
+//		}
+//
+//		System.out.println("Generating Expenses Articles");
+//		for (int i = 0; i < 50; i++) {
+//			ExpenseArticle expenseArticle = new ExpenseArticle("Gasto " + i);
+//			store.expensesArticles().add(expenseArticle);
+//		}
+//
+//		System.out.println("Generating Expenses");
+//		DateMidnight expensesStart = new DateMidnight(2006, 6, 1);
+//		DateMidnight expensesEnd = new DateMidnight(2006, 6, 10);
+//		for (BaseDateTime date = expensesStart; date.isBefore(expensesEnd); date = date.toDateTime().plus(Days.ONE)) {
+//			for (int i = 0; i < 5; i++) {
+//				Expense expense = new Expense((ExpenseArticle) oneOf(store.expensesArticles()), randomMoneyAmount(20), date);
+//				store.add(expense);
+//			}
+//		}
+//		
+//		System.out.println("Generating Buys");
+//		DateMidnight buysStart = new DateMidnight(2006, 1, 1);
+//		DateMidnight buysEnd = new DateMidnight(2006, 2, 1);
+//		for (BaseDateTime date = buysStart; date.isBefore(buysEnd); date = date.toDateTime().plus(Days.ONE)) {
+//			for (int i = 0; i < 5; i++) {
+//				BuyItems spec = new BuyItems();
+//				for (int j = 0; j < 100; j++) {
+//					BuyItem buyItem = new BuyItem((Article) oneOf(store.stockArticles()), new Double(1 + RandomUtils.nextInt(2000)), randomMoneyAmount(20));
+//					spec.add(buyItem);
+//				}
+//				Buy buy = new Buy(spec, date, (JuridicPerson) oneOf(store.suppliers()), randomPayment(spec.total()));
+//				store.add(buy);
+//			}
+//		}
+//
+//		System.out.println("Generating Sells");
+//		DateMidnight sellsStart = new DateMidnight(2007, 1, 1);
+//		DateMidnight sellsEnd = new DateMidnight(2007, 1, 10);
+//		for (BaseDateTime date = sellsStart; date.isBefore(sellsEnd); date = date.toDateTime().plus(Days.ONE)) {
+//			for (int i = 0; i < 100; i++) {
+//				SellItems spec = new SellItems();
+//				for (int j = 0; j < 5; j++) {
+//					Article article = (Article) oneOf(store.stockArticles());
+//					spec.add(article, new Double(1 + RandomUtils.nextInt(20)), randomMoneyAmount(40), store.stock().cost(article));
+//				}
+//				Sell sell = new Sell(spec, date, (JuridicPerson) oneOf(store.clients()), randomPayment(spec.sellTotal()), (Vendor) oneOf(store.vendors()));
+//				store.add(sell);
+//			}
+//		}
 	}
 
 	private static MoneyAmount randomMoneyAmount(int bound) {
@@ -191,26 +181,25 @@ public class StoreFixture {
 	/**
 	 * An expense of $300.
 	 * 
-	 * @param store
+	 * @param article
 	 * @return
 	 */
-	public static Expense simpleExpense(Store store) {
-		ExpenseArticle expenseArticle = store.expensesArticles().iterator().next();
-		return new Expense(expenseArticle, MoneyAmount.newFor(300.0), new DateTime());
+	public static Expense simpleExpense(ExpenseArticle article) {
+		return new Expense(article, MoneyAmount.newFor(300.0), new DateTime());
 	}
 
 	/**
-	 * The client buys 100 units of anArticle at $9 each, paying $500.
+	 * The client buys 100 claveles at $9 each, paying $500.
 	 *  
-	 * @param anArticle 
+	 * @param article 
 	 * @param client 
 	 * @param vendor 
 	 * @param cost 
 	 * @return 
 	 */
-	public static Sell simpleSell(Article anArticle, JuridicPerson client, Vendor vendor, MoneyAmount cost) {
+	public static Sell simpleSell(Article article, JuridicPerson client, Vendor vendor, MoneyAmount cost) {
 		SellItems spec = new SellItems();
-		spec.add(anArticle, 100.0, MoneyAmount.newFor(9.0), cost);
+		spec.add(article, 100.0, MoneyAmount.newFor(9.0), cost);
 		
 		Payment payment = new Payment();
 		payment.add(new Cash(MoneyAmount.newFor(500.0)));
@@ -286,17 +275,5 @@ public class StoreFixture {
 		JuridicPerson client = store.clients().iterator().next();
 		Vendor vendor = store.vendors().iterator().next();
 		return StoreFixture.simpleSell(stockArticle, client, vendor, store.stock().cost(stockArticle));
-	}
-
-	/**
-	 * Creates a stock drop out of 5 articles.
-	 * 
-	 * @param store
-	 * @return
-	 */
-	public static StockDropOut simpleStockDropOut(Store store) {
-		Article article = store.stockArticles().iterator().next();
-		MoneyAmount cost = store.stock().cost(article);
-		return new StockDropOut(article, 5, new DateTime(), "-", cost);
 	}
 }

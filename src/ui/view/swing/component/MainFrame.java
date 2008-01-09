@@ -26,11 +26,9 @@ import ui.controller.initializer.search.ClientsDialogInitializer;
 import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.ExpensesDialogInitializer;
 import ui.controller.initializer.search.LostDebtDeclarationsDialogInitializer;
-import ui.controller.initializer.search.OperationsSummaryDialogInitializer;
 import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
 import ui.controller.initializer.search.StandardSearchDialogInitializer;
-import ui.controller.initializer.search.StockAnalysisDialogInitializer;
 import ui.controller.initializer.search.StockDialogInitializer;
 import ui.controller.initializer.search.StockDropOutsDialogInitializer;
 import ui.controller.initializer.search.SuppliersDialogInitializer;
@@ -45,7 +43,6 @@ public class MainFrame extends JFrame implements MainUI {
 	private JMenu personsMenu;
 	private JMenu storeMenu;
 	private JMenu cashMenu;
-	private JMenu reportsMenu;
 
 	public MainFrame() {
 		setTitle(MessageRepository.instance().get(MessageId.mainTitle));
@@ -69,7 +66,6 @@ public class MainFrame extends JFrame implements MainUI {
 		menuBar.add(newPersonsMenu());
 		menuBar.add(newStoreMenu());
 		menuBar.add(newCashMenu());
-		menuBar.add(newReportsMenu());
 		return menuBar;
 	}
 
@@ -89,9 +85,12 @@ public class MainFrame extends JFrame implements MainUI {
 	private Component newCashMenu() {
 		cashMenu = new JMenu("Caja");
 
-		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer());
-		addJMenuItem(cashMenu, new ExpensesDialogInitializer());
+		addJMenuItem(cashMenu, new ShowCurrentCashAction());
+//		addJMenuItem(cashMenu, new CashBookDialogInitializer());
+//		addJMenuItem(cashMenu, new ExpensesArticlesDialogInitializer());
+//		addJMenuItem(cashMenu, new ExpensesDialogInitializer());
 		addJMenuItem(cashMenu, new CashExtractionsDialogInitializer());
+//		addJMenuItem(cashMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
 		
 		return cashMenu;
 	}
@@ -102,8 +101,8 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(personsMenu, new ClientsDialogInitializer());
 		addJMenuItem(personsMenu, new SuppliersDialogInitializer());
 		addJMenuItem(personsMenu, new CitiesDialogInitializer());
-		addJMenuItem(personsMenu, new ClientDebtCancellationsDialogInitializer());
-		addJMenuItem(personsMenu, new LostDebtDeclarationsDialogInitializer());
+//		addJMenuItem(personsMenu, new ClientDebtCancellationsDialogInitializer());
+//		addJMenuItem(personsMenu, new LostDebtDeclarationsDialogInitializer());
 		
 		return personsMenu;
 	}
@@ -114,18 +113,6 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(systemMenu, new LoginDialogInitializer(), MessageId.loginDialogTitle);
 		
 		return systemMenu;
-	}
-	
-	private JMenu newReportsMenu() {
-		reportsMenu = new JMenu("Informes");
-		
-		addJMenuItem(reportsMenu, new CashBookDialogInitializer());
-		addJMenuItem(reportsMenu, new ShowCurrentCashAction());
-		addJMenuItem(reportsMenu, new CommissionCalculationDialogInitializer(), MessageId.commissionCalculation);
-		addJMenuItem(reportsMenu, new OperationsSummaryDialogInitializer());
-		addJMenuItem(reportsMenu, new StockAnalysisDialogInitializer());
-		
-		return reportsMenu;
 	}
 	
 	private static void addJMenuItem(JMenu menu, DialogInitializer initializer, MessageId messageId) {
@@ -145,7 +132,6 @@ public class MainFrame extends JFrame implements MainUI {
 		personsMenu.setEnabled(false);
 		storeMenu.setEnabled(false);
 		cashMenu.setEnabled(false);
-		reportsMenu.setEnabled(false);
 	}
 	
 	public void setLoggedUserState() {
@@ -153,7 +139,6 @@ public class MainFrame extends JFrame implements MainUI {
 		personsMenu.setEnabled(true);
 		storeMenu.setEnabled(true);
 		cashMenu.setEnabled(true);
-		reportsMenu.setEnabled(true);
 	}
 
 }

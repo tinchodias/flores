@@ -1,21 +1,17 @@
 package query.framework.results;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import model.util.CollectionFactory;
 
 
 public class DefaultLazySearchResults extends LazySearchResults {
 
-	private List sources;
+	private List sources = CollectionFactory.newList();
 
 	public DefaultLazySearchResults(LazySearchResultsSpecification spec) {
-		this(spec, new ArrayList());
-	}
-	
-	public DefaultLazySearchResults(LazySearchResultsSpecification spec, List sources) {
 		super(spec);
-		this.sources = sources;
 	}
 	
 	public void add(Object object) {

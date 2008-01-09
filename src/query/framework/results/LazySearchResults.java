@@ -13,14 +13,11 @@ public abstract class LazySearchResults implements SearchResults {
 	}
 	
 	public Class<?> getColumnClass(int columnIndex) {
-		if (this.getRowCount() > 0) {
-			return this.getValueAt(0, columnIndex).getClass();
-		}
-		return Object.class;
+		return spec.columnClasses().get(columnIndex);
 	}
 
 	public int getColumnCount() {
-		return spec.columnMessageIdentifiers().size();
+		return spec.columnClasses().size();
 	}
 
 	public String getColumnName(int columnIndex) {

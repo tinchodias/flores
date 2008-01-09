@@ -9,8 +9,6 @@ public interface StockDropOutUI extends DetailUI {
 
 	Article getArticle();
 
-	String getNote();
-
 	void setArticleManager(UIModelManager manager);
 	
 }

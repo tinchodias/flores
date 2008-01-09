@@ -1,6 +1,8 @@
 package query.results;
 
 
+import org.joda.time.ReadableInstant;
+
 import message.MessageId;
 import model.stock.StockDropOut;
 import query.framework.results.LazySearchResultsSpecification;
@@ -8,10 +10,9 @@ import query.framework.results.LazySearchResultsSpecification;
 public class StockDropOutSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public StockDropOutSearchResultsSpecification() {
-		add(MessageId.date);
+		add(MessageId.date, ReadableInstant.class);
 		add(MessageId.article);
-		add(MessageId.count);
-		add(MessageId.unitCost);
+		add(MessageId.count, Double.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {
@@ -23,8 +24,6 @@ public class StockDropOutSearchResultsSpecification extends LazySearchResultsSpe
 			return dropOut.getArticle();
 		case 2:
 			return dropOut.getCount();
-		case 3:
-			return dropOut.getUnitCost();
 		}
 		return null;
 	}

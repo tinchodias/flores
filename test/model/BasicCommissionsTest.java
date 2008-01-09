@@ -4,74 +4,107 @@
 package model;
 
 import junit.framework.TestCase;
-import model.commission.BasicCommissionsManager;
+import model.JuridicPerson;
+import model.Store;
 import model.commission.CommissionSummary;
-import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
+import model.expense.ExpenseArticle;
+import model.money.Cash;
+import model.money.Payment;
 import model.money.MoneyAmount;
 import model.receipt.Sell;
+import model.receipt.SellItems;
 import model.stock.Article;
-import model.stock.StockDropOut;
-import persistence.ModelPersistence;
-import persistence.util.ModelPersistenceFixture;
+
+import org.joda.time.DateTime;
+
 import util.TimeUtils;
 
 public class BasicCommissionsTest extends TestCase {
 
-	private static final MoneyAmount ZERO_AMOUNT = MoneyAmount.zero();
 	private Store store;
-	private Vendor aVendor;
-	private BasicCommissionsManager commissions;
-	private JuridicPerson aClient;
+	private Article clavel;
+	private JuridicPerson elvira;
+	private Sell sell;
+	private Vendor eduardo;
+	private ExpenseArticle alquiler;
+	private MoneyAmount clavelInitialCost;
 	
 	protected void setUp() throws Exception {
-		ModelPersistenceFixture.mockWithSimpleModel();
-		store = ModelPersistence.instance().loadedModel().store();
-		commissions = new BasicCommissionsManager();
-		store.commissions(commissions);
+		super.setUp();
 		
-		Article clavel = store.stockArticles().iterator().next();
-		JuridicPerson aSupplier = store.suppliers().iterator().next();
-		store.add(StoreFixture.simpleBuy(clavel, aSupplier));
+		store = StoreFixture.simpleStore();
 		
-		aClient = store.clients().iterator().next();
-		aVendor = store.vendors().iterator().next();
+		clavel = store.stockArticles().iterator().next();
+		
+		clavelInitialCost = store.stock().cost(clavel);
+
+		elvira = store.clients().iterator().next();
+		
+		eduardo = store.vendors().iterator().next();
+		
+		alquiler = store.expensesArticles().iterator().next();
 	}
 
-	public void testComplete() {
-		MoneyAmount gains = ZERO_AMOUNT;
-		MoneyAmount losses = ZERO_AMOUNT;
-		assertValidSummaryTotal(gains, losses);
-		
-		Sell aSell = StoreFixture.simpleSell(store);
-		store.add(aSell);
-		gains = gains.plus(aSell.sellTotal());
-		losses = losses.plus(aSell.costTotal());
-		assertValidSummaryTotal(gains, losses);
-
-		Expense anExpense = StoreFixture.simpleExpense(store);
-		store.add(anExpense);
-		losses = losses.plus(anExpense.getCost());
-		assertValidSummaryTotal(gains, losses);
-		
-		LostDebtDeclaration lostDebtDeclaration = StoreFixture.simpleLostDebtDeclaration(aClient);
-		store.debts().add(lostDebtDeclaration);
-		losses = losses.plus(lostDebtDeclaration.getAmount());
-		assertValidSummaryTotal(gains, losses);
-		
-		StockDropOut aStockDropOut = StoreFixture.simpleStockDropOut(store);
-		store.stock().add(aStockDropOut);
-		losses = losses.plus(aStockDropOut.getTotalCost());
-		assertValidSummaryTotal(gains, losses);
+	protected void tearDown() throws Exception {
+		super.tearDown();
 	}
 	
-	private void assertValidSummaryTotal(MoneyAmount gains, MoneyAmount losses) {
-		assertSummaryTotalEquals(gains.minus(losses).by(commissions.getCommisionMultiplier()));
+	public void testComplete() {
+		initialAsserts();
+		
+		doSell();
+
+		postSellAsserts();
+		
+		doExpense();
+		
+		postExpenseAsserts();
 	}
 
-	private void assertSummaryTotalEquals(MoneyAmount value) {
-		CommissionSummary summary = store.commissions().commissionAt(aVendor, TimeUtils.todayInterval());
-		assertEquals(value, summary.getTotal());
+	private void initialAsserts() {
+		CommissionSummary summary = store.commissions().commissionAt(eduardo, TimeUtils.todayInterval());
+		assertEquals(MoneyAmount.newFor(0.0), summary.getTotal());
+		assertEquals(MoneyAmount.newFor(0.0), summary.getSellTotal());
+		assertEquals(MoneyAmount.newFor(0.0), summary.getCostTotal());
+		assertEquals(MoneyAmount.newFor(0.0), summary.getExpensesTotal());
 	}
 
+	private void postSellAsserts() {
+		CommissionSummary summary = store.commissions().commissionAt(eduardo, TimeUtils.todayInterval());
+		assertEquals(MoneyAmount.newFor(450.0), summary.getTotal());
+		assertEquals(clavelInitialCost.plus(MoneyAmount.newFor(9.0)).by(100.0), summary.getSellTotal());
+		assertEquals(clavelInitialCost.by(100.0), summary.getCostTotal());
+		assertEquals(MoneyAmount.newFor(0.0), summary.getExpensesTotal());
+	}
+
+	private void postExpenseAsserts() {
+		CommissionSummary summary = store.commissions().commissionAt(eduardo, TimeUtils.todayInterval());
+		assertEquals(MoneyAmount.newFor(350.0), summary.getTotal());
+		assertEquals(clavelInitialCost.plus(MoneyAmount.newFor(9.0)).by(100.0), summary.getSellTotal());
+		assertEquals(clavelInitialCost.by(100.0), summary.getCostTotal());
+		assertEquals(MoneyAmount.newFor(200.0), summary.getExpensesTotal());
+	}
+	
+	/**
+	 * Elvira buys to Eduardo 100 claveles, paying $500 ($9 of gain each one). 
+	 */
+	private void doSell() {
+		SellItems spec = new SellItems();
+		spec.add(clavel, 100.0, clavelInitialCost.plus(MoneyAmount.newFor(9.0)), clavelInitialCost);
+		
+		Payment payment = new Payment();
+		payment.add(new Cash(MoneyAmount.newFor(500.0)));
+		
+		sell = new Sell(spec, new DateTime(), elvira, payment, eduardo);
+		store.add(sell);
+	}
+	
+	/**
+	 * An expense of $200 is registered.
+	 */
+	private void doExpense() {
+		Expense expense = new Expense(alquiler, MoneyAmount.newFor(200.0), new DateTime());
+		store.add(expense);
+	}
 }

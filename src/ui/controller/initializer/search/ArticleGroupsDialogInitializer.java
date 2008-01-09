@@ -19,7 +19,7 @@ public class ArticleGroupsDialogInitializer extends StandardSearchDialogInitiali
 		return new ArticleGroupSearchPanel();
 	}
 
-	public SearchQuery searchQuery() {
+	protected SearchQuery searchQuery() {
 		return QueryFactory.instance().articleGroupSearchQuery();
 	}
 

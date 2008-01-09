@@ -19,7 +19,7 @@ public class ExpensesArticlesDialogInitializer extends StandardSearchDialogIniti
 		return new ExpenseArticleSearchPanel();
 	}
 
-	public SearchQuery searchQuery() {
+	protected SearchQuery searchQuery() {
 		return QueryFactory.instance().expensesArticlesSearchQuery();
 	}
 

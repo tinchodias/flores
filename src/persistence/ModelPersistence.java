@@ -9,19 +9,10 @@ import transaction.TransactionManager;
 
 public abstract class ModelPersistence {
 
-	private static ModelPersistence instance;
-
 	public static ModelPersistence instance() {
-		if (instance == null) {
-			instance = Db4oModelPersistence.instance();
-		}
-		return instance;
+		return Db4oModelPersistence.instance();
 	}
 
-	public static void instance(ModelPersistence modelPersistence) {
-		instance = modelPersistence;
-	}
-	
 	public abstract void open();
 
 	public abstract void close();

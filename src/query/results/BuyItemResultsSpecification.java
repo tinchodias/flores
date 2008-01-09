@@ -2,6 +2,7 @@ package query.results;
 
 
 import message.MessageId;
+import model.money.MoneyAmount;
 import model.receipt.BuyItem;
 import query.framework.results.LazySearchResultsSpecification;
 
@@ -9,8 +10,8 @@ public class BuyItemResultsSpecification extends LazySearchResultsSpecification 
 
 	public BuyItemResultsSpecification() {
 		add(MessageId.article);
-		add(MessageId.count);
-		add(MessageId.unitPrice);
+		add(MessageId.count, Double.class);
+		add(MessageId.unitPrice, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

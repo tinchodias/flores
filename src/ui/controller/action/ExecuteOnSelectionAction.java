@@ -8,10 +8,12 @@ public class ExecuteOnSelectionAction implements Action {
 
 	private final SearchUI searchUI;
 	private final Action onSelectionAction;
+	private final MessageId messageId;
 
-	public ExecuteOnSelectionAction(SearchUI searchUI, Action onSelectionAction) {
+	public ExecuteOnSelectionAction(SearchUI searchUI, Action onSelectionAction, MessageId messageId) {
 		this.searchUI = searchUI;
 		this.onSelectionAction = onSelectionAction;
+		this.messageId = messageId;
 	}
 
 	public void execute() {
@@ -24,7 +26,7 @@ public class ExecuteOnSelectionAction implements Action {
 	}
 
 	public MessageId messageId() {
-		return onSelectionAction.messageId();
+		return messageId;
 	}
 
 }

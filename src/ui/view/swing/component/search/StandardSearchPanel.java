@@ -148,8 +148,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 			return null;
 		} else {
 			SearchResults searchResults = (SearchResults) tableModelAdapter.getResults();
-			int modelIndex = resultsTable.convertRowIndexToModel(rowIndex);
-			return searchResults.get(modelIndex);
+			return searchResults.get(rowIndex);
 		}
 	}
 
@@ -159,8 +158,8 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		List selections = new ArrayList();
 		SearchResults searchResults = (SearchResults) tableModelAdapter.getResults();
 		for (int i = 0; i < rowIndexes.length; i++) {
-			int modelIndex = resultsTable.convertRowIndexToModel(rowIndexes[i]);
-			selections.add(searchResults.get(modelIndex)); 
+			int rowIndex = rowIndexes[i];
+			selections.add(searchResults.get(rowIndex)); 
 		}
 		return selections;
 	}

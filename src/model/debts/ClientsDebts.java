@@ -19,19 +19,11 @@ public class ClientsDebts {
 
 	public ClientsDebts(Store store) {
 		this.store = store;
-	}
-	
-	public Iterable<LostDebtDeclaration> declarations() {
-		return declarations;
-	}
 
-	public Iterable<ClientDebtCancellation> cancellations() {
-		return cancellations;
 	}
-	
 	public MoneyAmount debtOf(JuridicPerson client) {
 		MoneyAmount debt = debts.get(client);
-		return debt != null ? debt : MoneyAmount.zero();
+		return debt != null ? debt : MoneyAmount.newFor(0.0);
 	}
 	
 	private void incrementDebt(JuridicPerson client, MoneyAmount amount) {

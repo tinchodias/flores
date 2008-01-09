@@ -14,8 +14,6 @@ import model.stock.Article;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInterval;
 
-import persistence.ModelPersistence;
-import persistence.util.ModelPersistenceFixture;
 import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.query.SearchQuery;
 import util.TimeUtils;
@@ -26,22 +24,17 @@ public class ClientMovementsQueryTest extends TestCase {
 	private Article stockArticle;
 	private JuridicPerson client;
 	private Vendor vendor;
-	private SearchQuery query;
 
 	protected void setUp() throws Exception {
-		ModelPersistenceFixture.mockWithSimpleModel();
-		store = ModelPersistence.instance().loadedModel().store();
+		super.setUp();
+		
+		store = StoreFixture.simpleStore();
 		
 		stockArticle = store.stockArticles().iterator().next();
-
-		JuridicPerson supplier = store.suppliers().iterator().next();
-		store.add(StoreFixture.simpleBuy(stockArticle, supplier));
 		
 		client = store.clients().iterator().next();
 		
 		vendor = store.vendors().iterator().next();
-
-		query = QueryFactory.instance().clientMovementsQuery();
 	}
 	
 	public void testOneClient() {
@@ -57,6 +50,7 @@ public class ClientMovementsQueryTest extends TestCase {
 		LostDebtDeclaration lostDebtDeclaration = StoreFixture.simpleLostDebtDeclaration(client);
 		store.debts().add(lostDebtDeclaration);
 		
+		SearchQuery query = QueryFactory.instance().clientMovementsQuery();
 		query.setCriteria(new ClientMovementSearchCriteria() {
 			public JuridicPerson getClient() {
 				return client;

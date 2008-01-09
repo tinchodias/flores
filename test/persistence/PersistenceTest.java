@@ -2,8 +2,7 @@ package persistence;
 
 
 import junit.framework.TestCase;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
+import persistence.util.EqualsBuilder;
 
 public abstract class PersistenceTest extends TestCase {
 

@@ -1,9 +1,10 @@
 package query.implementation.natives;
 
+import java.util.Collection;
+
 import model.JuridicPerson;
 import model.address.City;
 import model.cashBook.CashBookEntry;
-import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
 import model.receipt.Buy;
@@ -24,9 +25,7 @@ import query.criteria.IntervalSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.StringCriteria;
-import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
-import query.framework.query.StockAnalysisSearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.results.ArticleGroupSearchResultsSpecification;
@@ -36,7 +35,6 @@ import query.results.CitySearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
-import query.results.LostDebtDeclarationSearchResultsSpecification;
 import query.results.PricePercentageSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
@@ -52,7 +50,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getClientName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().clients();
 			}
 
@@ -69,7 +67,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().stockArticles();
 			}
 
@@ -87,7 +85,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().stockArticles();
 			}
 
@@ -104,7 +102,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return criteria().getInterval().contains(object.getDate());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().stock().dropOuts();
 			}
 
@@ -139,7 +137,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getCityName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().cities();
 			}
 
@@ -157,7 +155,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getSupplierName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().suppliers();
 			}
 
@@ -191,7 +189,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleGroupName());
 			}
 
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().stockArticleGroups();
 			}
 
@@ -251,7 +249,7 @@ public class NativeQueryFactory extends QueryFactory {
 				return StringUtils.containsIgnoreCase(object.getName(), criteria().getArticleName());
 			}
 			
-			protected Iterable objects() {
+			protected Collection objects() {
 				return store().expensesArticles();
 			}
 
@@ -287,32 +285,11 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery lostDebtDeclarationsSearchQuery() {
-		return new StandardNativeSearchQuery<LostDebtDeclaration, IntervalSearchCriteria>() {
-
-			protected boolean accepts(LostDebtDeclaration object) {
-				return criteria().getInterval().contains(object.getDate());
-			}
-
-			protected Iterable objects() {
-				return store().debts().declarations();
-			}
-
-			protected LazySearchResultsSpecification resultsSpecification() {
-				return new LostDebtDeclarationSearchResultsSpecification();
-			}
-		};
+		throw new NotImplementedException();
 	}
 	
 	public SearchQuery clientMovementsQuery() {
 		throw new NotImplementedException();
-	}
-
-	public SearchQuery operationSummarySearchQuery() {
-		return new OperationSummarySearchQuery();
-	}
-	
-	public SearchQuery stockAnalysisSearchQuery() {
-		return new StockAnalysisSearchQuery();
 	}
 	
 }

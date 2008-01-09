@@ -41,10 +41,11 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 
 	@Override
 	protected void initCreatingMode(DetailUI baseDialog) {
-		CreateAction createAction = new CreateAction(baseDialog, populator());
-		Action printAction = new PrintSellReportAction(createAction);
-		CompositeAction createThenPrintAction = new CompositeAction(createAction, printAction, MessageId.acceptAndPrint);
-		baseDialog.setAcceptAction(createThenPrintAction);
+		super.initCreatingMode(baseDialog);
+//		CreateAction createAction = new CreateAction(baseDialog, populator());
+//		Action printAction = new PrintSellReportAction(createAction);
+//		CompositeAction createThenPrintAction = new CompositeAction(createAction, printAction, MessageId.acceptAndPrint);
+//		baseDialog.setAcceptAction(createThenPrintAction);
 		
 		//Sets the first client
 		SellUI sellUI = (SellUI) baseDialog;
@@ -53,7 +54,7 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 			sellUI.setClient(store.clients().iterator().next());
 		}
 		
-		sellUI.setCashPay(MoneyAmount.zero());
+		sellUI.setCashPay(MoneyAmount.newFor(0.0));
 	}
 	
 }

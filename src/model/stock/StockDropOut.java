@@ -1,9 +1,8 @@
 package model.stock;
 
 import message.MessageId;
-import model.money.MoneyAmount;
 
-import org.joda.time.base.BaseDateTime;
+import org.joda.time.ReadableDateTime;
 
 import validation.ModelValidation;
 
@@ -12,22 +11,22 @@ public class StockDropOut {
 
 	private final Article article;
 	private final double count;
-	private final BaseDateTime date;
+	private final ReadableDateTime date;
 	private final String note;
-	private final MoneyAmount unitCost;
 
-	public StockDropOut(Article article, double count, BaseDateTime date, String note, MoneyAmount unitCost) {
+	public StockDropOut(Article article, double count, ReadableDateTime date, String note) {
 		ModelValidation.instance().assertNotNull(article, MessageId.article);
 		this.article = article;
 		
 		ModelValidation.instance().assertPositive(count, MessageId.count);
 		this.count = count;
-
-		ModelValidation.instance().assertNotBlank(note, MessageId.note);
-		this.note = note;
-
+		
 		this.date = date;
-		this.unitCost = unitCost;
+		this.note = note;
+	}
+
+	public StockDropOut(Article article, double count, ReadableDateTime date) {
+		this(article, count, date, "");
 	}
 
 	public Article getArticle() {
@@ -38,7 +37,7 @@ public class StockDropOut {
 		return count;
 	}
 
-	public BaseDateTime getDate() {
+	public ReadableDateTime getDate() {
 		return date;
 	}
 
@@ -46,11 +45,4 @@ public class StockDropOut {
 		return note;
 	}
 
-	public MoneyAmount getUnitCost() {
-		return unitCost;
-	}
-
-	public MoneyAmount getTotalCost() {
-		return getUnitCost().by(getCount());
-	}
 }

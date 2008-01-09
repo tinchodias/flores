@@ -25,7 +25,7 @@ public class LastPrevailsCostStrategy implements CostStrategy {
 
 	public MoneyAmount cost(Article article) {
 		MoneyAmount moneyAmount = costs.get(article);
-		return moneyAmount != null ? moneyAmount : MoneyAmount.zero();
+		return moneyAmount != null ? moneyAmount : MoneyAmount.newFor(0.0);
 	}
 
 	public Stock getStock() {

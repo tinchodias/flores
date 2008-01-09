@@ -3,6 +3,7 @@ package query.results;
 
 import message.MessageId;
 import model.JuridicPerson;
+import model.money.MoneyAmount;
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResultsSpecification;
 
@@ -11,7 +12,7 @@ public class ClientSearchResultsSpecification extends LazySearchResultsSpecifica
 	public ClientSearchResultsSpecification() {
 		add(MessageId.clientName);
 		add(MessageId.address);
-		add(MessageId.clientDebt);
+		add(MessageId.clientDebt, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

@@ -29,9 +29,7 @@ import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.criteria.StringCriteria;
-import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
-import query.framework.query.StockAnalysisSearchQuery;
 import query.framework.results.LazySearchResults;
 import query.framework.results.LazySearchResultsSpecification;
 import query.implementation.natives.StandardNativeSearchQuery;
@@ -165,7 +163,9 @@ public class Db4oQueryFactory extends QueryFactory {
 	}
 
 	public SearchQuery sellSearchQuery() {
-		return standardSodaIntervalQuery(Sell.class, new SellSearchResultsSpecification());
+		return new LimitDecoratorSearchQuery(
+				standardSodaIntervalQuery(Sell.class, new SellSearchResultsSpecification()),
+				200);
 	}
 	
 	public SearchQuery articleGroupSearchQuery() {
@@ -261,14 +261,6 @@ public class Db4oQueryFactory extends QueryFactory {
 				return new ClientMovementSearchResultsSpecification();
 			}
 		};
-	}
-
-	public SearchQuery operationSummarySearchQuery() {
-		return new OperationSummarySearchQuery();
-	}
-
-	public SearchQuery stockAnalysisSearchQuery() {
-		return new StockAnalysisSearchQuery();
 	}
 	
 }

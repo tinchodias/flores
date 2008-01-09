@@ -5,6 +5,6 @@ import ui.view.component.SearchDialogUI;
 
 public interface SearchDialogInitializer extends DialogInitializer {
 
-	SearchDialogUI dialog();
+	public abstract SearchDialogUI dialog();
 	
 }

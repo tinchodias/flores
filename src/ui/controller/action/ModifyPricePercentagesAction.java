@@ -5,7 +5,6 @@ import java.util.List;
 import message.MessageId;
 import model.price.SimplePercentagePriceStrategy;
 import model.stock.Article;
-import model.util.Percentage;
 import persistence.ModelPersistence;
 import transaction.Block;
 import ui.view.component.ModifyPercentageUI;
@@ -24,7 +23,7 @@ public class ModifyPricePercentagesAction implements Action {
 	public void execute() {
 		ModelPersistence.instance().transactionManager().execute(new Block() {
 			public void executeBlock() {
-				Percentage percentage = dialog.getPercentage();
+				Double percentage = dialog.getPercentage();
 				List<Article> selections = searchUI.getSelections();
 				SimplePercentagePriceStrategy priceStrategy = ((SimplePercentagePriceStrategy) ModelPersistence
 						.instance().loadedModel().store().priceStrategy());

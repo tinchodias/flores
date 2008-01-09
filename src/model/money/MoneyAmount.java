@@ -7,16 +7,11 @@ import validation.ModelValidation;
 
 public class MoneyAmount {
 
-	private static final MoneyAmount zero = MoneyAmount.newFor(0.0);
 	private static NumberFormat format;
 	private final Double value;
 
 	public static MoneyAmount newFor(Double d) {
 		return new MoneyAmount(d);
-	}
-	
-	public static MoneyAmount zero() {
-		return zero;
 	}
 	
 	private MoneyAmount(Double value) {
@@ -31,6 +26,8 @@ public class MoneyAmount {
 	public static NumberFormat format() {
 		if (format == null) {
 			format = NumberFormat.getCurrencyInstance();
+//			format.setMinimumFractionDigits(2);
+//			format.setMaximumFractionDigits(2);
 		}
 		return format;
 	}
@@ -59,16 +56,16 @@ public class MoneyAmount {
 		return MoneyAmount.newFor(this.value() - moneyAmount.value());	
 	}
 
-	public MoneyAmount by(Double multiplier) {
+	public MoneyAmount by(double multiplier) {
 		return MoneyAmount.newFor(this.value() * multiplier);
 	}
 
-	public Double dividedBy(MoneyAmount divisor) {
-		return this.value() / divisor.value();
+	public MoneyAmount by(MoneyAmount moneyAmount) {
+		return MoneyAmount.newFor(this.value() * moneyAmount.value());
 	}
-
-	public MoneyAmount dividedBy(Double divisor) {
-		return MoneyAmount.newFor(this.value() / divisor);
+	
+	public MoneyAmount dividedBy(MoneyAmount moneyAmount) {
+		return MoneyAmount.newFor(this.value() / moneyAmount.value());
 	}
 
 }

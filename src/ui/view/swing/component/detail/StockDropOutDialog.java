@@ -1,7 +1,6 @@
 package ui.view.swing.component.detail;
 
 import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
 
 import message.MessageId;
 import model.stock.Article;
@@ -14,10 +13,9 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 
 	private JFormattedTextField countField;
 	private ObjectPicker3 articlePicker;
-	private JTextField noteField;
 
 	public StockDropOutDialog() {
-		super(MessageId.stockDropOut);
+		super(MessageId.stockDropOutDialogTitle);
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);
@@ -26,11 +24,9 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 	private void initComponents() {
 		articlePicker = new ObjectPicker3();
 		countField = SwingUI.instance().decimalField();
-		noteField = new JTextField();
 		
 		centerPanel().add(SwingUI.instance().decorated(articlePicker, MessageId.article));
 		centerPanel().add(SwingUI.instance().decorated(countField, MessageId.count));
-		centerPanel().add(SwingUI.instance().decorated(noteField, MessageId.note));
 	}
 
 	public double getCount() {
@@ -43,10 +39,6 @@ public class StockDropOutDialog extends StandardDetailDialog implements StockDro
 
 	public void setArticleManager(UIModelManager manager) {
 		articlePicker.setUIModelManager(manager);
-	}
-
-	public String getNote() {
-		return noteField.getText();
 	}
 	
 }

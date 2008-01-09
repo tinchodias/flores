@@ -45,7 +45,7 @@ public enum MessageId {
 
 	//Stock Drop Out
 	stockDropOuts, 
-	stockDropOut,
+	stockDropOutDialogTitle,
 	
 	pricesDialogTitle,
 	modifyPercentage, 
@@ -84,7 +84,6 @@ public enum MessageId {
 	moneyAmount, 
 	itemCount,
 	interval,
-	info,
 
 	//Address
 	city, 
@@ -136,8 +135,7 @@ public enum MessageId {
 	//Commissions
 	commissionCalculation, 
 	commissionSummary, 
-	createCommissionCashExtraction,
-	otherLosses,
+	createCommissionCashExtraction, 
 	
 	//ModelValidation
 	assertNotBlank, 
@@ -148,24 +146,6 @@ public enum MessageId {
 	//Client Movements
 	clientMovements, 
 	clientMovement, 
-	
-	//Operations Summary
-	operationsSummary, 
-	sellsSummary, 
-	buysSummary, 
-	expensesSummary, 
-	clientDebtCancellationsSummary, 
-	lostDebtDeclarationsSummary, 
-	cashExtractionsSummary, 
-	stockDropOutsSummary, 
-
-	//Stock Analysis
-	stockAnalysis,   
-	sellCount, 
-	gainTotal, 
-	gainAverage, 
-	marginAverage, 
-	dropOutsTotal, 
 	
 	;
 	

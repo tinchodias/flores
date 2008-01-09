@@ -17,7 +17,6 @@ public class CommissionSummaryPopulator implements DetailPopulator<CommissionSum
 	public void showIn(CommissionSummaryUI ui, CommissionSummary object) {
 		ui.setCostTotal(object.getCostTotal());
 		ui.setExpensesTotal(object.getExpensesTotal());
-		ui.setOtherLossesTotal(object.getOtherLossesTotal());
 		ui.setSellTotal(object.getSellTotal());
 		ui.setTotal(object.getTotal());
 		ui.setInterval(object.getInterval());

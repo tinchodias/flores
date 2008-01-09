@@ -20,16 +20,16 @@ public class SimplePropertiesMessageRepository extends MessageRepository {
 	}
 
 	public String get(MessageId messageId) {
-		return get(messageId, new Object[]{});
+		return get(messageId, new String[]{});
 	}
 
-	public String get(MessageId messageId, Object[] arguments) {
+	public String get(MessageId messageId, String[] arguments) {
 		String message = properties.getProperty(messageId.toString());
 		if (message == null) {
 			throw new Error("Message not found: " + messageId);
 		}
 		for (int i = 0; i < arguments.length; i++) {
-			message = StringUtils.replaceOnce(message, ARGUMENT_TOKEN, arguments[i].toString());
+			message = StringUtils.replaceOnce(message, "%", arguments[i]);
 		}
 		return message;
 	}

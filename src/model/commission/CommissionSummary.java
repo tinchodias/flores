@@ -13,15 +13,13 @@ public class CommissionSummary {
 	private final MoneyAmount costTotal;
 	private final MoneyAmount expensesTotal;
 	private final MoneyAmount total;
-	private final MoneyAmount otherLosses;
 	
-	public CommissionSummary(Vendor vendor, ReadableInterval interval, MoneyAmount sellTotal, MoneyAmount costTotal, MoneyAmount expensesTotal, MoneyAmount otherLosses, MoneyAmount total) {
+	public CommissionSummary(Vendor vendor, ReadableInterval interval, MoneyAmount sellTotal, MoneyAmount costTotal, MoneyAmount expensesTotal, MoneyAmount total) {
 		this.vendor = vendor;
 		this.interval = interval;
 		this.sellTotal = sellTotal;
 		this.costTotal = costTotal;
 		this.expensesTotal = expensesTotal;
-		this.otherLosses = otherLosses;
 		this.total = total;
 	}
 
@@ -47,9 +45,5 @@ public class CommissionSummary {
 
 	public Vendor getVendor() {
 		return vendor;
-	}
-
-	public MoneyAmount getOtherLossesTotal() {
-		return otherLosses;
 	}
 }

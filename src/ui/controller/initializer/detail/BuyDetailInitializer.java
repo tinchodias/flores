@@ -39,6 +39,6 @@ public class BuyDetailInitializer extends DetailDialogInitializer {
 
 		BuyUI buyUI = (BuyUI) baseDialog;
 
-		buyUI.setCashPay(MoneyAmount.zero());
+		buyUI.setCashPay(MoneyAmount.newFor(0.0));
 	}
 }

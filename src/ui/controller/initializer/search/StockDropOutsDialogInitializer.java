@@ -18,7 +18,7 @@ public class StockDropOutsDialogInitializer extends StandardSearchDialogInitiali
 		return new IntervalSearchPanel();
 	}
 
-	public SearchQuery searchQuery() {
+	protected SearchQuery searchQuery() {
 		return QueryFactory.instance().stockDropOutSearchQuery();
 	}
 

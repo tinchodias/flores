@@ -2,17 +2,21 @@ package query.results;
 
 
 import message.MessageId;
+import model.money.MoneyAmount;
 import model.receipt.Sell;
+
+import org.joda.time.ReadableInstant;
+
 import query.framework.results.LazySearchResultsSpecification;
 
 public class SellSearchResultsSpecification extends LazySearchResultsSpecification {
 
 	public SellSearchResultsSpecification() {
-		add(MessageId.date);
+		add(MessageId.date, ReadableInstant.class);
 		add(MessageId.client);
-		add(MessageId.paymentTotal);
-		add(MessageId.costTotal);
-		add(MessageId.sellTotal);
+		add(MessageId.paymentTotal, MoneyAmount.class);
+		add(MessageId.costTotal, MoneyAmount.class);
+		add(MessageId.sellTotal, MoneyAmount.class);
 	}
 	
 	public Object value(Object object, int columnIndex) {

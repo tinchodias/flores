@@ -11,7 +11,7 @@ public class StockArticleSearchResultsSpecification extends LazySearchResultsSpe
 	public StockArticleSearchResultsSpecification() {
 		add(MessageId.article);
 		add(MessageId.articleGroup);
-		add(MessageId.count);
+		add(MessageId.count, Double.class);
 //		add(MessageId.unitCost, MoneyAmount.class);
 	}
 	
@@ -19,13 +19,13 @@ public class StockArticleSearchResultsSpecification extends LazySearchResultsSpe
 		Article article = (Article) object;
 		switch (columnIndex) {
 		case 0:
-			return article;
+			return article.toString();
 		case 1:
 			return article.getGroup();
 		case 2:
 			return ModelPersistence.instance().loadedModel().store().stock().count(article);
-		case 3:
-			return ModelPersistence.instance().loadedModel().store().stock().cost(article);
+//		case 3:
+//			return ModelPersistence.instance().loadedModel().store().stock().cost(article);
 		}
 		return null;
 	}

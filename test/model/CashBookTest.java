@@ -5,6 +5,7 @@ import model.cashBook.CashExtraction;
 import model.debts.ClientDebtCancellation;
 import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
+import model.expense.ExpenseArticle;
 import model.money.MoneyAmount;
 import model.receipt.Buy;
 import model.receipt.BuyCancellation;
@@ -14,20 +15,19 @@ import model.stock.Article;
 
 import org.joda.time.DateTime;
 
-import persistence.ModelPersistence;
-import persistence.util.ModelPersistenceFixture;
-
 public class CashBookTest extends TestCase {
 
 	private Store store;
 	private Article stockArticle;
 	private JuridicPerson client;
 	private Vendor vendor;
+	private ExpenseArticle expenseArticle;
 	private JuridicPerson supplier;
 
 	protected void setUp() throws Exception {
-		ModelPersistenceFixture.mockWithSimpleModel();
-		store = ModelPersistence.instance().loadedModel().store();
+		super.setUp();
+		
+		store = StoreFixture.simpleStore();
 		
 		stockArticle = store.stockArticles().iterator().next();
 		
@@ -36,6 +36,8 @@ public class CashBookTest extends TestCase {
 		supplier = store.suppliers().iterator().next();
 		
 		vendor = store.vendors().iterator().next();
+		
+		expenseArticle = store.expensesArticles().iterator().next();
 	}
 	
 	public void testCashBookCase1() {
@@ -103,7 +105,7 @@ public class CashBookTest extends TestCase {
 	public void testCashBookCase4() {
 		assertCurrentCash(0.0);
 		
-		Expense expense = StoreFixture.simpleExpense(store);
+		Expense expense = StoreFixture.simpleExpense(expenseArticle);
 		store.add(expense);
 		
 		assertCurrentCash(-300.0);
@@ -118,7 +120,7 @@ public class CashBookTest extends TestCase {
 		assertCurrentCash(40.0);
 		
 		MoneyAmount amount = MoneyAmount.newFor(30.0);
-		store.cashBook().add(new CashExtraction(new DateTime(), amount, "aTestExtraction"));
+		store.cashBook().add(new CashExtraction(new DateTime(), amount, ""));
 		
 		assertCurrentCash(10.0);
 	}

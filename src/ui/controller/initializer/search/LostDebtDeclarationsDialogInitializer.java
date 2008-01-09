@@ -18,7 +18,7 @@ public class LostDebtDeclarationsDialogInitializer extends StandardSearchDialogI
 		return new IntervalSearchPanel();
 	}
 
-	public SearchQuery searchQuery() {
+	protected SearchQuery searchQuery() {
 		return QueryFactory.instance().lostDebtDeclarationsSearchQuery();
 	}
 

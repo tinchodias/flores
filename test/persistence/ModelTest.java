@@ -13,10 +13,16 @@ public class ModelTest extends TestCase {
 		super.setUp();
 		model1 = ModelFixture.simpleModel();
 		model2 = ModelFixture.simpleModel();
+
+		//tests the model factory...
+		assertNotSame(model1, model2);
+	}
+
+	protected void tearDown() throws Exception {
+		super.tearDown();
 	}
 
 	public void testEquals() {
-		assertNotSame(model1, model2); //tests the model factory...
 		assertTrue(model1.equals(model2));
 	}
 

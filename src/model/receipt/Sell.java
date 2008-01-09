@@ -53,7 +53,7 @@ public class Sell {
 	}
 
 	public MoneyAmount clientDebt() {
-		return this.sellTotal().minus(this.paymentTotal());
+		return items.sellTotal().minus(this.payment().total());
 	}
 
 	public Vendor vendor() {
@@ -77,5 +77,4 @@ public class Sell {
 		return MessageRepository.instance().get(MessageId.sellToString, 
 				new String[] {client().toString(), sellTotal().toString(), paymentTotal().toString()});
 	}
-
 }
