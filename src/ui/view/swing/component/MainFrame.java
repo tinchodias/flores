@@ -27,7 +27,6 @@ import ui.controller.initializer.search.ExpensesArticlesDialogInitializer;
 import ui.controller.initializer.search.ExpensesDialogInitializer;
 import ui.controller.initializer.search.LostDebtDeclarationsDialogInitializer;
 import ui.controller.initializer.search.OperationsSummaryDialogInitializer;
-import ui.controller.initializer.search.PricePercentagesDialogInitializer;
 import ui.controller.initializer.search.SellsDialogInitializer;
 import ui.controller.initializer.search.StandardSearchDialogInitializer;
 import ui.controller.initializer.search.StockAnalysisDialogInitializer;
@@ -79,7 +78,7 @@ public class MainFrame extends JFrame implements MainUI {
 		addJMenuItem(storeMenu, new BuysDialogInitializer());
 		addJMenuItem(storeMenu, new SellsDialogInitializer());
 		addJMenuItem(storeMenu, new StockDialogInitializer());
-		addJMenuItem(storeMenu, new PricePercentagesDialogInitializer());
+//		addJMenuItem(storeMenu, new PricePercentagesDialogInitializer());
 		addJMenuItem(storeMenu, new ArticleGroupsDialogInitializer());
 		addJMenuItem(storeMenu, new StockDropOutsDialogInitializer());
 		

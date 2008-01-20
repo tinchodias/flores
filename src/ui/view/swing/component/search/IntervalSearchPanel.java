@@ -18,7 +18,7 @@ public class IntervalSearchPanel extends StandardSearchPanel implements Interval
 
 	private void initComponents() {
 		intervalPicker = new IntervalPicker();
-		intervalPicker.setInterval(TimeUtils.recentYearsInterval(2));
+		intervalPicker.setInterval(TimeUtils.recentDaysInterval(7));
 		
 		filtersPanel().add(SwingUI.instance().decorated(intervalPicker));		
 	}

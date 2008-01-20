@@ -5,9 +5,8 @@ import ui.controller.action.Action;
 import ui.controller.action.CloseDialogAction;
 import ui.controller.action.CompositeAction;
 import ui.controller.action.CreateSellItemAction;
-import ui.controller.action.ShowSellItemInfoAction;
 import ui.controller.action.ShowDialogAction;
-import ui.controller.action.ShowPriceAction;
+import ui.controller.action.ShowSellItemInfoAction;
 import ui.controller.initializer.DialogInitializer;
 import ui.controller.manager.StockManager;
 import ui.view.component.DialogUI;
@@ -27,7 +26,7 @@ public class CreateSellItemDialogInitializer implements DialogInitializer {
 		
 		dialog.setArticleManager(new StockManager());
 		dialog.addOnArticleSelectionAction(new ShowSellItemInfoAction(dialog));
-		dialog.addOnArticleSelectionAction(new ShowPriceAction(dialog));
+//		dialog.addOnArticleSelectionAction(new ShowPriceAction(dialog));
 		
 		Action createSellItemAction = new CreateSellItemAction(dialog, sellUI);
 		Action showAction = new ShowDialogAction(this);
@@ -36,7 +35,7 @@ public class CreateSellItemDialogInitializer implements DialogInitializer {
 		
 		dialog.setCancelAction(new CloseDialogAction(dialog));
 		
-		dialog.setCount(1.0);
+//		dialog.setCount(1.0);
 		
 		
 		return dialog;

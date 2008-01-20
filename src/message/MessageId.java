@@ -91,6 +91,7 @@ public enum MessageId {
 	address, 
 	cities, 
 	province, 
+	provinces, 
 	mainAddress, 
 	
 	//Supplier

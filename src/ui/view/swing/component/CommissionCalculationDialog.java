@@ -28,7 +28,7 @@ public class CommissionCalculationDialog extends StandardDialog implements Commi
 
 	private void initComponents() {
 		intervalPicker = new IntervalPicker();
-		intervalPicker.setInterval(TimeUtils.todayInterval());
+		intervalPicker.setInterval(TimeUtils.recentDaysInterval(7));
 		
 		acceptButton = new JButton();
 		getRootPane().setDefaultButton(acceptButton);

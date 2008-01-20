@@ -22,7 +22,7 @@ public class ClientMovementSearchPanel extends StandardSearchPanel implements Cl
 
 	private void initComponents() {
 		intervalPicker = new IntervalPicker();
-		intervalPicker.setInterval(TimeUtils.recentYearsInterval(2));
+		intervalPicker.setInterval(TimeUtils.recentYearsInterval(1));
 		
 		filtersPanel().add(SwingUI.instance().decorated(intervalPicker));		
 	}
