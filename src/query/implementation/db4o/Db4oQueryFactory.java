@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import model.JuridicPerson;
 import model.address.City;
+import model.address.Province;
 import model.cashBook.CashBookEntry;
 import model.cashBook.CashExtraction;
 import model.clientMovements.ClientMovement;
@@ -25,6 +26,7 @@ import query.criteria.CitySearchCriteria;
 import query.criteria.ClientSearchCriteria;
 import query.criteria.ExpenseArticleSearchCriteria;
 import query.criteria.IntervalSearchCriteria;
+import query.criteria.ProvinceSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
 import query.framework.criteria.ClientMovementSearchCriteria;
@@ -47,6 +49,7 @@ import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
 import query.results.LostDebtDeclarationSearchResultsSpecification;
 import query.results.PricePercentageSearchResultsSpecification;
+import query.results.ProvinceSearchResultsSpecification;
 import query.results.SellSearchResultsSpecification;
 import query.results.StockArticleSearchResultsSpecification;
 import query.results.StockDropOutSearchResultsSpecification;
@@ -269,6 +272,23 @@ public class Db4oQueryFactory extends QueryFactory {
 
 	public SearchQuery stockAnalysisSearchQuery() {
 		return new StockAnalysisSearchQuery();
+	}
+	
+	public SearchQuery provinceSearchQuery() {
+		return new StandardNativeSearchQuery<Province, ProvinceSearchCriteria>() {
+
+			protected boolean accepts(Province object) {
+				return StringUtils.containsIgnoreCase(object.getName(), criteria().getProvinceName());
+			}
+			
+			protected Iterable objects() {
+				return store().provinces();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ProvinceSearchResultsSpecification();
+			}
+		};
 	}
 	
 }

@@ -2,6 +2,7 @@ package ui.view.swing.component.detail;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.WindowConstants;
 
 import message.MessageId;
 import ui.controller.action.Action;
@@ -19,6 +20,7 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 
 	public StandardDetailDialog(MessageId titleMessageId) {
 		super(titleMessageId);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		initComponents();
 	}
 
@@ -34,7 +36,6 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 		okButton = new JButton();
 		okButton.setVisible(false);
 		
-
 		getRootPane().setDefaultButton(okButton);
 		
 		buttonPanel().add(SwingUI.instance().decorated(okButton));

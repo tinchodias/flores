@@ -55,5 +55,7 @@ public abstract class QueryFactory {
 	public abstract SearchQuery operationSummarySearchQuery();
 
 	public abstract SearchQuery stockAnalysisSearchQuery();
+
+	public abstract SearchQuery provinceSearchQuery();
 	
 }

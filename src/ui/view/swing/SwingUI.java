@@ -76,6 +76,10 @@ public class SwingUI extends UI {
 		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
 	}
 
+	public boolean showConfirm(String message) {
+		return JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;		
+	}
+	
 	public JPanel decorated(JComponent component, MessageId messageId) {
 		LabeledPanel labeledPanel = new LabeledPanel(decorated(component), MessageRepository.instance().get(messageId) + ":");
 

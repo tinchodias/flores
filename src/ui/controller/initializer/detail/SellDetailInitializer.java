@@ -2,14 +2,9 @@ package ui.controller.initializer.detail;
 
 import message.MessageId;
 import model.Store;
-import model.money.MoneyAmount;
 import persistence.ModelPersistence;
 import query.framework.results.SearchResults;
 import query.framework.results.SellItemsLazySearchResults;
-import ui.controller.action.Action;
-import ui.controller.action.CompositeAction;
-import ui.controller.action.CreateAction;
-import ui.controller.action.PrintSellReportAction;
 import ui.controller.action.RemoveSellItemAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.AdjustSellTotalDialogInitializer;
@@ -41,10 +36,11 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 
 	@Override
 	protected void initCreatingMode(DetailUI baseDialog) {
-		CreateAction createAction = new CreateAction(baseDialog, populator());
-		Action printAction = new PrintSellReportAction(createAction);
-		CompositeAction createThenPrintAction = new CompositeAction(createAction, printAction, MessageId.acceptAndPrint);
-		baseDialog.setAcceptAction(createThenPrintAction);
+		super.initCreatingMode(baseDialog);
+//		CreateAction createAction = new CreateAction(baseDialog, populator());
+//		Action printAction = new PrintSellReportAction(createAction);
+//		CompositeAction createThenPrintAction = new CompositeAction(createAction, printAction, MessageId.acceptAndPrint);
+//		baseDialog.setAcceptAction(createThenPrintAction);
 		
 		//Sets the first client
 		SellUI sellUI = (SellUI) baseDialog;
@@ -53,7 +49,7 @@ public class SellDetailInitializer extends DetailDialogInitializer {
 			sellUI.setClient(store.clients().iterator().next());
 		}
 		
-		sellUI.setCashPay(MoneyAmount.zero());
+//		sellUI.setCashPay(MoneyAmount.zero());
 	}
 	
 }

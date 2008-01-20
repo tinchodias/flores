@@ -75,7 +75,7 @@ public class JasperReportFactory extends ReportFactory {
 			JRDataSource dataSource = new ResultsJRDataSourceAdapter(results);
 			print = printFor(parameters, dataSource, report);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new ReportPrintException(e); 
 		}
 		return new JasperReportPrint(print);
@@ -89,7 +89,7 @@ public class JasperReportFactory extends ReportFactory {
 		URL url = SimplePropertiesIconRepository.class.getResource("/jasper/" + reportName + ".jrxml");
 		return JasperCompileManager.compileReport(url.openStream());
 	}
-
+	
 	public void show(ReportPrint print) {
 		JasperPrint jasperPrint = ((JasperReportPrint) print).getPrint();
 		

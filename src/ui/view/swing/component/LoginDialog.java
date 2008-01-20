@@ -27,7 +27,8 @@ public class LoginDialog extends StandardDialog implements LoginUI {
 
 	private void initComponents() {
 		nameField = new JTextField("admin");
-		passwordField = new JPasswordField("123");
+//		passwordField = new JPasswordField("123");
+		passwordField = new JPasswordField();
 		loginButton = new JButton();
 
 		getRootPane().setDefaultButton(loginButton);

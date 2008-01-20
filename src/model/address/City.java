@@ -1,13 +1,16 @@
 package model.address;
 
+import message.MessageId;
+import validation.ModelValidation;
+
 public class City {
 
 	private String name;
 	private Province province;
 
 	public City(String name, Province province) {
-		this.name = name;
-		this.province = province;
+		this.setName(name);
+		this.setProvince(province);
 	}
 
 	public String getName() {
@@ -15,6 +18,7 @@ public class City {
 	}
 	
 	public void setName(String name) {
+		ModelValidation.instance().assertNotBlank(name, MessageId.name);
 		this.name = name;
 	}
 	
@@ -23,6 +27,7 @@ public class City {
 	}
 	
 	public void setProvince(Province province) {
+		ModelValidation.instance().assertNotNull(province, MessageId.province);
 		this.province = province;
 	}
 	

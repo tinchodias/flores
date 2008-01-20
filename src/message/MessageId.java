@@ -91,6 +91,7 @@ public enum MessageId {
 	address, 
 	cities, 
 	province, 
+	provinces, 
 	mainAddress, 
 	
 	//Supplier
@@ -166,6 +167,8 @@ public enum MessageId {
 	gainAverage, 
 	marginAverage, 
 	dropOutsTotal, 
+	
+	closeConfirmation, 
 	
 	;
 	

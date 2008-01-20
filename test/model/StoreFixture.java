@@ -65,6 +65,30 @@ public class StoreFixture {
 		return store;
 	}
 
+	public static void fillSimple(Store store) {
+		System.out.println("Generating Provinces");
+		store.provinces().add(new Province("Buenos Aires"));
+		store.provinces().add(new Province("Salta"));
+		store.provinces().add(new Province("Jujuy"));
+		store.provinces().add(new Province("Tucumán"));
+		store.provinces().add(new Province("Córdoba"));
+		store.provinces().add(new Province("Santa Fe"));
+		store.provinces().add(new Province("Santiago del Estero"));
+
+		System.out.println("Generating Null City");
+		City nullCity = new City("Ninguna", (Province) oneOf(store.provinces()));
+		store.cities().add(nullCity);
+		
+		System.out.println("Generating Final Consumer Client");
+		JuridicPerson finalConsumerClient = new JuridicPerson("Consumidor Final", new Address("Ninguna", store.cities().iterator().next()));
+		store.clients().add(finalConsumerClient);
+		
+		System.out.println("Generating Vendors");
+		for (int i = 0; i < 1; i++) {
+			store.vendors().add(new Vendor("Vendedor " + i));
+		}
+	}
+	
 	public static void fillStressed(Store store) {
 		System.out.println("Generating Provinces");
 		for (int i = 0; i < 30; i++) {
@@ -155,7 +179,8 @@ public class StoreFixture {
 
 	public static Article simpleArticle(Store store) {
 		int anIndex = RandomUtils.nextInt();
-		return new Article(String.valueOf(1000000 + anIndex), "Artículo " + anIndex, String.valueOf(RandomUtils.nextInt(anIndex + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
+//		return new Article(String.valueOf(1000000 + anIndex), "Artículo " + anIndex, String.valueOf(RandomUtils.nextInt(anIndex + 10)) + " Litros", (ArticleGroup) oneOf(store.stockArticleGroups()));
+		return new Article("Artículo " + anIndex, (ArticleGroup) oneOf(store.stockArticleGroups()));
 	}
 
 	public static JuridicPerson simpleSupplier(Store store) {

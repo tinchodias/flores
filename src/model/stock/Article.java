@@ -6,9 +6,9 @@ import validation.ModelValidation;
 
 public class Article {
 
-	private String code;
+//	private String code;
 	private String name;
-	private String size;
+//	private String size;
 	private ArticleGroup group;
 
 	public Article(String description) {
@@ -17,23 +17,20 @@ public class Article {
 	}
 	
 	public Article(String name, ArticleGroup group) {
-		this("", name, "", group);
+//	public Article(String code, String name, String size, ArticleGroup group) {
+//		this.code = code;
+		this.setName(name);
+//		this.size = size;
+		this.setGroup(group);
 	}
-
-	public Article(String code, String name, String size, ArticleGroup group) {
-		this.code = code;
-		this.name = name;
-		this.size = size;
-		this.group = group;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
+//
+//	public String getCode() {
+//		return code;
+//	}
+//
+//	public void setCode(String code) {
+//		this.code = code;
+//	}
 
 	public ArticleGroup getGroup() {
 		return group;
@@ -53,16 +50,17 @@ public class Article {
 		this.name = name;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
+//	public String getSize() {
+//		return size;
+//	}
+//
+//	public void setSize(String size) {
+//		this.size = size;
+//	}
 	
 	public String toString() {
-		return getCode() + " - " + getName() + " x " + getSize();
+//		return getCode() + " - " + getName() + " x " + getSize();
+		return getName();
 	}
 
 }

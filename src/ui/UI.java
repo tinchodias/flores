@@ -20,6 +20,8 @@ public abstract class UI {
 
 	public abstract void showError(String message);
 
+	public abstract boolean showConfirm(String message);
+	
 	public void showInfo(MessageId messageId) {
 		showInfo(MessageRepository.instance().get(messageId));
 	}
@@ -28,6 +30,10 @@ public abstract class UI {
 		showError(MessageRepository.instance().get(messageId));
 	}
 
+	public boolean showConfirm(MessageId messageId) {
+		return showConfirm(MessageRepository.instance().get(messageId));
+	}
+	
 	public MainUI mainUI() {
 		if (mainUI == null) {
 			mainUI = new MainFrameInitializer().frame();

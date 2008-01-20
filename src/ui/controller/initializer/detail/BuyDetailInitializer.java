@@ -1,7 +1,6 @@
 package ui.controller.initializer.detail;
 
 import message.MessageId;
-import model.money.MoneyAmount;
 import query.framework.results.BuyItemsLazySearchResults;
 import query.framework.results.SearchResults;
 import ui.controller.action.RemoveBuyItemAction;
@@ -9,7 +8,6 @@ import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.AdjustBuyTotalDialogInitializer;
 import ui.controller.manager.SupplierManager;
 import ui.controller.populator.BuyPopulator;
-import ui.view.component.BuyUI;
 import ui.view.component.DetailUI;
 import ui.view.swing.component.detail.BuyDialog;
 
@@ -33,12 +31,12 @@ public class BuyDetailInitializer extends DetailDialogInitializer {
 		return buyDialog;
 	}
 
-	@Override
-	protected void initCreatingMode(DetailUI baseDialog) {
-		super.initCreatingMode(baseDialog);
-
-		BuyUI buyUI = (BuyUI) baseDialog;
-
-		buyUI.setCashPay(MoneyAmount.zero());
-	}
+//	@Override
+//	protected void initCreatingMode(DetailUI baseDialog) {
+//		super.initCreatingMode(baseDialog);
+//
+//		BuyUI buyUI = (BuyUI) baseDialog;
+//
+//		buyUI.setCashPay(MoneyAmount.zero());
+//	}
 }

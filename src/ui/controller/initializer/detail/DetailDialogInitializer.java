@@ -44,7 +44,6 @@ public abstract class DetailDialogInitializer implements DialogInitializer, Deta
 	public DetailUI dialog() {
 		baseDialog = baseDialog();
 		baseDialog.setMode(mode);
-		baseDialog.setCancelAction(new CloseDialogAction(baseDialog));
 		
 		mode.applyTo(this);
 		
@@ -54,15 +53,18 @@ public abstract class DetailDialogInitializer implements DialogInitializer, Deta
 	protected abstract DetailUI baseDialog();
 
 	protected void initCreatingMode(DetailUI baseDialog) {
+		baseDialog.setCancelAction(new CloseDialogAction(baseDialog, true));
 		baseDialog.setAcceptAction(new CreateAction(baseDialog, populator()));
 	}
 	
 	protected void initModifyingMode(DetailUI baseDialog) {
 		populator.showIn(baseDialog, objectHolder().getValue());
+		baseDialog.setCancelAction(new CloseDialogAction(baseDialog, true));
 		baseDialog.setAcceptAction(new ModifyAction(baseDialog, populator(), objectHolder()));
 	}
 	
 	protected void initViewingMode(DetailUI baseDialog) {
+		baseDialog.setCancelAction(new CloseDialogAction(baseDialog));
 		populator().showIn(baseDialog, objectHolder().getValue());
 	}
 	
