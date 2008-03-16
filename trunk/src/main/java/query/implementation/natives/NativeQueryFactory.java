@@ -3,6 +3,7 @@ package query.implementation.natives;
 import model.JuridicPerson;
 import model.address.City;
 import model.cashBook.CashBookEntry;
+import model.clientMovements.ClientMovement;
 import model.debts.LostDebtDeclaration;
 import model.expense.Expense;
 import model.expense.ExpenseArticle;
@@ -23,6 +24,7 @@ import query.criteria.ExpenseArticleSearchCriteria;
 import query.criteria.IntervalSearchCriteria;
 import query.criteria.StockArticleSearchCriteria;
 import query.criteria.SupplierSearchCriteria;
+import query.framework.criteria.ClientMovementSearchCriteria;
 import query.framework.criteria.StringCriteria;
 import query.framework.query.OperationSummarySearchQuery;
 import query.framework.query.SearchQuery;
@@ -33,6 +35,7 @@ import query.results.ArticleGroupSearchResultsSpecification;
 import query.results.BuySearchResultsSpecification;
 import query.results.CashBookEntrySearchResultsSpecification;
 import query.results.CitySearchResultsSpecification;
+import query.results.ClientMovementSearchResultsSpecification;
 import query.results.ClientSearchResultsSpecification;
 import query.results.ExpenseArticleSearchResultsSpecification;
 import query.results.ExpenseSearchResultsSpecification;
@@ -304,7 +307,21 @@ public class NativeQueryFactory extends QueryFactory {
 	}
 	
 	public SearchQuery clientMovementsQuery() {
-		throw new NotImplementedException();
+		return new StandardNativeSearchQuery<ClientMovement, ClientMovementSearchCriteria>() {
+
+			protected boolean accepts(ClientMovement object) {
+				return criteria().getInterval().contains(object.getDate()) &&
+					criteria().getClient().equals(object.getClient());
+			}
+
+			protected Iterable objects() {
+				return store().clientMovements().movements();
+			}
+
+			protected LazySearchResultsSpecification resultsSpecification() {
+				return new ClientMovementSearchResultsSpecification();
+			}
+		};
 	}
 
 	public SearchQuery operationSummarySearchQuery() {
