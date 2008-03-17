@@ -1,19 +1,20 @@
 package message;
 
-import java.io.FileInputStream;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 
 public class SimplePropertiesMessageRepository extends MessageRepository {
 
-	private static final String PROPERTIES_FILE_NAME = "messages.properties";
+	private static final String PROPERTIES_FILE_NAME = "/messages.properties";
 	private Properties properties;
 
 	public SimplePropertiesMessageRepository() {
 		properties = new Properties();
 		try {
-			properties.load(new FileInputStream(PROPERTIES_FILE_NAME));
+			URL url = SimplePropertiesIconRepository.class.getResource(PROPERTIES_FILE_NAME);
+			properties.load(url.openStream());
 		} catch (Exception e) {
 			throw new Error("Messages file not found: " + PROPERTIES_FILE_NAME);
 		}
