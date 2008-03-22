@@ -20,7 +20,7 @@ public class StandardDialog extends JDialog implements DialogUI {
 	private JPanel centerPanel;
 
 	public StandardDialog(MessageId titleMessageId) {
-		super(SwingUI.instance().mainUI(), ModalityType.APPLICATION_MODAL);
+		super(SwingUI.instance().mainUI(), ModalityType.DOCUMENT_MODAL);
 
 		String title = MessageRepository.instance().get(titleMessageId);
 		setTitle(title);

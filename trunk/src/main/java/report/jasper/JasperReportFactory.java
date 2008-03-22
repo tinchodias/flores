@@ -1,13 +1,6 @@
 package report.jasper;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,8 +17,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.joda.time.ReadableDateTime;
@@ -37,7 +28,6 @@ import query.framework.results.SellItemsLazySearchResults;
 import report.ReportFactory;
 import report.ReportPrint;
 import report.ReportPrintException;
-import ui.view.swing.component.StandardDialog;
 
 public class JasperReportFactory extends ReportFactory {
 
@@ -99,19 +89,7 @@ public class JasperReportFactory extends ReportFactory {
 
 	public void show(ReportPrint print) {
 		JasperPrint jasperPrint = ((JasperReportPrint) print).getPrint();
-		
-		JasperViewer viewer = new JasperViewer(jasperPrint);
-
-		StandardDialog dialog = new StandardDialog(MessageId.print);
-		dialog.getContentPane().add(viewer.getContentPane(), BorderLayout.CENTER);
-		dialog.setPreferredSize(new Dimension(760, 480));
-		dialog.pack();
-		dialog.setLocationRelativeTo(null);
-		
-		viewer.setFitWidthZoomRatio();
-		dialog.setVisible(true);
-		
-		//FIXME close viewer!
+		JasperViewer.viewReport(jasperPrint, false);
 	}
 
 	public void exportPdf(ReportPrint print, String reportFileName) {
