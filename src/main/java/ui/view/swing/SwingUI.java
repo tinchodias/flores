@@ -69,11 +69,11 @@ public class SwingUI extends UI {
 	}
 	
 	public void showInfo(String message) {
-		JOptionPane.showMessageDialog(null, message, "", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, MessageRepository.instance().get(MessageId.infoTitle), JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public void showError(String message) {
-		JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);		
+		JOptionPane.showMessageDialog(null, message, MessageRepository.instance().get(MessageId.errorTitle), JOptionPane.ERROR_MESSAGE);		
 	}
 
 	public JPanel decorated(JComponent component, MessageId messageId) {
