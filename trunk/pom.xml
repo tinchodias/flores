@@ -13,10 +13,6 @@
       <id>repo1</id>
       <url>http://repo1.maven.org/maven2</url>
     </repository>
-<!--    <repository>
-      <id>mvnrepository</id>
-      <url>http://www.mvnrepository.com/artifact</url>
-    </repository> -->
   </repositories>
 
   <groupId>flores</groupId>
@@ -110,8 +106,20 @@
                     </execution>
                </executions>
            </plugin>
-<!--	 
-		   -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>ui.MainApplication</mainClass>
+              <addClasspath>true</addClasspath>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
        </plugins>
    </build>  
 </project>
