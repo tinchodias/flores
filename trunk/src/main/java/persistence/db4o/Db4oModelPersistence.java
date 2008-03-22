@@ -15,13 +15,18 @@ import transaction.NullTransactionManager;
 import transaction.TransactionManager;
 import transaction.simple.SimpleDb4oTransactionManager;
 
+import com.db4o.DatabaseFileLockedException;
+import com.db4o.DatabaseReadOnlyException;
 import com.db4o.Db4o;
+import com.db4o.Db4oIOException;
+import com.db4o.IncompatibleFileFormatException;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.Configuration;
 import com.db4o.config.ObjectClass;
 import com.db4o.config.ObjectField;
 import com.db4o.config.TSerializable;
+import com.db4o.ext.OldFormatException;
 
 public class Db4oModelPersistence extends ModelPersistence {
 
@@ -65,7 +70,24 @@ public class Db4oModelPersistence extends ModelPersistence {
 	}
 
 	public void open() {
-		container = Db4o.openFile(getFileName());
+		try {
+			container = Db4o.openFile(getFileName());
+		} catch (Db4oIOException e) {
+			e.printStackTrace();
+			throw new MessageIdentifiedException(MessageId.persistenceIOError);
+		} catch (DatabaseFileLockedException e) {
+			e.printStackTrace();
+			throw new MessageIdentifiedException(MessageId.persistenceLockedFile);
+		} catch (IncompatibleFileFormatException e) {
+			e.printStackTrace();
+			throw new MessageIdentifiedException(MessageId.persistenceInvalidModel);
+		} catch (OldFormatException e) {
+			e.printStackTrace();
+			throw new MessageIdentifiedException(MessageId.persistenceInvalidModel);
+		} catch (DatabaseReadOnlyException e) {
+			e.printStackTrace();
+			throw new MessageIdentifiedException(MessageId.persistenceIOError);
+		}
 		//FIXME hardcoded!
 		transactionManager = new SimpleDb4oTransactionManager(container);
 		

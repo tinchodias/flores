@@ -4,9 +4,15 @@ public enum MessageId {
 	//Main
 	mainTitle, 
 
+	//UI
+	infoTitle,
+	errorTitle, 
+
 	//Persistence
 	persistenceInvalidModel, 
 	persistenceInvalidState,
+	persistenceIOError, 
+	persistenceLockedFile, 
 
 	//Security
 	securityInvalidLogin, 
