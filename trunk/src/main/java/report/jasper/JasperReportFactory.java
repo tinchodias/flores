@@ -1,6 +1,5 @@
 package report.jasper;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +10,18 @@ import message.SimplePropertiesIconRepository;
 import model.money.MoneyAmount;
 import model.receipt.Sell;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.design.JRDesignBand;
+import net.sf.jasperreports.engine.design.JRDesignElement;
+import net.sf.jasperreports.engine.design.JRDesignExpression;
+import net.sf.jasperreports.engine.design.JRDesignField;
+import net.sf.jasperreports.engine.design.JRDesignStaticText;
+import net.sf.jasperreports.engine.design.JRDesignTextField;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.joda.time.ReadableDateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -31,7 +35,7 @@ import report.ReportPrintException;
 
 public class JasperReportFactory extends ReportFactory {
 
-	public ReportPrint sellReport(Sell sell) {
+	public ReportPrint sellReportPrint(Sell sell) {
 		LazySearchResults results = new SellItemsLazySearchResults(sell.items());
 
 		HashMap parameters = new HashMap();
@@ -50,7 +54,7 @@ public class JasperReportFactory extends ReportFactory {
 		addString(parameters, MessageId.date, sell.date());
 		addString(parameters, MessageId.client, sell.client());
 		
-		return jasperReportPrintFor("Sell", results, parameters);
+		return reportPrintFor(reportFor("Sell"), results, parameters);
 	}
 
 	private static void addString(Map parameters, MessageId messageId, ReadableDateTime date) {
@@ -65,41 +69,94 @@ public class JasperReportFactory extends ReportFactory {
 		parameters.put(messageId.toString() + "Label", MessageRepository.instance().get(messageId));
 	}
 
-	private static ReportPrint jasperReportPrintFor(String reportName, LazySearchResults results, HashMap parameters) {
+	private static ReportPrint reportPrintFor(JasperReport report, LazySearchResults results, HashMap parameters) {
 		JasperPrint print;
 		try {
-			JasperReport report = reportFor(reportName);
 			JRDataSource dataSource = new ResultsJRDataSourceAdapter(results);
-			print = printFor(parameters, dataSource, report);
+			print = JasperFillManager.fillReport(report, parameters, dataSource);
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ReportPrintException(e); 
 		}
 		return new JasperReportPrint(print);
 	}
 
-	private static JasperPrint printFor(HashMap parameters, JRDataSource dataSource, JasperReport report) throws JRException {
-		return JasperFillManager.fillReport(report, parameters, dataSource);
-	}
-
-	private static JasperReport reportFor(String reportName) throws JRException, IOException {
-		URL url = SimplePropertiesIconRepository.class.getResource("/jasper/" + reportName + ".jrxml");
-		return JasperCompileManager.compileReport(url.openStream());
-	}
-
-	public void show(ReportPrint print) {
-		JasperPrint jasperPrint = ((JasperReportPrint) print).getPrint();
-		JasperViewer.viewReport(jasperPrint, false);
-	}
-
-	public void exportPdf(ReportPrint print, String reportFileName) {
-		JasperPrint jasperPrint = ((JasperReportPrint) print).getPrint();
+	private static JasperReport reportFor(String reportName) {
 		try {
-			JasperExportManager.exportReportToPdfFile(jasperPrint, reportFileName);
-		} catch (JRException e) {
-			e.printStackTrace();
-			throw new ReportPrintException(e);
+			return JasperCompileManager.compileReport(urlFor(reportName).openStream());
+		} catch (Exception e) {
+			throw new ReportPrintException(e); 
 		}
+	}
+
+	private static URL urlFor(String reportName) {
+		return SimplePropertiesIconRepository.class.getResource("/jasper/" + reportName + ".jrxml");
+	}
+
+	public ReportPrint standardListReportPrint(LazySearchResults results, String title) {
+		return reportPrintFor(standardListReport(results, title), results, new HashMap());
+	}
+
+	private JasperReport standardListReport(LazySearchResults results, String title) {
+		try {
+			JasperDesign design = (JasperDesign) JRXmlLoader.load(urlFor("StandardList").openStream());
+			
+			JRDesignStaticText pageTitle = (JRDesignStaticText) design.getPageHeader().getElementByKey("staticText-2");
+			pageTitle.setText(title);
+			
+			JRDesignBand headerBand = (JRDesignBand) design.getColumnHeader();
+			JRDesignBand detailBand = (JRDesignBand) design.getDetail();
+			JRDesignElement templateHeader = (JRDesignElement) headerBand.getElementByKey("staticText-1");
+			JRDesignElement templateField = (JRDesignElement) detailBand.getElementByKey("textField-1");
+			
+			for (int i = 0; i < results.getColumnCount(); i++) {
+				int cloneWidth = templateHeader.getWidth() / results.getColumnCount();
+				int cloneX = i * cloneWidth;
+				String columnName = results.getColumnName(i);
+				String columnDescription = results.getColumnDescription(i);
+				
+				design.addField(columnField(columnName));
+				headerBand.addElement(columnHeaderElement(templateHeader, cloneWidth, i, cloneX, columnDescription));
+				detailBand.addElement(columnValueElement(templateField, cloneWidth, i, cloneX, columnName));
+			}
+
+			//Removes template stuff
+			headerBand.removeElement(templateHeader);
+			detailBand.removeElement(templateField);
+			
+			return JasperCompileManager.compileReport(design);
+		} catch (Exception e) {
+			throw new ReportPrintException(e); 
+		}
+	}
+
+	private JRDesignElement columnValueElement(JRDesignElement templateField,
+			int cloneWidth, int i, int cloneX, String columnName) {
+		JRDesignTextField cloneColumnValue = (JRDesignTextField) templateField.clone();
+		cloneColumnValue.setX(cloneX);
+		cloneColumnValue.setWidth(cloneWidth);
+		cloneColumnValue.setKey("columnValue" + i);
+		JRDesignExpression expression = new JRDesignExpression();
+		expression.setValueClass(String.class);
+		expression.setText("$F{" + columnName + "}");
+		cloneColumnValue.setExpression(expression);
+		return cloneColumnValue;
+	}
+
+	private JRDesignElement columnHeaderElement(JRDesignElement templateHeader,
+			int cloneWidth, int i, int cloneX, String columnDescription) {
+		JRDesignStaticText cloneColumnHeader = (JRDesignStaticText) templateHeader.clone();
+		cloneColumnHeader.setX(cloneX);
+		cloneColumnHeader.setWidth(cloneWidth);
+		cloneColumnHeader.setKey("columnHeader" + i);
+		cloneColumnHeader.setText(columnDescription);
+		return cloneColumnHeader;
+	}
+
+	private JRDesignField columnField(String columnName) {
+		JRDesignField field = new JRDesignField();
+		field.setName(columnName);
+		field.setValueClass(String.class);
+		return field;
 	}
 	
 }

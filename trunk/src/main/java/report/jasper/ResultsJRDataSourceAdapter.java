@@ -1,8 +1,5 @@
 package report.jasper;
 
-import java.util.List;
-
-import message.MessageId;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
@@ -18,16 +15,14 @@ public class ResultsJRDataSourceAdapter implements JRDataSource {
 	}
 
 	public Object getFieldValue(JRField field) throws JRException {
-		List<MessageId> columnIds = results.spec().columnMessageIdentifiers();
-		for (int i = 0; i < columnIds.size(); i++) {
-			String column = columnIds.get(i).toString();
-			if (field.getName().equals(column)) {
-				return results.getValueAt(currentRowIndex, i).toString(); //TODO always toString()?
+		for (int i = 0; i < results.getColumnCount(); i++) {
+			if (field.getName().equals(results.getColumnName(i))) {
+				return results.getValueAt(currentRowIndex, i).toString();
 			}
 		}
 		throw new Error("Invalid column: " + field.getName());
 	}
-
+	
 	public boolean next() throws JRException {
 		if (currentRowIndex < results.getRowCount() - 1) {
 			currentRowIndex++;
