@@ -4,6 +4,7 @@ import message.MessageId;
 import model.receipt.Sell;
 import report.ReportFactory;
 import report.ReportPrint;
+import report.ReportUtils;
 import util.ValueHolder;
 
 public class PrintSellReportAction implements Action {
@@ -15,8 +16,8 @@ public class PrintSellReportAction implements Action {
 	}
 
 	public void execute() {
-		ReportPrint print = ReportFactory.instance().sellReport((Sell) holder.getValue());
-		ReportFactory.instance().show(print);
+		ReportPrint print = ReportFactory.instance().sellReportPrint((Sell) holder.getValue());
+		ReportUtils.instance().show(print);
 	}
 
 	public MessageId messageId() {
