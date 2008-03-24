@@ -25,9 +25,14 @@ public abstract class LazySearchResults implements SearchResults {
 
 	public String getColumnName(int columnIndex) {
 		MessageId messageId = spec.columnMessageIdentifiers().get(columnIndex);
-		return MessageRepository.instance().get(messageId);
+		return messageId.toString();
 	}
 
+	public String getColumnDescription(int columnIndex) {
+		MessageId messageId = spec.columnMessageIdentifiers().get(columnIndex);
+		return MessageRepository.instance().get(messageId);
+	}
+	
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return this.spec.value(get(rowIndex), columnIndex);
 	}

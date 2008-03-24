@@ -6,6 +6,8 @@ public interface Results {
 
 	String getColumnName(int columnIndex);
 
+	String getColumnDescription(int columnIndex);
+	
 	int getRowCount();
 
 	Object getValueAt(int rowIndex, int columnIndex);
