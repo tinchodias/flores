@@ -28,6 +28,10 @@ public class NullResults implements Results {
 		return "";
 	}
 
+	public String getColumnDescription(int columnIndex) {
+		return "";
+	}
+	
 	public int getRowCount() {
 		return 0;
 	}

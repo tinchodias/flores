@@ -2,6 +2,8 @@ package query.framework.results;
 
 import java.util.List;
 
+import org.apache.commons.lang.NotImplementedException;
+
 
 public abstract class EagerResults implements Results {
 
@@ -19,6 +21,10 @@ public abstract class EagerResults implements Results {
 
 	public String getColumnName(int columnIndex) {
 		return columnNames.get(columnIndex);
+	}
+
+	public String getColumnDescription(int columnIndex) {
+		throw new NotImplementedException();
 	}
 
 	public int getRowCount() {

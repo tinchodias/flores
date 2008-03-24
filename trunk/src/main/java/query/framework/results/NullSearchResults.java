@@ -31,6 +31,10 @@ public class NullSearchResults implements SearchResults {
 		return "";
 	}
 
+	public String getColumnDescription(int columnIndex) {
+		return "";
+	}
+	
 	public int getRowCount() {
 		return 0;
 	}
