@@ -173,6 +173,8 @@ public enum MessageId {
 	marginAverage, 
 	dropOutsTotal, 
 	
+	exportXls, 
+	
 	;
 	
 }

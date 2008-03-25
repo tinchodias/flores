@@ -6,6 +6,7 @@ import ui.controller.action.Action;
 import ui.controller.action.CloseDialogAction;
 import ui.controller.action.CompositeAction;
 import ui.controller.action.ExecuteOnSelectionAction;
+import ui.controller.action.ExportSearchResultsAction;
 import ui.controller.action.SearchAction;
 import ui.controller.action.ShowDialogAction;
 import ui.controller.initializer.DialogInitializer;
@@ -23,6 +24,7 @@ public abstract class StandardSearchDialogInitializer implements SearchDialogIni
 		
 		Action searchAction = new SearchAction(searchPanel, searchQuery());
 		searchPanel.setSearchAction(searchAction);
+		searchPanel.setExportAction(new ExportSearchResultsAction(searchPanel));
 		searchAction.execute();
 		
 		searchDialog.setCloseAction(new CloseDialogAction(searchDialog));
