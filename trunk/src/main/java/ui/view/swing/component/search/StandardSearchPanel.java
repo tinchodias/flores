@@ -40,6 +40,7 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	private JPanel filtersButtonsPanel;
 	private JButton searchButton;
 	private JPanel eastPanel;
+	private JButton exportButton;
 
 	public StandardSearchPanel() {
 		initCenterPanel();
@@ -94,7 +95,6 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		filtersButtonsPanel.setVisible(false);
 		
 		filtersButtonsPanel.add(SwingUI.instance().decorated(searchButton));
-		
 	}
 
 	private void initFiltersPanel() {
@@ -108,8 +108,10 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 		resultsPanel = new JPanel();
 		resultsPanel.setLayout(new BorderLayout());
 		tableModelAdapter = new TableModelAdapter();
+		exportButton = new JButton();
 		resultsTable = SwingUI.instance().table(tableModelAdapter);
-		resultsPanel.add(SwingUI.instance().decorated(new JScrollPane(resultsTable)));
+		resultsPanel.add(SwingUI.instance().decorated(new JScrollPane(resultsTable)), BorderLayout.CENTER);
+		resultsPanel.add(SwingUI.instance().decorated(exportButton), BorderLayout.SOUTH);
 	}
 
 	protected JPanel buttonPanel() {
@@ -139,6 +141,10 @@ public abstract class StandardSearchPanel extends JPanel implements SearchUI, Cr
 	public void setSearchAction(Action action) {
 		searchButton.setAction(new ActionAdapter(action));
 		filtersButtonsPanel.setVisible(true);
+	}
+	
+	public void setExportAction(Action action) {
+		exportButton.setAction(new ActionAdapter(action));
 	}
 	
 	public Object getSelection() {

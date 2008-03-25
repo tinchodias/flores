@@ -16,6 +16,8 @@ public interface SearchUI {
 
 	void setSearchAction(Action action);
 
+	void setExportAction(Action action);
+	
 	Action getSearchAction();
 
 	Object getSelection();
