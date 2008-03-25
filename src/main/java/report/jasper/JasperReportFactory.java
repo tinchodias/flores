@@ -28,6 +28,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResults;
+import query.framework.results.SearchResults;
 import query.framework.results.SellItemsLazySearchResults;
 import report.ReportFactory;
 import report.ReportPrint;
@@ -69,7 +70,7 @@ public class JasperReportFactory extends ReportFactory {
 		parameters.put(messageId.toString() + "Label", MessageRepository.instance().get(messageId));
 	}
 
-	private static ReportPrint reportPrintFor(JasperReport report, LazySearchResults results, HashMap parameters) {
+	private static ReportPrint reportPrintFor(JasperReport report, SearchResults results, HashMap parameters) {
 		JasperPrint print;
 		try {
 			JRDataSource dataSource = new ResultsJRDataSourceAdapter(results);
@@ -92,11 +93,11 @@ public class JasperReportFactory extends ReportFactory {
 		return SimplePropertiesIconRepository.class.getResource("/jasper/" + reportName + ".jrxml");
 	}
 
-	public ReportPrint standardListReportPrint(LazySearchResults results, String title) {
+	public ReportPrint standardListReportPrint(SearchResults results, String title) {
 		return reportPrintFor(standardListReport(results, title), results, new HashMap());
 	}
 
-	private JasperReport standardListReport(LazySearchResults results, String title) {
+	private JasperReport standardListReport(SearchResults results, String title) {
 		try {
 			JasperDesign design = (JasperDesign) JRXmlLoader.load(urlFor("StandardList").openStream());
 			

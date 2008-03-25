@@ -3,14 +3,14 @@ package report.jasper;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
-import query.framework.results.LazySearchResults;
+import query.framework.results.SearchResults;
 
 public class ResultsJRDataSourceAdapter implements JRDataSource {
 
-	private final LazySearchResults results;
+	private final SearchResults results;
 	private int currentRowIndex = -1; 
 
-	public ResultsJRDataSourceAdapter(LazySearchResults results) {
+	public ResultsJRDataSourceAdapter(SearchResults results) {
 		this.results = results;
 	}
 
