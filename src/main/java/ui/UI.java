@@ -34,5 +34,7 @@ public abstract class UI {
 		}
 		return mainUI;
 	}
+
+	public abstract String chooseSaveFileName();
 	
 }

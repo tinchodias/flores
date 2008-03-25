@@ -5,6 +5,7 @@ import query.framework.results.SearchResults;
 import report.ReportFactory;
 import report.ReportPrint;
 import report.ReportUtils;
+import ui.UI;
 import ui.view.component.SearchUI;
 
 public class ExportSearchResultsAction implements Action {
@@ -16,11 +17,13 @@ public class ExportSearchResultsAction implements Action {
 	}
 
 	public void execute() {
-		SearchResults results = searchUI.getResults();
-		String title = "List";
-		ReportPrint print = ReportFactory.instance().standardListReportPrint(results, title);
-		String fileName = "export.xls";
-		ReportUtils.instance().exportXls(print, fileName);
+		String fileName = UI.instance().chooseSaveFileName();
+		if (fileName != null) {
+			SearchResults results = searchUI.getResults();
+			String title = "List";
+			ReportPrint print = ReportFactory.instance().standardListReportPrint(results, title);
+			ReportUtils.instance().exportXls(print, fileName);
+		}
 	}
 
 	public MessageId messageId() {

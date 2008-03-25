@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.File;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -15,6 +16,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -220,6 +222,24 @@ public class SwingUI extends UI {
 				component.setEnabled(enable);
 			}
 		}
+	}
+
+	public String chooseSaveFileName() {
+		String title = MessageRepository.instance().get(MessageId.fileExistsConfirmTitle);
+		String message = MessageRepository.instance().get(MessageId.fileExistsConfirmMessage);
+		JFileChooser fc = new JFileChooser();
+		int result = fc.showSaveDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			if (file.exists()) {
+				int overwriteResult = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+				if (overwriteResult == JOptionPane.NO_OPTION) {
+					return chooseSaveFileName();
+				}
+			}
+			return file.toString();
+		}
+		return null;
 	}
 	
 }
