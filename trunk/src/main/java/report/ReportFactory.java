@@ -1,7 +1,7 @@
 package report;
 
 import model.receipt.Sell;
-import query.framework.results.LazySearchResults;
+import query.framework.results.SearchResults;
 import report.jasper.JasperReportFactory;
 
 public abstract class ReportFactory {
@@ -17,6 +17,6 @@ public abstract class ReportFactory {
 	
 	public abstract ReportPrint sellReportPrint(Sell sell);
 	
-	public abstract ReportPrint standardListReportPrint(LazySearchResults results, String title);
+	public abstract ReportPrint standardListReportPrint(SearchResults results, String title);
 	
 }
