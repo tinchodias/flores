@@ -7,6 +7,8 @@ public enum MessageId {
 	//UI
 	infoTitle,
 	errorTitle, 
+	fileExistsConfirmTitle, 
+	fileExistsConfirmMessage, 
 
 	//Persistence
 	persistenceInvalidModel, 

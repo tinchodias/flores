@@ -22,25 +22,23 @@ public class JasperReportUtils extends ReportUtils {
 		try {
 			JasperExportManager.exportReportToPdfFile(((JasperReportPrint) print).getPrint(), reportFileName);
 		} catch (JRException e) {
-			e.printStackTrace();
 			throw new ReportPrintException(e);
 		}
 	}
 	
 	public void exportXls(ReportPrint print, String reportFileName) {
 		try {
-			Object outputfile = new FileOutputStream(new File(reportFileName));
+			Object outputFile = new FileOutputStream(new File(reportFileName));
 			
 			JRXlsExporter exporterXLS = new JRXlsExporter();
 			exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT, ((JasperReportPrint) print).getPrint());
-			exporterXLS.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, outputfile);
+			exporterXLS.setParameter(JRXlsExporterParameter.OUTPUT_STREAM, outputFile);
 			exporterXLS.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.FALSE);
 //			exporterXLS.setParameter(JRXlsExporterParameter.IS_AUTO_DETECT_CELL_TYPE, Boolean.TRUE);
-			exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.TRUE);
+			exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
 			exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
 			exporterXLS.exportReport();		
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new ReportPrintException(e);
 		}
 	}
