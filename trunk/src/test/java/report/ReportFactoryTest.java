@@ -26,7 +26,10 @@ public class ReportFactoryTest extends TestCase {
 
 	public void testSellReport() {
 		Sell sell = StoreFixture.simpleSell(store);
-		assertNotNull(reportFactory.sellReportPrint(sell));
+
+		ReportPrint print = reportFactory.sellReportPrint(sell);
+		assertNotNull(print);
+//		ReportUtils.instance().exportXls(print, "/sell.xls");
 	}
 	
 	public void testStandardReport() {
@@ -36,7 +39,9 @@ public class ReportFactoryTest extends TestCase {
 		columnNames.add(MessageId.province);
 		LazySearchResults results = ResultsFixture.resultsMock(columnNames, 70);
 		
-		assertNotNull(reportFactory.standardListReportPrint(results, "Test title"));
+		ReportPrint print = reportFactory.standardListReportPrint(results, "Test title");
+		assertNotNull(print);
+//		ReportUtils.instance().exportXls(print, "/list.xls");
 	}
 	
 }

@@ -35,6 +35,7 @@ public class ResultsFixture {
 		
 		public Object value(Object object, int columnIndex) {
 			Integer i = (Integer) object;
+//			return i + columnIndex;
 			return "value " + i + " " + columnIndex;
 		}
 	}
