@@ -32,7 +32,7 @@ public class TableModelAdapter implements TableModel {
 	}
 
 	public String getColumnName(int columnIndex) {
-		return model.getColumnName(columnIndex);
+		return model.getColumnDescription(columnIndex);
 	}
 
 	public int getRowCount() {
