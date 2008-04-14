@@ -22,10 +22,6 @@ import net.sf.jasperreports.engine.design.JRDesignStaticText;
 import net.sf.jasperreports.engine.design.JRDesignTextField;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
-
-import org.joda.time.ReadableDateTime;
-import org.joda.time.format.DateTimeFormat;
-
 import persistence.ModelPersistence;
 import query.framework.results.LazySearchResults;
 import query.framework.results.SearchResults;
@@ -36,6 +32,13 @@ import report.ReportPrintException;
 
 public class JasperReportFactory extends ReportFactory {
 
+	private static final Map<Class<?>, String> patternByClass = new HashMap<Class<?>, String>();
+
+	static {
+		patternByClass.put(MoneyAmount.class, MoneyAmount.pattern());
+		//TODO add percent pattern
+	}
+	
 	public ReportPrint sellReportPrint(Sell sell) {
 		LazySearchResults results = new SellItemsLazySearchResults(sell.items());
 
@@ -48,22 +51,18 @@ public class JasperReportFactory extends ReportFactory {
 		addLabel(parameters, MessageId.clientDebt);
 		addLabel(parameters, MessageId.paymentTotal);
 		addLabel(parameters, MessageId.total);
-		addString(parameters, MessageId.total, sell.sellTotal());
-		addString(parameters, MessageId.paymentTotal, sell.paymentTotal());
+		addParameter(parameters, MessageId.total, sell.sellTotal());
+		addParameter(parameters, MessageId.paymentTotal, sell.paymentTotal());
 		MoneyAmount debt = ModelPersistence.instance().loadedModel().store().debts().debtOf(sell.client());
-		addString(parameters, MessageId.clientDebt, debt); //TODO show a snapshot?
-		addString(parameters, MessageId.date, sell.date());
-		addString(parameters, MessageId.client, sell.client());
+		addParameter(parameters, MessageId.clientDebt, debt); //TODO show a snapshot?
+		addParameter(parameters, MessageId.date, sell.date());
+		addParameter(parameters, MessageId.client, sell.client());
 		
 		return reportPrintFor(reportFor("Sell"), results, parameters);
 	}
 
-	private static void addString(Map parameters, MessageId messageId, ReadableDateTime date) {
-		parameters.put(messageId.toString(), DateTimeFormat.shortDateTime().print(date));
-	}
-
-	private static void addString(Map parameters, MessageId messageId, Object object) {
-		parameters.put(messageId.toString(), object.toString());
+	private static void addParameter(Map parameters, MessageId messageId, Object object) {
+		parameters.put(messageId.toString(), ResultsJRDataSourceAdapter.adaptedValueFor(object));
 	}
 
 	private static void addLabel(Map parameters, MessageId messageId) {
@@ -114,10 +113,11 @@ public class JasperReportFactory extends ReportFactory {
 				int cloneX = i * cloneWidth;
 				String columnName = results.getColumnName(i);
 				String columnDescription = results.getColumnDescription(i);
+				Class<?> columnClass = results.getColumnClass(i);
 				
 				design.addField(columnField(columnName));
 				headerBand.addElement(columnHeaderElement(templateHeader, cloneWidth, i, cloneX, columnDescription));
-				detailBand.addElement(columnValueElement(templateField, cloneWidth, i, cloneX, columnName));
+				detailBand.addElement(columnValueElement(templateField, cloneWidth, i, cloneX, columnName, columnClass));
 			}
 
 			//Removes template stuff
@@ -131,16 +131,21 @@ public class JasperReportFactory extends ReportFactory {
 	}
 
 	private JRDesignElement columnValueElement(JRDesignElement templateField,
-			int cloneWidth, int i, int cloneX, String columnName) {
+			int cloneWidth, int i, int cloneX, String columnName, Class<?> columnClass) {
 		JRDesignTextField cloneColumnValue = (JRDesignTextField) templateField.clone();
 		cloneColumnValue.setX(cloneX);
 		cloneColumnValue.setWidth(cloneWidth);
 		cloneColumnValue.setKey("columnValue" + i);
+		cloneColumnValue.setPattern(patternFor(columnClass));
 		JRDesignExpression expression = new JRDesignExpression();
-		expression.setValueClass(String.class);
+		expression.setValueClass(ResultsJRDataSourceAdapter.adaptedClassFor(columnClass));
 		expression.setText("$F{" + columnName + "}");
 		cloneColumnValue.setExpression(expression);
 		return cloneColumnValue;
+	}
+
+	private String patternFor(Class<?> clazz) {
+		return patternByClass.get(clazz);
 	}
 
 	private JRDesignElement columnHeaderElement(JRDesignElement templateHeader,
@@ -156,7 +161,7 @@ public class JasperReportFactory extends ReportFactory {
 	private JRDesignField columnField(String columnName) {
 		JRDesignField field = new JRDesignField();
 		field.setName(columnName);
-		field.setValueClass(String.class);
+		field.setValueClass(Object.class);
 		return field;
 	}
 	
