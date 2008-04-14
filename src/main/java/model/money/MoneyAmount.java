@@ -1,5 +1,6 @@
 package model.money;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import message.MessageId;
@@ -7,6 +8,8 @@ import validation.ModelValidation;
 
 public class MoneyAmount {
 
+	//TODO Hardcoded pattern!
+	private static final String MONEY_PATTERN = "$ #,##0.00;$ -#,##0.00";
 	private static final MoneyAmount zero = MoneyAmount.newFor(0.0);
 	private static NumberFormat format;
 	private final Double value;
@@ -28,9 +31,13 @@ public class MoneyAmount {
 		return format().format(value());
 	}
 
+	public static String pattern() {
+		return MONEY_PATTERN;
+	}
+	
 	public static NumberFormat format() {
 		if (format == null) {
-			format = NumberFormat.getCurrencyInstance();
+			format = new DecimalFormat(pattern());
 		}
 		return format;
 	}
