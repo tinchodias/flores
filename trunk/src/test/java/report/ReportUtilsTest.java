@@ -37,7 +37,7 @@ public class ReportUtilsTest extends TestCase {
 	}
 
 	public void testExportXls() {
-		reportUtils.exportPdf(print, EXPORT_TEST_XLS);
+		reportUtils.exportXls(print, EXPORT_TEST_XLS);
 		File file = new File(EXPORT_TEST_XLS);
 		assertTrue(file.exists());
 		file.deleteOnExit();
