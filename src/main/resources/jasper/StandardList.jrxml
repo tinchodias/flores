@@ -29,18 +29,15 @@
 			</band>
 		</background>
 		<title>
-			<band height="0"  isSplitAllowed="true" >
-			</band>
-		</title>
-		<pageHeader>
-			<band height="28"  isSplitAllowed="true" >
+			<band height="47"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
 						y="0"
 						width="535"
 						height="28"
-						key="staticText-2"/>
+						key="staticText-2"
+						isPrintInFirstWholeBand="true"/>
 					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
@@ -51,14 +48,10 @@
 					</textElement>
 				<text><![CDATA[Page Title]]></text>
 				</staticText>
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="19"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="0"
-						y="0"
+						y="28"
 						width="535"
 						height="19"
 						key="staticText-1"/>
@@ -72,6 +65,14 @@
 					</textElement>
 				<text><![CDATA[]]></text>
 				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
 			</band>
 		</columnHeader>
 		<detail>
