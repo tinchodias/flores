@@ -34,8 +34,8 @@
     
     <dependency>
       <groupId>db4o</groupId>
-      <artifactId>db4o</artifactId>
-      <version>6.3-java5</version>
+      <artifactId>db4o-java5</artifactId>
+      <version>6.3</version>
     </dependency>
     
     <dependency>
@@ -125,6 +125,16 @@
         </configuration>
       </plugin>
 
+	<plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+	  </configuration>
+	</plugin>
+	  
        </plugins>
    </build>  
 </project>
