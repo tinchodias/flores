@@ -17,7 +17,7 @@ public class ExecuteOnSelectionAction implements Action {
 	public void execute() {
 		Object selection = searchUI.getSelection();
 		if (selection == null) {
-			UI.instance().showInfo(MessageId.invalidSelection);
+			UI.instance().showInfo(MessageId.noSelection);
 		} else {
 			onSelectionAction.execute();
 		}
