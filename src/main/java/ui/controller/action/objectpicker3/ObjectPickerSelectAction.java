@@ -19,7 +19,7 @@ public class ObjectPickerSelectAction implements Action {
 	public void execute() {
 		Object selection = dialogUI.getSearchPanel().getSelection();
 		if (selection == null) {
-			UI.instance().showInfo(MessageId.invalidSelection);
+			UI.instance().showInfo(MessageId.noSelection);
 		} else {
 			picker.setSelection(selection);
 			dialogUI.setVisible(false);

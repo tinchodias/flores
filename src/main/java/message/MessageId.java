@@ -64,7 +64,7 @@ public enum MessageId {
 	objectPickerButton, 
 
 	//Generic
-	invalidSelection, 
+	noSelection, 
 	modify, 
 	create,
 	remove, 

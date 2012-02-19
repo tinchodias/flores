@@ -16,7 +16,7 @@ public class RemoveBuyItemAction implements Action {
 	public void execute() {
 		Object selection = buyUI.getItemsPanel().getSelection();
 		if (selection == null) {
-			UI.instance().showInfo(MessageId.invalidSelection);
+			UI.instance().showInfo(MessageId.noSelection);
 		} else {
 			BuyItemsLazySearchResults results = (BuyItemsLazySearchResults) buyUI.getItemsPanel().getResults();
 			results.remove(selection);
