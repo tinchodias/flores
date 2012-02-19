@@ -25,6 +25,7 @@ public class MainApplication {
         		}
 
         		try {
+        			//createAndSaveModel();
         			initPersistence();
         			UI.instance().mainUI().show();
 
@@ -43,4 +44,10 @@ public class MainApplication {
 		ModelPersistence.instance().load();
 	}
 
+//	private static void createAndSaveModel() {
+//		ModelPersistence.instance().open();
+//		ModelPersistence.instance().save(ModelFixture.simpleModel());
+//		ModelPersistence.instance().close();
+//	}
+	
 }
