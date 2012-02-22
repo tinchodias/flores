@@ -2,8 +2,12 @@ package ui.view.swing.component.search;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 import message.MessageId;
 import ui.controller.action.Action;
@@ -36,6 +40,7 @@ public class StandardSearchDialog extends StandardDialog implements SearchDialog
 
 	public void setCloseAction(Action action) {
 		closeButton.setAction(new ActionAdapter(action));
+		SwingUI.instance().putCloseAction(this.getRootPane(), new ActionAdapter(action));
 	}
 
 	public StandardSearchPanel getSearchPanel() {

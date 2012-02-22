@@ -48,6 +48,7 @@ public abstract class StandardDetailDialog extends StandardDialog implements Det
 	
 	public void setCancelAction(Action action) {
 		cancelButton.setAction(new ActionAdapter(action));
+		SwingUI.instance().putCloseAction(this.getRootPane(), new ActionAdapter(action));
 	}
 
 	public void setMode(DetailMode mode) {

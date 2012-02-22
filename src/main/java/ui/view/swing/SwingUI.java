@@ -21,6 +21,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -52,6 +53,7 @@ import ui.view.swing.util.IntervalPicker;
 import ui.view.swing.util.LabeledPanel;
 import ui.view.swing.util.ReadableInstantTableCellRenderer;
 import ui.view.swing.util.RightAlignTableCellRenderer;
+import ui.view.swing.util.actionadapter.ActionAdapter;
 import ui.view.swing.util.objectpicker3.ObjectPicker3;
 
 public class SwingUI extends UI {
@@ -240,6 +242,11 @@ public class SwingUI extends UI {
 			return file.toString();
 		}
 		return null;
+	}
+
+	public void putCloseAction(JRootPane rootPane, Action action) {
+		rootPane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+		rootPane.getActionMap().put("close", action);		
 	}
 	
 }
