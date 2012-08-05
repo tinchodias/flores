@@ -12,4 +12,6 @@ ModelPersistence.instance().save(ModelFixture.simpleModel());
 ModelPersistence.instance().close();
 }}}
   # Run from command-line:
+{{{
 java -classpath flores-1.2-SNAPSHOT-jar-with-dependencies.jar;flores-1.2-SNAPSHOT.jar ui.MainApplication
+}}}
