@@ -1,6 +1,6 @@
 #summary How to start the app from scratch
 
-  # After download svn code, install db4o jars with the bat file.
+  # After download svn code, install db4o jars with the script file.
   # Run in command-line:
 {{{
 mvn install assembly:single
