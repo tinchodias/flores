@@ -109,7 +109,7 @@ public class MainFrame extends JFrame implements MainUI {
 	}
 
 	private JMenu newSystemMenu() {
-		systemMenu = new JMenu("Sesión");
+		systemMenu = new JMenu("Sesi—n");
 		
 		addJMenuItem(systemMenu, new LoginDialogInitializer(), MessageId.loginDialogTitle);
 		
