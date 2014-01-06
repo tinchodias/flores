@@ -41,13 +41,13 @@ public class StoreFixture {
 		Province salta = new Province("Salta");
 		store.provinces().add(salta);
 
-		City metán = new City("Metán", salta);
-		store.cities().add(metán);
+		City metan = new City("Met‡n", salta);
+		store.cities().add(metan);
 
-		JuridicPerson elvira = new JuridicPerson("Elvira", new Address("San Martín 1456", metán));
+		JuridicPerson elvira = new JuridicPerson("Elvira", new Address("San Mart’n 1456", metan));
 		store.clients().add(elvira);
 
-		JuridicPerson marquez = new JuridicPerson("Marquez", new Address("Rosales 356 PB", metán));
+		JuridicPerson marquez = new JuridicPerson("Marquez", new Address("Rosales 356 PB", metan));
 		store.suppliers().add(marquez);
 		
 		Vendor eduardo = new Vendor("Eduardo");
@@ -59,7 +59,7 @@ public class StoreFixture {
 		Article paqueteClavel = new Article("Clavel", floresGroup);
 		store.stockArticles().add(paqueteClavel);
 
-		ExpenseArticle alquiler = new ExpenseArticle("Alquiler del depósito");
+		ExpenseArticle alquiler = new ExpenseArticle("Alquiler del dep—sito");
 		store.expensesArticles().add(alquiler);
 		
 		return store;
